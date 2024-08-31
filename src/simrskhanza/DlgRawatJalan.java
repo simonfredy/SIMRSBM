@@ -2657,6 +2657,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         Btn5Soap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); 
         Btn5Soap.setMnemonic('4');
+        Btn5Soap.setText("5 SOAP Terakhir");
         Btn5Soap.setToolTipText("ALt+4");
         Btn5Soap.setName("Btn5Soap"); 
         Btn5Soap.addActionListener(new java.awt.event.ActionListener() {
@@ -2665,10 +2666,11 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(Btn5Soap);
-        Btn5Soap.setBounds(374, 40, 28, 23);
+        Btn5Soap.setBounds(940, 40, 140, 23);
 
         BtnTemplatePemeriksaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); 
         BtnTemplatePemeriksaan.setMnemonic('4');
+        BtnTemplatePemeriksaan.setText("Template Pemeriksaan");
         BtnTemplatePemeriksaan.setToolTipText("ALt+4");
         BtnTemplatePemeriksaan.setName("BtnTemplatePemeriksaan"); 
         BtnTemplatePemeriksaan.addActionListener(new java.awt.event.ActionListener() {
@@ -2677,7 +2679,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(BtnTemplatePemeriksaan);
-        BtnTemplatePemeriksaan.setBounds(405, 40, 28, 23);
+        BtnTemplatePemeriksaan.setBounds(940, 80, 190, 23);
 
         PanelInput.add(panelGlass12, java.awt.BorderLayout.CENTER);
 

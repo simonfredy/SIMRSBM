@@ -13,6 +13,8 @@
 package simrskhanza;
 import bridging.BPJSCekDataIndukKecelakaan;
 import bridging.BPJSCekSuplesiJasaRaharja;
+import bridging.PilihanBridgingAsuransi;
+import bridging.BPJSCekHistoriPelayanan;
 import rekammedis.RMRiwayatPerawatan;
 import permintaan.DlgBookingOperasi;
 import kepegawaian.DlgCariDokter;
@@ -195,6 +197,7 @@ public final class DlgIGD extends javax.swing.JDialog {
     private boolean ceksukses=false;
     private int i=0,jmlparsial=0;
     private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
+    private BPJSCekHistoriPelayanan historiPelayanan=new BPJSCekHistoriPelayanan(null,false);
     private double biaya=0,biayabaru=0,biayalama=0;
     private String kdigd="",nosisrute="",aktifkanparsial="no",URUTNOREG="",terbitsep="",
             status="Baru",alamatperujuk="-",umur="0",sttsumur="Th",IPPRINTERTRACER="",norawatdipilih="",normdipilih="",
@@ -260,7 +263,7 @@ public final class DlgIGD extends javax.swing.JDialog {
 
         Object[] row={"P","No.Reg","No.Rawat","Tanggal","Jam","Kd.Dokter","Dokter Dituju","Nomer RM",
             "Pasien","J.K.","Umur","Poliklinik","Penanggung Jawab","Alamat P.J.","Hubungan dg P.J.",
-            "Biaya Regristrasi","Status","Jenis Bayar","Stts Rawat","Kd PJ","Status Bayar"};
+            "Biaya Regristrasi","Status","Jenis Bayar","Stts Rawat","Kd PJ","Status Bayar","No. SEP"};
         tabMode=new DefaultTableModel(null,row){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
@@ -275,7 +278,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
-                 java.lang.Object.class
+                 java.lang.Object.class, java.lang.Object.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -287,7 +290,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         tbPetugas.setPreferredScrollableViewportSize(new Dimension(800,800));
         tbPetugas.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 21; i++) {
+        for (i = 0; i < 22; i++) {
             TableColumn column = tbPetugas.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(20);
@@ -332,6 +335,8 @@ public final class DlgIGD extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             }else if(i==20){
                 column.setPreferredWidth(70);
+            }else if(i==21){
+                column.setPreferredWidth(150);
             }
         }
         tbPetugas.setDefaultRenderer(Object.class, new WarnaTable());
@@ -346,6 +351,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         THbngn.setDocument(new batasInput((byte)20).getKata(THbngn));
         TAlmt.setDocument(new batasInput((byte)60).getKata(TAlmt));
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
+        NoKa.setDocument(new batasInput((byte)25).getKata(NoKa));
         if(koneksiDB.CARICEPAT().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
@@ -966,6 +972,11 @@ public final class DlgIGD extends javax.swing.JDialog {
         btnPenjab1 = new widget.Button();
         ChkTracker = new widget.CekBox();
         ChkInput = new widget.CekBox();
+        jLabel31 = new widget.Label();
+        NoKa = new widget.TextBox();
+        btnCekBridging = new widget.Button();
+        btnRiwayat = new widget.Button();
+        BtnRiwayatRM = new widget.Button();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -5058,6 +5069,60 @@ public final class DlgIGD extends javax.swing.JDialog {
         ChkTracker.setName("ChkTracker"); // NOI18N
         FormInput.add(ChkTracker);
         ChkTracker.setBounds(203, 12, 23, 23);
+        
+        jLabel31.setText("No. Ka :");
+        jLabel31.setName("jLabel31"); // NOI18N
+        FormInput.add(jLabel31);
+        jLabel31.setBounds(899, 102, 43, 23);
+        
+        NoKa.setHighlighter(null);
+        NoKa.setName("NoKa"); // NOI18N
+        NoKa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NoKaKeyPressed(evt);
+            }
+        });
+        FormInput.add(NoKa);
+        NoKa.setBounds(949, 102, 112, 23);
+
+        btnCekBridging.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnCekBridging.setMnemonic('2');
+        btnCekBridging.setToolTipText("ALt+2");
+        btnCekBridging.setName("btnCekBridging"); // NOI18N
+        btnCekBridging.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCekBridgingActionPerformed(evt);
+            }
+        });
+        FormInput.add(btnCekBridging);
+        btnCekBridging.setBounds(1065, 102, 28, 23);
+
+        btnRiwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        btnRiwayat.setMnemonic('X');
+        btnRiwayat.setText("Cek Riwayat SEP");
+        btnRiwayat.setFont(new java.awt.Font("Tahoma", 0, 11));
+        btnRiwayat.setToolTipText("Alt+X");
+        btnRiwayat.setName("btnRiwayat"); // NOI18N
+        btnRiwayat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRiwayatActionPerformed(evt);
+            }
+        });
+        FormInput.add(btnRiwayat);
+        btnRiwayat.setBounds(1101, 102, 130, 23);
+        
+        BtnRiwayatRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/barralan.png"))); // NOI18N
+        BtnRiwayatRM.setMnemonic('1');
+        BtnRiwayatRM.setText("Riwayat Pasien");
+        BtnRiwayatRM.setToolTipText("ALt+1");
+        BtnRiwayatRM.setName("BtnRiwayatRM"); // NOI18N
+        BtnRiwayatRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRiwayatRMActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnRiwayatRM);
+        BtnRiwayatRM.setBounds(902, 12, 140, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -11191,6 +11256,52 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }
     
+    private void NoKaKeyPressed(java.awt.event.KeyEvent evt) {                                
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            btnCekBridgingActionPerformed(null);
+        }
+    }                               
+
+    private void btnCekBridgingActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        if(NoKa.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, silahkan masukkan nomor kartu asuransi terkait...!!!!");
+            TNoRM.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            PilihanBridgingAsuransi form=new PilihanBridgingAsuransi(null,true);
+            form.setTinggi(internalFrame1.getHeight()-20);
+            form.setLebar(internalFrame1.getWidth()-20);
+            form.setSize(600,350);
+            form.isCek();
+            form.setNoKa(NoKa.getText());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }                                              
+
+    private void btnRiwayatActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        historiPelayanan.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        historiPelayanan.setLocationRelativeTo(internalFrame1);
+        historiPelayanan.setKartu(NoKa.getText());
+        historiPelayanan.setVisible(true);
+    }
+    
+    private void BtnRiwayatRMActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        if(TNoRM.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMRiwayatPerawatan resume=new RMRiwayatPerawatan(null,true);
+            resume.setNoRm(TNoRM.getText(),TPasien.getText());
+            resume.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
+            resume.setLocationRelativeTo(internalFrame1);
+            resume.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }  
+    
     /**
     * @data args the command line arguments
     */
@@ -11520,6 +11631,11 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                                   MnDataOperasi,MnSkriningMerokokUsiaSekolahRemaja,MnSkriningKekerasanPadaWanita,MnSkriningObesitas,MnSkriningRisikoKankerPayudara,MnSkriningRisikoKankerParu,MnSkriningKesehatanGigiMulutRemaja,
                                   MnSkriningTBC;
     private javax.swing.JMenu MnRMSkrining;
+    private widget.Label jLabel31;
+    private widget.TextBox NoKa;
+    private widget.Button btnCekBridging;
+    private widget.Button btnRiwayat;
+    private widget.Button BtnRiwayatRM;
     
     private void tampil() {
         Valid.tabelKosong(tabMode);   
@@ -11596,6 +11712,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         TNoRM.requestFocus();
         kdpnj.setText("");
         nmpnj.setText("");
+        NoKa.setText("");
     }
 
     private void getData() {
@@ -11731,6 +11848,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                     kdpnj.setText(rs.getString("kd_pj"));
                     nmpnj.setText(rs.getString("png_jawab"));
                     TStatus.setText(rs.getString("daftar"));
+                    NoKa.setText(rs.getString("no_peserta"));
                     JK.setText("jk");
                     umur="0";
                     sttsumur="Th";

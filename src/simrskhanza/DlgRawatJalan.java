@@ -2038,7 +2038,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         internalFrame2.add(TabRawatTindakanDokter, java.awt.BorderLayout.CENTER);
 
-        TabRawat.addTab("Penanganan Dokter", internalFrame2);
+        TabRawat.addTab("Tindakan Dokter", internalFrame2);
 
         internalFrame3.setBorder(null);
         internalFrame3.setName("internalFrame3"); 
@@ -2131,7 +2131,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         internalFrame3.add(TabRawatTindakanPetugas, java.awt.BorderLayout.CENTER);
 
-        TabRawat.addTab("Penanganan Petugas", internalFrame3);
+        TabRawat.addTab("Tindakan Petugas", internalFrame3);
 
         internalFrame4.setBorder(null);
         internalFrame4.setName("internalFrame4"); 
@@ -2257,7 +2257,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         internalFrame4.add(TabRawatTindakanDokterPetugas, java.awt.BorderLayout.CENTER);
 
-        TabRawat.addTab("Penanganan Dokter & Petugas", internalFrame4);
+        TabRawat.addTab("Tindakan Dokter & Petugas", internalFrame4);
 
         internalFrame5.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2685,7 +2685,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         internalFrame5.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
-        TabRawat.addTab("Pemeriksaan", internalFrame5);
+        TabRawat.addTab("SOAPIE/CPPT", internalFrame5);
 
         internalFrame6.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3414,7 +3414,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         panelDiagnosa1.setBorder(null);
         panelDiagnosa1.setName("panelDiagnosa1"); 
-        TabRawat.addTab("Diagnosa", panelDiagnosa1);
+        TabRawat.addTab("Diagnosa & Prosedur (ICD)", panelDiagnosa1);
 
         internalFrame8.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));

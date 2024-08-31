@@ -1820,7 +1820,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
 
         internalFrame2.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
-        TabRawat.addTab("Penanganan Dokter", internalFrame2);
+        TabRawat.addTab("Tindakan Dokter", internalFrame2);
 
         internalFrame3.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame3.setBorder(null);
@@ -1940,7 +1940,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
 
         internalFrame3.add(panelGlass13, java.awt.BorderLayout.PAGE_START);
 
-        TabRawat.addTab("Penanganan Petugas", internalFrame3);
+        TabRawat.addTab("Tindakan Petugas", internalFrame3);
 
         internalFrame4.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame4.setBorder(null);
@@ -2093,7 +2093,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
 
         internalFrame4.add(panelGlass11, java.awt.BorderLayout.PAGE_START);
 
-        TabRawat.addTab("Penanganan Dokter & Petugas", internalFrame4);
+        TabRawat.addTab("Tindakan Dokter & Petugas", internalFrame4);
 
         internalFrame5.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2199,12 +2199,12 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         panelGlass12.add(scrollPane2);
         scrollPane2.setBounds(73, 115, 360, 38);
 
-        jLabel8.setText("Subjek :");
+        jLabel8.setText("(S)ubjek :");
         jLabel8.setName("jLabel8"); // NOI18N
         panelGlass12.add(jLabel8);
         jLabel8.setBounds(0, 70, 70, 23);
 
-        jLabel9.setText("Objek :");
+        jLabel9.setText("(O)bjek :");
         jLabel9.setName("jLabel9"); // NOI18N
         panelGlass12.add(jLabel9);
         jLabel9.setBounds(0, 115, 70, 23);
@@ -2226,12 +2226,12 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         panelGlass12.add(scrollPane3);
         scrollPane3.setBounds(543, 40, 360, 38);
 
-        jLabel37.setText("Asesmen :");
+        jLabel37.setText("(A)sesmen :");
         jLabel37.setName("jLabel37"); // NOI18N
         panelGlass12.add(jLabel37);
         jLabel37.setBounds(450, 40, 90, 23);
 
-        jLabel26.setText("Plan :");
+        jLabel26.setText("(P)lan :");
         jLabel26.setName("jLabel26"); // NOI18N
         panelGlass12.add(jLabel26);
         jLabel26.setBounds(450, 85, 90, 23);
@@ -2297,7 +2297,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         panelGlass12.add(jLabel54);
         jLabel54.setBounds(0, 40, 190, 23);
 
-        jLabel55.setText("Instruksi :");
+        jLabel55.setText("(I)nstruksi :");
         jLabel55.setName("jLabel55"); // NOI18N
         panelGlass12.add(jLabel55);
         jLabel55.setBounds(450, 139, 90, 23);
@@ -2382,13 +2382,14 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         panelGlass12.add(scrollPane8);
         scrollPane8.setBounds(543, 196, 360, 44);
 
-        jLabel59.setText("Evaluasi :");
+        jLabel59.setText("(E)valuasi :");
         jLabel59.setName("jLabel59"); // NOI18N
         panelGlass12.add(jLabel59);
         jLabel59.setBounds(450, 196, 90, 23);
 
         Btn5Soap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         Btn5Soap.setMnemonic('4');
+        Btn5Soap.setText("5 SOAP Terakhir");
         Btn5Soap.setToolTipText("ALt+4");
         Btn5Soap.setName("Btn5Soap"); // NOI18N
         Btn5Soap.addActionListener(new java.awt.event.ActionListener() {
@@ -2397,7 +2398,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(Btn5Soap);
-        Btn5Soap.setBounds(405, 40, 28, 23);
+        Btn5Soap.setBounds(940, 40, 140, 23);
 
         jLabel7.setText("Suhu (°C) :");
         jLabel7.setName("jLabel7"); // NOI18N
@@ -2493,7 +2494,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
 
         internalFrame5.add(PanelInput1, java.awt.BorderLayout.PAGE_START);
 
-        TabRawat.addTab("Pemeriksaan", internalFrame5);
+        TabRawat.addTab("SOAPIE/CPPT", internalFrame5);
 
         internalFrame6.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));

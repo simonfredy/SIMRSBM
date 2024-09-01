@@ -5764,6 +5764,21 @@ public class DlgKamarInap extends javax.swing.JDialog {
         cmbStatusBayar.setName("cmbStatusBayar"); // NOI18N
         cmbStatusBayar.setPreferredSize(new java.awt.Dimension(120, 23));
         panelGlass9.add(cmbStatusBayar);
+        
+        nomorsep = new widget.Label();
+        nomorsep.setText("No. SEP : ");
+        nomorsep.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOIl8N
+        nomorsep.setName("antrianpasien");
+        nomorsep.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass9.add(nomorsep);
+        
+        nosep = new widget.Label();
+        nosep.setForeground(new java.awt.Color(51, 51, 255));
+        nosep.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nosep.setText("No. SEP");
+        nosep.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOIl8N
+        nosep.setName("nosep");
+        panelGlass9.add(nosep);
 
         internalFrame1.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
@@ -17225,6 +17240,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                                   MnHasilEndoskopiHidung,MnHasilEndoskopiTelinga,MnPenilaianAwalKeperawatanRanapNeonatus,MnPenilaianPasienImunitasRendah,MnCatatanKeseimbanganCairan,MnCatatanObservasiCHBP,MnCatatanObservasiInduksiPersalinan,MnPermintaanKonsultasiMedik,
                                   MnDataOperasi,MnPenilaianAwalKeperawatanRanapBayiAnak;
     private javax.swing.JMenu MnHasilUSG,MnHasilEndoskopi,MnCatatanObservasi;
+    private widget.Label nomorsep,nosep;
     
     private void tampil() {
         if(R1.isSelected()==true){
@@ -17370,6 +17386,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
             TOut.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),13).toString());
             ttlbiaya.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),15).toString());
             cmbStatus.setSelectedItem(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),16).toString());
+            nosep.setText(Sequel.cariIsi("select bridging_sep.no_sep from bridging_sep where no_rawat='"+norawat.getText()+"' and bridging_sep.jnspelayanan='1'"));
         }
     }
 

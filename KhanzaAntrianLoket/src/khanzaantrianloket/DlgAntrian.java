@@ -13,6 +13,8 @@ package khanzaantrianloket;
 
 import fungsi.BackgroundMusic;
 import fungsi.koneksiDB;
+import fungsi.validasi;
+import fungsi.sekuel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.*;
@@ -33,6 +35,7 @@ import java.util.Properties;
  */
 public class DlgAntrian extends javax.swing.JDialog implements ActionListener{    
     private final Connection koneksi=koneksiDB.condb();
+    private final validasi Valid=new validasi();
     private final Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();   
     private static final Properties prop = new Properties();
     private String antri="0",loket="0",nol_detik,detik;
@@ -96,6 +99,8 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         label2 = new widget.Label();
         Antrian = new widget.TextBox();
         BtnBatal2 = new widget.Button();
+        label4 = new widget.Label();
+        label3 = new widget.Label();
 
         DlgDisplay.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DlgDisplay.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
@@ -285,6 +290,20 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         panelisi5.add(BtnBatal2);
         BtnBatal2.setBounds(20, 100, 100, 30);
 
+        label4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        label4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label4.setText("0000");
+        label4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        label4.setName("label4"); // NOI18N
+        panelisi5.add(label4);
+        label4.setBounds(160, 140, 120, 50);
+
+        label3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label3.setText("Antrian Terakhir");
+        label3.setName("label3"); // NOI18N
+        panelisi5.add(label3);
+        label3.setBounds(160, 100, 90, 30);
+
         internalFrame1.add(panelisi5, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
@@ -310,6 +329,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
             pshapus=koneksi.prepareStatement("delete from antriloket");
             try {
                 pshapus.executeUpdate();
+                autonomer();
             } catch (Exception e) {
                 System.out.println("Notif : "+e);
             } finally{
@@ -404,6 +424,8 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
     private widget.InternalFrame internalFrame5;
     private widget.Label label1;
     private widget.Label label2;
+    private widget.Label label3;
+    private widget.Label label4;
     private widget.Label labelLoket;
     private widget.Label labelantri1;
     private widget.Label labelruntext;
@@ -568,6 +590,10 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         };
         // Timer
         new Timer(1000, taskPerformer).start();
+    }
+    
+    private void autonomer(){
+        Valid.autoNomer3("select ifnull(MAX(CONVERT(antriloketcetak.nomor,signed)),0) from antriloketcetak where antriloketcetak.tanggal=current_date()","",3,label4);
     }
 
 }

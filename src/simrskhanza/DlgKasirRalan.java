@@ -6691,6 +6691,51 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         TPasienCari.setName("TPasienCari"); // NOI18N
         TPasienCari.setPreferredSize(new java.awt.Dimension(250, 23));
         panelGlass9.add(TPasienCari);
+        
+        antrianpasien = new widget.Label();
+        antrianpasien.setText("No. Antrian : ");
+        antrianpasien.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOIl8N
+        antrianpasien.setName("antrianpasien");
+        antrianpasien.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass9.add(antrianpasien);
+        
+        digit = new widget.Label();
+        digit.setForeground(new java.awt.Color(255, 0, 102));
+        digit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        digit.setText("NO.");
+        digit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOIl8N
+        digit.setName("digit");
+        panelGlass9.add(digit);
+        
+        nomorsep = new widget.Label();
+        nomorsep.setText("No. SEP : ");
+        nomorsep.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOIl8N
+        nomorsep.setName("antrianpasien");
+        nomorsep.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass9.add(nomorsep);
+        
+        nosep = new widget.Label();
+        nosep.setForeground(new java.awt.Color(51, 51, 255));
+        nosep.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nosep.setText("No. SEP");
+        nosep.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOIl8N
+        nosep.setName("nosep");
+        panelGlass9.add(nosep);
+        
+        namarujukan = new widget.Label();
+        namarujukan.setText("Rujukan : ");
+        namarujukan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOIl8N
+        namarujukan.setName("antrianpasien");
+        namarujukan.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass9.add(namarujukan);
+        
+        nmrujukan = new widget.Label();
+        nmrujukan.setForeground(new java.awt.Color(51, 51, 255));
+        nmrujukan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nmrujukan.setText("Rujuk Poli");
+        nmrujukan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOIl8N
+        nmrujukan.setName("nmrujukan");
+        panelGlass9.add(nmrujukan);
 
         internalFrame1.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
@@ -14826,6 +14871,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                                   MnPermintaanKonsultasiMedik,MnDataOperasi,MnDataKonsultasiMedik,MnSkriningMerokokUsiaSekolahRemaja,MnSkriningKekerasanPadaWanita,MnSkriningObesitas,MnSkriningRisikoKankerPayudara,MnSkriningRisikoKankerParu,
                                   MnSkriningKesehatanGigiMulutRemaja,MnSkriningTBC;
     private javax.swing.JMenu MnHasilUSG,MnHasilEndoskopi,MnRMSkrining;
+    private widget.Label antrianpasien,digit,nomorsep,nosep,namarujukan,nmrujukan;
     
     private void tampilkasir() {     
         Valid.tabelKosong(tabModekasir);
@@ -14965,6 +15011,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             TNoReg.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),14).toString());
             TNoRMCari.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),2).toString());
             TPasienCari.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),3).toString());
+            digit.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),14).toString());
+            nosep.setText(Sequel.cariIsi("select bridging_sep.no_sep from bridging_sep where no_rawat='"+TNoRw.getText()+"' and bridging_sep.jnspelayanan='2'"));
+            nmrujukan.setText(Sequel.cariIsi("select bridging_sep.nmpolitujuan from bridging_sep where no_rawat='"+TNoRw.getText()+"' and bridging_sep.jnspelayanan='2'"));
         }
     }
 

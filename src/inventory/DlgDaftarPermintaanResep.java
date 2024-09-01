@@ -63,7 +63,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         tabMode=new DefaultTableModel(null,new Object[]{
                 "No.Resep","Tgl.Peresepan","Jam Peresepan","No.Rawat","No.RM","Pasien","Dokter Peresep",
                 "Status","Kode Dokter","Poli/Unit","Kode Poli","Jenis Bayar","Tgl.Validasi","Jam Validasi",
-                "Tgl.Penyerahan","Jam Penyerahan"
+                "Tgl.Penyerahan","Jam Penyerahan","No.Kartu BPJS","No.SEP"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -73,7 +73,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         tbResepRalan.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbResepRalan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i <16; i++) {
+        for (int i = 0; i <18; i++) {
             TableColumn column = tbResepRalan.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(75);
@@ -109,6 +109,10 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
                 column.setPreferredWidth(85);
             }else if(i==15){
                 column.setPreferredWidth(90);
+            }else if(i==16){
+                column.setPreferredWidth(140);
+            }else if(i==17){
+                column.setPreferredWidth(140);
             }
         }
         tbResepRalan.setDefaultRenderer(Object.class, new WarnaTable());
@@ -3213,6 +3217,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             if(DEPOAKTIFOBAT.equals("")){
                 ps=koneksi.prepareStatement("select resep_obat.no_resep,resep_obat.tgl_peresepan,resep_obat.jam_peresepan,"+
                         " resep_obat.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,resep_obat.kd_dokter,dokter.nm_dokter,"+
+                        " pasien.no_peserta,bridging_sep.no_sep,"+
                         " if(resep_obat.tgl_perawatan='0000-00-00','Belum Terlayani','Sudah Terlayani') as status,poliklinik.nm_poli, "+
                         " reg_periksa.kd_poli,penjab.png_jawab,if(resep_obat.tgl_perawatan='0000-00-00','',resep_obat.tgl_perawatan) as tgl_perawatan,"+
                         " if(resep_obat.jam='00:00:00','',resep_obat.jam) as jam,"+
@@ -3223,6 +3228,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         " inner join dokter on resep_obat.kd_dokter=dokter.kd_dokter "+
                         " inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
                         " inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
+                        " left join bridging_sep on resep_obat.no_rawat=bridging_sep.no_rawat and bridging_sep.jnspelayanan='2' "+
                         " where resep_obat.tgl_peresepan<>'0000-00-00' and resep_obat.status='ralan' and resep_obat.tgl_peresepan between ? and ? "+
                         (semua?"":"and dokter.nm_dokter like ? and poliklinik.nm_poli like ? and "+
                         "(resep_obat.no_resep like ? or resep_obat.no_rawat like ? or "+
@@ -3231,6 +3237,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             }else{
                 ps=koneksi.prepareStatement("select resep_obat.no_resep,resep_obat.tgl_peresepan,resep_obat.jam_peresepan,"+
                         " resep_obat.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,resep_obat.kd_dokter,dokter.nm_dokter,"+
+                        " pasien.no_peserta,bridging_sep.no_sep,"+
                         " if(resep_obat.tgl_perawatan='0000-00-00','Belum Terlayani','Sudah Terlayani') as status,poliklinik.nm_poli, "+
                         " reg_periksa.kd_poli,penjab.png_jawab,if(resep_obat.tgl_perawatan='0000-00-00','',resep_obat.tgl_perawatan) as tgl_perawatan,"+
                         " if(resep_obat.jam='00:00:00','',resep_obat.jam) as jam,"+
@@ -3241,6 +3248,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         " inner join dokter on resep_obat.kd_dokter=dokter.kd_dokter "+
                         " inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
                         " inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
+                        " left join bridging_sep on resep_obat.no_rawat=bridging_sep.no_rawat and bridging_sep.jnspelayanan='2' "+
                         " inner join set_depo_ralan on set_depo_ralan.kd_poli=reg_periksa.kd_poli "+
                         " where set_depo_ralan.kd_bangsal='"+DEPOAKTIFOBAT+"' and resep_obat.tgl_peresepan<>'0000-00-00' and resep_obat.status='ralan' and resep_obat.tgl_peresepan between ? and ? "+
                         (semua?"":"and dokter.nm_dokter like ? and poliklinik.nm_poli like ? and "+
@@ -3269,7 +3277,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                             rs.getString("no_resep"),rs.getString("tgl_peresepan"),rs.getString("jam_peresepan"),rs.getString("no_rawat"),
                             rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("nm_dokter"),rs.getString("status"),
                             rs.getString("kd_dokter"),rs.getString("nm_poli"),rs.getString("kd_poli"),rs.getString("png_jawab"),
-                            rs.getString("tgl_perawatan"),rs.getString("jam"),rs.getString("tgl_penyerahan"),rs.getString("jam_penyerahan")
+                            rs.getString("tgl_perawatan"),rs.getString("jam"),rs.getString("tgl_penyerahan"),rs.getString("jam_penyerahan"),rs.getString("no_peserta"),rs.getString("no_sep")
                         });              
                     }  
                 }else{
@@ -3279,7 +3287,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                                 rs.getString("no_resep"),rs.getString("tgl_peresepan"),rs.getString("jam_peresepan"),rs.getString("no_rawat"),
                                 rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("nm_dokter"),rs.getString("status"),
                                 rs.getString("kd_dokter"),rs.getString("nm_poli"),rs.getString("kd_poli"),rs.getString("png_jawab"),
-                                rs.getString("tgl_perawatan"),rs.getString("jam"),rs.getString("tgl_penyerahan"),rs.getString("jam_penyerahan")
+                                rs.getString("tgl_perawatan"),rs.getString("jam"),rs.getString("tgl_penyerahan"),rs.getString("jam_penyerahan"),rs.getString("no_peserta"),rs.getString("no_sep")
                             });
                         }                    
                     }  

@@ -105,7 +105,9 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         for (i = 0; i < 12; i++) {
             TableColumn column = tbResep.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(20);
+                //column.setPreferredWidth(20);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }else if(i==1){
                 column.setPreferredWidth(45);
             }else if(i==2){
@@ -414,12 +416,12 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         label12 = new widget.Label();
         Jeniskelas = new widget.ComboBox();
-        BtnTambah = new widget.Button();
-        BtnSeek5 = new widget.Button();
         BtnSimpan = new widget.Button();
         BtnTambah1 = new widget.Button();
         BtnHapus = new widget.Button();
         BtnKeluar = new widget.Button();
+        BtnTambah = new widget.Button();
+        BtnSeek5 = new widget.Button();
         FormInput = new widget.PanelBiasa();
         TNoRw = new widget.TextBox();
         TPasien = new widget.TextBox();
@@ -583,6 +585,62 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         });
         panelisi3.add(Jeniskelas);
 
+        BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
+        BtnSimpan.setText("Kirim Resep");
+        BtnSimpan.setToolTipText("Alt+S");
+        BtnSimpan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnSimpan.setName("BtnSimpan"); // NOI18N
+        BtnSimpan.setPreferredSize(new java.awt.Dimension(120, 23));
+        BtnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpanActionPerformed(evt);
+            }
+        });
+        panelisi3.add(BtnSimpan);
+
+        BtnTambah1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnTambah1.setMnemonic('3');
+        BtnTambah1.setText("Buat Nama Racikan");
+        BtnTambah1.setToolTipText("Alt+3");
+        BtnTambah1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnTambah1.setName("BtnTambah1"); // NOI18N
+        BtnTambah1.setPreferredSize(new java.awt.Dimension(150, 23));
+        BtnTambah1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTambah1ActionPerformed(evt);
+            }
+        });
+        panelisi3.add(BtnTambah1);
+
+        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
+        BtnHapus.setText("Hapus");
+        BtnHapus.setToolTipText("Alt+H");
+        BtnHapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnHapus.setName("BtnHapus"); // NOI18N
+        BtnHapus.setPreferredSize(new java.awt.Dimension(80, 23));
+        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusActionPerformed(evt);
+            }
+        });
+        panelisi3.add(BtnHapus);
+
+        BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('5');
+        BtnKeluar.setText("Keluar");
+        BtnKeluar.setToolTipText("Alt+5");
+        BtnKeluar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnKeluar.setName("BtnKeluar"); // NOI18N
+        BtnKeluar.setPreferredSize(new java.awt.Dimension(80, 23));
+        BtnKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKeluarActionPerformed(evt);
+            }
+        });
+        panelisi3.add(BtnKeluar);
+
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
         BtnTambah.setMnemonic('3');
         BtnTambah.setToolTipText("Alt+3");
@@ -611,54 +669,6 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
             }
         });
         panelisi3.add(BtnSeek5);
-
-        BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
-        BtnSimpan.setToolTipText("Alt+S");
-        BtnSimpan.setName("BtnSimpan"); // NOI18N
-        BtnSimpan.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnSimpan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanActionPerformed(evt);
-            }
-        });
-        panelisi3.add(BtnSimpan);
-
-        BtnTambah1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnTambah1.setMnemonic('3');
-        BtnTambah1.setToolTipText("Alt+3");
-        BtnTambah1.setName("BtnTambah1"); // NOI18N
-        BtnTambah1.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnTambah1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTambah1ActionPerformed(evt);
-            }
-        });
-        panelisi3.add(BtnTambah1);
-
-        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
-        BtnHapus.setToolTipText("Alt+H");
-        BtnHapus.setName("BtnHapus"); // NOI18N
-        BtnHapus.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnHapusActionPerformed(evt);
-            }
-        });
-        panelisi3.add(BtnHapus);
-
-        BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('5');
-        BtnKeluar.setToolTipText("Alt+5");
-        BtnKeluar.setName("BtnKeluar"); // NOI18N
-        BtnKeluar.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnKeluar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKeluarActionPerformed(evt);
-            }
-        });
-        panelisi3.add(BtnKeluar);
 
         internalFrame1.add(panelisi3, java.awt.BorderLayout.PAGE_END);
 
@@ -746,7 +756,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         jLabel8.setBounds(0, 42, 72, 23);
 
         DTPBeri.setForeground(new java.awt.Color(50, 70, 50));
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-04-2023" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2024" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -888,7 +898,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbResep);
 
-        TabRawat.addTab("Umum", Scroll);
+        TabRawat.addTab("Obat Umum", Scroll);
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
@@ -932,7 +942,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
 
         jPanel3.add(Scroll2, java.awt.BorderLayout.CENTER);
 
-        TabRawat.addTab("Racikan", jPanel3);
+        TabRawat.addTab("Obat Racikan", jPanel3);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 

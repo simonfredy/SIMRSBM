@@ -142,6 +142,8 @@ import rekammedis.RMSkriningNutrisiLansia;
 import rekammedis.RMTimeOutSebelumInsisi;
 import rekammedis.RMTransferPasienAntarRuang;
 import rekammedis.ValidasiSBAR;
+import rekammedis.DlgSOAPOld;
+import rekammedis.ValidasiSOAP;
 
 /**
  *
@@ -1555,6 +1557,8 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         jLabel84 = new widget.Label();
         jLabel86 = new widget.Label();
         BtnVerifSbar3 = new widget.Button();
+        BtnVerifikasiSOAP = new widget.Button();
+        BtnStatusVerifikasiSOAP = new widget.Button();
 
         BagianRS.setEditable(false);
         BagianRS.setText("0");
@@ -2546,6 +2550,9 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         Btn5Soap.setMnemonic('4');
         Btn5Soap.setText("5 SOAP Terakhir");
         Btn5Soap.setToolTipText("ALt+4");
+        Btn5Soap.setFont(new java.awt.Font("Tahoma", 0, 11));
+        Btn5Soap.setGlassColor(new java.awt.Color(255, 153, 153));
+        Btn5Soap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Btn5Soap.setName("Btn5Soap"); // NOI18N
         Btn5Soap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2553,7 +2560,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(Btn5Soap);
-        Btn5Soap.setBounds(940, 40, 140, 23);
+        Btn5Soap.setBounds(940, 40, 160, 30);
 
         jLabel7.setText("Suhu (°C) :");
         jLabel7.setName("jLabel7"); // NOI18N
@@ -2644,6 +2651,39 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         jLabel61.setName("jLabel61"); // NOI18N
         panelGlass12.add(jLabel61);
         jLabel61.setBounds(296, 190, 79, 23);
+        
+        BtnVerifikasiSOAP.setForeground(new java.awt.Color(0, 0, 0));
+        BtnVerifikasiSOAP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Doctor.png"))); // NOI18N
+        BtnVerifikasiSOAP.setText("Verifikasi SOAP/CPPT");
+        BtnVerifikasiSOAP.setToolTipText("");
+        BtnVerifikasiSOAP.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnVerifikasiSOAP.setGlassColor(new java.awt.Color(255, 153, 153));
+        BtnVerifikasiSOAP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnVerifikasiSOAP.setName("BtnVerifikasiSOAP"); // NOI18N
+        BtnVerifikasiSOAP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVerifikasiSOAPActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(BtnVerifikasiSOAP);
+        BtnVerifikasiSOAP.setBounds(940, 80, 160, 30);
+                
+
+        BtnStatusVerifikasiSOAP.setForeground(new java.awt.Color(0, 0, 0));
+        BtnStatusVerifikasiSOAP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Hospital.png"))); // NOI18N
+        BtnStatusVerifikasiSOAP.setText("Status Verifikasi SOAP");
+        BtnStatusVerifikasiSOAP.setToolTipText("");
+        BtnStatusVerifikasiSOAP.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnStatusVerifikasiSOAP.setGlassColor(new java.awt.Color(255, 153, 153));
+        BtnStatusVerifikasiSOAP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnStatusVerifikasiSOAP.setName("BtnStatusVerifikasiSOAP"); // NOI18N
+        BtnStatusVerifikasiSOAP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnStatusVerifikasiSOAPActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(BtnStatusVerifikasiSOAP);
+        BtnStatusVerifikasiSOAP.setBounds(940, 120, 160, 30);
 
         PanelInput1.add(panelGlass12, java.awt.BorderLayout.CENTER);
 
@@ -9324,6 +9364,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     // End of variables declaration//GEN-END:variables
     private widget.Button BtnSkorBromagePascaAnestesi,BtnPenilaianPreInduksi,BtnHasilPemeriksaanUSGUrologi,BtnHasilPemeriksaanUSGGynecologi,BtnHasilPemeriksaanEKG,BtnHasilPemeriksaanUSGNeonatus,BtnHasilEndoskopiFaringLaring,BtnHasilEndoskopiHidung,BtnHasilEndoskopiTelinga,
                           BtnAwalKeperawatanNeonatus,BtnPenilaianPasienImunitasRendah,BtnCatatanKeseimbanganCairan,BtnCatatanObservasiCHBP,BtnCatatanObservasiInduksiPersalinan,BtnPermintaanKonsultasiMedik,BtnAwalKeperawatanBayiAnak;
+    private widget.Button BtnVerifikasiSOAP;
+    private widget.Button BtnStatusVerifikasiSOAP;
     
     public void tampilDr() {
         Valid.tabelKosong(tabModeDr);
@@ -11534,6 +11576,38 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             PanelInput4.setPreferredSize(new Dimension(WIDTH,20));
             panelGlass16.setVisible(false);      
             ChkInput3.setVisible(true);
+        }
+    }
+    
+    private void BtnVerifikasiSOAPActionPerformed(java.awt.event.ActionEvent evt) {                                                
+         if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            ValidasiSOAP form=new ValidasiSOAP(null,false);
+            form.isCek();
+            form.emptTeks();
+            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+            form.tampil();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }                                               
+
+    private void BtnStatusVerifikasiSOAPActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        if(TNoRw.getText().trim().equals("") ){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgSOAPOld soap=new DlgSOAPOld(null,false);
+            soap.setNoRawat(TNoRw.getText(),TNoRw.getText());
+            soap.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
+            soap.setLocationRelativeTo(internalFrame1);
+            soap.setVisible(true);
         }
     }
     

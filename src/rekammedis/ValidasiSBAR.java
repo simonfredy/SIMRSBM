@@ -34,7 +34,7 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import kepegawaian.DlgCariDokter;
+import kepegawaian.DlgCariPegawai;
 import laporan.DlgBerkasRawat;
 import laporan.DlgDiagnosaPenyakit;
 //import digitalsignature.DlgViewPdf;
@@ -54,7 +54,7 @@ public final class ValidasiSBAR extends javax.swing.JDialog {
     private ResultSet rs;
     private String FileName;
     private int i=0;    
-    private DlgCariDokter dokter=new DlgCariDokter(null,false);
+    private DlgCariPegawai pegawai=new DlgCariPegawai(null,false);
     private RMCariTindakan caritindakan=new RMCariTindakan(null,false);
     SimpleDateFormat tanggalNow = new SimpleDateFormat("yyyy-MM-dd");
     private SimpleDateFormat jamNow = new SimpleDateFormat("HH:mm:ss");
@@ -136,17 +136,17 @@ public final class ValidasiSBAR extends javax.swing.JDialog {
             });
         }
         
-        dokter.addWindowListener(new WindowListener() {
+        pegawai.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {}
             @Override
             public void windowClosing(WindowEvent e) {}
             @Override
             public void windowClosed(WindowEvent e) {
-                if(dokter.getTable().getSelectedRow()!= -1){
-                    KodeDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),0).toString());
-                    NamaDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(),1).toString());
-                    KodeDokter.requestFocus();
+                if(pegawai.getTable().getSelectedRow()!= -1){
+                    KodePegawai.setText(pegawai.getTable().getValueAt(pegawai.getTable().getSelectedRow(),0).toString());
+                    NamaPegawai.setText(pegawai.getTable().getValueAt(pegawai.getTable().getSelectedRow(),1).toString());
+                    KodePegawai.requestFocus();
                 }
             }
             @Override
@@ -207,8 +207,8 @@ public final class ValidasiSBAR extends javax.swing.JDialog {
         TNoRM = new widget.TextBox();
         jLabel5 = new widget.Label();
         label14 = new widget.Label();
-        KodeDokter = new widget.TextBox();
-        NamaDokter = new widget.TextBox();
+        KodePegawai = new widget.TextBox();
+        NamaPegawai = new widget.TextBox();
         BtnDokter = new widget.Button();
         scrollPane1 = new widget.ScrollPane();
         TSituation = new widget.TextArea();
@@ -554,22 +554,22 @@ public final class ValidasiSBAR extends javax.swing.JDialog {
         FormInput.add(label14);
         label14.setBounds(0, 40, 100, 23);
 
-        KodeDokter.setEditable(false);
-        KodeDokter.setName("KodeDokter"); // NOI18N
-        KodeDokter.setPreferredSize(new java.awt.Dimension(80, 23));
-        KodeDokter.addKeyListener(new java.awt.event.KeyAdapter() {
+        KodePegawai.setEditable(false);
+        KodePegawai.setName("KodePegawai"); // NOI18N
+        KodePegawai.setPreferredSize(new java.awt.Dimension(80, 23));
+        KodePegawai.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                KodeDokterKeyPressed(evt);
+                KodePegawaiKeyPressed(evt);
             }
         });
-        FormInput.add(KodeDokter);
-        KodeDokter.setBounds(104, 40, 141, 23);
+        FormInput.add(KodePegawai);
+        KodePegawai.setBounds(104, 40, 141, 23);
 
-        NamaDokter.setEditable(false);
-        NamaDokter.setName("NamaDokter"); // NOI18N
-        NamaDokter.setPreferredSize(new java.awt.Dimension(207, 23));
-        FormInput.add(NamaDokter);
-        NamaDokter.setBounds(247, 40, 270, 23);
+        NamaPegawai.setEditable(false);
+        NamaPegawai.setName("NamaPegawai"); // NOI18N
+        NamaPegawai.setPreferredSize(new java.awt.Dimension(207, 23));
+        FormInput.add(NamaPegawai);
+        NamaPegawai.setBounds(247, 40, 270, 23);
 
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnDokter.setMnemonic('2');
@@ -760,9 +760,9 @@ public final class ValidasiSBAR extends javax.swing.JDialog {
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if(TNoRw.getText().equals("")||TNoRM.getText().equals("")||TPasien.getText().equals("")){
             Valid.textKosong(TNoRw,"Pasien");
-        }else if(KodeDokter.getText().equals("")||NamaDokter.getText().equals("")){
+        }else if(KodePegawai.getText().equals("")||NamaPegawai.getText().equals("")){
             Valid.textKosong(BtnDokter,"Validator");
-        }else if(KodeDokter1.getText().equals("")||NamaDokter.getText().equals("")){
+        }else if(KodeDokter1.getText().equals("")||NamaPegawai.getText().equals("")){
             Valid.textKosong(BtnDokter,"Nama Pemeriksa");
         }else if(TSituation.getText().equals("")){
             Valid.textKosong(TSituation,"S (SITUATION");
@@ -771,7 +771,7 @@ public final class ValidasiSBAR extends javax.swing.JDialog {
         }else{
             if(Sequel.menyimpantf("validasi_pemeriksaan_sbar","?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",12,new String[]{
                     TNoRw.getText(),TanggalPemeriksaan.getText(),JamPemeriksaan.getText(),TSituation.getText(),TBackground.getText(),TAssesment.getText(),TRecomendation.getText(), 
-                    KodeDokter1.getText(),KodeDokter.getText(),tanggalNow.format(new Date()),jamNow.format(new Date()),"Validasi",
+                    KodeDokter1.getText(),KodePegawai.getText(),tanggalNow.format(new Date()),jamNow.format(new Date()),"Validasi",
                 })==true){
                     tampil();
                     emptTeks();
@@ -800,7 +800,7 @@ public final class ValidasiSBAR extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dokter.dispose();
+        pegawai.dispose();
         dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
@@ -994,16 +994,15 @@ public final class ValidasiSBAR extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnDokterKeyPressed
 
     private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokterActionPerformed
-        dokter.emptTeks();
-        dokter.isCek();
-        dokter.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        dokter.setLocationRelativeTo(internalFrame1);
-        dokter.setVisible(true);
+        pegawai.emptTeks();
+        pegawai.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        pegawai.setLocationRelativeTo(internalFrame1);
+        pegawai.setVisible(true);
     }//GEN-LAST:event_BtnDokterActionPerformed
 
-    private void KodeDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KodeDokterKeyPressed
+    private void KodePegawaiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KodePegawaiKeyPressed
         Valid.pindah(evt,TCari,TSituation);
-    }//GEN-LAST:event_KodeDokterKeyPressed
+    }//GEN-LAST:event_KodePegawaiKeyPressed
 
     /**
     * @param args the command line arguments
@@ -1033,14 +1032,14 @@ public final class ValidasiSBAR extends javax.swing.JDialog {
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormInput;
     private widget.TextBox JamPemeriksaan;
-    private widget.TextBox KodeDokter;
     private widget.TextBox KodeDokter1;
+    private widget.TextBox KodePegawai;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnDigitalTTE;
     private javax.swing.JMenuItem MnInputDiagnosa;
     private javax.swing.JMenuItem MnLaporanResume;
-    private widget.TextBox NamaDokter;
     private widget.TextBox NamaDokter1;
+    private widget.TextBox NamaPegawai;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.TextArea TAssesment;
@@ -1197,12 +1196,12 @@ public final class ValidasiSBAR extends javax.swing.JDialog {
         MnInputDiagnosa.setEnabled(akses.getdiagnosa_pasien());   
         ppBerkasDigital.setEnabled(akses.getberkas_digital_perawatan());    
         if(akses.getjml2()>=1){
-            KodeDokter.setEditable(false);
+            KodePegawai.setEditable(false);
             BtnDokter.setEnabled(false);
-            KodeDokter.setText(akses.getkode());
-            Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?", NamaDokter,KodeDokter.getText());
-            if(NamaDokter.getText().equals("")){
-                KodeDokter.setText("");
+            KodePegawai.setText(akses.getkode());
+            Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?", NamaPegawai,KodePegawai.getText());
+            if(NamaPegawai.getText().equals("")){
+                KodePegawai.setText("");
                 JOptionPane.showMessageDialog(null,"User login bukan dokter...!!");
             }
         }            

@@ -3328,27 +3328,27 @@ public final class DlgIGD extends javax.swing.JDialog {
         });
         MnGelang.add(MnLabelTracker3);
 
-        MnBarcode1.setBackground(new java.awt.Color(255, 255, 254));
-        MnBarcode1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnBarcode1.setForeground(new java.awt.Color(50, 50, 50));
-        MnBarcode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnBarcode1.setText("Barcode Perawatan 1");
-        MnBarcode1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnBarcode1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnBarcode1.setName("MnBarcode1"); // NOI18N
-        MnBarcode1.setPreferredSize(new java.awt.Dimension(200, 26));
-        MnBarcode1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnBarcode1ActionPerformed(evt);
-            }
-        });
-        MnGelang.add(MnBarcode1);
+//        MnBarcode1.setBackground(new java.awt.Color(255, 255, 254));
+//        MnBarcode1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+//        MnBarcode1.setForeground(new java.awt.Color(50, 50, 50));
+//        MnBarcode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+//        MnBarcode1.setText("Barcode Perawatan 1");
+//        MnBarcode1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+//        MnBarcode1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+//        MnBarcode1.setName("MnBarcode1"); // NOI18N
+//        MnBarcode1.setPreferredSize(new java.awt.Dimension(200, 26));
+//        MnBarcode1.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                MnBarcode1ActionPerformed(evt);
+//            }
+//        });
+//        MnGelang.add(MnBarcode1);
 
         MnBarcode2.setBackground(new java.awt.Color(255, 255, 254));
         MnBarcode2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBarcode2.setForeground(new java.awt.Color(50, 50, 50));
         MnBarcode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnBarcode2.setText("Barcode Perawatan 2");
+        MnBarcode2.setText("Cetak Barcode Pasien");
         MnBarcode2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnBarcode2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnBarcode2.setName("MnBarcode2"); // NOI18N
@@ -8100,7 +8100,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());
             Valid.MyReportqry("rptBarcodeRawat2.jasper","report","::[ Barcode No.Rawat ]::",
-                "select reg_periksa.no_rawat from reg_periksa where no_rawat='"+TNoRw.getText()+"'",param);
+                "select reg_periksa.no_rawat,pasien.no_ktp from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis where no_rawat='"+TNoRw.getText()+"'",param);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnBarcode2ActionPerformed

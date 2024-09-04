@@ -144,6 +144,8 @@ import rekammedis.RMTransferPasienAntarRuang;
 import rekammedis.ValidasiSBAR;
 import rekammedis.DlgSOAPOld;
 import rekammedis.ValidasiSOAP;
+import grafikanalisa.grafiksqlttv;
+import java.awt.Toolkit;
 
 /**
  *
@@ -171,6 +173,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             Beban_Jasa_Medik_Paramedis_Tindakan_Ranap="",Utang_Jasa_Medik_Paramedis_Tindakan_Ranap="",Beban_KSO_Tindakan_Ranap="",Utang_KSO_Tindakan_Ranap="",
             Beban_Jasa_Sarana_Tindakan_Ranap="",Utang_Jasa_Sarana_Tindakan_Ranap="",Beban_Jasa_Menejemen_Tindakan_Ranap="",Utang_Jasa_Menejemen_Tindakan_Ranap="",
             HPP_BHP_Tindakan_Ranap="",Persediaan_BHP_Tindakan_Ranap="",kode_poli="",kamar="",jenisbayar="",TANGGALMUNDUR="yes";
+    Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
 
     /** Creates new form DlgRawatInap
      * @param parent
@@ -1559,6 +1562,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnVerifSbar3 = new widget.Button();
         BtnVerifikasiSOAP = new widget.Button();
         BtnStatusVerifikasiSOAP = new widget.Button();
+        BtnGrafikTTV = new widget.Button();
 
         BagianRS.setEditable(false);
         BagianRS.setText("0");
@@ -2560,7 +2564,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(Btn5Soap);
-        Btn5Soap.setBounds(940, 40, 160, 30);
+        Btn5Soap.setBounds(920, 10, 160, 30);
 
         jLabel7.setText("Suhu (°C) :");
         jLabel7.setName("jLabel7"); // NOI18N
@@ -2666,7 +2670,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(BtnVerifikasiSOAP);
-        BtnVerifikasiSOAP.setBounds(940, 80, 160, 30);
+        BtnVerifikasiSOAP.setBounds(920, 50, 160, 30);
                 
 
         BtnStatusVerifikasiSOAP.setForeground(new java.awt.Color(0, 0, 0));
@@ -2683,7 +2687,23 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(BtnStatusVerifikasiSOAP);
-        BtnStatusVerifikasiSOAP.setBounds(940, 120, 160, 30);
+        BtnStatusVerifikasiSOAP.setBounds(920, 90, 160, 30);
+        
+        BtnGrafikTTV.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGrafikTTV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Bar Chart.png"))); // NOI18N
+        BtnGrafikTTV.setText("Grafik TTV");
+        BtnGrafikTTV.setToolTipText("");
+        BtnGrafikTTV.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnGrafikTTV.setGlassColor(new java.awt.Color(255, 153, 153));
+        BtnGrafikTTV.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnGrafikTTV.setName("BtnGrafikTTV"); // NOI18N
+        BtnGrafikTTV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGrafikTTVActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(BtnGrafikTTV);
+        BtnGrafikTTV.setBounds(920, 130, 160, 30);
 
         PanelInput1.add(panelGlass12, java.awt.BorderLayout.CENTER);
 
@@ -9366,6 +9386,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                           BtnAwalKeperawatanNeonatus,BtnPenilaianPasienImunitasRendah,BtnCatatanKeseimbanganCairan,BtnCatatanObservasiCHBP,BtnCatatanObservasiInduksiPersalinan,BtnPermintaanKonsultasiMedik,BtnAwalKeperawatanBayiAnak;
     private widget.Button BtnVerifikasiSOAP;
     private widget.Button BtnStatusVerifikasiSOAP;
+    private widget.Button BtnGrafikTTV;
+    private widget.PanelBiasa panelBiasa3;
     
     public void tampilDr() {
         Valid.tabelKosong(tabModeDr);
@@ -11609,6 +11631,17 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             soap.setLocationRelativeTo(internalFrame1);
             soap.setVisible(true);
         }
+    }
+    
+    private void BtnGrafikTTVActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        grafiksqlttv kas = new grafiksqlttv("Grafik TTV Pasien "+TPasien.getText(),
+            "select DATE_FORMAT(tgl_perawatan , '%d/%m/%Y') as tgl,jam_rawat,replace(suhu_tubuh,',','.') as suhu_tubuh,nadi,respirasi,spo2 from pemeriksaan_ranap where no_rawat='"+TNoRw.getText()+"' and suhu_tubuh <>''", "Suhu","Nadi","Respirasi","Spo2");
+        kas.setModal(true);
+        kas.setAlwaysOnTop(true);
+        kas.setLocationRelativeTo(panelBiasa3);
+        kas.setSize(screen.width, 600);
+        kas.setLocation(0, 100);
+        kas.setVisible(true);
     }
     
 }

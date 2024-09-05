@@ -381,7 +381,7 @@
 					<font fontName="Tahoma" size="10"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{penjab}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{carabayar}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Transparent" x="384" y="152" width="5" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="78487da3-1941-415a-aa0a-9a5421e3602d">
@@ -548,7 +548,7 @@
 					<font fontName="Tahoma" size="10" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Jam Pengambilan Spesimen:]]></text>
+				<text><![CDATA[Jam Hasil Spesimen:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement x="200" y="8" width="100" height="15" uuid="4b922132-8891-4960-b4ea-f4d4016c7de8"/>

@@ -1779,6 +1779,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         param.put("pengirim",Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?",rs.getString("dokter_perujuk")));
                         param.put("tanggal",rs.getString("tgl_periksa"));
                         param.put("penjab",rs.getString("nm_dokter"));
+                        param.put("carabayar",Sequel.cariIsi("select penjab.png_jawab from penjab where kd_pj=?",Sequel.cariIsi("select reg_periksa.kd_pj from reg_periksa where reg_periksa.no_rawat=?",rs.getString("no_rawat"))));
                         param.put("petugas",rs.getString("nama"));
                         param.put("jam",rs.getString("jam"));
                         param.put("alamat",rs.getString("alamat"));

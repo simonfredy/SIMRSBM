@@ -5,6 +5,7 @@
 
 package rekammedis;
 
+import freehand.DlgMarkingImageAssMedisIGD;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -17,15 +18,19 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
@@ -51,7 +56,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
     private int i=0;
     private DlgCariDokter dokter=new DlgCariDokter(null,false);
     private StringBuilder htmlContent;
-    private String finger="";
+    private String finger="",urlImage;
     private String TANGGALMUNDUR="yes";
     
     /** Creates new form DlgRujuk
@@ -390,6 +395,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         jLabel82 = new widget.Label();
         scrollPane11 = new widget.ScrollPane();
         Laborat = new widget.TextArea();
+        BtnEdit2 = new widget.Button();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -1180,7 +1186,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         PanelWall.setWarna(new java.awt.Color(110, 110, 110));
         PanelWall.setLayout(null);
         FormInput.add(PanelWall);
-        PanelWall.setBounds(45, 460, 809, 300);
+        PanelWall.setBounds(45, 480, 809, 280);
 
         scrollPane8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane8.setName("scrollPane8"); // NOI18N
@@ -1310,7 +1316,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         label11.setBounds(380, 40, 52, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2024 19:49:49" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2024 05:32:36" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -1391,6 +1397,25 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         FormInput.add(scrollPane11);
         scrollPane11.setBounds(594, 910, 260, 63);
 
+        BtnEdit2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnEdit2.setMnemonic('G');
+        BtnEdit2.setText("MARKING LOKALIS");
+        BtnEdit2.setToolTipText("Alt+G");
+        BtnEdit2.setName("BtnEdit2"); // NOI18N
+        BtnEdit2.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnEdit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEdit2ActionPerformed(evt);
+            }
+        });
+        BtnEdit2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnEdit2KeyPressed(evt);
+            }
+        });
+        FormInput.add(BtnEdit2);
+        BtnEdit2.setBounds(270, 450, 160, 30);
+
         scrollInput.setViewportView(FormInput);
 
         internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
@@ -1432,7 +1457,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1446,7 +1471,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2018,7 +2043,9 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
             try {
                 param.put("lokalis",getClass().getResource("/picture/semua.png").openStream());
             } catch (Exception e) {
-            } 
+            }
+//            param.put("url",Sequel.cariIsi("select url_image from asesmen_medis_igd_image_marking where no_rawat=?",TNoRw.getText()));
+//            param.put("lokalis","http://"+koneksiDB.HOSTHYBRIDWEB()+":"+koneksiDB.PORTWEB()+"/"+koneksiDB.HYBRIDWEB()+"/imagefreehand/");
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
             param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),5).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString())); 
             
@@ -2046,6 +2073,35 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         Valid.pindah2(evt,Radiologi,Diagnosis);
     }//GEN-LAST:event_LaboratKeyPressed
 
+    private void BtnEdit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEdit2ActionPerformed
+//        DlgMarkingImageAssMedisIGD form=new DlgMarkingImageAssMedisIGD(null,false);
+//        form.setNoRw(TNoRw.getText());
+//        form.setVisible(true);
+//        form.addWindowListener(new WindowListener() {
+//            @Override
+//            public void windowOpened(WindowEvent e) {}
+//            @Override
+//            public void windowClosing(WindowEvent e) {}
+//            @Override
+//            public void windowClosed(WindowEvent e) {
+//                urlImage=Sequel.cariIsi("select url_image from asesmen_medis_igd_image_marking where no_rawat='"+TNoRw.getText()+"' ");
+//                imageAssesment("http://"+koneksiDB.HOSTHYBRIDWEB()+":"+koneksiDB.PORTWEB()+"/"+koneksiDB.HYBRIDWEB()+"/imagefreehand/"+urlImage+"");
+//            }
+//            @Override
+//            public void windowIconified(WindowEvent e) {}
+//            @Override
+//            public void windowDeiconified(WindowEvent e) {}
+//            @Override
+//            public void windowActivated(WindowEvent e) {}
+//            @Override
+//            public void windowDeactivated(WindowEvent e) {}
+//        });
+    }//GEN-LAST:event_BtnEdit2ActionPerformed
+
+    private void BtnEdit2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEdit2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEdit2KeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -2072,6 +2128,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
     private widget.Button BtnCari;
     private widget.Button BtnDokter;
     private widget.Button BtnEdit;
+    private widget.Button BtnEdit2;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
@@ -2503,6 +2560,16 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
                 });
                 LCount.setText(""+tabMode.getRowCount());
                 emptTeks();
+        }
+    }
+    
+    void imageAssesment(String url){
+        try {
+            BufferedImage img = ImageIO.read(new URL(url.trim()));
+            PanelWall.setBackgroundImage(new javax.swing.ImageIcon(img));
+        }
+        catch(IOException ex) {
+
         }
     }
 }

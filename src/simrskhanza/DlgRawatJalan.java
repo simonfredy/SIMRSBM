@@ -2038,7 +2038,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         internalFrame2.add(TabRawatTindakanDokter, java.awt.BorderLayout.CENTER);
 
-        TabRawat.addTab("Tindakan Dokter", internalFrame2);
+        TabRawat.addTab("Penanganan Dokter", internalFrame2);
 
         internalFrame3.setBorder(null);
         internalFrame3.setName("internalFrame3"); 
@@ -2131,7 +2131,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         internalFrame3.add(TabRawatTindakanPetugas, java.awt.BorderLayout.CENTER);
 
-        TabRawat.addTab("Tindakan Petugas", internalFrame3);
+        TabRawat.addTab("Penanganan Petugas", internalFrame3);
 
         internalFrame4.setBorder(null);
         internalFrame4.setName("internalFrame4"); 
@@ -2257,7 +2257,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         internalFrame4.add(TabRawatTindakanDokterPetugas, java.awt.BorderLayout.CENTER);
 
-        TabRawat.addTab("Tindakan Dokter & Petugas", internalFrame4);
+        TabRawat.addTab("Penanganan Dokter & Petugas", internalFrame4);
 
         internalFrame5.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2313,7 +2313,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.setPreferredSize(new java.awt.Dimension(44, 134));
         panelGlass12.setLayout(null);
 
-        jLabel8.setText("(S)ubjek :");
+        jLabel8.setText("Subjek :");
         jLabel8.setName("jLabel8"); 
         panelGlass12.add(jLabel8);
         jLabel8.setBounds(0, 70, 70, 23);
@@ -2348,7 +2348,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.add(jLabel17);
         jLabel17.setBounds(0, 190, 70, 23);
 
-        jLabel9.setText("(O)bjek :");
+        jLabel9.setText("Objek :");
         jLabel9.setName("jLabel9"); 
         panelGlass12.add(jLabel9);
         jLabel9.setBounds(0, 115, 70, 23);
@@ -2385,12 +2385,12 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.add(scrollPane1);
         scrollPane1.setBounds(73, 70, 360, 38);
 
-        jLabel28.setText("(A)sesmen :");
+        jLabel28.setText("Asesmen :");
         jLabel28.setName("jLabel28"); 
         panelGlass12.add(jLabel28);
         jLabel28.setBounds(450, 40, 90, 23);
 
-        jLabel26.setText("(P)lan :");
+        jLabel26.setText("Plan :");
         jLabel26.setName("jLabel26"); 
         panelGlass12.add(jLabel26);
         jLabel26.setBounds(450, 85, 90, 23);
@@ -2586,7 +2586,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.add(jLabel41);
         jLabel41.setBounds(0, 40, 190, 23);
 
-        jLabel53.setText("(I)nstruksi :");
+        jLabel53.setText("Instruksi :");
         jLabel53.setName("jLabel53"); 
         panelGlass12.add(jLabel53);
         jLabel53.setBounds(450, 139, 90, 23);
@@ -2623,7 +2623,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.add(SpO2);
         SpO2.setBounds(73, 220, 42, 23);
 
-        jLabel56.setText("(E)valuasi :");
+        jLabel56.setText("Evaluasi :");
         jLabel56.setName("jLabel56"); 
         panelGlass12.add(jLabel56);
         jLabel56.setBounds(450, 196, 90, 23);
@@ -2657,7 +2657,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         Btn5Soap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); 
         Btn5Soap.setMnemonic('4');
-        Btn5Soap.setText("5 SOAP Terakhir");
         Btn5Soap.setToolTipText("ALt+4");
         Btn5Soap.setName("Btn5Soap"); 
         Btn5Soap.addActionListener(new java.awt.event.ActionListener() {
@@ -2666,11 +2665,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(Btn5Soap);
-        Btn5Soap.setBounds(940, 40, 140, 23);
+        Btn5Soap.setBounds(374, 40, 28, 23);
 
         BtnTemplatePemeriksaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); 
         BtnTemplatePemeriksaan.setMnemonic('4');
-        BtnTemplatePemeriksaan.setText("Template Pemeriksaan");
         BtnTemplatePemeriksaan.setToolTipText("ALt+4");
         BtnTemplatePemeriksaan.setName("BtnTemplatePemeriksaan"); 
         BtnTemplatePemeriksaan.addActionListener(new java.awt.event.ActionListener() {
@@ -2679,13 +2677,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(BtnTemplatePemeriksaan);
-        BtnTemplatePemeriksaan.setBounds(940, 80, 190, 23);
+        BtnTemplatePemeriksaan.setBounds(405, 40, 28, 23);
 
         PanelInput.add(panelGlass12, java.awt.BorderLayout.CENTER);
 
         internalFrame5.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
-        TabRawat.addTab("SOAPIE/CPPT", internalFrame5);
+        TabRawat.addTab("Pemeriksaan", internalFrame5);
 
         internalFrame6.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3414,7 +3412,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         panelDiagnosa1.setBorder(null);
         panelDiagnosa1.setName("panelDiagnosa1"); 
-        TabRawat.addTab("Diagnosa & Prosedur (ICD)", panelDiagnosa1);
+        TabRawat.addTab("Diagnosa", panelDiagnosa1);
 
         internalFrame8.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -5941,8 +5939,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                     String pas=" and reg_periksa.no_rkm_medis like '%"+TCariPasien.getText()+"%' ";
                     
                     String tgl=" pemeriksaan_ralan.tgl_perawatan between '"+Valid.SetTgl(DTPCari1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(DTPCari2.getSelectedItem()+"")+"' "+pas;
-                    Valid.MyReportqry("rptJalanPemeriksaan.jasper","report","::[ Lembar CPPT Pasien Rawat Jalan ]::",
-                            "select pemeriksaan_ralan.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,DATE_FORMAT(pasien.tgl_lahir,'%d-%m-%Y') as tgl_lahir,pasien.jk,"+
+                    Valid.MyReportqry("rptJalanPemeriksaan.jasper","report","::[ Data Pemeriksaan Rawat Jalan ]::",
+                            "select pemeriksaan_ralan.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
                             "pemeriksaan_ralan.tgl_perawatan,pemeriksaan_ralan.jam_rawat,pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi, " +
                             "pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,pemeriksaan_ralan.tinggi, " +
                             "pemeriksaan_ralan.berat,pemeriksaan_ralan.spo2,pemeriksaan_ralan.gcs,pemeriksaan_ralan.kesadaran,pemeriksaan_ralan.keluhan, " +

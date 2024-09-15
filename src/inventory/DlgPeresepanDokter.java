@@ -105,9 +105,9 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         for (i = 0; i < 12; i++) {
             TableColumn column = tbResep.getColumnModel().getColumn(i);
             if(i==0){
-                //column.setPreferredWidth(20);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+                //column.setPreferredWidth(20);
             }else if(i==1){
                 column.setPreferredWidth(45);
             }else if(i==2){
@@ -416,8 +416,8 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         label12 = new widget.Label();
         Jeniskelas = new widget.ComboBox();
-        BtnSimpan = new widget.Button();
         BtnTambah1 = new widget.Button();
+        BtnSimpan = new widget.Button();
         BtnHapus = new widget.Button();
         BtnKeluar = new widget.Button();
         BtnTambah = new widget.Button();
@@ -585,20 +585,6 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         });
         panelisi3.add(Jeniskelas);
 
-        BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
-        BtnSimpan.setText("Kirim Resep");
-        BtnSimpan.setToolTipText("Alt+S");
-        BtnSimpan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        BtnSimpan.setName("BtnSimpan"); // NOI18N
-        BtnSimpan.setPreferredSize(new java.awt.Dimension(120, 23));
-        BtnSimpan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanActionPerformed(evt);
-            }
-        });
-        panelisi3.add(BtnSimpan);
-
         BtnTambah1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         BtnTambah1.setMnemonic('3');
         BtnTambah1.setText("Buat Nama Racikan");
@@ -612,6 +598,20 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
             }
         });
         panelisi3.add(BtnTambah1);
+
+        BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
+        BtnSimpan.setText("Kirim Resep");
+        BtnSimpan.setToolTipText("Alt+S");
+        BtnSimpan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnSimpan.setName("BtnSimpan"); // NOI18N
+        BtnSimpan.setPreferredSize(new java.awt.Dimension(120, 23));
+        BtnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpanActionPerformed(evt);
+            }
+        });
+        panelisi3.add(BtnSimpan);
 
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         BtnHapus.setMnemonic('H');
@@ -756,7 +756,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         jLabel8.setBounds(0, 42, 72, 23);
 
         DTPBeri.setForeground(new java.awt.Color(50, 70, 50));
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2024" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2024" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -898,7 +898,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbResep);
 
-        TabRawat.addTab("Obat Umum", Scroll);
+        TabRawat.addTab("Umum", Scroll);
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
@@ -942,7 +942,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
 
         jPanel3.add(Scroll2, java.awt.BorderLayout.CENTER);
 
-        TabRawat.addTab("Obat Racikan", jPanel3);
+        TabRawat.addTab("Racikan", jPanel3);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 

@@ -148,7 +148,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         
         tabMode3=new DefaultTableModel(null,new Object[]{
                 "No.Resep","Tgl.Peresepan","Jam Peresepan","No.Rawat","No.RM","Pasien","Dokter Peresep",
-                "Status","Kode Dokter","Ruang/Kamar","Kode Bangsal","Jenis Bayar","Tgl.Validasi","Jam Validasi","No.Kartu BPJS","No.SEP"
+                "Status","Kode Dokter","Ruang/Kamar","Kode Bangsal","Jenis Bayar","Tgl.Validasi","Jam Validasi","Jam Validasi","No.Kartu BPJS","No.SEP"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -609,7 +609,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         panelisi2.add(jLabel20);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -623,7 +623,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         panelisi2.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -942,7 +942,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnSeek3);
 
-        jLabel16.setText("Poliklinik/Unit :");
+        jLabel16.setText("Unit :");
         jLabel16.setName("jLabel16"); // NOI18N
         jLabel16.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass8.add(jLabel16);
@@ -3252,8 +3252,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         " inner join dokter on resep_obat.kd_dokter=dokter.kd_dokter "+
                         " inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
                         " inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                        " left join bridging_sep on resep_obat.no_rawat=bridging_sep.no_rawat and bridging_sep.jnspelayanan='2' "+
                         " inner join set_depo_ralan on set_depo_ralan.kd_poli=reg_periksa.kd_poli "+
+                        " left join bridging_sep on resep_obat.no_rawat=bridging_sep.no_rawat and bridging_sep.jnspelayanan='2' "+
                         " where set_depo_ralan.kd_bangsal='"+DEPOAKTIFOBAT+"' and resep_obat.tgl_peresepan<>'0000-00-00' and resep_obat.status='ralan' and resep_obat.tgl_peresepan between ? and ? "+
                         (semua?"":"and dokter.nm_dokter like ? and poliklinik.nm_poli like ? and "+
                         "(resep_obat.no_resep like ? or resep_obat.no_rawat like ? or "+
@@ -3281,7 +3281,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                             rs.getString("no_resep"),rs.getString("tgl_peresepan"),rs.getString("jam_peresepan"),rs.getString("no_rawat"),
                             rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("nm_dokter"),rs.getString("status"),
                             rs.getString("kd_dokter"),rs.getString("nm_poli"),rs.getString("kd_poli"),rs.getString("png_jawab"),
-                            rs.getString("tgl_perawatan"),rs.getString("jam"),rs.getString("tgl_penyerahan"),rs.getString("jam_penyerahan"),rs.getString("no_peserta"),rs.getString("no_sep")
+                            rs.getString("tgl_perawatan"),rs.getString("jam"),rs.getString("tgl_penyerahan"),rs.getString("jam_penyerahan"),
+                            rs.getString("no_peserta"),rs.getString("no_sep")
                         });              
                     }  
                 }else{
@@ -3291,7 +3292,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                                 rs.getString("no_resep"),rs.getString("tgl_peresepan"),rs.getString("jam_peresepan"),rs.getString("no_rawat"),
                                 rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("nm_dokter"),rs.getString("status"),
                                 rs.getString("kd_dokter"),rs.getString("nm_poli"),rs.getString("kd_poli"),rs.getString("png_jawab"),
-                                rs.getString("tgl_perawatan"),rs.getString("jam"),rs.getString("tgl_penyerahan"),rs.getString("jam_penyerahan"),rs.getString("no_peserta"),rs.getString("no_sep")
+                                rs.getString("tgl_perawatan"),rs.getString("jam"),rs.getString("tgl_penyerahan"),rs.getString("jam_penyerahan"),
+                                rs.getString("no_peserta"),rs.getString("no_sep")
                             });
                         }                    
                     }  

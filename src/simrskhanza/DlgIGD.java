@@ -15,6 +15,7 @@ import bridging.BPJSCekDataIndukKecelakaan;
 import bridging.BPJSCekSuplesiJasaRaharja;
 import bridging.PilihanBridgingAsuransi;
 import bridging.BPJSCekHistoriPelayanan;
+import bridging.BPJSCekRiwayatRujukanTerakhir;
 import rekammedis.RMRiwayatPerawatan;
 import permintaan.DlgBookingOperasi;
 import kepegawaian.DlgCariDokter;
@@ -196,8 +197,9 @@ public final class DlgIGD extends javax.swing.JDialog {
     private ResultSet rs;
     private boolean ceksukses=false;
     private int i=0,jmlparsial=0;
-    private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
     private BPJSCekHistoriPelayanan historiPelayanan=new BPJSCekHistoriPelayanan(null,false);
+    private BPJSCekRiwayatRujukanTerakhir rujukanterakhir=new BPJSCekRiwayatRujukanTerakhir(null,false);
+    private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
     private double biaya=0,biayabaru=0,biayalama=0;
     private String kdigd="",nosisrute="",aktifkanparsial="no",URUTNOREG="",terbitsep="",
             status="Baru",alamatperujuk="-",umur="0",sttsumur="Th",IPPRINTERTRACER="",norawatdipilih="",normdipilih="",
@@ -976,6 +978,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         NoKa = new widget.TextBox();
         btnCekBridging = new widget.Button();
         btnRiwayat = new widget.Button();
+        btnRiwayatRujukan = new widget.Button();
         BtnRiwayatRM = new widget.Button();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
@@ -3328,27 +3331,27 @@ public final class DlgIGD extends javax.swing.JDialog {
         });
         MnGelang.add(MnLabelTracker3);
 
-//        MnBarcode1.setBackground(new java.awt.Color(255, 255, 254));
-//        MnBarcode1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-//        MnBarcode1.setForeground(new java.awt.Color(50, 50, 50));
-//        MnBarcode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-//        MnBarcode1.setText("Barcode Perawatan 1");
-//        MnBarcode1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-//        MnBarcode1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-//        MnBarcode1.setName("MnBarcode1"); // NOI18N
-//        MnBarcode1.setPreferredSize(new java.awt.Dimension(200, 26));
-//        MnBarcode1.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                MnBarcode1ActionPerformed(evt);
-//            }
-//        });
-//        MnGelang.add(MnBarcode1);
+        MnBarcode1.setBackground(new java.awt.Color(255, 255, 254));
+        MnBarcode1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnBarcode1.setForeground(new java.awt.Color(50, 50, 50));
+        MnBarcode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnBarcode1.setText("Barcode Perawatan 1");
+        MnBarcode1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnBarcode1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnBarcode1.setName("MnBarcode1"); // NOI18N
+        MnBarcode1.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnBarcode1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnBarcode1ActionPerformed(evt);
+            }
+        });
+        MnGelang.add(MnBarcode1);
 
         MnBarcode2.setBackground(new java.awt.Color(255, 255, 254));
         MnBarcode2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBarcode2.setForeground(new java.awt.Color(50, 50, 50));
         MnBarcode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnBarcode2.setText("Cetak Barcode Pasien");
+        MnBarcode2.setText("Barcode Perawatan 2");
         MnBarcode2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnBarcode2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnBarcode2.setName("MnBarcode2"); // NOI18N
@@ -5100,7 +5103,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         btnRiwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
         btnRiwayat.setMnemonic('X');
         btnRiwayat.setText("Cek Riwayat SEP");
-        btnRiwayat.setFont(new java.awt.Font("Tahoma", 0, 11));
+        btnRiwayat.setFont(new java.awt.Font("Tahoma", 1, 11));
         btnRiwayat.setToolTipText("Alt+X");
         btnRiwayat.setName("btnRiwayat"); // NOI18N
         btnRiwayat.addActionListener(new java.awt.event.ActionListener() {
@@ -5109,7 +5112,21 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnRiwayat);
-        btnRiwayat.setBounds(1101, 102, 130, 23);
+        btnRiwayat.setBounds(1101, 102, 160, 23);
+        
+        btnRiwayatRujukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        btnRiwayatRujukan.setMnemonic('X');
+        btnRiwayatRujukan.setText("Cek Rujukan BPJS");
+        btnRiwayatRujukan.setFont(new java.awt.Font("Tahoma", 1, 11));
+        btnRiwayatRujukan.setToolTipText("Alt+X");
+        btnRiwayatRujukan.setName("btnRiwayatRujukan"); // NOI18N
+        btnRiwayatRujukan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRiwayatRujukanActionPerformed(evt);
+            }
+        });
+        FormInput.add(btnRiwayatRujukan);
+        btnRiwayatRujukan.setBounds(1270, 102, 160, 23);
         
         BtnRiwayatRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/barralan.png"))); // NOI18N
         BtnRiwayatRM.setMnemonic('1');
@@ -8100,7 +8117,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());
             Valid.MyReportqry("rptBarcodeRawat2.jasper","report","::[ Barcode No.Rawat ]::",
-                "select reg_periksa.no_rawat,pasien.no_ktp from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis where no_rawat='"+TNoRw.getText()+"'",param);
+                "select reg_periksa.no_rawat from reg_periksa where no_rawat='"+TNoRw.getText()+"'",param);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnBarcode2ActionPerformed
@@ -11287,6 +11304,17 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         historiPelayanan.setVisible(true);
     }
     
+    private void btnRiwayatRujukanActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        if(NoKa.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"No.Kartu masih kosong...!!");
+        }else{
+            rujukanterakhir.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            rujukanterakhir.setLocationRelativeTo(internalFrame1);
+            rujukanterakhir.tampil(NoKa.getText(),TPasien.getText());
+            rujukanterakhir.setVisible(true);
+        }
+    }
+    
     private void BtnRiwayatRMActionPerformed(java.awt.event.ActionEvent evt) {                                             
         if(TNoRM.getText().trim().equals("")){
             JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
@@ -11300,7 +11328,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             resume.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
-    }  
+    }
     
     /**
     * @data args the command line arguments
@@ -11635,6 +11663,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.TextBox NoKa;
     private widget.Button btnCekBridging;
     private widget.Button btnRiwayat;
+    private widget.Button btnRiwayatRujukan;
     private widget.Button BtnRiwayatRM;
     
     private void tampil() {
@@ -11642,10 +11671,10 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         try{  
             ps=koneksi.prepareStatement("select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,"+
                    "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,poliklinik.nm_poli,"+
-                   "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,reg_periksa.stts,reg_periksa.kd_pj,reg_periksa.status_bayar "+
+                   "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,reg_periksa.stts,reg_periksa.kd_pj,reg_periksa.status_bayar,bridging_sep.no_sep "+
                    "from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab "+
                    "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                   "and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.kd_poli=poliklinik.kd_poli  where  "+
+                   "and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.kd_poli=poliklinik.kd_poli left join bridging_sep on bridging_sep.no_rawat=reg_periksa.no_rawat and bridging_sep.jnspelayanan='2'  where  "+
                    "poliklinik.kd_poli='IGDK' and reg_periksa.tgl_registrasi between ? and ? "+
                    (TCari.getText().trim().equals("")?"":"and (reg_periksa.no_reg like ? or reg_periksa.no_rawat like ? or reg_periksa.tgl_registrasi like ? or "+
                    "reg_periksa.kd_dokter like ? or dokter.nm_dokter like ? or reg_periksa.no_rkm_medis like ? or "+
@@ -11677,7 +11706,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                         rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),
                         rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),
                         Valid.SetAngka(rs.getDouble(15)),rs.getString(16),rs.getString(17),rs.getString(18),
-                        rs.getString("kd_pj"),rs.getString("status_bayar")
+                        rs.getString("kd_pj"),rs.getString("status_bayar"),rs.getString("no_sep")
                     });
                 } 
             } catch (Exception e) {
@@ -11708,11 +11737,11 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         THbngn.setText("");
         TAlmt.setText("");
         TStatus.setText("");
+        NoKa.setText("");
         isNumber();       
         TNoRM.requestFocus();
         kdpnj.setText("");
         nmpnj.setText("");
-        NoKa.setText("");
     }
 
     private void getData() {

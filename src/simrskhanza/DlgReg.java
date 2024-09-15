@@ -332,8 +332,7 @@ public final class DlgReg extends javax.swing.JDialog {
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
-                 java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,
-                 java.lang.Object.class
+                 java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Object.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -4300,27 +4299,27 @@ public final class DlgReg extends javax.swing.JDialog {
         });
         MnLabel.add(MnLabelTracker3);
 
-//        MnBarcode.setBackground(new java.awt.Color(255, 255, 254));
-//        MnBarcode.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-//        MnBarcode.setForeground(new java.awt.Color(50, 50, 50));
-//        MnBarcode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-//        MnBarcode.setText("Barcode Perawatan 1");
-//        MnBarcode.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-//        MnBarcode.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-//        MnBarcode.setName("MnBarcode"); // NOI18N
-//        MnBarcode.setPreferredSize(new java.awt.Dimension(200, 26));
-//        MnBarcode.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                MnBarcodeActionPerformed(evt);
-//            }
-//        });
-//        MnLabel.add(MnBarcode);
+        MnBarcode.setBackground(new java.awt.Color(255, 255, 254));
+        MnBarcode.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnBarcode.setForeground(new java.awt.Color(50, 50, 50));
+        MnBarcode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnBarcode.setText("Barcode Perawatan 1");
+        MnBarcode.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnBarcode.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnBarcode.setName("MnBarcode"); // NOI18N
+        MnBarcode.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnBarcode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnBarcodeActionPerformed(evt);
+            }
+        });
+        MnLabel.add(MnBarcode);
 
         MnBarcode1.setBackground(new java.awt.Color(255, 255, 254));
         MnBarcode1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBarcode1.setForeground(new java.awt.Color(50, 50, 50));
         MnBarcode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnBarcode1.setText("Cetak Barcode Pasien");
+        MnBarcode1.setText("Barcode Perawatan 2");
         MnBarcode1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnBarcode1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnBarcode1.setName("MnBarcode1"); // NOI18N
@@ -6918,21 +6917,11 @@ public final class DlgReg extends javax.swing.JDialog {
         
         Checkin.setName("Checkin"); // NOI18N
         Checkin.setEditable(false);
-        Checkin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                CheckinKeyPressed(evt);
-            }
-        });
         FormInput.add(Checkin);
         Checkin.setBounds(520, 165, 150, 23);
         
         Booking.setName("Booking"); // NOI18N
         Booking.setEditable(false);
-        Booking.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BookingKeyPressed(evt);
-            }
-        });
         FormInput.add(Booking);
         Booking.setBounds(680, 165, 150, 23);
         
@@ -8213,6 +8202,111 @@ public final class DlgReg extends javax.swing.JDialog {
                                     }
                                 );
                                 Sequel.queryu2("update uji_fungsi_kfr set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_clinicalimpression set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_condition set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_diagnosticreport_lab set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_diagnosticreport_lab_mb set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_diagnosticreport_radiologi set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_diet set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_encounter set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_episodeofcare set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_immunization set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_medicationdispense set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_observationttvbb set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_observationttvgcs set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_observationttvkesadaran set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_observationttvlp set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_observationttvnadi set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_observationttvrespirasi set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_observationttvspo2 set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_observationttvsuhu set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_observationttvtb set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_observationttvtensi set no_rawat=? where no_rawat=?",2,
+                                    new String[]{
+                                        tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
+                                    }
+                                );
+                                Sequel.queryu2("update satu_sehat_procedure set no_rawat=? where no_rawat=?",2,
                                     new String[]{
                                         tbPetugas.getValueAt(tbPetugas.getSelectedRow(),2).toString(),norawatdipilih
                                     }
@@ -10890,7 +10984,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 param.put("kontakrs",akses.getkontakrs());
                 param.put("emailrs",akses.getemailrs());   
                 Valid.MyReportqry("rptBarcodeRawat2.jasper","report","::[ Barcode No.Rawat ]::",
-                        "select reg_periksa.no_rawat,pasien.no_ktp from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis where no_rawat='"+TNoRw.getText()+"'",param); 
+                        "select reg_periksa.no_rawat from reg_periksa where no_rawat='"+TNoRw.getText()+"'",param); 
                 this.setCursor(Cursor.getDefaultCursor());
             } 
     }//GEN-LAST:event_MnBarcode1ActionPerformed
@@ -15158,13 +15252,13 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         getData();
     }
     
-    private void CheckinKeyPressed(java.awt.event.KeyEvent evt) {                                   
-        // TODO add your handling code here:
-    }
-    
-    private void BookingKeyPressed(java.awt.event.KeyEvent evt) {                                   
-        // TODO add your handling code here:
-    }
+    private void BtnCheckinKeyPressed(java.awt.event.KeyEvent evt) {                                      
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+            BtnCheckinActionPerformed(null);
+        }else{
+            Valid.pindah(evt, BtnCari, BtnBatal);
+        }
+    }  
     
     private void BtnRiwayatRMActionPerformed(java.awt.event.ActionEvent evt) {                                             
         if(TNoRM.getText().trim().equals("")){
@@ -15179,7 +15273,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             resume.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
-    }  
+    } 
     
     /**
     * @param args the command line arguments

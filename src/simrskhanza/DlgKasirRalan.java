@@ -21,7 +21,6 @@ import bridging.BPJSSuratKontrol;
 import bridging.CoronaPasien;
 import bridging.DlgDataTB;
 import bridging.ICareRiwayatPerawatan;
-import bridging.ICareRiwayatPerawatan2OK;
 import bridging.ICareRiwayatPerawatanFKTP;
 import permintaan.DlgBookingOperasi;
 import surat.SuratKontrol;
@@ -63,7 +62,6 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -6694,21 +6692,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         TPasienCari.setPreferredSize(new java.awt.Dimension(250, 23));
         panelGlass9.add(TPasienCari);
         
-        antrianpasien = new widget.Label();
-        antrianpasien.setText("No. Antrian : ");
-        antrianpasien.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOIl8N
-        antrianpasien.setName("antrianpasien");
-        antrianpasien.setPreferredSize(new java.awt.Dimension(120, 23));
-        panelGlass9.add(antrianpasien);
-        
-        digit = new widget.Label();
-        digit.setForeground(new java.awt.Color(255, 0, 102));
-        digit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        digit.setText("NO.");
-        digit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOIl8N
-        digit.setName("digit");
-        panelGlass9.add(digit);
-        
         nomorsep = new widget.Label();
         nomorsep.setText("No. SEP : ");
         nomorsep.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOIl8N
@@ -7662,7 +7645,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
                 if(i==0){
                     if(akses.gettindakan_ralan()==true){
                         MnDataRalanActionPerformed(null);
-                        MnRiwayatPerawatanICareNoKartu2OKActionPerformed(null);
                     }
                 }else if(i==1){
                     if(akses.getberi_obat()==true){
@@ -14874,7 +14856,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                                   MnPermintaanKonsultasiMedik,MnDataOperasi,MnDataKonsultasiMedik,MnSkriningMerokokUsiaSekolahRemaja,MnSkriningKekerasanPadaWanita,MnSkriningObesitas,MnSkriningRisikoKankerPayudara,MnSkriningRisikoKankerParu,
                                   MnSkriningKesehatanGigiMulutRemaja,MnSkriningTBC;
     private javax.swing.JMenu MnHasilUSG,MnHasilEndoskopi,MnRMSkrining;
-    private widget.Label antrianpasien,digit,nomorsep,nosep,namarujukan,nmrujukan;
+    private widget.Label nomorsep,nosep,namarujukan,nmrujukan;
     
     private void tampilkasir() {     
         Valid.tabelKosong(tabModekasir);
@@ -15014,7 +14996,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             TNoReg.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),14).toString());
             TNoRMCari.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),2).toString());
             TPasienCari.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),3).toString());
-            digit.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),14).toString());
             nosep.setText(Sequel.cariIsi("select bridging_sep.no_sep from bridging_sep where no_rawat='"+TNoRw.getText()+"' and bridging_sep.jnspelayanan='2'"));
             nmrujukan.setText(Sequel.cariIsi("select bridging_sep.nmpolitujuan from bridging_sep where no_rawat='"+TNoRw.getText()+"' and bridging_sep.jnspelayanan='2'"));
         }
@@ -15788,37 +15769,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
             tbKasirRalan.requestFocus();
         } 
-    }
-    
-    private void MnRiwayatPerawatanICareNoKartu2OKActionPerformed(java.awt.event.ActionEvent evt) {                                                               
-        if(tabModekasir.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
-            TCari.requestFocus();
-        }else if(TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            tbKasirRalan.requestFocus();
-        }else{
-            if(tbKasirRalan.getSelectedRow()!= -1){
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                variabel=Sequel.cariIsi("select maping_dokter_dpjpvclaim.kd_dokter_bpjs from maping_dokter_dpjpvclaim where maping_dokter_dpjpvclaim.kd_dokter=?",tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),0).toString());
-                if(!variabel.equals("")){
-                    akses.setform("DlgReg");
-                    ICareRiwayatPerawatan2OK dlgki=new ICareRiwayatPerawatan2OK(null,false);
-                    dlgki.setSize(1350, 670);
-                    dlgki.setLocationRelativeTo(internalFrame1);
-                    dlgki.setPasien(Sequel.cariIsi("select pasien.no_peserta from pasien where pasien.no_rkm_medis=?",TNoRMCari.getText()),variabel);   
-                    dlgki.setVisible(true);
-                    SwingUtilities.invokeLater(() -> {
-                    dlgki.performBtnCariAction();
-                });
-
-                }else{
-                    JOptionPane.showMessageDialog(null,"Maaf, Dokter tidak terdaftar di mapping dokter BPJS...!!!"); 
-                }
-                this.setCursor(Cursor.getDefaultCursor());
-            }
-        }
-
     }
     
     private void initKasirRalan() {

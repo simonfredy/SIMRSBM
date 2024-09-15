@@ -728,6 +728,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         }
         tbPemeriksaanSbar.setDefaultRenderer(Object.class, new WarnaTable());
 
+
         kdptg.setDocument(new batasInput((byte)20).getKata(kdptg));
         kdptg2.setDocument(new batasInput((byte)20).getKata(kdptg2));
         KdDok.setDocument(new batasInput((byte)20).getKata(KdDok));
@@ -1123,35 +1124,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             @Override
             public void windowDeactivated(WindowEvent e) {}
         });
-
-        pegawai2.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if(akses.getform().equals("DlgRawatInap")){
-                    if(pegawai2.getTable().getSelectedRow()!= -1){  
-                        if(TabRawat.getSelectedIndex()==7){
-                        KdPeg4.setText(pegawai2.getTable().getValueAt(pegawai2.getTable().getSelectedRow(),0).toString());
-                        TPegawai4.setText(pegawai2.getTable().getValueAt(pegawai2.getTable().getSelectedRow(),1).toString());
-                        Jabatan2.setText(pegawai2.getTable().getValueAt(pegawai2.getTable().getSelectedRow(),3).toString());
-                        KdPeg4.requestFocus();                    
-                    }   
-                }
-            }
-                
-            }
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
         
         ChkInput.setSelected(false);
         isForm(); 
@@ -1315,7 +1287,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         KdPeg = new widget.TextBox();
         TPegawai = new widget.TextBox();
         BtnSeekPegawai = new widget.Button();
-        Jabatan2 = new widget.TextBox();
         Jabatan = new widget.TextBox();
         jLabel54 = new widget.Label();
         jLabel55 = new widget.Label();
@@ -1527,42 +1498,41 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianTambahanBunuhDiri = new widget.Button();
         BtnPenilaianTambahanPerilakuKekerasan = new widget.Button();
         BtnPenilaianTambahanMelarikanDiri = new widget.Button();
-        internalFrame8 = new widget.InternalFrame();
-        Scroll6 = new widget.ScrollPane();
-        tbPemeriksaanSbar = new widget.Table();
-        PanelInput4 = new javax.swing.JPanel();
         ChkInput3 = new widget.CekBox();
-        panelGlass16 = new widget.panelisi();
-        scrollPane5 = new widget.ScrollPane();
-        TSituation = new widget.TextArea();
-        scrollPane6 = new widget.ScrollPane();
-        TBackground = new widget.TextArea();
-        jLabel88 = new widget.Label();
-        jLabel89 = new widget.Label();
-        scrollPane9 = new widget.ScrollPane();
-        TAssesment = new widget.TextArea();
-        jLabel90 = new widget.Label();
-        jLabel91 = new widget.Label();
-        scrollPane10 = new widget.ScrollPane();
-        TRecommendation = new widget.TextArea();
-        KdPeg4 = new widget.TextBox();
-        jLabel92 = new widget.Label();
-        KdPeg2 = new widget.TextBox();
-        TPegawai2 = new widget.TextBox();
-        BtnSeekPegawai1 = new widget.Button();
-        Jabatan1 = new widget.TextBox();
-        jLabel93 = new widget.Label();
-        TPegawai3 = new widget.TextBox();
-        TPegawai4 = new widget.TextBox();
-        KdPeg3 = new widget.TextBox();
-        jLabel70 = new widget.Label();
         BtnVerifSbar = new widget.Button();
-        jLabel84 = new widget.Label();
-        jLabel86 = new widget.Label();
         BtnVerifSbar3 = new widget.Button();
         BtnVerifikasiSOAP = new widget.Button();
         BtnStatusVerifikasiSOAP = new widget.Button();
         BtnGrafikTTV = new widget.Button();
+        panelGlass16 = new widget.panelisi();
+        scrollPane5 = new widget.ScrollPane();
+        TSituation = new widget.TextArea();
+        TBackground = new widget.TextArea();
+        TAssesment = new widget.TextArea();
+        TRecommendation = new widget.TextArea();
+        scrollPane6 = new widget.ScrollPane();
+        jLabel70 = new widget.Label();
+        jLabel84 = new widget.Label();
+        jLabel86 = new widget.Label();
+        jLabel88 = new widget.Label();
+        jLabel89 = new widget.Label();
+        jLabel90 = new widget.Label();
+        jLabel91 = new widget.Label();
+        jLabel92 = new widget.Label();
+        jLabel93 = new widget.Label();
+        Scroll6 = new widget.ScrollPane();
+        scrollPane9 = new widget.ScrollPane();
+        scrollPane10 = new widget.ScrollPane();
+        KdPeg2 = new widget.TextBox();
+        KdPeg3 = new widget.TextBox();
+        TPegawai2 = new widget.TextBox();
+        TPegawai3 = new widget.TextBox();
+        Jabatan1 = new widget.TextBox();
+        BtnSeekPegawai1 = new widget.Button();
+        PanelInput4 = new javax.swing.JPanel();
+        internalFrame8 = new widget.InternalFrame();
+        tbPemeriksaanSbar = new widget.Table();
+        
 
         BagianRS.setEditable(false);
         BagianRS.setText("0");
@@ -2362,12 +2332,12 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         panelGlass12.add(scrollPane2);
         scrollPane2.setBounds(73, 115, 360, 38);
 
-        jLabel8.setText("(S)ubjek :");
+        jLabel8.setText("Subjek :");
         jLabel8.setName("jLabel8"); // NOI18N
         panelGlass12.add(jLabel8);
         jLabel8.setBounds(0, 70, 70, 23);
 
-        jLabel9.setText("(O)bjek :");
+        jLabel9.setText("Objek :");
         jLabel9.setName("jLabel9"); // NOI18N
         panelGlass12.add(jLabel9);
         jLabel9.setBounds(0, 115, 70, 23);
@@ -2389,12 +2359,12 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         panelGlass12.add(scrollPane3);
         scrollPane3.setBounds(543, 40, 360, 38);
 
-        jLabel37.setText("(A)sesmen :");
+        jLabel37.setText("Asesmen :");
         jLabel37.setName("jLabel37"); // NOI18N
         panelGlass12.add(jLabel37);
         jLabel37.setBounds(450, 40, 90, 23);
 
-        jLabel26.setText("(P)lan :");
+        jLabel26.setText("Plan :");
         jLabel26.setName("jLabel26"); // NOI18N
         panelGlass12.add(jLabel26);
         jLabel26.setBounds(450, 85, 90, 23);
@@ -2460,7 +2430,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         panelGlass12.add(jLabel54);
         jLabel54.setBounds(0, 40, 190, 23);
 
-        jLabel55.setText("(I)nstruksi :");
+        jLabel55.setText("Instruksi :");
         jLabel55.setName("jLabel55"); // NOI18N
         panelGlass12.add(jLabel55);
         jLabel55.setBounds(450, 139, 90, 23);
@@ -2545,26 +2515,10 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         panelGlass12.add(scrollPane8);
         scrollPane8.setBounds(543, 196, 360, 44);
 
-        jLabel59.setText("(E)valuasi :");
+        jLabel59.setText("Evaluasi :");
         jLabel59.setName("jLabel59"); // NOI18N
         panelGlass12.add(jLabel59);
         jLabel59.setBounds(450, 196, 90, 23);
-
-        Btn5Soap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        Btn5Soap.setMnemonic('4');
-        Btn5Soap.setText("5 SOAP Terakhir");
-        Btn5Soap.setToolTipText("ALt+4");
-        Btn5Soap.setFont(new java.awt.Font("Tahoma", 0, 11));
-        Btn5Soap.setGlassColor(new java.awt.Color(255, 153, 153));
-        Btn5Soap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Btn5Soap.setName("Btn5Soap"); // NOI18N
-        Btn5Soap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn5SoapActionPerformed(evt);
-            }
-        });
-        panelGlass12.add(Btn5Soap);
-        Btn5Soap.setBounds(920, 10, 160, 30);
 
         jLabel7.setText("Suhu (°C) :");
         jLabel7.setName("jLabel7"); // NOI18N
@@ -2656,6 +2610,22 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         panelGlass12.add(jLabel61);
         jLabel61.setBounds(296, 190, 79, 23);
         
+        Btn5Soap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        Btn5Soap.setMnemonic('4');
+        Btn5Soap.setText("5 SOAP Terakhir");
+        Btn5Soap.setToolTipText("ALt+4");
+        Btn5Soap.setFont(new java.awt.Font("Tahoma", 0, 11));
+        Btn5Soap.setGlassColor(new java.awt.Color(255, 153, 153));
+        Btn5Soap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Btn5Soap.setName("Btn5Soap"); // NOI18N
+        Btn5Soap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn5SoapActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(Btn5Soap);
+        Btn5Soap.setBounds(920, 10, 160, 30);
+        
         BtnVerifikasiSOAP.setForeground(new java.awt.Color(0, 0, 0));
         BtnVerifikasiSOAP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Doctor.png"))); // NOI18N
         BtnVerifikasiSOAP.setText("Verifikasi SOAP/CPPT");
@@ -2671,8 +2641,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         });
         panelGlass12.add(BtnVerifikasiSOAP);
         BtnVerifikasiSOAP.setBounds(920, 50, 160, 30);
-                
-
+        
         BtnStatusVerifikasiSOAP.setForeground(new java.awt.Color(0, 0, 0));
         BtnStatusVerifikasiSOAP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Hospital.png"))); // NOI18N
         BtnStatusVerifikasiSOAP.setText("Status Verifikasi SOAP");
@@ -3437,15 +3406,16 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         internalFrame7.add(PanelInput3, java.awt.BorderLayout.PAGE_START);
 
         TabRawat.addTab("Pemeriksaan Ginekologi", internalFrame7);
-        
+
+        //abRawat.setSelectedIndex(3);
         internalFrame8.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         internalFrame8.setName("internalFrame8"); // NOI18N
         internalFrame8.setLayout(new java.awt.BorderLayout(1, 1));
-
+        
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
-
+        
         tbPemeriksaanSbar.setAutoCreateRowSorter(true);
         tbPemeriksaanSbar.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPemeriksaanSbar.setName("tbPemeriksaanSbar"); // NOI18N
@@ -3454,20 +3424,15 @@ public final class DlgRawatInap extends javax.swing.JDialog {
                 tbPemeriksaanSbarMouseClicked(evt);
             }
         });
-        tbPemeriksaanSbar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tbPemeriksaanSbarKeyReleased(evt);
-            }
-        });
         Scroll6.setViewportView(tbPemeriksaanSbar);
-
+        
         internalFrame8.add(Scroll6, java.awt.BorderLayout.CENTER);
-
+        
         PanelInput4.setName("PanelInput4"); // NOI18N
         PanelInput4.setOpaque(false);
         PanelInput4.setPreferredSize(new java.awt.Dimension(192, 273));
         PanelInput4.setLayout(new java.awt.BorderLayout(1, 1));
-
+        
         ChkInput3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
         ChkInput3.setMnemonic('I');
         ChkInput3.setText(".: Input Data");
@@ -3488,7 +3453,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             }
         });
         PanelInput4.add(ChkInput3, java.awt.BorderLayout.PAGE_END);
-
+        
         panelGlass16.setName("panelGlass16"); // NOI18N
         panelGlass16.setPreferredSize(new java.awt.Dimension(44, 134));
         panelGlass16.setLayout(null);
@@ -3500,11 +3465,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         TSituation.setColumns(20);
         TSituation.setRows(5);
         TSituation.setName("TSituation"); // NOI18N
-        TSituation.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TSituationKeyPressed(evt);
-            }
-        });
         scrollPane5.setViewportView(TSituation);
 
         panelGlass16.add(scrollPane5);
@@ -3517,11 +3477,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         TBackground.setColumns(20);
         TBackground.setRows(5);
         TBackground.setName("TBackground"); // NOI18N
-        TBackground.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TBackgroundKeyPressed(evt);
-            }
-        });
         scrollPane6.setViewportView(TBackground);
 
         panelGlass16.add(scrollPane6);
@@ -3544,11 +3499,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         TAssesment.setColumns(20);
         TAssesment.setRows(5);
         TAssesment.setName("TAssesment"); // NOI18N
-        TAssesment.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TAssesmentKeyPressed(evt);
-            }
-        });
         scrollPane9.setViewportView(TAssesment);
 
         panelGlass16.add(scrollPane9);
@@ -3571,11 +3521,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         TRecommendation.setColumns(20);
         TRecommendation.setRows(5);
         TRecommendation.setName("TRecommendation"); // NOI18N
-        TRecommendation.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TRecommendationKeyPressed(evt);
-            }
-        });
         scrollPane10.setViewportView(TRecommendation);
 
         panelGlass16.add(scrollPane10);
@@ -3588,11 +3533,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
 
         KdPeg2.setHighlighter(null);
         KdPeg2.setName("KdPeg2"); // NOI18N
-        KdPeg2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                KdPeg2ActionPerformed(evt);
-            }
-        });
         KdPeg2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 KdPeg2KeyPressed(evt);
@@ -3604,11 +3544,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         TPegawai2.setEditable(false);
         TPegawai2.setHighlighter(null);
         TPegawai2.setName("TPegawai2"); // NOI18N
-        TPegawai2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TPegawai2ActionPerformed(evt);
-            }
-        });
         panelGlass16.add(TPegawai2);
         TPegawai2.setBounds(190, 10, 212, 23);
 
@@ -3643,11 +3578,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
 
         KdPeg3.setHighlighter(null);
         KdPeg3.setName("KdPeg3"); // NOI18N
-        KdPeg3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                KdPeg3KeyPressed(evt);
-            }
-        });
         panelGlass16.add(KdPeg3);
         KdPeg3.setBounds(190, 610, 115, 23);
 
@@ -3711,8 +3641,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         internalFrame8.add(PanelInput4, java.awt.BorderLayout.PAGE_START);
 
         TabRawat.addTab("SBAR", internalFrame8);
-
-//        TabRawat.setSelectedIndex(3);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 
@@ -5676,30 +5604,30 @@ public final class DlgRawatInap extends javax.swing.JDialog {
                     }
                 }   break;
                 case 6:
-                if(tabModePemeriksaanSbar.getRowCount()==0){
-                    JOptionPane.showMessageDialog(null,"Maaf, data sudah habis...!!!!");
-                    TNoRw.requestFocus();
-                }else{
-                    for(i=0;i<tbPemeriksaanSbar.getRowCount();i++){
-                        if(tbPemeriksaanSbar.getValueAt(i,0).toString().equals("true")){
-                            if(akses.getkode().equals("Admin Utama")){
-                                Sequel.queryu("delete from pemeriksaan_ranap_sbar where no_rawat='"+tbPemeriksaanSbar.getValueAt(i,1).toString()+
-                                        "' and tgl_perawatan='"+tbPemeriksaanSbar.getValueAt(i,4).toString()+
-                                        "' and jam_rawat='"+tbPemeriksaanSbar.getValueAt(i,5).toString()+"' ");
-                            }else{
-                                if(akses.getkode().equals(tbPemeriksaanSbar.getValueAt(i,10).toString())){
+                    if(tabModePemeriksaanSbar.getRowCount()==0){
+                        JOptionPane.showMessageDialog(null,"Maaf, data sudah habis...!!!!");
+                        TNoRw.requestFocus();
+                    }else{
+                        for(i=0;i<tbPemeriksaanSbar.getRowCount();i++){
+                            if(tbPemeriksaanSbar.getValueAt(i,0).toString().equals("true")){
+                                if(akses.getkode().equals("Admin Utama")){
                                     Sequel.queryu("delete from pemeriksaan_ranap_sbar where no_rawat='"+tbPemeriksaanSbar.getValueAt(i,1).toString()+
                                             "' and tgl_perawatan='"+tbPemeriksaanSbar.getValueAt(i,4).toString()+
                                             "' and jam_rawat='"+tbPemeriksaanSbar.getValueAt(i,5).toString()+"' ");
                                 }else{
-                                    JOptionPane.showMessageDialog(null,"Hanya bisa dihapus oleh dokter/petugas yang bersangkutan..!!");
+                                    if(akses.getkode().equals(tbPemeriksaanSbar.getValueAt(i,10).toString())){
+                                        Sequel.queryu("delete from pemeriksaan_ranap_sbar where no_rawat='"+tbPemeriksaanSbar.getValueAt(i,1).toString()+
+                                                "' and tgl_perawatan='"+tbPemeriksaanSbar.getValueAt(i,4).toString()+
+                                                "' and jam_rawat='"+tbPemeriksaanSbar.getValueAt(i,5).toString()+"' ");
+                                    }else{
+                                        JOptionPane.showMessageDialog(null,"Hanya bisa dihapus oleh dokter/petugas yang bersangkutan..!!");
+                                    }
                                 }
                             }
                         }
-                    }
-                    tampilPemeriksaanSbar();
-                }   break;
-            default:
+                        tampilPemeriksaanSbar();
+                    }   break;
+                default:
                 break;
         }
 
@@ -5994,9 +5922,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             case 5:
                 tampilPemeriksaanGinekologi();
                 break;
-            case 6:
-                tampilPemeriksaanSbar();
-                break;  
             default:
                 break;
         }
@@ -8880,137 +8805,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
     
-    private void tbPemeriksaanSbarMouseClicked(java.awt.event.MouseEvent evt) {                                               
-        if(tabModePemeriksaanSbar.getRowCount()!=0){
-            try {
-                getDataPemeriksaanSbar();
-            } catch (java.lang.NullPointerException e) {
-            }
-
-        }
-    }
-    
-    private void tbPemeriksaanSbarKeyReleased(java.awt.event.KeyEvent evt) {                                              
-        // TODO add your handling code here:
-    }                                             
-
-    private void ChkInput3ActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        isForm4();
-    }                                         
-
-    private void TSituationKeyPressed(java.awt.event.KeyEvent evt) {                                      
-        // TODO add your handling code here:
-    }                                     
-
-    private void TBackgroundKeyPressed(java.awt.event.KeyEvent evt) {                                       
-        // TODO add your handling code here:
-    }                                      
-
-    private void TAssesmentKeyPressed(java.awt.event.KeyEvent evt) {                                      
-        // TODO add your handling code here:
-    }                                     
-
-    private void TRecommendationKeyPressed(java.awt.event.KeyEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
-
-    private void KdPeg2ActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
-    }    
-    
-    private void KdPeg2KeyPressed(java.awt.event.KeyEvent evt) {                                  
-        if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
-            Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",TPegawai2,KdPeg2.getText());
-        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            BtnSeekPegawai1ActionPerformed(null);
-        }else{
-            Valid.pindah(evt,TNoRw,TSituation);
-        }
-    }                               
-
-    private void TPegawai2ActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
-    }                                         
-
-    private void BtnSeekPegawai1ActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        akses.setform("DlgRawatInap");
-        pegawai2.emptTeks();
-        pegawai2.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        pegawai2.setLocationRelativeTo(internalFrame1);
-        pegawai2.setVisible(true);
-    }                                               
-
-    private void KdPeg3KeyPressed(java.awt.event.KeyEvent evt) {                                  
-
-        // TODO add your handling code here:
-    }                                 
-
-    private void BtnVerifSbarActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        if(TNoRw.getText().trim().equals("") ){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            TCari.requestFocus();
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            DlgSBAR soap=new DlgSBAR(null,false);
-            soap.setNoRawat(TNoRw.getText(),TNoRw.getText());
-            soap.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
-            soap.setLocationRelativeTo(internalFrame1);
-            soap.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }                                            
-
-    private void jLabel84MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        if(TNoRw.getText().trim().equals("") ){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            TCari.requestFocus();
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            DlgSBAR soap=new DlgSBAR(null,false);
-            soap.setNoRawat(TNoRw.getText(),TNoRw.getText());
-            soap.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
-            soap.setLocationRelativeTo(internalFrame1);
-            soap.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
-        }        // TODO add your handling code here:
-    }                                     
-
-    private void jLabel86MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            TCari.requestFocus();
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            ValidasiSBAR form=new ValidasiSBAR(null,false);
-            form.isCek();
-            form.emptTeks();
-            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
-            form.tampil();
-            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
-        }        // TODO add your handling code here:
-    }                                     
-
-    private void BtnVerifSbar3ActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            TCari.requestFocus();
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            ValidasiSBAR form=new ValidasiSBAR(null,false);
-            form.isCek();
-            form.emptTeks();
-            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
-            form.tampil();
-            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
-        }        // TODO add your handling code here:
-    }
-    
     /**
     * @param args the command line arguments
     */
@@ -9111,7 +8905,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnSeekDokter;
     private widget.Button BtnSeekDokter2;
     private widget.Button BtnSeekPegawai;
-    private widget.Button BtnSeekPegawai1;
     private widget.Button BtnSeekPetugas;
     private widget.Button BtnSeekPetugas2;
     private widget.Button BtnSignInSebelumAnestesi;
@@ -9125,58 +8918,40 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnSkriningNutrisiLansia;
     private widget.Button BtnTimeOutSebelumInsisi;
     private widget.Button BtnTransferAntarRuang;
-    private widget.Button BtnVerifSbar;
-    private widget.Button BtnVerifSbar1;
-    private widget.Button BtnVerifSbar2;
-    private widget.Button BtnVerifSbar3;
-    private widget.Button BtnVerifSbar4;
-    private widget.Button BtnVerifSbar5;
     private widget.CekBox ChkAccor;
     private widget.CekBox ChkInput;
     private widget.CekBox ChkInput1;
     private widget.CekBox ChkInput2;
     private widget.CekBox ChkJln;
-    private widget.CekBox ChkInput3;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Tanggal DTPTgl;
     private widget.PanelBiasa FormInput;
     private widget.PanelBiasa FormMenu;
     private widget.TextBox Jabatan;
-    private widget.TextBox Jabatan1;
-    private widget.TextBox Jabatan2;
     private javax.swing.JTextField JmDokter;
     private javax.swing.JTextField JmPerawat;
     private javax.swing.JTextField KSO;
     private widget.TextBox KdDok;
     private widget.TextBox KdDok2;
     private widget.TextBox KdPeg;
-    private widget.TextBox KdPeg2;
-    private widget.TextBox KdPeg3;
-    private widget.TextBox KdPeg4;
     private widget.Label LCount;
     private javax.swing.JTextField Menejemen;
     private widget.PanelBiasa PanelAccor;
     private javax.swing.JPanel PanelInput1;
     private javax.swing.JPanel PanelInput2;
     private javax.swing.JPanel PanelInput3;
-    private javax.swing.JPanel PanelInput4;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
     private widget.ScrollPane Scroll5;
-    private widget.ScrollPane Scroll6;
     private widget.ScrollPane ScrollMenu;
     private widget.TextBox SpO2;
     private widget.TextBox TAdnexaKanan;
     private widget.TextBox TAdnexaKiri;
     private widget.TextBox TAlergi;
-    private widget.TextArea TAssesment;
-    private widget.TextArea TAssesment1;
-    private widget.TextArea TBackground;
-    private widget.TextArea TBackground1;
     private widget.TextBox TBentuk;
     private widget.TextBox TBerat;
     private widget.TextBox TCari;
@@ -9208,9 +8983,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
     private widget.TextBox TPegawai;
-    private widget.TextBox TPegawai2;
-    private widget.TextBox TPegawai3;
-    private widget.TextBox TPegawai4;
     private widget.TextBox TPembukaan;
     private widget.TextArea TPemeriksaan;
     private widget.TextArea TPenilaian;
@@ -9220,11 +8992,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.TextBox TPortio;
     private widget.TextBox TPortioDalam;
     private widget.TextBox TPortioInspekulo;
-    private widget.TextArea TRecommendation;
-    private widget.TextArea TRecommendation1;
     private widget.TextBox TRespirasi;
-    private widget.TextArea TSituation;
-    private widget.TextArea TSituation1;
     private widget.TextBox TSondage;
     private widget.TextBox TSuhu;
     private widget.TextBox TTebal;
@@ -9268,7 +9036,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.InternalFrame internalFrame5;
     private widget.InternalFrame internalFrame6;
     private widget.InternalFrame internalFrame7;
-    private widget.InternalFrame internalFrame8;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
     private widget.Label jLabel12;
@@ -9326,7 +9093,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Label jLabel64;
     private widget.Label jLabel67;
     private widget.Label jLabel7;
-    private widget.Label jLabel70;
     private widget.Label jLabel71;
     private widget.Label jLabel72;
     private widget.Label jLabel73;
@@ -9341,14 +9107,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Label jLabel81;
     private widget.Label jLabel82;
     private widget.Label jLabel83;
-    private widget.Label jLabel84;
-    private widget.Label jLabel86;
-    private widget.Label jLabel88;
-    private widget.Label jLabel89;
-    private widget.Label jLabel90;
-    private widget.Label jLabel91;
-    private widget.Label jLabel92;
-    private widget.Label jLabel93;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator5;
@@ -9360,34 +9118,35 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.panelisi panelGlass13;
     private widget.panelisi panelGlass14;
     private widget.panelisi panelGlass15;
-    private widget.panelisi panelGlass16;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
     private widget.ScrollPane scrollPane1;
     private widget.ScrollPane scrollPane2;
     private widget.ScrollPane scrollPane3;
     private widget.ScrollPane scrollPane4;
-    private widget.ScrollPane scrollPane5;
-    private widget.ScrollPane scrollPane6;
     private widget.ScrollPane scrollPane7;
     private widget.ScrollPane scrollPane8;
-    private widget.ScrollPane scrollPane9;
-    private widget.ScrollPane scrollPane10;
     private widget.Table tbPemeriksaan;
     private widget.Table tbPemeriksaanGinekologi;
     private widget.Table tbPemeriksaanObstetri;
     private widget.Table tbRawatDr;
     private widget.Table tbRawatDrPr;
     private widget.Table tbRawatPr;
-    private widget.Table tbPemeriksaanSbar;
     private widget.TextBox TanggalRegistrasi;
     // End of variables declaration//GEN-END:variables
     private widget.Button BtnSkorBromagePascaAnestesi,BtnPenilaianPreInduksi,BtnHasilPemeriksaanUSGUrologi,BtnHasilPemeriksaanUSGGynecologi,BtnHasilPemeriksaanEKG,BtnHasilPemeriksaanUSGNeonatus,BtnHasilEndoskopiFaringLaring,BtnHasilEndoskopiHidung,BtnHasilEndoskopiTelinga,
                           BtnAwalKeperawatanNeonatus,BtnPenilaianPasienImunitasRendah,BtnCatatanKeseimbanganCairan,BtnCatatanObservasiCHBP,BtnCatatanObservasiInduksiPersalinan,BtnPermintaanKonsultasiMedik,BtnAwalKeperawatanBayiAnak;
-    private widget.Button BtnVerifikasiSOAP;
-    private widget.Button BtnStatusVerifikasiSOAP;
-    private widget.Button BtnGrafikTTV;
+    private widget.Button BtnVerifSbar,BtnVerifSbar3,BtnVerifikasiSOAP,BtnStatusVerifikasiSOAP,BtnGrafikTTV,BtnSeekPegawai1;
     private widget.PanelBiasa panelBiasa3;
+    private widget.panelisi panelGlass16;
+    private widget.ScrollPane scrollPane5,scrollPane6,Scroll6,scrollPane9,scrollPane10;
+    private widget.TextArea TSituation,TBackground,TAssesment,TRecommendation;
+    private widget.Label jLabel70,jLabel84,jLabel86,jLabel88,jLabel89,jLabel90,jLabel91,jLabel92,jLabel93;
+    private widget.TextBox KdPeg2,KdPeg3,TPegawai2,TPegawai3,Jabatan1;
+    private javax.swing.JPanel PanelInput4;
+    private widget.InternalFrame internalFrame8;
+    private widget.CekBox ChkInput3;
+    private widget.Table tbPemeriksaanSbar;
     
     public void tampilDr() {
         Valid.tabelKosong(tabModeDr);
@@ -11177,7 +10936,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                     TSituation.getText(),TBackground.getText(),TAssesment.getText(),TRecommendation.getText(),KdPeg2.getText()
                                 });
                                 tampilPemeriksaanSbar();
-//                                BtnBatalActionPerformed(evt);
+                                BtnBatalActionPerformed(null);
                             }else{
                                 if(akses.getkode().equals(KdPeg2.getText())){
                                     Sequel.menyimpan("pemeriksaan_ranap_sbar","?,?,?,?,?,?,?,?","Data",8,new String[]{
@@ -11185,7 +10944,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                         TSituation.getText(),TBackground.getText(),TAssesment.getText(),TRecommendation.getText(),KdPeg2.getText() 
                                     });
                                     tampilPemeriksaanSbar();
-//                                    BtnBatalActionPerformed(evt);
+                                    BtnBatalActionPerformed(null);
                                 }else{
                                     JOptionPane.showMessageDialog(null,"Hanya bisa disimpan oleh dokter/petugas yang bersangkutan..!!");
                                 }
@@ -11517,19 +11276,21 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
     
-    private void getDataPemeriksaanSbar() {
-        if(tbPemeriksaanSbar.getSelectedRow()!= -1){
-            TNoRw.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),1).toString());
-            TNoRM.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),2).toString());
-            TPasien.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),3).toString());             
-            TSituation.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),6).toString()); 
-            TBackground.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),7).toString()); 
-            TAssesment.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),8).toString()); 
-            TRecommendation.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),9).toString()); 
-            cmbJam.setSelectedItem(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),5).toString().substring(0,2));
-            cmbMnt.setSelectedItem(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),5).toString().substring(3,5));
-            cmbDtk.setSelectedItem(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),5).toString().substring(6,8));
-            Valid.SetTgl(DTPTgl,tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),4).toString());
+    private void ChkInput3ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        isForm4();
+    }  
+    
+    private void isForm4(){
+        if(ChkInput3.isSelected()==true){
+            ChkInput3.setVisible(false);
+            PanelInput4.setPreferredSize(new Dimension(WIDTH,260));
+            panelGlass16.setVisible(true);      
+            ChkInput3.setVisible(true);
+        }else if(ChkInput3.isSelected()==false){           
+            ChkInput3.setVisible(false);            
+            PanelInput4.setPreferredSize(new Dimension(WIDTH,20));
+            panelGlass16.setVisible(false);      
+            ChkInput3.setVisible(true);
         }
     }
     
@@ -11587,19 +11348,97 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         LCount.setText(""+tabModePemeriksaanSbar.getRowCount());
     }
     
-    private void isForm4(){
-        if(ChkInput3.isSelected()==true){
-            ChkInput3.setVisible(false);
-            PanelInput4.setPreferredSize(new Dimension(WIDTH,260));
-            panelGlass16.setVisible(true);      
-            ChkInput3.setVisible(true);
-        }else if(ChkInput3.isSelected()==false){           
-            ChkInput3.setVisible(false);            
-            PanelInput4.setPreferredSize(new Dimension(WIDTH,20));
-            panelGlass16.setVisible(false);      
-            ChkInput3.setVisible(true);
+    private void getDataPemeriksaanSbar() {
+        if(tbPemeriksaanSbar.getSelectedRow()!= -1){
+            TNoRw.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),1).toString());
+            TNoRM.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),2).toString());
+            TPasien.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),3).toString());             
+            TSituation.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),6).toString()); 
+            TBackground.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),7).toString()); 
+            TAssesment.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),8).toString()); 
+            TRecommendation.setText(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),9).toString()); 
+            cmbJam.setSelectedItem(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),5).toString().substring(0,2));
+            cmbMnt.setSelectedItem(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),5).toString().substring(3,5));
+            cmbDtk.setSelectedItem(tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),5).toString().substring(6,8));
+            Valid.SetTgl(DTPTgl,tbPemeriksaanSbar.getValueAt(tbPemeriksaanSbar.getSelectedRow(),4).toString());
         }
     }
+    
+    private void tbPemeriksaanSbarMouseClicked(java.awt.event.MouseEvent evt) {                                               
+        if(tabModePemeriksaanSbar.getRowCount()!=0){
+            try {
+                getDataPemeriksaanSbar();
+            } catch (java.lang.NullPointerException e) {
+            }
+
+        }
+    } 
+    
+    private void BtnVerifSbarActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        if(TNoRw.getText().trim().equals("") ){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgSBAR soap=new DlgSBAR(null,false);
+            soap.setNoRawat(TNoRw.getText(),TNoRw.getText());
+            soap.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
+            soap.setLocationRelativeTo(internalFrame1);
+            soap.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }
+    
+    private void BtnVerifSbar3ActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            ValidasiSBAR form=new ValidasiSBAR(null,false);
+            form.isCek();
+            form.emptTeks();
+            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+            form.tampil();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }        // TODO add your handling code here:
+    }
+    
+    private void jLabel84MouseClicked(java.awt.event.MouseEvent evt) {                                      
+        if(TNoRw.getText().trim().equals("") ){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgSBAR soap=new DlgSBAR(null,false);
+            soap.setNoRawat(TNoRw.getText(),TNoRw.getText());
+            soap.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
+            soap.setLocationRelativeTo(internalFrame1);
+            soap.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }        // TODO add your handling code here:
+    }
+    
+    private void jLabel86MouseClicked(java.awt.event.MouseEvent evt) {                                      
+        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            ValidasiSBAR form=new ValidasiSBAR(null,false);
+            form.isCek();
+            form.emptTeks();
+            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+            form.tampil();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }        // TODO add your handling code here:
+    } 
     
     private void BtnVerifikasiSOAPActionPerformed(java.awt.event.ActionEvent evt) {                                                
          if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
@@ -11632,6 +11471,24 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             soap.setVisible(true);
         }
     }
+    
+    private void KdPeg2KeyPressed(java.awt.event.KeyEvent evt) {                                  
+        if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+            Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",TPegawai2,KdPeg2.getText());
+        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            BtnSeekPegawai1ActionPerformed(null);
+        }else{
+            Valid.pindah(evt,TNoRw,TSituation);
+        }
+    }
+    
+    private void BtnSeekPegawai1ActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        akses.setform("DlgRawatInap");
+        pegawai2.emptTeks();
+        pegawai2.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        pegawai2.setLocationRelativeTo(internalFrame1);
+        pegawai2.setVisible(true);
+    }  
     
     private void BtnGrafikTTVActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         grafiksqlttv kas = new grafiksqlttv("Grafik TTV Pasien "+TPasien.getText(),

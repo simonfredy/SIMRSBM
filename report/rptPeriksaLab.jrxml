@@ -462,7 +462,7 @@
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="198" y="-1" width="81" height="13" forecolor="#0000FF" uuid="17d6ff84-9390-4ef9-97ad-d3a16c440757">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="198" y="-1" width="81" height="13" forecolor="#FF0000" uuid="17d6ff84-9390-4ef9-97ad-d3a16c440757">
 					<printWhenExpression><![CDATA[($F{temp5}.toLowerCase().equals("l") ? 
   Boolean.TRUE:Boolean.FALSE)]]></printWhenExpression>
 				</reportElement>
@@ -574,14 +574,14 @@
 					<jr:codeExpression><![CDATA[$P{finger}]]></jr:codeExpression>
 				</jr:QRCode>
 			</componentElement>
-			<textField isBlankWhenNull="true">
-				<reportElement x="376" y="104" width="172" height="15" uuid="4afc0271-954b-4330-a87f-b39b31e89814"/>
+			<staticText>
+				<reportElement mode="Transparent" x="376" y="104" width="172" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="4ad08450-65d1-46ac-a147-7da5a8bfb31f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Tahoma" size="10"/>
+					<font fontName="Tahoma" size="10" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{penjab}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[dr. LANY ANGGRAINI, Sp.PK]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

@@ -1821,7 +1821,7 @@ private void tbRadiologiRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRS
                     param.put("jkel",Sequel.cariIsi("select pasien.jk from pasien where pasien.no_rkm_medis=? ",norm));
                     param.put("umur",Sequel.cariIsi("select umur from pasien where no_rkm_medis=?",norm));
                     param.put("lahir",Sequel.cariIsi("select DATE_FORMAT(pasien.tgl_lahir,'%d-%m-%Y') from pasien where pasien.no_rkm_medis=? ",norm));
-                    param.put("pengirim",DokterPerujuk);
+                    //param.put("pengirim",DokterPerujuk);
                     param.put("pengirim",Sequel.cariIsi("select dokter.nm_dokter from dokter inner join permintaan_radiologi where dokter.kd_dokter=permintaan_radiologi.dokter_perujuk and noorder=?",NoPermintaan));
                     //param.put("informasitambahan",InformasiTambahan);
                     param.put("informasitambahan",Sequel.cariIsi("select permintaan_radiologi.informasi_tambahan from permintaan_radiologi where noorder=?",NoPermintaan));
@@ -1901,7 +1901,7 @@ private void tbRadiologiRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRS
                     param.put("umur",Sequel.cariIsi("select umur from pasien where no_rkm_medis=?",norm));
                     param.put("lahir",Sequel.cariIsi("select DATE_FORMAT(pasien.tgl_lahir,'%d-%m-%Y') from pasien where pasien.no_rkm_medis=? ",norm));
                     //param.put("pengirim",DokterPerujuk);
-                    param.put("pengirim",Sequel.cariIsi("select dokter.nm_dokter from dokter inner join permintaan_radiologi where dokter.kd_dokter=permintaan_radiologi.dokter_perujuk"));
+                    param.put("pengirim",Sequel.cariIsi("select dokter.nm_dokter from dokter inner join permintaan_radiologi where dokter.kd_dokter=permintaan_radiologi.dokter_perujuk and noorder=?",NoPermintaan));
                     //param.put("informasitambahan",InformasiTambahan);
                     param.put("informasitambahan",Sequel.cariIsi("select permintaan_radiologi.informasi_tambahan from permintaan_radiologi where noorder=?",NoPermintaan));
                     //param.put("diagnosa",Klinis);

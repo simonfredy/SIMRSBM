@@ -1773,30 +1773,25 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             param.put("emailrs",akses.getemailrs());
             param.put("hasil",HasilPeriksa.getText());
             param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("status",Sequel.cariIsi("select penjab.png_jawab from penjab where kd_pj=?",Sequel.cariIsi("select reg_periksa.kd_pj from reg_periksa where reg_periksa.no_rawat=?",Kd2.getText())));
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdpenjab);
             param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbDokter.getValueAt(tbDokter.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?kdpenjab:finger)+"\n"+Valid.SetTgl3(tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString()));  
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",kdpetugas);
             param.put("finger2","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbDokter.getValueAt(tbDokter.getSelectedRow(),2).toString()+"\nID "+(finger.equals("")?kdpetugas:finger)+"\n"+Valid.SetTgl3(tbDokter.getValueAt(tbDokter.getSelectedRow(),3).toString()));  
 
-            pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih hasil pemeriksaan..!","Hasil Pemeriksaan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Lembar Radiologi","Lembar USG", "Model 3","PDF Lembar Radiologi","PDF Lembar Radiologi","PDF Model 3"},"Lembar Radiologi");
+            pilihan = (String)JOptionPane.showInputDialog(null,"Silahkan pilih hasil pemeriksaan..!","Hasil Pemeriksaan",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Hasil Radiologi","Hasil USG","PDF Hasil Radiologi","PDF Hasil USG"},"Hasil Radiologi");
             switch (pilihan) {
-                case "Lembar Radiologi":
-                      Valid.MyReport("rptPeriksaRadiologi.jasper","report","::[ Pemeriksaan Radiologi ]::",param);
+                case "Hasil Radiologi":
+                      Valid.MyReport("rptPeriksaRadiologi.jasper","report","::[ Cetak Hasil Pemeriksaan Radiologi ]::",param);
                       break;
-                case "Lembar USG":
-                      Valid.MyReport("rptPeriksaRadiologi2.jasper","report","::[ Pemeriksaan USG ]::",param);
+                case "Hasil USG":
+                      Valid.MyReport("rptPeriksaRadiologi2.jasper","report","::[ Cetak Hasil Pemeriksaan USG ]::",param);
                       break;
-                case "Model 3":
-                      Valid.MyReport("rptPeriksaRadiologi3.jasper","report","::[ Pemeriksaan Radiologi ]::",param);
+                case "PDF Hasil Radiologi":
+                      Valid.MyReportPDF("rptPeriksaRadiologi.jasper","report","::[ PDF Hasil Pemeriksaan Radiologi ]::",param);
                       break;
-                case "PDF Lembar Radiologi":
-                      Valid.MyReportPDF("rptPeriksaRadiologi.jasper","report","::[ Pemeriksaan Radiologi ]::",param);
-                      break;
-                case "PDF Lembar USG":
-                      Valid.MyReportPDF("rptPeriksaRadiologi2.jasper","report","::[ Pemeriksaan USG ]::",param);
-                      break;
-                case "PDF Model 3":
-                      Valid.MyReportPDF("rptPeriksaRadiologi3.jasper","report","::[ Pemeriksaan Radiologi ]::",param);
+                case "PDF Hasil USG":
+                      Valid.MyReportPDF("rptPeriksaRadiologi2.jasper","report","::[ PDF Hasil Pemeriksaan USG ]::",param);
                       break;
             }                        
             

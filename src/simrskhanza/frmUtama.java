@@ -1726,6 +1726,8 @@ public class frmUtama extends javax.swing.JFrame {
         MnRekapBulanan3 = new javax.swing.JMenuItem();
         MnRekapBulanan2 = new javax.swing.JMenuItem();
         MnRekapBulanan4 = new javax.swing.JMenuItem();
+        MnlaporanHarianPoli = new javax.swing.JMenuItem();
+        MnValidasiKYCSatuSehat = new javax.swing.JMenuItem();
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
         MnTarif = new javax.swing.JMenu();
         MnSudahPulang1 = new javax.swing.JMenuItem();
@@ -1972,7 +1974,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31/08/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/09/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7662,6 +7664,34 @@ public class frmUtama extends javax.swing.JFrame {
         });
         jMenu6.add(MnRekapBulanan4);
 
+        MnlaporanHarianPoli.setBackground(new java.awt.Color(255, 255, 254));
+        MnlaporanHarianPoli.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnlaporanHarianPoli.setForeground(new java.awt.Color(50, 90, 40));
+        MnlaporanHarianPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
+        MnlaporanHarianPoli.setText("Laporan Harian Poli");
+        MnlaporanHarianPoli.setName("MnlaporanHarianPoli"); // NOI18N
+        MnlaporanHarianPoli.setPreferredSize(new java.awt.Dimension(220, 30));
+        MnlaporanHarianPoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnlaporanHarianPoliActionPerformed(evt);
+            }
+        });
+        jMenu6.add(MnlaporanHarianPoli);
+
+        MnValidasiKYCSatuSehat.setBackground(new java.awt.Color(255, 255, 254));
+        MnValidasiKYCSatuSehat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnValidasiKYCSatuSehat.setForeground(new java.awt.Color(50, 90, 40));
+        MnValidasiKYCSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
+        MnValidasiKYCSatuSehat.setText("Validasi KYC Satu Sehat");
+        MnValidasiKYCSatuSehat.setName("MnValidasiKYCSatuSehat"); // NOI18N
+        MnValidasiKYCSatuSehat.setPreferredSize(new java.awt.Dimension(220, 30));
+        MnValidasiKYCSatuSehat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnValidasiKYCSatuSehatActionPerformed(evt);
+            }
+        });
+        jMenu6.add(MnValidasiKYCSatuSehat);
+
         jSeparator10.setBackground(new java.awt.Color(190, 220, 180));
         jSeparator10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(190, 220, 180)));
         jSeparator10.setForeground(new java.awt.Color(190, 220, 180));
@@ -8315,16 +8345,16 @@ public class frmUtama extends javax.swing.JFrame {
                     lblStts.setText("Admin : ");
                     lblUser.setText("Admin Utama");
                     if(AKTIFKANTRACKSQL.equals("yes")){
-                        Sequel.menyimpan("tracker","'Admin Utama',current_date(),current_time()","Login");
+                        Sequel.menyimpan("traccdker","'Admin Utama',current_date(),current_time()","Login");
                     }
                 }else if(akses.getjml2()>=1){  
                     BtnMenu.setEnabled(true);
                     DlgLogin.dispose();
                     BtnLog.setText("Log Out");
                     MnLogin.setText("Log Out");
-                    lblStts.setText("User : ");
-                    //lblUser.setText(akses.getkode());
+                    lblStts.setText("Nama Akun : ");
                     lblUser.setText(Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode()));
+                    //lblUser.setText(akses.getkode());
                     MnGantiPassword.setEnabled(true);
                     MnPengajuanCutiPegawai.setEnabled(true);
                     BtnToolReg.setEnabled(akses.getregistrasi());
@@ -14543,6 +14573,18 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         Valid.panggilUrl("antrianmobilejkn.php");
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnInfoMobileJKNActionPerformed
+
+    private void MnlaporanHarianPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnlaporanHarianPoliActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.panggilUrl("laporanharianpoli/index.php");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnlaporanHarianPoliActionPerformed
+
+    private void MnValidasiKYCSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnValidasiKYCSatuSehatActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.panggilUrl("kycrsbm/index.php");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnValidasiKYCSatuSehatActionPerformed
 
     private void btnKategoriPerpustakaanActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
@@ -21748,6 +21790,8 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
     private javax.swing.JMenuItem MnSudahPulang6;
     private javax.swing.JMenu MnTarif;
     private javax.swing.JMenu MnTarif1;
+    private javax.swing.JMenuItem MnValidasiKYCSatuSehat;
+    private javax.swing.JMenuItem MnlaporanHarianPoli;
     private javax.swing.JPanel PanelUtama;
     private usu.widget.glass.PanelGlass PanelWall;
     private widget.panelGlass Panelmenu;

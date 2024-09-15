@@ -281,6 +281,27 @@ public class DlgBookingMCUPerusahaan extends javax.swing.JDialog {
             public void keyReleased(KeyEvent e) {}
         });
         
+        pasienbaru.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {}
+            @Override
+            public void windowClosing(WindowEvent e) {}
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if(pasienbaru.status=="Selesai"){
+                    tampil();
+                }      
+            }
+            @Override
+            public void windowIconified(WindowEvent e) {}
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+            @Override
+            public void windowActivated(WindowEvent e) {dokter.emptTeks();}
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });  
+        
         try {
             URUTNOREG=koneksiDB.URUTNOREG();
         } catch (Exception e) {
@@ -1059,9 +1080,20 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     }//GEN-LAST:event_ppPilihActionPerformed
 
     private void ppPengajuanPasienBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPengajuanPasienBaruActionPerformed
-        pasienbaru.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        pasienbaru.setLocationRelativeTo(internalFrame1);
-        pasienbaru.setVisible(true);
+        if(NmPerusahaan.getText().trim().equals("")||KdPerusahaan.getText().trim().equals("")){
+            Valid.textKosong(BtnPerusahaan,"Perusahaan/Instansi MCU");
+        }else if(KdCaraBayar.getText().trim().equals("")||NmCaraBayar.getText().trim().equals("")){
+            Valid.textKosong(BtnCaraBayar,"Jenis/Cara Bayar MCU");
+        }else{
+            pasienbaru.KodePerusahaan=KdPerusahaan.getText();
+            pasienbaru.KodeCaraBayar=KdCaraBayar.getText();
+            pasienbaru.TanggalMCU=Valid.SetTgl(Tanggal.getSelectedItem()+"");
+            pasienbaru.status="";
+            pasienbaru.tampil();
+            pasienbaru.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            pasienbaru.setLocationRelativeTo(internalFrame1);
+            pasienbaru.setVisible(true);
+        }
     }//GEN-LAST:event_ppPengajuanPasienBaruActionPerformed
 
     /**

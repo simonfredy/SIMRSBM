@@ -3,7 +3,7 @@
 <properties>
     <comment>KhanzaHMS</comment> 
     <entry key="HOST">5k7+C7EnUw9nUv2Nix+DBA==</entry>
-    <entry key="DATABASE">AZHNccBwSmSho84f+X8GyQ==</entry>
+    <entry key="DATABASE">5aFwvQQBJxccDtxegN3WLA==</entry>
     <entry key="PORT">nioxtijcpDaKSUiUiP5FAg==</entry>
     <entry key="USER">kMR3WfAwUK6MbhCyydxa0g==</entry>
     <entry key="PAS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
@@ -110,7 +110,7 @@
     <entry key="URLAPIINHEALTH">http://development.inhealth.co.id/pelkesws2</entry>
     <entry key="TOKENINHEALTH">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="PEMBULATANHARGAOBAT">no</entry>
-    <entry key="AKTIFKANBATCHOBAT">yes</entry>
+    <entry key="AKTIFKANBATCHOBAT">no</entry>
     <entry key="CETAKRINCIANOBAT">no</entry>
     <entry key="DEPOAKTIFOBAT"></entry>
     <entry key="VALIDASIULANGBERIOBAT">no</entry>

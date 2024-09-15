@@ -216,12 +216,12 @@
 				<text><![CDATA[JK/Umur]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="111" y="144" width="31" height="15" uuid="d7c165d1-c948-4b08-b758-470f544d1206"/>
+				<reportElement x="111" y="144" width="55" height="15" uuid="d7c165d1-c948-4b08-b758-470f544d1206"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{jkel}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{jkel}.equals("L")? "Laki-Laki":"Perempuan"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="385" y="114" width="136" height="15" uuid="62faaf26-9bfc-446a-bce2-c8cebeb873be"/>
@@ -272,7 +272,7 @@
 				<textFieldExpression><![CDATA[$P{tanggal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="146" y="144" width="6" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="b21f1e9d-fb56-410d-964b-509ed8ce9df2"/>
+				<reportElement mode="Transparent" x="170" y="144" width="6" height="15" forecolor="#000000" backcolor="#F0F0DC" uuid="b21f1e9d-fb56-410d-964b-509ed8ce9df2"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -280,7 +280,7 @@
 				<text><![CDATA[/]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="156" y="144" width="79" height="15" uuid="e1a3d1f0-9e7c-42da-ad29-60e113ae29aa"/>
+				<reportElement x="180" y="144" width="79" height="15" uuid="e1a3d1f0-9e7c-42da-ad29-60e113ae29aa"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10"/>
 					<paragraph lineSpacing="Single"/>

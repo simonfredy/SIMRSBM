@@ -3351,7 +3351,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         MnBarcode2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBarcode2.setForeground(new java.awt.Color(50, 50, 50));
         MnBarcode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnBarcode2.setText("Barcode Perawatan 2");
+        MnBarcode2.setText("Cetak Barcode Pasien");
         MnBarcode2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnBarcode2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnBarcode2.setName("MnBarcode2"); // NOI18N
@@ -3379,21 +3379,21 @@ public final class DlgIGD extends javax.swing.JDialog {
         });
         MnGelang.add(MnBarcode3);
 
-        MnBarcode.setBackground(new java.awt.Color(255, 255, 254));
-        MnBarcode.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnBarcode.setForeground(new java.awt.Color(50, 50, 50));
-        MnBarcode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnBarcode.setText("Barcode Perawatan");
-        MnBarcode.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnBarcode.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnBarcode.setName("MnBarcode"); // NOI18N
-        MnBarcode.setPreferredSize(new java.awt.Dimension(240, 26));
-        MnBarcode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnBarcodeActionPerformed(evt);
-            }
-        });
-        MnGelang.add(MnBarcode);
+//        MnBarcode.setBackground(new java.awt.Color(255, 255, 254));
+//        MnBarcode.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+//        MnBarcode.setForeground(new java.awt.Color(50, 50, 50));
+//        MnBarcode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+//        MnBarcode.setText("Barcode Perawatan");
+//        MnBarcode.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+//        MnBarcode.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+//        MnBarcode.setName("MnBarcode"); // NOI18N
+//        MnBarcode.setPreferredSize(new java.awt.Dimension(240, 26));
+//        MnBarcode.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                MnBarcodeActionPerformed(evt);
+//            }
+//        });
+//        MnGelang.add(MnBarcode);
 
         MnBarcodeRM9.setBackground(new java.awt.Color(255, 255, 254));
         MnBarcodeRM9.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -7127,23 +7127,23 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }//GEN-LAST:event_MnPeriksaRadiologiActionPerformed
 
-    private void MnBarcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBarcodeActionPerformed
-        if(!TPasien.getText().isEmpty()){
-                Map<String, Object> data = new HashMap<>();
-                data.put("nama",TPasien.getText());
-                data.put("alamat",Sequel.cariIsi("select date_format(tgl_lahir,'%d/%m/%Y') from pasien where no_rkm_medis=?",TNoRM.getText()));
-                data.put("norm",TNoRM.getText());
-                data.put("parameter","%"+TCari.getText().trim()+"%");     
-                data.put("namars",akses.getnamars());
-                data.put("alamatrs",akses.getalamatrs());
-                data.put("kotars",akses.getkabupatenrs());
-                data.put("propinsirs",akses.getpropinsirs());
-                data.put("kontakrs",akses.getkontakrs());
-                data.put("emailrs",akses.getemailrs());   
-                data.put("no_rawat",TNoRw.getText());   
-                Valid.MyReport("rptBarcodeRawat.jasper","report","::[ Barcode No.Rawat ]::",data); 
-        }
-    }//GEN-LAST:event_MnBarcodeActionPerformed
+//    private void MnBarcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBarcodeActionPerformed
+//        if(!TPasien.getText().isEmpty()){
+//                Map<String, Object> data = new HashMap<>();
+//                data.put("nama",TPasien.getText());
+//                data.put("alamat",Sequel.cariIsi("select date_format(tgl_lahir,'%d/%m/%Y') from pasien where no_rkm_medis=?",TNoRM.getText()));
+//                data.put("norm",TNoRM.getText());
+//                data.put("parameter","%"+TCari.getText().trim()+"%");     
+//                data.put("namars",akses.getnamars());
+//                data.put("alamatrs",akses.getalamatrs());
+//                data.put("kotars",akses.getkabupatenrs());
+//                data.put("propinsirs",akses.getpropinsirs());
+//                data.put("kontakrs",akses.getkontakrs());
+//                data.put("emailrs",akses.getemailrs());   
+//                data.put("no_rawat",TNoRw.getText());   
+//                Valid.MyReport("rptBarcodeRawat.jasper","report","::[ Barcode No.Rawat ]::",data); 
+//        }
+//    }//GEN-LAST:event_MnBarcodeActionPerformed
 
     private void MnDiagnosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDiagnosaActionPerformed
         if(TPasien.getText().trim().equals("")){
@@ -8109,6 +8109,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             param.put("nama",TPasien.getText());
             param.put("alamat",Sequel.cariIsi("select date_format(tgl_lahir,'%d/%m/%Y') from pasien where no_rkm_medis=?",TNoRM.getText()));
             param.put("norm",TNoRM.getText());
+            param.put("noktp",Sequel.cariIsi("select pasien.no_ktp from pasien where pasien.no_rkm_medis=?",TNoRM.getText()));
             param.put("parameter","%"+TCari.getText().trim()+"%");
             param.put("namars",akses.getnamars());
             param.put("alamatrs",akses.getalamatrs());

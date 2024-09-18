@@ -1105,6 +1105,16 @@ public class koneksiDB {
         return var;
     }
     
+    public static String AKTIFKANWARNAREG(){
+        try{
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var=prop.getProperty("AKTIFKANWARNAREG");
+        }catch(Exception e){
+            var=""; 
+        }
+        return var;
+    }
+    
     public static String CLIENTIDSATUSEHAT(){
         try{
             prop.loadFromXML(new FileInputStream("setting/database.xml"));

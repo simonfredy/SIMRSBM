@@ -39,6 +39,7 @@ import laporan.DlgDiagnosaPenyakit;
 import laporan.DlgFrekuensiPenyakitRalan;
 import keuangan.DlgBilingRalan;
 import fungsi.WarnaTable;
+import fungsi.WarnaTableRegPoli;
 import fungsi.batasInput;
 import grafikanalisa.grafikperiksaperagama;
 import grafikanalisa.grafikperiksaperbulan;
@@ -401,7 +402,15 @@ public final class DlgReg extends javax.swing.JDialog {
                 column.setPreferredWidth(150);
             }
         }
-        tbPetugas.setDefaultRenderer(Object.class, new WarnaTable());
+        try {
+            if(koneksiDB.AKTIFKANWARNAREG().equals("yes")){
+                tbPetugas.setDefaultRenderer(Object.class, new WarnaTableRegPoli());
+            }else{
+                tbPetugas.setDefaultRenderer(Object.class, new WarnaTable());
+            }
+        } catch (Exception e) {
+            tbPetugas.setDefaultRenderer(Object.class, new WarnaTable());
+        }
 
         tabMode2=new DefaultTableModel(null,new Object[]{
             "P","No.Rawat","Tanggal","Jam","Kd.Dokter","Dokter Rujukan","Nomer RM",

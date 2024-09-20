@@ -8345,7 +8345,7 @@ public class frmUtama extends javax.swing.JFrame {
                     lblStts.setText("Admin : ");
                     lblUser.setText("Admin Utama");
                     if(AKTIFKANTRACKSQL.equals("yes")){
-                        Sequel.menyimpan("traccdker","'Admin Utama',current_date(),current_time()","Login");
+                        Sequel.menyimpan("tracker","'Admin Utama',current_date(),current_time()","Login");
                     }
                 }else if(akses.getjml2()>=1){  
                     BtnMenu.setEnabled(true);

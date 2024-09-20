@@ -425,9 +425,9 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         MnCetakHasilLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakHasilLab.setForeground(new java.awt.Color(50, 50, 50));
         MnCetakHasilLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCetakHasilLab.setText("Model 1");
+        MnCetakHasilLab.setText("Cetak Hasil Lab Tanpa Kop");
         MnCetakHasilLab.setName("MnCetakHasilLab"); // NOI18N
-        MnCetakHasilLab.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnCetakHasilLab.setPreferredSize(new java.awt.Dimension(200, 26));
         MnCetakHasilLab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCetakHasilLabActionPerformed(evt);

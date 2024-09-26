@@ -34,7 +34,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
-import rekammedis.RMMasterRisikoJatuhRendah;
 
 
 /**
@@ -51,6 +50,7 @@ public final class RMPenilaianLanjutanRisikoJatuhDewasa extends javax.swing.JDia
     private int i=0;    
     private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
     private RMMasterRisikoJatuhRendah risikojatuhrendah=new RMMasterRisikoJatuhRendah(null,false);
+    private RMMasterRisikoJatuhTinggi risikojatuhtinggi=new RMMasterRisikoJatuhTinggi(null,false);
     private String finger="";
     /** Creates new form DlgRujuk
      * @param parent
@@ -187,6 +187,28 @@ public final class RMPenilaianLanjutanRisikoJatuhDewasa extends javax.swing.JDia
             public void windowClosed(WindowEvent e) {
                 if(risikojatuhrendah.getTable().getSelectedRow()!= -1){
                     Saran.append(risikojatuhrendah.getTable().getValueAt(risikojatuhrendah.getTable().getSelectedRow(),1).toString()+", ");
+                    Saran.requestFocus();
+                }
+            }
+            @Override
+            public void windowIconified(WindowEvent e) {}
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+            @Override
+            public void windowActivated(WindowEvent e) {}
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
+        
+        risikojatuhtinggi.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {}
+            @Override
+            public void windowClosing(WindowEvent e) {}
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if(risikojatuhtinggi.getTable().getSelectedRow()!= -1){
+                    Saran.append(risikojatuhtinggi.getTable().getValueAt(risikojatuhtinggi.getTable().getSelectedRow(),1).toString()+", ");
                     Saran.requestFocus();
                 }
             }
@@ -1516,7 +1538,10 @@ public final class RMPenilaianLanjutanRisikoJatuhDewasa extends javax.swing.JDia
     }//GEN-LAST:event_btnRisikoJatuhRendahKeyPressed
 
     private void btnRisikoJatuhTinggiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRisikoJatuhTinggiActionPerformed
-        // TODO add your handling code here:
+            risikojatuhtinggi.tampil();
+            risikojatuhtinggi.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            risikojatuhtinggi.setLocationRelativeTo(internalFrame1);
+            risikojatuhtinggi.setVisible(true);
     }//GEN-LAST:event_btnRisikoJatuhTinggiActionPerformed
 
     private void btnRisikoJatuhTinggiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnRisikoJatuhTinggiKeyPressed

@@ -29,7 +29,7 @@ import javax.swing.table.TableColumn;
  *
  * @author dosen
  */
-public final class RMMasterRisikoJatuhRendah extends javax.swing.JDialog {
+public final class RMMasterRisikoJatuhTinggi extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
     private Connection koneksi=koneksiDB.condb();
@@ -39,13 +39,13 @@ public final class RMMasterRisikoJatuhRendah extends javax.swing.JDialog {
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
-    public RMMasterRisikoJatuhRendah(java.awt.Frame parent, boolean modal) {
+    public RMMasterRisikoJatuhTinggi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocation(10,2);
         setSize(656,250);
 
-        Object[] row={"No","Nama Resiko Jatuh Rendah"};
+        Object[] row={"No","Nama Resiko Jatuh Tinggi"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -300,7 +300,7 @@ public final class RMMasterRisikoJatuhRendah extends javax.swing.JDialog {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            RMMasterRisikoJatuhRendah dialog = new RMMasterRisikoJatuhRendah(new javax.swing.JFrame(), true);
+            RMMasterRisikoJatuhTinggi dialog = new RMMasterRisikoJatuhTinggi(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -328,7 +328,7 @@ public final class RMMasterRisikoJatuhRendah extends javax.swing.JDialog {
     public void tampil() {
         Valid.tabelKosong(tabMode);
         try{
-            ps=koneksi.prepareStatement("select * from master_risiko_jatuh_rendah");
+            ps=koneksi.prepareStatement("select * from master_risiko_jatuh_tinggi");
             try{
 //                ps.setString(2,"%"+TCari.getText().trim()+"%");
                 rs=ps.executeQuery();
@@ -352,7 +352,7 @@ public final class RMMasterRisikoJatuhRendah extends javax.swing.JDialog {
         }
         
         try{
-            ps=koneksi.prepareStatement("select * from master_risiko_jatuh_rendah");
+            ps=koneksi.prepareStatement("select * from master_risiko_jatuh_tinggi");
             try{
 //                ps.setString(2,"%"+TCari.getText().trim()+"%");
                 rs=ps.executeQuery();

@@ -332,7 +332,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="05-03-2024"/>
+                        <StringItem index="0" value="26-09-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -360,7 +360,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="05-03-2024"/>
+                        <StringItem index="0" value="26-09-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -568,7 +568,7 @@
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="05-03-2024"/>
+                            <StringItem index="0" value="26-09-2024"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -934,7 +934,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="4">
-                            <StringItem index="0" value="0 - 3 Tahun"/>
+                            <StringItem index="0" value="Dibawah 3 Tahun"/>
                             <StringItem index="1" value="3 - 7 Tahun"/>
                             <StringItem index="2" value="7 - 13 Tahun"/>
                             <StringItem index="3" value="&gt; 13 Tahun"/>
@@ -1025,7 +1025,7 @@
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="4">
                             <StringItem index="0" value="Kelainan Neurologi"/>
-                            <StringItem index="1" value="Perubahan Dalam Oksigen(Masalah Saluran Nafas, Dehidrasi, Anemia, Anoreksia / Sakit Kepala, Dll)"/>
+                            <StringItem index="1" value="Perubahan Dalam Oksigen(Masalah Saluran Nafas, Dehidrasi, Anemia, Anoreksia, Sinkop/ Sakit Kepala, Pusing, Dll)"/>
                             <StringItem index="2" value="Kelainan Psikis / Perilaku"/>
                             <StringItem index="3" value="Diagnosa Lain"/>
                           </StringArray>
@@ -1070,9 +1070,9 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="3">
-                            <StringItem index="0" value="Tidak Sadar Terhadap Keterbatasan"/>
-                            <StringItem index="1" value="Lupa Keterbatasan"/>
-                            <StringItem index="2" value="Mengetahui Kemampuan Diri"/>
+                            <StringItem index="0" value="Tidak Menyadari Keterbatasan Dirinya"/>
+                            <StringItem index="1" value="Lupa Akan Adanya Keterbatasan"/>
+                            <StringItem index="2" value="Orientasi Terbaik Pada Diri Sendiri"/>
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="SkalaResiko4" noResource="true"/>
@@ -1115,7 +1115,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="4">
-                            <StringItem index="0" value="Riwayat Jatuh Dari Tempat Tidur Saat Bayi/Anak"/>
+                            <StringItem index="0" value="Riwayat Jatuh Dari Tempat Tidur"/>
                             <StringItem index="1" value="Pasien Menggunakan Alat Bantu/Box/Mebel"/>
                             <StringItem index="2" value="Pasien Berada Di Tempat Tidur"/>
                             <StringItem index="3" value="Di Luar Ruang Rawat"/>
@@ -1163,7 +1163,7 @@
                           <StringArray count="3">
                             <StringItem index="0" value="Dalam 24 Jam"/>
                             <StringItem index="1" value="Dalam 48 Jam"/>
-                            <StringItem index="2" value="&gt; 48 Jam"/>
+                            <StringItem index="2" value="&gt; 48 Jam Atau Tidak Menjalani Pembedahan/Sedasi/Anasthesi"/>
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="SkalaResiko6" noResource="true"/>
@@ -1257,6 +1257,7 @@
                       <SubComponents>
                         <Component class="widget.TextArea" name="HasilSkrining">
                           <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                                 <EmptyBorder/>
@@ -1264,6 +1265,7 @@
                             </Property>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
+                            <Property name="text" type="java.lang.String" value="Tingkat Resiko : Risiko Tinggi (&gt;=12), Tindakan : Intervensi risiko jatuh tinggi(pasang gelang warna kuning)"/>
                             <Property name="name" type="java.lang.String" value="HasilSkrining" noResource="true"/>
                           </Properties>
                           <Events>
@@ -1275,12 +1277,12 @@
                     <Component class="widget.Label" name="jLabel31">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="Saran :"/>
+                        <Property name="text" type="java.lang.String" value="Pelaksanaan Pencegahan Pasien Jatuh :"/>
                         <Property name="name" type="java.lang.String" value="jLabel31" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="14" y="400" width="80" height="23"/>
+                          <AbsoluteConstraints x="14" y="400" width="210" height="23"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -1295,7 +1297,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="34" y="420" width="755" height="43"/>
+                          <AbsoluteConstraints x="34" y="420" width="755" height="60"/>
                         </Constraint>
                       </Constraints>
 
@@ -1303,6 +1305,7 @@
                       <SubComponents>
                         <Component class="widget.TextArea" name="Saran">
                           <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                                 <EmptyBorder/>
@@ -1405,7 +1408,7 @@
                           <StringArray count="3">
                             <StringItem index="0" value="Bermacam-macam Obat Yang Digunakan : Obat Sedative (Kecuali Pasien ICU Yang Menggunakan sedasi dan paralisis), Hipnotik, Barbiturat, Fenoti-Azin, Antidepresan, Laksans/Diuretika,Narkotik"/>
                             <StringItem index="1" value="Salah Satu Dari Pengobatan Di Atas"/>
-                            <StringItem index="2" value="Pengobatan Lain"/>
+                            <StringItem index="2" value="Penggunaan Pengobatan Lainnya/Tidak Ada Edukasi"/>
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="SkalaResiko7" noResource="true"/>
@@ -1429,6 +1432,46 @@
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="749" y="270" width="40" height="23"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="widget.Button" name="btnRisikoJatuhRendah">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/picture/190.png"/>
+                        </Property>
+                        <Property name="mnemonic" type="int" value="50"/>
+                        <Property name="text" type="java.lang.String" value="Resiko Jatuh Rendah"/>
+                        <Property name="toolTipText" type="java.lang.String" value="ALt+2"/>
+                        <Property name="name" type="java.lang.String" value="btnRisikoJatuhRendah" noResource="true"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRisikoJatuhRendahActionPerformed"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnRisikoJatuhRendahKeyPressed"/>
+                      </Events>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="800" y="420" width="160" height="23"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="widget.Button" name="btnRisikoJatuhTinggi">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/picture/190.png"/>
+                        </Property>
+                        <Property name="mnemonic" type="int" value="50"/>
+                        <Property name="text" type="java.lang.String" value="Resiko Jatuh Tinggi"/>
+                        <Property name="toolTipText" type="java.lang.String" value="ALt+2"/>
+                        <Property name="name" type="java.lang.String" value="btnRisikoJatuhTinggi" noResource="true"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRisikoJatuhTinggiActionPerformed"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnRisikoJatuhTinggiKeyPressed"/>
+                      </Events>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="800" y="450" width="160" height="23"/>
                         </Constraint>
                       </Constraints>
                     </Component>

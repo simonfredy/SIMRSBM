@@ -6335,26 +6335,56 @@ private void KabupatenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
 
 private void BtnKelurahanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKelurahanActionPerformed
        akses.setform("DlgPasien");
-       pilih=1;
-        kel.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        kel.setLocationRelativeTo(internalFrame1);
-        kel.setVisible(true);
+//       pilih=1;
+//       kel.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+//       kel.setLocationRelativeTo(internalFrame1);
+//       kel.setVisible(true);
+        if(KdKec.getText().trim().equals("")||Kecamatan.getText().trim().equals("")||Kecamatan.getText().trim().equals("KECAMATAN")){
+            JOptionPane.showMessageDialog(null,"Silahkan pilih kecamatan dulu..!!");
+            BtnKelurahan.requestFocus();
+        }else{
+            pilih=1;
+            kelurahanref.setPropinsi(KdKec.getText(),Kecamatan.getText());
+            kelurahanref.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            kelurahanref.setLocationRelativeTo(internalFrame1);
+            kelurahanref.setVisible(true);
+        }
 }//GEN-LAST:event_BtnKelurahanActionPerformed
 
 private void BtnKecamatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKecamatanActionPerformed
         akses.setform("DlgPasien");
-        pilih=1;
-        kec.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        kec.setLocationRelativeTo(internalFrame1);
-        kec.setVisible(true);
+//        pilih=1;
+//        kec.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+//        kec.setLocationRelativeTo(internalFrame1);
+//        kec.setVisible(true);
+        if(KdKab.getText().trim().equals("")||Kabupaten.getText().trim().equals("")||Kabupaten.getText().trim().equals("KABUPATEN")){
+            JOptionPane.showMessageDialog(null,"Silahkan pilih kabupaten dulu..!!");
+            BtnKabupaten.requestFocus();
+        }else{
+            pilih=1;
+            kecamatanref.setPropinsi(KdKab.getText(),Kabupaten.getText());
+            kecamatanref.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            kecamatanref.setLocationRelativeTo(internalFrame1);
+            kecamatanref.setVisible(true);
+        }
 }//GEN-LAST:event_BtnKecamatanActionPerformed
 
 private void BtnKabupatenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKabupatenActionPerformed
         akses.setform("DlgPasien");
-        pilih=1;
-        kab.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        kab.setLocationRelativeTo(internalFrame1);
-        kab.setVisible(true);
+//        pilih=1;
+//        kab.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+//        kab.setLocationRelativeTo(internalFrame1);
+//        kab.setVisible(true);
+        if(KdProp.getText().trim().equals("")||Propinsi.getText().trim().equals("")||Propinsi.getText().trim().equals("PROPINSI")){
+            JOptionPane.showMessageDialog(null,"Silahkan pilih propinsi dulu..!!");
+            BtnPropinsi.requestFocus();
+        }else{
+            pilih=1;
+            kabupatenref.setPropinsi(KdProp.getText(),Propinsi.getText());
+            kabupatenref.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            kabupatenref.setLocationRelativeTo(internalFrame1);
+            kabupatenref.setVisible(true);
+        }
 }//GEN-LAST:event_BtnKabupatenActionPerformed
 
 private void ppGrafikDemografiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppGrafikDemografiActionPerformed
@@ -6772,10 +6802,14 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
 
     private void BtnKecamatanPjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKecamatanPjActionPerformed
         akses.setform("DlgPasien");
-        pilih=3;
-        kec.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        kec.setLocationRelativeTo(internalFrame1);
-        kec.setVisible(true);        // TODO add your handling code here:
+        pilih=2;
+//        kec.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+//        kec.setLocationRelativeTo(internalFrame1);
+//        kec.setVisible(true);        // TODO add your handling code here:
+        kecamatanref.setPropinsi(KdKab.getText(),KabupatenPj.getText());
+        kecamatanref.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        kecamatanref.setLocationRelativeTo(internalFrame1);
+        kecamatanref.setVisible(true);
     }//GEN-LAST:event_BtnKecamatanPjActionPerformed
 
     private void KabupatenPjMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KabupatenPjMouseMoved
@@ -6823,18 +6857,26 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
 
     private void BtnKabupatenPjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKabupatenPjActionPerformed
         akses.setform("DlgPasien");
-        pilih=3;
-        kab.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        kab.setLocationRelativeTo(internalFrame1);
-        kab.setVisible(true);
+        pilih=2;
+//        kab.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+//        kab.setLocationRelativeTo(internalFrame1);
+//        kab.setVisible(true);
+        kabupatenref.setPropinsi(KdProp.getText(),PropinsiPj.getText());
+        kabupatenref.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        kabupatenref.setLocationRelativeTo(internalFrame1);
+        kabupatenref.setVisible(true);
     }//GEN-LAST:event_BtnKabupatenPjActionPerformed
 
     private void BtnKelurahanPjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKelurahanPjActionPerformed
         akses.setform("DlgPasien");
-        pilih=3;
-        kel.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        kel.setLocationRelativeTo(internalFrame1);
-        kel.setVisible(true);
+        pilih=2;
+//        kel.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+//        kel.setLocationRelativeTo(internalFrame1);
+//        kel.setVisible(true);
+        kelurahanref.setPropinsi(KdKec.getText(),KecamatanPj.getText());
+        kelurahanref.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        kelurahanref.setLocationRelativeTo(internalFrame1);
+        kelurahanref.setVisible(true);
     }//GEN-LAST:event_BtnKelurahanPjActionPerformed
 
     private void KelurahanPjMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KelurahanPjMouseMoved
@@ -8183,9 +8225,12 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
     private void BtnPropinsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPropinsiActionPerformed
         akses.setform("DlgPasien");
         pilih=1;
-        prop.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        prop.setLocationRelativeTo(internalFrame1);
-        prop.setVisible(true);
+//        prop.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+//        prop.setLocationRelativeTo(internalFrame1);
+//        prop.setVisible(true);
+        propinsiref.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        propinsiref.setLocationRelativeTo(internalFrame1);
+        propinsiref.setVisible(true);
     }//GEN-LAST:event_BtnPropinsiActionPerformed
 
     private void PropinsiMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PropinsiMouseMoved
@@ -8261,10 +8306,13 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
 
     private void btnPropinsiPjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropinsiPjActionPerformed
         akses.setform("DlgPasien");
-        pilih=3;
-        prop.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        prop.setLocationRelativeTo(internalFrame1);
-        prop.setVisible(true); 
+        pilih=2;
+//        prop.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+//        prop.setLocationRelativeTo(internalFrame1);
+//        prop.setVisible(true);
+        propinsiref.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        propinsiref.setLocationRelativeTo(internalFrame1);
+        propinsiref.setVisible(true);
     }//GEN-LAST:event_btnPropinsiPjActionPerformed
 
     private void BtnCacatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCacatActionPerformed

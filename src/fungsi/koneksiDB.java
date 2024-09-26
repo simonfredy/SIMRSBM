@@ -31,9 +31,8 @@ public class koneksiDB {
                 dataSource.setUser(EnkripsiAES.decrypt(prop.getProperty("USER")));
                 dataSource.setPassword(EnkripsiAES.decrypt(prop.getProperty("PAS")));
                 connection=dataSource.getConnection();       
-                System.out.println(" NIL VOLENTIBUS ARDUUM \n" + 
-                        " OMNE INITIUM DIFFICILE EST \n" +
-                        " PALMA NON SINE PULVERE \n" +
+                System.out.println("                                                                 \n " +
+                        "| NIL VOLENTIBUS ARDUUM | OMNE INITIUM DIFFICILE EST | PALMA NON SINE PULVERE | \n" + 
                         "                                                                           \n"+
                         " #    ____  ___  __  __  ____   ____    _  __ _                              \n" +
                         " #   / ___||_ _||  \\/  ||  _ \\ / ___|  | |/ /| |__    __ _  _ __   ____ __ _ \n" +

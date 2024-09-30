@@ -5081,7 +5081,16 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
     private void ganti() {
         if(Sequel.mengedittf("pengkajian_medis_ranap_tht","no_rawat=?","no_rawat=?,tanggal=?,kd_dokter=?,anamnesis=?,hubungan=?,keluhan_utama=?,rps=?,rpd=?,rpo=?,alergi=?,td=?,nadi=?,rr=?,suhu=?,bb=?,tb=?,nyeri=?,status_nutrisi=?,kondisi=?,"
                 + "sekret_telinga_kanan=?,sekret_telinga_kiri=?,tuli_telinga_kanan=?,tuli_telinga_kiri=?,tumor_telinga_kanan=?,tumor_telinga_kiri=?,tinitus_telinga_kanan=?,tinitus_telinga_kiri=?,sakit_telinga_kanan=?,sakit_telinga_kiri=?,"
-                + "korpus_alienum_telinga_kanan=?,korpus_alienum_telinga_kiri=?,vertigo_telinga_kanan=?,vertigo_telinga_kiri=?",130,new String[]{
+                + "korpus_alienum_telinga_kanan=?,korpus_alienum_telinga_kiri=?,vertigo_telinga_kanan=?,vertigo_telinga_kiri=?,sekret_hidung_kanan=?,sekret_hidung_kiri=?,tersumbat_hidung_kanan=?,tersumbat_hidung_kiri=?,tumor_hidung_kanan=?,"
+                + "tumor_hidung_kiri=?,pilek_hidung_kanan=?,pilek_hidung_kiri=?,sakit_hidung_kanan=?,sakit_hidung_kiri=?,korpus_alienum_hidung_kanan=?,korpus_alienum_hidung_kiri=?,bersin_hidung_kanan=?,bersin_hidung_kiri=?,riak_tenggorok=?,"
+                + "gangguan_tenggorok=?,suara_tenggorok=?,tumor_tenggorok=?,batuk_tenggorok=?,korpus_alienum_tenggorok=?,sesak_nafas_tenggorok=?,ket_lokalis=?,daun_telinga_kanan=?,daun_telinga_kiri=?,liang_telinga_kanan=?,liang_telinga_kiri=?,"
+                + "discharge_telinga_kanan=?,discharge_telinga_kiri=?,membrana_timpani_telinga_kanan=?,membrana_timpani_telinga_kiri=?,tumor_telinga_kanann=?,tumor_telinga_kirii=?,mastoid_telinga_kanan=?,mastoid_telinga_kiri=?,berbisik_telinga_kanan=?,"
+                + "berbisik_telinga_kiri=?,weber_telinga_kanan=?,weber_telinga_kiri=?,rinne_telinga_kanan=?,rinne_telinga_kiri=?,scwabach_telinga_kanan=?,scwabach_telinga_kiri=?,boa_telinga_kanan=?,boa_telinga_kiri=?,tympanometri_telinga_kanan=?,"
+                + "tympanometri_telinga_kiri=?,audiometri_telinga_kanan=?,audiometri_telinga_kiri=?,nada_murni_telinga_kanan=?,nada_murni_telinga_kiri=?,bera_telinga_kanan=?,bera_telinga_kiri=?,oae_telinga_kanan=?,oae_telinga_kiri=?,seimbang_kanan=?,"
+                + "seimbang_kiri=?,hidung_luar_kanan=?,hidung_luar_kiri=?,kavum_nasi_kanan=?,kavum_nasi_kiri=?,septum_kanan=?,septum_kiri=?,discharge_hidung_kanan=?,discharge_hidung_kiri=?,mukosa_hidung_kanan=?,mukosa_hidung_kiri=?,tumor_hidung_kanann=?,"
+                + "tumor_hidung_kirii=?,konka_kanan=?,konka_kiri=?,naso_endoskopi_kanan=?,naso_endoskopi_kiri=?,dispenu_tenggorok=?,stridor_tenggorok=?,sianosis_tenggorok=?,suara_tenggorok=?,mucosa_tenggorok=?,tonsil_tenggorok=?,dinding_belakang_tenggorok=?,"
+                + "epiglotis=?,plika_vokalis=?,aritenoid=?,rimaglotis=?,plika_ventrikuloris=?,endoskopi=?,diagnosa_kerja=?,diagnosa_pembanding=?,kelenjar_limpe_leher=?,terapi=?,boleh_pulang=?,tgl_keluar=?,jam_keluar=?,kontrol=?,tgl_kontrol=?,jam_kontrol=?,"
+                + "dirawat_ruang=?,ruang_lain=?",131,new String[]{
                 TNoRw.getText(),Valid.SetTgl(TglAsuhan.getSelectedItem()+"")+" "+TglAsuhan.getSelectedItem().toString().substring(11,19),KdDokter.getText(),Anamnesis.getSelectedItem().toString(),Hubungan.getText(),
                 KeluhanUtama.getText(),RPS.getText(),RPD.getText(),RPO.getText(),Alergi.getText(),TD.getText(),Nadi.getText(),RR.getText(),Suhu.getText(),BB.getText(),TB.getText(),Nyeri.getText(),StatusNutrisi.getText(),
                 Kondisi.getText(),SekretKanan.getText(),SekretKiri.getText(),TuliKanan.getText(),TuliKiri.getText(),TumorKanan.getText(),TumorKiri.getText(),TinitusKanan.getText(),TinitusKiri.getText(),SakitKanan.getText(),
@@ -5095,7 +5104,7 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
                 DischargeHidungKanan.getText(),DischargeHidungKiri.getText(),MukosaHidungKanan.getText(),MukosaHidungKiri.getText(),TumorHidungKanann.getText(),TumorHidungKirii.getText(),KonkaHidungKanan.getText(),KonkaHidungKiri.getText(),NasoEndoskopiKanan.getText(),NasoEndoskopiKiri.getText(),
                 TenggorokDispenu.getText(),TenggorokStridor.getText(),TenggorokSianosis.getText(),TenggorokSuaraa.getText(),TenggorokMucosa.getText(),TenggorokTonsil.getText(),TenggorokDindingBelakang.getText(),LaringEpiglotis.getText(),LaringPlikaVokalis.getText(),LaringArienoid.getText(),
                 LaringRimaglotis.getText(),LaringPlikaVentrikuloris.getText(),LaringEndoskopi.getText(),DiagnosaKerja.getText(),DiagnosaBanding.getText(),KelenjerLimpeLeher.getText(),Terapi.getText(),BolehPulang.getSelectedItem().toString(),Valid.SetTgl(DTPTanggalKeluar.getSelectedItem()+""),
-                JamPulang.getText(),KontrolPoliklinik.getSelectedItem().toString(),Valid.SetTgl(DTPTanggalKontrol.getSelectedItem()+""),JamKontrol.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
+                JamPulang.getText(),KontrolPoliklinik.getSelectedItem().toString(),Valid.SetTgl(DTPTanggalKontrol.getSelectedItem()+""),JamKontrol.getText(),DirawatDiRuang.getSelectedItem().toString(),RuangLain.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
             })==true){
                tampil();
                emptTeks();

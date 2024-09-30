@@ -3747,17 +3747,18 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
             param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),5).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString())); 
             
-            Valid.MyReportqry("rptCetakPenilaianAwalMedisRalanTHT.jasper","report","::[ Laporan Penilaian Awal Medis Rawat Jalan THT]::",
-                "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,penilaian_medis_ralan_tht.tanggal,"+
-                "penilaian_medis_ralan_tht.kd_dokter,penilaian_medis_ralan_tht.anamnesis,penilaian_medis_ralan_tht.hubungan,penilaian_medis_ralan_tht.keluhan_utama,penilaian_medis_ralan_tht.rps,"+
-                "penilaian_medis_ralan_tht.rpd,penilaian_medis_ralan_tht.rpo,penilaian_medis_ralan_tht.alergi,penilaian_medis_ralan_tht.td,penilaian_medis_ralan_tht.nadi,penilaian_medis_ralan_tht.rr,"+
-                "penilaian_medis_ralan_tht.suhu,penilaian_medis_ralan_tht.bb,penilaian_medis_ralan_tht.tb,penilaian_medis_ralan_tht.nyeri,penilaian_medis_ralan_tht.status_nutrisi,"+
-                "penilaian_medis_ralan_tht.kondisi,penilaian_medis_ralan_tht.ket_lokalis,penilaian_medis_ralan_tht.lab,penilaian_medis_ralan_tht.rad,penilaian_medis_ralan_tht.tes_pendengaran,"+
-                "penilaian_medis_ralan_tht.penunjang,penilaian_medis_ralan_tht.diagnosis,penilaian_medis_ralan_tht.diagnosisbanding,penilaian_medis_ralan_tht.permasalahan,"+
-                "penilaian_medis_ralan_tht.terapi,penilaian_medis_ralan_tht.tindakan,penilaian_medis_ralan_tht.tatalaksana,penilaian_medis_ralan_tht.edukasi,dokter.nm_dokter "+
+            Valid.MyReportqry("rptCetakPenilaianAwalMedisRanapTHT.jasper","report","::[ Pengkajian Awal Medis Ranap THT]::",
+                "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,if(pasien.jk='L','Laki-Laki','Perempuan') as jk,pasien.tgl_lahir,pengkajian_medis_ranap_tht.tanggal,"+
+                "pengkajian_medis_ranap_tht.kd_dokter,pengkajian_medis_ranap_tht.anamnesis,pengkajian_medis_ranap_tht.hubungan,pengkajian_medis_ranap_tht.keluhan_utama,pengkajian_medis_ranap_tht.rps,"+
+                "pengkajian_medis_ranap_tht.rpd,pengkajian_medis_ranap_tht.rpo,pengkajian_medis_ranap_tht.alergi,pengkajian_medis_ranap_tht.td,pengkajian_medis_ranap_tht.nadi,pengkajian_medis_ranap_tht.rr,"+
+                "pengkajian_medis_ranap_tht.suhu,pengkajian_medis_ranap_tht.bb,pengkajian_medis_ranap_tht.tb,pengkajian_medis_ranap_tht.nyeri,pengkajian_medis_ranap_tht.status_nutrisi,"+
+                "pengkajian_medis_ranap_tht.kondisi,pengkajian_medis_ranap_tht.sekret_telinga_kanan,pengkajian_medis_ranap_tht.sekret_telinga_kiri,pengkajian_medis_ranap_tht.tuli_telinga_kanan,"+
+                "pengkajian_medis_ranap_tht.tuli_telinga_kiri,pengkajian_medis_ranap_tht.tumor_telinga_kanan,pengkajian_medis_ranap_tht.tumor_telinga_kiri,pengkajian_medis_ranap_tht.tinitus_telinga_kanan,"+
+                "pengkajian_medis_ranap_tht.tinitus_telinga_kiri,pengkajian_medis_ranap_tht.sakit_telinga_kanan,pengkajian_medis_ranap_tht.sakit_telinga_kiri,pengkajian_medis_ranap_tht.korpus_alienum_telinga_kanan,"+
+                "pengkajian_medis_ranap_tht.korpus_alienum_telinga_kiri,pengkajian_medis_ranap_tht.vertigo_telinga_kanan,pengkajian_medis_ranap_tht.vertigo_telinga_kiri,pengkajian_medis_ranap_tht.ket_lokalis,dokter.nm_dokter "+
                 "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                "inner join penilaian_medis_ralan_tht on reg_periksa.no_rawat=penilaian_medis_ralan_tht.no_rawat "+
-                "inner join dokter on penilaian_medis_ralan_tht.kd_dokter=dokter.kd_dokter where penilaian_medis_ralan_tht.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+                "inner join pengkajian_medis_ranap_tht on reg_periksa.no_rawat=pengkajian_medis_ranap_tht.no_rawat "+
+                "inner join dokter on pengkajian_medis_ranap_tht.kd_dokter=dokter.kd_dokter where pengkajian_medis_ranap_tht.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
         }
     }//GEN-LAST:event_MnPenilaianMedisActionPerformed
 

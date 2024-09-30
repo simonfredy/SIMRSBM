@@ -72,7 +72,7 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
             "Sesak Nafas Tenggorok","Ket.Lokalis","Daun Telinga Kanan","Daun Telinga Kiri","Liang Telinga Kanan","Liang Telinga Kiri",
             "Discharge Telinga Kanan","Discharge Telinga Kiri","Membrana Timpani Telinga Kanan","Membrana Timpani Telinga Kiri","Tumor Telinga Kanan",
             "Tumor Telinga Kiri","Mastoid Telinga Kanan","Mastoid Telinga Kiri","Berbisik Telinga Kanan","Berbisik Telinga Kiri","Weber Telinga Kanan",
-            "Weber Telinga Kiri","Rinne Telinga Kanan","Rinne Telinga Kiri","Scwabach Telinga Kanan","Scwabach Telinga Kiri","Tympanometri Telinga Kanan",
+            "Weber Telinga Kiri","Rinne Telinga Kanan","Rinne Telinga Kiri","Scwabach Telinga Kanan","Scwabach Telinga Kiri","BOA Telinga Kanan","BOA Telinga Kiri","Tympanometri Telinga Kanan",
             "Tympanometri Telinga Kiri","Audiometri Telinga Kanan","Audiometri Telinga Kiri","Nada Murni Telinga Kanan","Nada Murni Telinga Kiri",
             "BERA Telinga Kanan","BERA Telinga Kiri","OAE Telinga Kanan","OAE Telinga Kiri","Tes Alat Keseimbangan Telinga Kanan","Tes Alat Keseimbangan Telinga Kiri",
             "Hidung Luar Kanan","Hidung Luar Kiri","Kavum Nasi Kanan","Kavum Nasi Kiri","Septum Kanan","Septum Kiri","Discharge Hidung Kanan",
@@ -89,7 +89,7 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 133; i++) {
+        for (i = 0; i < 135; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(105);
@@ -361,6 +361,10 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
                 column.setPreferredWidth(150);
             }else if(i==132){
                 column.setPreferredWidth(150);
+            }else if(i==133){
+                column.setPreferredWidth(150);
+            }else if(i==134){
+                column.setPreferredWidth(150);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -439,6 +443,8 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
         RinneKiri.setDocument(new batasInput((int)50).getKata(RinneKiri));
         ScwabachKanan.setDocument(new batasInput((int)50).getKata(ScwabachKanan));
         ScwabachKiri.setDocument(new batasInput((int)50).getKata(ScwabachKiri));
+        BOAKanan.setDocument(new batasInput((int)50).getKata(BOAKanan));
+        BOAKiri.setDocument(new batasInput((int)50).getKata(BOAKiri));
         TympanometriKanan.setDocument(new batasInput((int)50).getKata(TympanometriKanan));
         TympanometriKiri.setDocument(new batasInput((int)50).getKata(TympanometriKiri));
         AudiometriKanan.setDocument(new batasInput((int)50).getKata(AudiometriKanan));
@@ -3395,7 +3401,7 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
         }else if(RPO.getText().trim().equals("")){
             Valid.textKosong(RPO,"Riwayat Pengunaan obat");
         }else{
-            if(Sequel.menyimpantf("pengkajian_medis_ranap_tht","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",128,new String[]{
+            if(Sequel.menyimpantf("pengkajian_medis_ranap_tht","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",130,new String[]{
                     TNoRw.getText(),Valid.SetTgl(TglAsuhan.getSelectedItem()+"")+" "+TglAsuhan.getSelectedItem().toString().substring(11,19),KdDokter.getText(),Anamnesis.getSelectedItem().toString(),Hubungan.getText(),
                     KeluhanUtama.getText(),RPS.getText(),RPD.getText(),RPO.getText(),Alergi.getText(),TD.getText(),Nadi.getText(),RR.getText(),Suhu.getText(),BB.getText(),TB.getText(),Nyeri.getText(),StatusNutrisi.getText(),
                     Kondisi.getText(),SekretKanan.getText(),SekretKiri.getText(),TuliKanan.getText(),TuliKiri.getText(),TumorrKanan.getText(),TumorrKiri.getText(),TinitusKanan.getText(),TinitusKiri.getText(),SakitKanan.getText(),
@@ -3404,7 +3410,7 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
                     KorpusAlienumHidungKiri.getText(),BersinKanan.getText(),BersinKiri.getText(),TenggorokRiak.getText(),TenggorokGangguan.getText(),TenggorokSuara.getText(),TenggorokTumor.getText(),TenggorokBatuk.getText(),
                     TenggorokKorpusAlienum.getText(),TenggorokSesakNafas.getText(),KetLokalis.getText(),DaunTelingaKanan.getText(),DaunTelingaKiri.getText(),LiangTelingaKanan.getText(),LiangTelingaKiri.getText(),DischargeKanan.getText(),
                     DischargeKiri.getText(),MembranTimpaniKanan.getText(),MembranTimpaniKiri.getText(),TumorKanan.getText(),TumorKiri.getText(),MastoidKanan.getText(),MastoidKiri.getText(),BerbisikKanan.getText(),BerbisikKiri.getText(),
-                    WeberKanan.getText(),WeberKiri.getText(),RinneKanan.getText(),RinneKiri.getText(),ScwabachKanan.getText(),ScwabachKiri.getText(),TympanometriKanan.getText(),TympanometriKiri.getText(),AudiometriKanan.getText(),
+                    WeberKanan.getText(),WeberKiri.getText(),RinneKanan.getText(),RinneKiri.getText(),ScwabachKanan.getText(),ScwabachKiri.getText(),BOAKanan.getText(),BOAKiri.getText(),TympanometriKanan.getText(),TympanometriKiri.getText(),AudiometriKanan.getText(),
                     AudiometriKiri.getText(),NadaMurniKanan.getText(),NadaMurniKiri.getText(),BERAKanan.getText(),BERAKiri.getText(),OAEKanan.getText(),OAEKiri.getText(),TesAlatKeseimbanganKanan.getText(),TesAlatKeseimbanganKiri.getText(),
                     HidungLuarKanan.getText(),HidungLuarKiri.getText(),KavumNasiKanan.getText(),KavumNasiKiri.getText(),SeptumHidungKanan.getText(),SeptumHidungKiri.getText(),DischargeHidungKanan.getText(),DischargeHidungKiri.getText(),
                     MukosaHidungKanan.getText(),MukosaHidungKiri.getText(),TumorHidungKanan.getText(),TumorHidungKiri.getText(),KonkaHidungKanan.getText(),KonkaHidungKiri.getText(),NasoEndoskopiKanan.getText(),NasoEndoskopiKiri.getText(),
@@ -4624,13 +4630,13 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
                         "pengkajian_medis_ranap_tht.membrana_timpani_telinga_kanan,pengkajian_medis_ranap_tht.membrana_timpani_telinga_kiri,pengkajian_medis_ranap_tht.tumor_telinga_kanann,pengkajian_medis_ranap_tht.tumor_telinga_kirii,"+
                         "pengkajian_medis_ranap_tht.mastoid_telinga_kanan,pengkajian_medis_ranap_tht.mastoid_telinga_kiri,pengkajian_medis_ranap_tht.berbisik_telinga_kanan,pengkajian_medis_ranap_tht.berbisik_telinga_kiri,pengkajian_medis_ranap_tht.weber_telinga_kanan,"+
                         "pengkajian_medis_ranap_tht.weber_telinga_kiri,pengkajian_medis_ranap_tht.rinne_telinga_kanan,pengkajian_medis_ranap_tht.rinne_telinga_kiri,pengkajian_medis_ranap_tht.scwabach_telinga_kanan,pengkajian_medis_ranap_tht.scwabach_telinga_kiri,"+
-                        "pengkajian_medis_ranap_tht.tympanometri_telinga_kanan,pengkajian_medis_ranap_tht.tympanometri_telinga_kiri,pengkajian_medis_ranap_tht.audiometri_telinga_kanan,pengkajian_medis_ranap_tht.audiometri_telinga_kiri,"+
+                        "pengkajian_medis_ranap_tht.boa_telinga_kanan,pengkajian_medis_ranap_tht.boa_telinga_kiri,pengkajian_medis_ranap_tht.tympanometri_telinga_kanan,pengkajian_medis_ranap_tht.tympanometri_telinga_kiri,pengkajian_medis_ranap_tht.audiometri_telinga_kanan,pengkajian_medis_ranap_tht.audiometri_telinga_kiri,"+
                         "pengkajian_medis_ranap_tht.nada_murni_telinga_kanan,pengkajian_medis_ranap_tht.nada_murni_telinga_kiri,pengkajian_medis_ranap_tht.bera_telinga_kanan,pengkajian_medis_ranap_tht.bera_telinga_kiri,pengkajian_medis_ranap_tht.oae_telinga_kanan,"+
                         "pengkajian_medis_ranap_tht.oae_telinga_kiri,pengkajian_medis_ranap_tht.seimbang_kanan,pengkajian_medis_ranap_tht.seimbang_kiri,pengkajian_medis_ranap_tht.hidung_luar_kanan,pengkajian_medis_ranap_tht.hidung_luar_kiri,"+
                         "pengkajian_medis_ranap_tht.kavum_nasi_kanan,pengkajian_medis_ranap_tht.kavum_nasi_kiri,pengkajian_medis_ranap_tht.septum_kanan,pengkajian_medis_ranap_tht.septum_kiri,pengkajian_medis_ranap_tht.discharge_hidung_kanan,pengkajian_medis_ranap_tht.discharge_hidung_kiri,"+
                         "pengkajian_medis_ranap_tht.mukosa_hidung_kanan,pengkajian_medis_ranap_tht.mukosa_hidung_kiri,pengkajian_medis_ranap_tht.tumor_hidung_kanann,pengkajian_medis_ranap_tht.tumor_hidung_kirii,pengkajian_medis_ranap_tht.konka_kanan,"+
                         "pengkajian_medis_ranap_tht.konka_kiri,pengkajian_medis_ranap_tht.naso_endoskopi_kanan,pengkajian_medis_ranap_tht.naso_endoskopi_kiri,pengkajian_medis_ranap_tht.dispenu_tenggorok,pengkajian_medis_ranap_tht.stridor_tenggorok,pengkajian_medis_ranap_tht.sianosis_tenggorok,"+
-                        "pengkajian_medis_ranap_tht.suara_tenggorok,pengkajian_medis_ranap_tht.mucosa_tenggorok,pengkajian_medis_ranap_tht.tonsil_tenggorok,pengkajian_medis_ranap_tht.dinding_belakang_tenggorok,pengkajian_medis_ranap_tht.epiglotis,pengkajian_medis_ranap_tht.plika_vokalis,"+
+                        "pengkajian_medis_ranap_tht.suara_tenggorokk,pengkajian_medis_ranap_tht.mucosa_tenggorok,pengkajian_medis_ranap_tht.tonsil_tenggorok,pengkajian_medis_ranap_tht.dinding_belakang_tenggorok,pengkajian_medis_ranap_tht.epiglotis,pengkajian_medis_ranap_tht.plika_vokalis,"+
                         "pengkajian_medis_ranap_tht.aritenoid,pengkajian_medis_ranap_tht.rimaglotis,pengkajian_medis_ranap_tht.plika_ventrikuloris,pengkajian_medis_ranap_tht.endoskopi,pengkajian_medis_ranap_tht.diagnosa_kerja,pengkajian_medis_ranap_tht.diagnosa_pembanding,pengkajian_medis_ranap_tht.kelenjar_limpe_leher,pengkajian_medis_ranap_tht.terapi,"+
                         "pengkajian_medis_ranap_tht.boleh_pulang,pengkajian_medis_ranap_tht.tgl_keluar,pengkajian_medis_ranap_tht.jam_keluar,pengkajian_medis_ranap_tht.kontrol,pengkajian_medis_ranap_tht.tgl_kontrol,pengkajian_medis_ranap_tht.jam_kontrol,pengkajian_medis_ranap_tht.dirawat_ruang,pengkajian_medis_ranap_tht.ruang_lain,dokter.nm_dokter "+
                         "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
@@ -4656,13 +4662,13 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
                         "pengkajian_medis_ranap_tht.membrana_timpani_telinga_kanan,pengkajian_medis_ranap_tht.membrana_timpani_telinga_kiri,pengkajian_medis_ranap_tht.tumor_telinga_kanann,pengkajian_medis_ranap_tht.tumor_telinga_kirii,"+
                         "pengkajian_medis_ranap_tht.mastoid_telinga_kanan,pengkajian_medis_ranap_tht.mastoid_telinga_kiri,pengkajian_medis_ranap_tht.berbisik_telinga_kanan,pengkajian_medis_ranap_tht.berbisik_telinga_kiri,pengkajian_medis_ranap_tht.weber_telinga_kanan,"+
                         "pengkajian_medis_ranap_tht.weber_telinga_kiri,pengkajian_medis_ranap_tht.rinne_telinga_kanan,pengkajian_medis_ranap_tht.rinne_telinga_kiri,pengkajian_medis_ranap_tht.scwabach_telinga_kanan,pengkajian_medis_ranap_tht.scwabach_telinga_kiri,"+
-                        "pengkajian_medis_ranap_tht.tympanometri_telinga_kanan,pengkajian_medis_ranap_tht.tympanometri_telinga_kiri,pengkajian_medis_ranap_tht.audiometri_telinga_kanan,pengkajian_medis_ranap_tht.audiometri_telinga_kiri,"+
+                        "pengkajian_medis_ranap_tht.boa_telinga_kanan,pengkajian_medis_ranap_tht.boa_telinga_kiri,pengkajian_medis_ranap_tht.tympanometri_telinga_kanan,pengkajian_medis_ranap_tht.tympanometri_telinga_kiri,pengkajian_medis_ranap_tht.audiometri_telinga_kanan,pengkajian_medis_ranap_tht.audiometri_telinga_kiri,"+
                         "pengkajian_medis_ranap_tht.nada_murni_telinga_kanan,pengkajian_medis_ranap_tht.nada_murni_telinga_kiri,pengkajian_medis_ranap_tht.bera_telinga_kanan,pengkajian_medis_ranap_tht.bera_telinga_kiri,pengkajian_medis_ranap_tht.oae_telinga_kanan,"+
                         "pengkajian_medis_ranap_tht.oae_telinga_kiri,pengkajian_medis_ranap_tht.seimbang_kanan,pengkajian_medis_ranap_tht.seimbang_kiri,pengkajian_medis_ranap_tht.hidung_luar_kanan,pengkajian_medis_ranap_tht.hidung_luar_kiri,"+
                         "pengkajian_medis_ranap_tht.kavum_nasi_kanan,pengkajian_medis_ranap_tht.kavum_nasi_kiri,pengkajian_medis_ranap_tht.septum_kanan,pengkajian_medis_ranap_tht.septum_kiri,pengkajian_medis_ranap_tht.discharge_hidung_kanan,pengkajian_medis_ranap_tht.discharge_hidung_kiri,"+
                         "pengkajian_medis_ranap_tht.mukosa_hidung_kanan,pengkajian_medis_ranap_tht.mukosa_hidung_kiri,pengkajian_medis_ranap_tht.tumor_hidung_kanann,pengkajian_medis_ranap_tht.tumor_hidung_kirii,pengkajian_medis_ranap_tht.konka_kanan,"+
                         "pengkajian_medis_ranap_tht.konka_kiri,pengkajian_medis_ranap_tht.naso_endoskopi_kanan,pengkajian_medis_ranap_tht.naso_endoskopi_kiri,pengkajian_medis_ranap_tht.dispenu_tenggorok,pengkajian_medis_ranap_tht.stridor_tenggorok,pengkajian_medis_ranap_tht.sianosis_tenggorok,"+
-                        "pengkajian_medis_ranap_tht.suara_tenggorok,pengkajian_medis_ranap_tht.mucosa_tenggorok,pengkajian_medis_ranap_tht.tonsil_tenggorok,pengkajian_medis_ranap_tht.dinding_belakang_tenggorok,pengkajian_medis_ranap_tht.epiglotis,pengkajian_medis_ranap_tht.plika_vokalis,"+
+                        "pengkajian_medis_ranap_tht.suara_tenggorokk,pengkajian_medis_ranap_tht.mucosa_tenggorok,pengkajian_medis_ranap_tht.tonsil_tenggorok,pengkajian_medis_ranap_tht.dinding_belakang_tenggorok,pengkajian_medis_ranap_tht.epiglotis,pengkajian_medis_ranap_tht.plika_vokalis,"+
                         "pengkajian_medis_ranap_tht.aritenoid,pengkajian_medis_ranap_tht.rimaglotis,pengkajian_medis_ranap_tht.plika_ventrikuloris,pengkajian_medis_ranap_tht.endoskopi,pengkajian_medis_ranap_tht.diagnosa_kerja,pengkajian_medis_ranap_tht.diagnosa_pembanding,pengkajian_medis_ranap_tht.kelenjar_limpe_leher,pengkajian_medis_ranap_tht.terapi,"+
                         "pengkajian_medis_ranap_tht.boleh_pulang,pengkajian_medis_ranap_tht.tgl_keluar,pengkajian_medis_ranap_tht.jam_keluar,pengkajian_medis_ranap_tht.kontrol,pengkajian_medis_ranap_tht.tgl_kontrol,pengkajian_medis_ranap_tht.jam_kontrol,pengkajian_medis_ranap_tht.dirawat_ruang,pengkajian_medis_ranap_tht.ruang_lain,dokter.nm_dokter "+
                         "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
@@ -4698,11 +4704,11 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
                         rs.getString("riak_tenggorok"),rs.getString("gangguan_tenggorok"),rs.getString("suara_tenggorok"),rs.getString("tumor_tenggorok"),rs.getString("batuk_tenggorok"),rs.getString("korpus_alienum_tenggorok"),rs.getString("sesak_nafas_tenggorok"),rs.getString("ket_lokalis"),
                         rs.getString("daun_telinga_kanan"),rs.getString("daun_telinga_kiri"),rs.getString("liang_telinga_kanan"),rs.getString("liang_telinga_kiri"),rs.getString("discharge_telinga_kanan"),rs.getString("discharge_telinga_kiri"),rs.getString("membrana_timpani_telinga_kanan"),
                         rs.getString("membrana_timpani_telinga_kiri"),rs.getString("tumor_telinga_kanann"),rs.getString("tumor_telinga_kirii"),rs.getString("mastoid_telinga_kanan"),rs.getString("mastoid_telinga_kiri"),rs.getString("berbisik_telinga_kanan"),rs.getString("berbisik_telinga_kiri"),
-                        rs.getString("weber_telinga_kanan"),rs.getString("weber_telinga_kiri"),rs.getString("rinne_telinga_kanan"),rs.getString("rinne_telinga_kiri"),rs.getString("scwabach_telinga_kanan"),rs.getString("scwabach_telinga_kiri"),rs.getString("tympanometri_telinga_kanan"),
+                        rs.getString("weber_telinga_kanan"),rs.getString("weber_telinga_kiri"),rs.getString("rinne_telinga_kanan"),rs.getString("rinne_telinga_kiri"),rs.getString("scwabach_telinga_kanan"),rs.getString("scwabach_telinga_kiri"),rs.getString("boa_telinga_kanan"),rs.getString("boa_telinga_kiri"),rs.getString("tympanometri_telinga_kanan"),
                         rs.getString("tympanometri_telinga_kiri"),rs.getString("audiometri_telinga_kanan"),rs.getString("audiometri_telinga_kiri"),rs.getString("nada_murni_telinga_kanan"),rs.getString("nada_murni_telinga_kiri"),rs.getString("bera_telinga_kanan"),rs.getString("bera_telinga_kiri"),
                         rs.getString("oae_telinga_kanan"),rs.getString("oae_telinga_kiri"),rs.getString("seimbang_kanan"),rs.getString("seimbang_kiri"),rs.getString("hidung_luar_kanan"),rs.getString("hidung_luar_kiri"),rs.getString("kavum_nasi_kanan"),rs.getString("kavum_nasi_kiri"),rs.getString("septum_kanan"),
                         rs.getString("septum_kiri"),rs.getString("discharge_hidung_kanan"),rs.getString("discharge_hidung_kiri"),rs.getString("mukosa_hidung_kanan"),rs.getString("mukosa_hidung_kiri"),rs.getString("tumor_hidung_kanann"),rs.getString("tumor_hidung_kirii"),rs.getString("konka_kanan"),
-                        rs.getString("konka_kiri"),rs.getString("naso_endoskopi_kanan"),rs.getString("naso_endoskopi_kiri"),rs.getString("dispenu_tenggorok"),rs.getString("stridor_tenggorok"),rs.getString("sianosis_tenggorok"),rs.getString("suara_tenggorok"),rs.getString("mucosa_tenggorok"),
+                        rs.getString("konka_kiri"),rs.getString("naso_endoskopi_kanan"),rs.getString("naso_endoskopi_kiri"),rs.getString("dispenu_tenggorok"),rs.getString("stridor_tenggorok"),rs.getString("sianosis_tenggorok"),rs.getString("suara_tenggorokk"),rs.getString("mucosa_tenggorok"),
                         rs.getString("tonsil_tenggorok"),rs.getString("dinding_belakang_tenggorok"),rs.getString("epiglotis"),rs.getString("plika_vokalis"),rs.getString("aritenoid"),rs.getString("rimaglotis"),rs.getString("plika_ventrikuloris"),rs.getString("endoskopi"),rs.getString("diagnosa_kerja"),
                         rs.getString("diagnosa_pembanding"),rs.getString("kelenjar_limpe_leher"),rs.getString("terapi"),rs.getString("boleh_pulang"),rs.getString("tgl_keluar"),rs.getString("jam_keluar"),rs.getString("kontrol"),rs.getString("tgl_kontrol"),rs.getString("jam_kontrol"),rs.getString("dirawat_ruang"),
                         rs.getString("ruang_lain")  
@@ -4742,15 +4748,119 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
         BB.setText("");
         TB.setText("");
         Kondisi.setText("");
+        SekretKanan.setText("TAK");
+        SekretKiri.setText("TAK");
+        TuliKanan.setText("TAK");
+        TuliKiri.setText("TAK");
+        TumorKanan.setText("TAK");
+        TumorKiri.setText("TAK");
+        TinitusKanan.setText("TAK");
+        TinitusKiri.setText("TAK");
+        SakitKanan.setText("TAK");
+        SakitKiri.setText("TAK");
+        KorpusAlienumKanan.setText("TAK");
+        KorpusAlienumKiri.setText("TAK");
+        VertigoKanan.setText("TAK");
+        VertigoKiri.setText("TAK");
         SekretHidungKanan.setText("TAK");
         SekretHidungKiri.setText("TAK");
+        TersumbatKanan.setText("TAK");
+        TersumbatKiri.setText("TAK");
+        TumorHidungKanan.setText("TAK");
+        TumorHidungKiri.setText("TAK");
+        PilekKanan.setText("TAK");
+        PilekKiri.setText("TAK");
+        SakitHidungKanan.setText("TAK");
+        SakitHidungKiri.setText("TAK");
+        KorpusAlienumHidungKanan.setText("TAK");
+        KorpusAlienumHidungKiri.setText("TAK");
+        BersinKanan.setText("TAK");
+        BersinKiri.setText("TAK");
+        TenggorokRiak.setText("TAK");
+        TenggorokGangguan.setText("TAK");
+        TenggorokSuara.setText("TAK");
+        TenggorokTumor.setText("TAK");
+        TenggorokBatuk.setText("TAK");
+        TenggorokKorpusAlienum.setText("TAK");
+        TenggorokSesakNafas.setText("TAK");
+        TenggorokKorpusAlienum.setText("TAK");
         KetLokalis.setText("");
-
+        DaunTelingaKanan.setText("TAK");
+        DaunTelingaKiri.setText("TAK");
+        LiangTelingaKanan.setText("TAK");
+        LiangTelingaKiri.setText("TAK");
+        DischargeKanan.setText("TAK");
+        DischargeKiri.setText("TAK");
+        MembranTimpaniKanan.setText("TAK");
+        MembranTimpaniKiri.setText("TAK");
+        TumorrKanan.setText("TAK");
+        TumorrKiri.setText("TAK");
+        MastoidKanan.setText("TAK");
+        MastoidKiri.setText("TAK");
+        BerbisikKanan.setText("TAK");
+        BerbisikKiri.setText("TAK");
+        WeberKanan.setText("TAK");
+        WeberKiri.setText("TAK");
+        RinneKanan.setText("TAK");
+        RinneKiri.setText("TAK");
+        ScwabachKanan.setText("TAK");
+        ScwabachKiri.setText("TAK");
+        BOAKanan.setText("TAK");
+        BOAKiri.setText("TAK");
+        TympanometriKanan.setText("TAK");
+        TympanometriKiri.setText("TAK");
+        AudiometriKanan.setText("TAK");
+        AudiometriKiri.setText("TAK");
+        NadaMurniKanan.setText("TAK");
+        NadaMurniKiri.setText("TAK");
+        BERAKanan.setText("TAK");
+        BERAKiri.setText("TAK");
+        OAEKanan.setText("TAK");
+        OAEKiri.setText("TAK");
+        TesAlatKeseimbanganKanan.setText("TAK");
+        TesAlatKeseimbanganKiri.setText("TAK");
+        HidungLuarKanan.setText("TAK");
+        HidungLuarKiri.setText("TAK");
+        KavumNasiKanan.setText("TAK");
+        KavumNasiKiri.setText("TAK");
+        SeptumHidungKanan.setText("TAK");
+        SeptumHidungKiri.setText("TAK");
+        DischargeHidungKanan.setText("TAK");
+        DischargeHidungKiri.setText("TAK");
+        MukosaHidungKanan.setText("TAK");
+        MukosaHidungKiri.setText("TAK");
+        TumorHidungKanann.setText("TAK");
+        TumorHidungKirii.setText("TAK");
+        KonkaHidungKanan.setText("TAK");
+        KonkaHidungKiri.setText("TAK");
+        NasoEndoskopiKanan.setText("TAK");
+        NasoEndoskopiKiri.setText("TAK");
+        TenggorokDispenu.setText("TAK");
+        TenggorokStridor.setText("TAK");
+        TenggorokSianosis.setText("TAK");
+        TenggorokSuaraa.setText("TAK");
+        TenggorokMucosa.setText("TAK");
+        TenggorokTonsil.setText("TAK");
+        TenggorokDindingBelakang.setText("TAK");
+        LaringEpiglotis.setText("TAK");
+        LaringPlikaVokalis.setText("TAK");
+        LaringArienoid.setText("TAK");
+        LaringRimaglotis.setText("TAK");
+        LaringPlikaVentrikuloris.setText("TAK");
+        LaringEndoskopi.setText("TAK");
+        KetLokalis.setText("");
         DiagnosaKerja.setText("");
         DiagnosaBanding.setText("");
         Terapi.setText("");
         KelenjerLimpeLeher.setText("");
-
+        BolehPulang.setSelectedIndex(0);
+        DTPTanggalKeluar.setDate(new Date());
+        JamPulang.setText("");
+        KontrolPoliklinik.setSelectedIndex(0);
+        DTPTanggalKontrol.setDate(new Date());
+        JamKontrol.setText("");
+        DirawatDiRuang.setSelectedIndex(0);
+        RuangLain.setText("");
 
         TglAsuhan.setDate(new Date());
         TabRawat.setSelectedIndex(0);
@@ -4763,7 +4873,9 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
             TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
             TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
             TglLahir.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
-            Jk.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString()); 
+            Jk.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
+            KdDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+            NmDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
             Anamnesis.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
             Hubungan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
             KeluhanUtama.setText(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
@@ -4780,12 +4892,119 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
             Nyeri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),21).toString());
             StatusNutrisi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),22).toString());
             Kondisi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),23).toString());
-            KetLokalis.setText(tbObat.getValueAt(tbObat.getSelectedRow(),24).toString());
-            DiagnosaKerja.setText(tbObat.getValueAt(tbObat.getSelectedRow(),29).toString());
-            DiagnosaBanding.setText(tbObat.getValueAt(tbObat.getSelectedRow(),30).toString());
-            Terapi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),32).toString());
-            KelenjerLimpeLeher.setText(tbObat.getValueAt(tbObat.getSelectedRow(),33).toString());
+            SekretKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),24).toString());
+            SekretKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),25).toString());
+            TuliKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),26).toString());
+            TuliKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),27).toString());
+            TumorKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),28).toString());
+            TumorKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),29).toString());
+            TinitusKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),30).toString());
+            TinitusKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),31).toString());
+            SakitKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),32).toString());
+            SakitKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),33).toString());
+            KorpusAlienumKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),34).toString());
+            KorpusAlienumKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),35).toString());
+            VertigoKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),36).toString());
+            VertigoKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),37).toString());
+            SekretHidungKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),38).toString());
+            SekretHidungKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),39).toString());
+            TersumbatKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),40).toString());
+            TersumbatKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),41).toString());
+            TumorHidungKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),42).toString());
+            TumorHidungKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),43).toString());
+            PilekKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),44).toString());
+            PilekKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),45).toString());
+            SakitHidungKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),46).toString());
+            SakitHidungKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),47).toString());
+            KorpusAlienumHidungKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),48).toString());
+            KorpusAlienumHidungKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),49).toString());
+            BersinKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),50).toString());
+            BersinKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),51).toString());
+            TenggorokRiak.setText(tbObat.getValueAt(tbObat.getSelectedRow(),52).toString());
+            TenggorokGangguan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),53).toString());
+            TenggorokSuara.setText(tbObat.getValueAt(tbObat.getSelectedRow(),54).toString());
+            TenggorokTumor.setText(tbObat.getValueAt(tbObat.getSelectedRow(),55).toString());
+            TenggorokBatuk.setText(tbObat.getValueAt(tbObat.getSelectedRow(),56).toString());
+            TenggorokKorpusAlienum.setText(tbObat.getValueAt(tbObat.getSelectedRow(),57).toString());
+            TenggorokSesakNafas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),58).toString());
+            KetLokalis.setText(tbObat.getValueAt(tbObat.getSelectedRow(),59).toString());;
+            DaunTelingaKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),60).toString());
+            DaunTelingaKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),61).toString());
+            LiangTelingaKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),62).toString());
+            LiangTelingaKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),63).toString());
+            DischargeKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),64).toString());
+            DischargeKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),65).toString());
+            MembranTimpaniKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),66).toString());
+            MembranTimpaniKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),67).toString());
+            TumorrKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),68).toString());
+            TumorrKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),69).toString());
+            MastoidKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),70).toString());
+            MastoidKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),71).toString());
+            BerbisikKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),72).toString());
+            BerbisikKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),73).toString());
+            WeberKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),74).toString());
+            WeberKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),75).toString());
+            RinneKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),76).toString());
+            RinneKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),77).toString());
+            ScwabachKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),78).toString());
+            ScwabachKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),79).toString());
+            BOAKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),80).toString());
+            BOAKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),81).toString());
+            TympanometriKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),82).toString());
+            TympanometriKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),83).toString());
+            AudiometriKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),84).toString());
+            AudiometriKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),85).toString());
+            NadaMurniKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),86).toString());
+            NadaMurniKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),87).toString());
+            BERAKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),88).toString());
+            BERAKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),89).toString());
+            OAEKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),90).toString());
+            OAEKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),91).toString());
+            TesAlatKeseimbanganKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),92).toString());
+            TesAlatKeseimbanganKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),93).toString());
+            HidungLuarKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),94).toString());
+            HidungLuarKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),95).toString());
+            KavumNasiKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),96).toString());
+            KavumNasiKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),97).toString());
+            SeptumHidungKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),98).toString());
+            SeptumHidungKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),99).toString());
+            DischargeHidungKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),100).toString());
+            DischargeHidungKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),101).toString());
+            MukosaHidungKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),102).toString());
+            MukosaHidungKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),103).toString());
+            TumorHidungKanann.setText(tbObat.getValueAt(tbObat.getSelectedRow(),104).toString());
+            TumorHidungKirii.setText(tbObat.getValueAt(tbObat.getSelectedRow(),105).toString());
+            KonkaHidungKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),106).toString());
+            KonkaHidungKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),107).toString());
+            NasoEndoskopiKanan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),108).toString());
+            NasoEndoskopiKiri.setText(tbObat.getValueAt(tbObat.getSelectedRow(),109).toString());
+            TenggorokDispenu.setText(tbObat.getValueAt(tbObat.getSelectedRow(),110).toString());
+            TenggorokStridor.setText(tbObat.getValueAt(tbObat.getSelectedRow(),111).toString());
+            TenggorokSianosis.setText(tbObat.getValueAt(tbObat.getSelectedRow(),112).toString());
+            TenggorokSuaraa.setText(tbObat.getValueAt(tbObat.getSelectedRow(),113).toString());
+            TenggorokMucosa.setText(tbObat.getValueAt(tbObat.getSelectedRow(),114).toString());
+            TenggorokTonsil.setText(tbObat.getValueAt(tbObat.getSelectedRow(),115).toString());
+            TenggorokDindingBelakang.setText(tbObat.getValueAt(tbObat.getSelectedRow(),116).toString());
+            LaringEpiglotis.setText(tbObat.getValueAt(tbObat.getSelectedRow(),117).toString());
+            LaringPlikaVokalis.setText(tbObat.getValueAt(tbObat.getSelectedRow(),118).toString());
+            LaringArienoid.setText(tbObat.getValueAt(tbObat.getSelectedRow(),119).toString());
+            LaringRimaglotis.setText(tbObat.getValueAt(tbObat.getSelectedRow(),120).toString());
+            LaringPlikaVentrikuloris.setText(tbObat.getValueAt(tbObat.getSelectedRow(),121).toString());
+            LaringEndoskopi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),122).toString());
+            DiagnosaKerja.setText(tbObat.getValueAt(tbObat.getSelectedRow(),123).toString());
+            DiagnosaBanding.setText(tbObat.getValueAt(tbObat.getSelectedRow(),124).toString());
+            KelenjerLimpeLeher.setText(tbObat.getValueAt(tbObat.getSelectedRow(),125).toString());
+            Terapi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),126).toString());
+            BolehPulang.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),127).toString());
+            JamPulang.setText(tbObat.getValueAt(tbObat.getSelectedRow(),129).toString());
+            KontrolPoliklinik.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),130).toString());
+            JamKontrol.setText(tbObat.getValueAt(tbObat.getSelectedRow(),132).toString());
+            DirawatDiRuang.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),133).toString());
+            RuangLain.setText(tbObat.getValueAt(tbObat.getSelectedRow(),134).toString());
+            
             Valid.SetTgl2(TglAsuhan,tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
+            Valid.SetTgl2(DTPTanggalKeluar,tbObat.getValueAt(tbObat.getSelectedRow(),128).toString());
+            Valid.SetTgl2(DTPTanggalKontrol,tbObat.getValueAt(tbObat.getSelectedRow(),131).toString());
         }
     }
 
@@ -4860,12 +5079,23 @@ public final class RMPenilaianAwalMedisRanapTHT extends javax.swing.JDialog {
     }
 
     private void ganti() {
-        if(Sequel.mengedittf("penilaian_medis_ralan_tht","no_rawat=?","no_rawat=?,tanggal=?,kd_dokter=?,anamnesis=?,hubungan=?,keluhan_utama=?,rps=?,rpd=?,rpo=?,alergi=?,td=?,nadi=?,rr=?,suhu=?,bb=?,tb=?,nyeri=?,"+
-                "status_nutrisi=?,kondisi=?,ket_lokalis=?,lab=?,rad=?,tes_pendengaran=?,penunjang=?,diagnosis=?,diagnosisbanding=?,permasalahan=?,terapi=?,tindakan=?,tatalaksana=?,edukasi=?",32,new String[]{
+        if(Sequel.mengedittf("pengkajian_medis_ranap_tht","no_rawat=?","no_rawat=?,tanggal=?,kd_dokter=?,anamnesis=?,hubungan=?,keluhan_utama=?,rps=?,rpd=?,rpo=?,alergi=?,td=?,nadi=?,rr=?,suhu=?,bb=?,tb=?,nyeri=?,status_nutrisi=?,kondisi=?,"
+                + "sekret_telinga_kanan=?,sekret_telinga_kiri=?,tuli_telinga_kanan=?,tuli_telinga_kiri=?,tumor_telinga_kanan=?,tumor_telinga_kiri=?,tinitus_telinga_kanan=?,tinitus_telinga_kiri=?,sakit_telinga_kanan=?,sakit_telinga_kiri=?,"
+                + "korpus_alienum_telinga_kanan=?,korpus_alienum_telinga_kiri=?,vertigo_telinga_kanan=?,vertigo_telinga_kiri=?",130,new String[]{
                 TNoRw.getText(),Valid.SetTgl(TglAsuhan.getSelectedItem()+"")+" "+TglAsuhan.getSelectedItem().toString().substring(11,19),KdDokter.getText(),Anamnesis.getSelectedItem().toString(),Hubungan.getText(),
                 KeluhanUtama.getText(),RPS.getText(),RPD.getText(),RPO.getText(),Alergi.getText(),TD.getText(),Nadi.getText(),RR.getText(),Suhu.getText(),BB.getText(),TB.getText(),Nyeri.getText(),StatusNutrisi.getText(),
-                Kondisi.getText(),KetLokalis.getText(),DiagnosaKerja.getText(),DiagnosaBanding.getText(),Terapi.getText(),
-                KelenjerLimpeLeher.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
+                Kondisi.getText(),SekretKanan.getText(),SekretKiri.getText(),TuliKanan.getText(),TuliKiri.getText(),TumorKanan.getText(),TumorKiri.getText(),TinitusKanan.getText(),TinitusKiri.getText(),SakitKanan.getText(),
+                SakitKiri.getText(),KorpusAlienumKanan.getText(),KorpusAlienumKiri.getText(),VertigoKanan.getText(),VertigoKiri.getText(),SekretHidungKanan.getText(),SekretHidungKiri.getText(),TersumbatKanan.getText(),TersumbatKiri.getText(),
+                TumorHidungKanan.getText(),TumorHidungKiri.getText(),PilekKanan.getText(),PilekKiri.getText(),SakitHidungKanan.getText(),SakitHidungKiri.getText(),KorpusAlienumHidungKanan.getText(),KorpusAlienumHidungKiri.getText(),
+                BersinKanan.getText(),BersinKiri.getText(),TenggorokRiak.getText(),TenggorokGangguan.getText(),TenggorokSuara.getText(),TenggorokTumor.getText(),TenggorokBatuk.getText(),TenggorokKorpusAlienum.getText(),TenggorokSesakNafas.getText(),
+                KetLokalis.getText(),DaunTelingaKanan.getText(),DaunTelingaKiri.getText(),LiangTelingaKanan.getText(),LiangTelingaKiri.getText(),DischargeKanan.getText(),DischargeKiri.getText(),MembranTimpaniKanan.getText(),MembranTimpaniKiri.getText(),
+                TumorrKanan.getText(),TumorrKiri.getText(),MastoidKanan.getText(),MastoidKiri.getText(),BerbisikKanan.getText(),BerbisikKiri.getText(),WeberKanan.getText(),WeberKiri.getText(),RinneKanan.getText(),RinneKiri.getText(),ScwabachKanan.getText(),
+                ScwabachKiri.getText(),BOAKanan.getText(),BOAKiri.getText(),TympanometriKanan.getText(),TympanometriKiri.getText(),AudiometriKanan.getText(),AudiometriKiri.getText(),NadaMurniKanan.getText(),NadaMurniKiri.getText(),BERAKanan.getText(),BERAKiri.getText(),
+                OAEKanan.getText(),OAEKiri.getText(),TesAlatKeseimbanganKanan.getText(),TesAlatKeseimbanganKiri.getText(),HidungLuarKanan.getText(),HidungLuarKiri.getText(),KavumNasiKanan.getText(),KavumNasiKiri.getText(),SeptumHidungKanan.getText(),SeptumHidungKiri.getText(),
+                DischargeHidungKanan.getText(),DischargeHidungKiri.getText(),MukosaHidungKanan.getText(),MukosaHidungKiri.getText(),TumorHidungKanann.getText(),TumorHidungKirii.getText(),KonkaHidungKanan.getText(),KonkaHidungKiri.getText(),NasoEndoskopiKanan.getText(),NasoEndoskopiKiri.getText(),
+                TenggorokDispenu.getText(),TenggorokStridor.getText(),TenggorokSianosis.getText(),TenggorokSuaraa.getText(),TenggorokMucosa.getText(),TenggorokTonsil.getText(),TenggorokDindingBelakang.getText(),LaringEpiglotis.getText(),LaringPlikaVokalis.getText(),LaringArienoid.getText(),
+                LaringRimaglotis.getText(),LaringPlikaVentrikuloris.getText(),LaringEndoskopi.getText(),DiagnosaKerja.getText(),DiagnosaBanding.getText(),KelenjerLimpeLeher.getText(),Terapi.getText(),BolehPulang.getSelectedItem().toString(),Valid.SetTgl(DTPTanggalKeluar.getSelectedItem()+""),
+                JamPulang.getText(),KontrolPoliklinik.getSelectedItem().toString(),Valid.SetTgl(DTPTanggalKontrol.getSelectedItem()+""),JamKontrol.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
             })==true){
                tampil();
                emptTeks();

@@ -160,6 +160,7 @@ import rekammedis.RMTransferPasienAntarRuang;
 import rekammedis.RMUjiFungsiKFR;
 import rekammedis.RMPenilaianAwalMedisRanapTHT;
 import rekammedis.RMPenilaianAwalMedisRanapPenyakitDalam;
+import rekammedis.RMPenilaianAwalMedisRanapBedah;
 import surat.SuratKeteranganRawatInap;
 import surat.SuratPenolakanAnjuranMedis;
 import surat.SuratPernyataanPasienUmum;
@@ -829,8 +830,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnPenilaianAwalMedisMataRanap = new javax.swing.JMenuItem();
         MnPenilaianAwalMedisSarafRanap = new javax.swing.JMenuItem();
         MnPenilaianAwalMedisOrthopediRanap = new javax.swing.JMenuItem();
-        MnPenilaianAwalMedisBedahUmumRanap = new javax.swing.JMenuItem();
-        MnPenilaianAwalMedisBedahDigestifRanap = new javax.swing.JMenuItem();
+        MnPenilaianAwalMedisBedahRanap = new javax.swing.JMenuItem();
         MnPenilaianAwalMedisBedahMulutRanap = new javax.swing.JMenuItem();
         MnPenilaianAwalMedisGeriatriRanap = new javax.swing.JMenuItem();
         MnPenilaianAwalMedisKulitKelaminRanap = new javax.swing.JMenuItem();
@@ -1767,35 +1767,20 @@ public class DlgKamarInap extends javax.swing.JDialog {
 //            }
 //        });
 
-        MnPenilaianAwalMedisBedahUmumRanap.setBackground(new java.awt.Color(255, 255, 254));
-        MnPenilaianAwalMedisBedahUmumRanap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnPenilaianAwalMedisBedahUmumRanap.setForeground(new java.awt.Color(50, 50, 50));
-        MnPenilaianAwalMedisBedahUmumRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnPenilaianAwalMedisBedahUmumRanap.setText("Pengkajian Awal Medis Bedah Umum");
-        MnPenilaianAwalMedisBedahUmumRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnPenilaianAwalMedisBedahUmumRanap.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnPenilaianAwalMedisBedahUmumRanap.setName("MnPenilaianAwalMedisBedahUmumRanap"); // NOI18N
-        MnPenilaianAwalMedisBedahUmumRanap.setPreferredSize(new java.awt.Dimension(280, 26));
-//        MnPenilaianAwalMedisBedahUmumRanap.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                MnPenilaianAwalMedisKandunganActionPerformed(evt);
-//            }
-//        });
-
-        MnPenilaianAwalMedisBedahDigestifRanap.setBackground(new java.awt.Color(255, 255, 254));
-        MnPenilaianAwalMedisBedahDigestifRanap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnPenilaianAwalMedisBedahDigestifRanap.setForeground(new java.awt.Color(50, 50, 50));
-        MnPenilaianAwalMedisBedahDigestifRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnPenilaianAwalMedisBedahDigestifRanap.setText("Pengkajian Awal Medis Bedah Digestif");
-        MnPenilaianAwalMedisBedahDigestifRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnPenilaianAwalMedisBedahDigestifRanap.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnPenilaianAwalMedisBedahDigestifRanap.setName("MnPenilaianAwalMedisBedahDigestifRanap"); // NOI18N
-        MnPenilaianAwalMedisBedahDigestifRanap.setPreferredSize(new java.awt.Dimension(280, 26));
-//        MnPenilaianAwalMedisBedahDigestifRanap.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                MnPenilaianAwalMedisKandunganActionPerformed(evt);
-//            }
-//        });
+        MnPenilaianAwalMedisBedahRanap.setBackground(new java.awt.Color(255, 255, 254));
+        MnPenilaianAwalMedisBedahRanap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPenilaianAwalMedisBedahRanap.setForeground(new java.awt.Color(50, 50, 50));
+        MnPenilaianAwalMedisBedahRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPenilaianAwalMedisBedahRanap.setText("Pengkajian Awal Medis Bedah");
+        MnPenilaianAwalMedisBedahRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPenilaianAwalMedisBedahRanap.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPenilaianAwalMedisBedahRanap.setName("MnPenilaianAwalMedisBedahRanap"); // NOI18N
+        MnPenilaianAwalMedisBedahRanap.setPreferredSize(new java.awt.Dimension(280, 26));
+        MnPenilaianAwalMedisBedahRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPenilaianAwalMedisBedahRanapActionPerformed(evt);
+            }
+        });
 
         MnPenilaianAwalMedisBedahMulutRanap.setBackground(new java.awt.Color(255, 255, 254));
         MnPenilaianAwalMedisBedahMulutRanap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -12175,6 +12160,31 @@ public class DlgKamarInap extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_MnPenilaianAwalMedisTHTRanapActionPerformed
+    
+    private void MnPenilaianAwalMedisBedahRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPenilaianAwalMedisTHTRanapActionPerformed
+        if(tabMode.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
+            TCari.requestFocus();
+        }else{
+            if(tbKamIn.getSelectedRow()>-1){
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                RMPenilaianAwalMedisRanapBedah form=new RMPenilaianAwalMedisRanapBedah(null,false);
+                form.isCek();
+                form.emptTeks();
+                if(R1.isSelected()==true){
+                    form.setNoRm(norawat.getText(),new Date());
+                }else if(R2.isSelected()==true){
+                    form.setNoRm(norawat.getText(),DTPCari2.getDate());
+                }else if(R3.isSelected()==true){
+                    form.setNoRm(norawat.getText(),DTPCari4.getDate());
+                }
+                form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnPenilaianAwalMedisTHTRanapActionPerformed
 
     private void MnPenilaianFisioterapiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPenilaianFisioterapiActionPerformed
         if(tabMode.getRowCount()==0){
@@ -17508,8 +17518,8 @@ public class DlgKamarInap extends javax.swing.JDialog {
     private javax.swing.JMenu MnHasilUSG,MnHasilEndoskopi,MnCatatanObservasi;
     private widget.Label nomorsep,nosep;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatan,MnPenilaianAwalMedis;
-    private javax.swing.JMenuItem MnPenilaianAwalMedisTHTRanap,MnPenilaianAwalMedisPsikiatriRanap,MnPenilaianAwalMedisPenyakitDalamRanap,MnPenilaianAwalMedisMataRanap,MnPenilaianAwalMedisSarafRanap,MnPenilaianAwalMedisOrthopediRanap,MnPenilaianAwalMedisBedahUmumRanap,
-                                  MnPenilaianAwalMedisBedahDigestifRanap,MnPenilaianAwalMedisBedahMulutRanap,MnPenilaianAwalMedisGeriatriRanap,MnPenilaianAwalMedisKulitKelaminRanap,MnPenilaianAwalMedisParuRanap;
+    private javax.swing.JMenuItem MnPenilaianAwalMedisTHTRanap,MnPenilaianAwalMedisPsikiatriRanap,MnPenilaianAwalMedisPenyakitDalamRanap,MnPenilaianAwalMedisMataRanap,MnPenilaianAwalMedisSarafRanap,MnPenilaianAwalMedisOrthopediRanap,MnPenilaianAwalMedisBedahRanap,
+                                  MnPenilaianAwalMedisBedahMulutRanap,MnPenilaianAwalMedisGeriatriRanap,MnPenilaianAwalMedisKulitKelaminRanap,MnPenilaianAwalMedisParuRanap;
     
     private void tampil() {
         if(R1.isSelected()==true){
@@ -18427,8 +18437,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnPenilaianAwalMedis.add(MnPenilaianAwalMedisMataRanap);
         MnPenilaianAwalMedis.add(MnPenilaianAwalMedisSarafRanap);
         MnPenilaianAwalMedis.add(MnPenilaianAwalMedisOrthopediRanap);
-        MnPenilaianAwalMedis.add(MnPenilaianAwalMedisBedahUmumRanap);
-        MnPenilaianAwalMedis.add(MnPenilaianAwalMedisBedahDigestifRanap);
+        MnPenilaianAwalMedis.add(MnPenilaianAwalMedisBedahRanap);
         MnPenilaianAwalMedis.add(MnPenilaianAwalMedisBedahMulutRanap);
         MnPenilaianAwalMedis.add(MnPenilaianAwalMedisGeriatriRanap);
         MnPenilaianAwalMedis.add(MnPenilaianAwalMedisKulitKelaminRanap);

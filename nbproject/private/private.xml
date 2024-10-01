@@ -22,6 +22,8 @@
         <group>
             <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/DlgKamarInap.java</file>
             <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMPenilaianAwalMedisRanapMata.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMPenilaianAwalMedisRanapNeurologi.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMPenilaianAwalMedisRanapOrthopedi.java</file>
         </group>
     </open-files>
 </project-private>

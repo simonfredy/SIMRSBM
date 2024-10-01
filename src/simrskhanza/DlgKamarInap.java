@@ -165,6 +165,7 @@ import rekammedis.RMPenilaianAwalMedisRanapPsikiatrik;
 import rekammedis.RMPenilaianAwalMedisRanapMata;
 import rekammedis.RMPenilaianAwalMedisRanapNeurologi;
 import rekammedis.RMPenilaianAwalMedisRanapOrthopedi;
+import rekammedis.RMPenilaianAwalMedisRanapKulitDanKelamin;
 import surat.SuratKeteranganRawatInap;
 import surat.SuratPenolakanAnjuranMedis;
 import surat.SuratPernyataanPasienUmum;
@@ -1825,11 +1826,11 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnPenilaianAwalMedisKulitKelaminRanap.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnPenilaianAwalMedisKulitKelaminRanap.setName("MnPenilaianAwalMedisKulitKelaminRanap"); // NOI18N
         MnPenilaianAwalMedisKulitKelaminRanap.setPreferredSize(new java.awt.Dimension(280, 26));
-//        MnPenilaianAwalMedisKulitKelaminRanap.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                MnPenilaianAwalMedisKandunganActionPerformed(evt);
-//            }
-//        });
+        MnPenilaianAwalMedisKulitKelaminRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPenilaianAwalMedisKulitKelaminRanapActionPerformed(evt);
+            }
+        });
 
         MnPenilaianAwalMedisParuRanap.setBackground(new java.awt.Color(255, 255, 254));
         MnPenilaianAwalMedisParuRanap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -12273,6 +12274,31 @@ public class DlgKamarInap extends javax.swing.JDialog {
             if(tbKamIn.getSelectedRow()>-1){
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 RMPenilaianAwalMedisRanapOrthopedi form=new RMPenilaianAwalMedisRanapOrthopedi(null,false);
+                form.isCek();
+                form.emptTeks();
+                if(R1.isSelected()==true){
+                    form.setNoRm(norawat.getText(),new Date());
+                }else if(R2.isSelected()==true){
+                    form.setNoRm(norawat.getText(),DTPCari2.getDate());
+                }else if(R3.isSelected()==true){
+                    form.setNoRm(norawat.getText(),DTPCari4.getDate());
+                }
+                form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnPenilaianAwalMedisTHTRanapActionPerformed
+    
+        private void MnPenilaianAwalMedisKulitKelaminRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPenilaianAwalMedisTHTRanapActionPerformed
+        if(tabMode.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
+            TCari.requestFocus();
+        }else{
+            if(tbKamIn.getSelectedRow()>-1){
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                RMPenilaianAwalMedisRanapKulitDanKelamin form=new RMPenilaianAwalMedisRanapKulitDanKelamin(null,false);
                 form.isCek();
                 form.emptTeks();
                 if(R1.isSelected()==true){

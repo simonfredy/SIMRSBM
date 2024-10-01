@@ -20,15 +20,9 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/DlgIGD.java</file>
-            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMPenilaianAwalMedisRalanTHT.java</file>
-            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMPenilaianAwalMedisRanapTHT.java</file>
-            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/bridging/BPJSDataSEP.java</file>
-            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMPenilaianAwalMedisRalanRehabMedik.java</file>
-            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/permintaan/DlgPermintaanRanap.java</file>
-            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/DlgReg.java</file>
-            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/setting/database.xml</file>
-            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/fungsi/koneksiDB.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/DlgKamarInap.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMPenilaianAwalMedisRanapPsikiatrik.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMPenilaianAwalMedisRanapBedah.java</file>
         </group>
     </open-files>
 </project-private>

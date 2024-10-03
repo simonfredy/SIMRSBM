@@ -187,7 +187,7 @@ public final class akses {
             audit_pembuangan_limbah_cair_infeksius=false,audit_sterilisasi_alat=false,penilaian_awal_medis_ralan_psikiatri=false,persetujuan_penolakan_tindakan=false,
             audit_bundle_isk=false,audit_bundle_plabsi=false,audit_bundle_vap=false,akun_host_to_host_bank_papua=false,pembayaran_bank_papua=false,
             penilaian_awal_medis_ralan_penyakit_dalam=false,penilaian_awal_medis_ralan_mata=false,penilaian_awal_medis_ralan_neurologi=false,sirkulasi_obat6=false,
-            penilaian_awal_medis_ralan_orthopedi=false,penilaian_awal_medis_ralan_bedah=false,integrasi_khanza_health_services=false,soap_ralan_tni=false,
+            penilaian_awal_medis_ralan_orthopedi=false,penilaian_awal_medis_ralan_bedah=false,penilaian_awal_medis_ranap_bedah=false,integrasi_khanza_health_services=false,soap_ralan_tni=false,
             soap_ranap_tni=false,jumlah_pengunjung_ralan_tni=false,laporan_penyakit_tni=false,catatan_keperawatan_ranap=false,master_rencana_keperawatan_gigi=false,
             master_rencana_keperawatan_mata=false,master_rencana_keperawatan_igd=false,master_masalah_keperawatan_psikiatri=false,master_rencana_keperawatan_psikiatri=false,
             penilaian_awal_keperawatan_psikiatri=false,pemantauan_pews_anak=false,surat_pulang_atas_permintaan_sendiri=false,template_hasil_radiologi=false,
@@ -1109,6 +1109,7 @@ public final class akses {
                         akses.sirkulasi_obat6=true;
                         akses.penilaian_awal_medis_ralan_orthopedi=true;
                         akses.penilaian_awal_medis_ralan_bedah=true;
+                        akses.penilaian_awal_medis_ranap_bedah=true;
                         akses.integrasi_khanza_health_services=true;
                         akses.soap_ralan_tni=true;
                         akses.soap_ranap_tni=true;
@@ -2175,6 +2176,7 @@ public final class akses {
                         akses.sirkulasi_obat6=rs2.getBoolean("sirkulasi_obat6");
                         akses.penilaian_awal_medis_ralan_orthopedi=rs2.getBoolean("penilaian_awal_medis_ralan_orthopedi");
                         akses.penilaian_awal_medis_ralan_bedah=rs2.getBoolean("penilaian_awal_medis_ralan_bedah");
+                        akses.penilaian_awal_medis_ranap_bedah=rs2.getBoolean("penilaian_awal_medis_ranap_bedah");
                         akses.integrasi_khanza_health_services=rs2.getBoolean("integrasi_khanza_health_services");
                         akses.soap_ralan_tni=rs2.getBoolean("soap_ralan_tni");
                         akses.soap_ranap_tni=rs2.getBoolean("soap_ranap_tni");
@@ -3239,6 +3241,7 @@ public final class akses {
                         akses.sirkulasi_obat6=false;
                         akses.penilaian_awal_medis_ralan_orthopedi=false;
                         akses.penilaian_awal_medis_ralan_bedah=false;
+                        akses.penilaian_awal_medis_ranap_bedah=false;
                         akses.integrasi_khanza_health_services=false;
                         akses.soap_ralan_tni=false;
                         akses.soap_ranap_tni=false;
@@ -4326,6 +4329,7 @@ public final class akses {
         akses.sirkulasi_obat6=false;
         akses.penilaian_awal_medis_ralan_orthopedi=false;
         akses.penilaian_awal_medis_ralan_bedah=false;
+        akses.penilaian_awal_medis_ranap_bedah=false;
         akses.integrasi_khanza_health_services=false;
         akses.soap_ralan_tni=false;
         akses.soap_ranap_tni=false;
@@ -5429,6 +5433,7 @@ public final class akses {
     public static boolean getsirkulasi_obat6(){return akses.sirkulasi_obat6;}
     public static boolean getpenilaian_awal_medis_ralan_orthopedi(){return akses.penilaian_awal_medis_ralan_orthopedi;}
     public static boolean getpenilaian_awal_medis_ralan_bedah(){return akses.penilaian_awal_medis_ralan_bedah;}
+    public static boolean getpenilaian_awal_medis_ranap_bedah(){return akses.penilaian_awal_medis_ranap_bedah;}
     public static boolean getintegrasi_khanza_health_services(){return akses.integrasi_khanza_health_services;}
     public static boolean getsoap_ralan_tni(){return akses.soap_ralan_tni;}
     public static boolean getsoap_ranap_tni(){return akses.soap_ranap_tni;}

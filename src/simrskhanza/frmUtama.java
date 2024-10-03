@@ -972,6 +972,7 @@ import rekammedis.RMSkriningTBC;
 import rekammedis.RMTimeOutSebelumInsisi;
 import rekammedis.RMTransferPasienAntarRuang;
 import rekammedis.RMUjiFungsiKFR;
+import rekammedis.RMPenilaianAwalMedisRanapBedah;
 import setting.DlgJamDietPasien;
 import setting.DlgPasswordBPJS;
 import setting.DlgRuangOperasi;
@@ -19274,6 +19275,20 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnPenilaianAwalMedisRanapBedahActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMPenilaianAwalMedisRanapBedah aplikasi=new RMPenilaianAwalMedisRanapBedah(this,false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     private void btnSOAPRalanAnggotaTNIActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -22372,7 +22387,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnAuditBundleIADP,btnAuditBundleIDO,btnAuditFasilitasKebersihanTangan,btnAuditFasilitasAPD,btnAuditPembuanganLimbahCairInfeksius,
             btnAuditSterilisasiAlat,btnPersetujuanPenolakanTindakan,btnPenilaianAwalMedisRalanPsikiatri,btnAuditBundleISK,btnAuditBundlePLABSI,
             btnAuditBundleVAP,btnAkunRekeningHtHBankPapua,btnPembayaranBankPapua,btnPenilaianAwalMedisRalanPenyakitDalam,btnPenilaianAwalMedisRalanMata,
-            btnPenilaianAwalMedisRalanNeurologi,btnPenilaianAwalMedisRalanOrthopedi,btnPenilaianAwalMedisRalanBedah,btnSOAPRalanAnggotaTNI,btnSOAPRanapAnggotaTNI,
+            btnPenilaianAwalMedisRalanNeurologi,btnPenilaianAwalMedisRalanOrthopedi,btnPenilaianAwalMedisRalanBedah,btnPenilaianAwalMedisRanapBedah,btnSOAPRalanAnggotaTNI,btnSOAPRanapAnggotaTNI,
             btnJumlahPengunjungRalanTNI,btnLaporanPenyakitTNI,btnCatatanKeperawatanRanap,btnMasterRencanaKeperawatanGigi,btnMasterRencanaKeperawatanMata,
             btnMasterRencanaKeperawatanIGD,btnMasterMasalahKeperawatanPsikiatri,btnMasterRencanaKeperawatanPsikiatri,btnPenilaianAwalKeperawatanRalanPsikiatri,
             btnPemantauanPEWSAnak,btnMasterTemplateHasilRadiologi,btnLaporanBulananIRJ,btnMasterTemplatePemeriksaanDokter,btnPermintaanLabMB,btnLamaPelayananLabMB,
@@ -38037,6 +38052,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }                
         }
         
+        if(akses.getpenilaian_awal_medis_ranap_bedah()==true){
+            if(btnPenilaianAwalMedisRanapBedah.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnPenilaianAwalMedisRanapBedah);
+                jmlmenu++;
+            }                
+        }
+        
         if(akses.getpenilaian_awal_medis_ralan_bedah_mulut()==true){
             if(btnPenilaianAwalMedisRalanBedahMulut.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnPenilaianAwalMedisRalanBedahMulut);
@@ -43482,6 +43504,14 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnPenilaianAwalMedisRalanBedah.setName("btnPenilaianAwalMedisRalanBedah"); 
         btnPenilaianAwalMedisRalanBedah.setPreferredSize(new java.awt.Dimension(200, 90));
         btnPenilaianAwalMedisRalanBedah.addActionListener(this::btnPenilaianAwalMedisRalanBedahActionPerformed);
+        
+        btnPenilaianAwalMedisRanapBedah = new widget.ButtonBig();
+        btnPenilaianAwalMedisRanapBedah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/8008238_knife_cut_cutlery_cutting_tools_icon.png"))); 
+        btnPenilaianAwalMedisRanapBedah.setText("Pengkajian Awal Medis Ranap Bedah");
+        btnPenilaianAwalMedisRanapBedah.setIconTextGap(0);
+        btnPenilaianAwalMedisRanapBedah.setName("btnPenilaianAwalMedisRanapBedah"); 
+        btnPenilaianAwalMedisRanapBedah.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPenilaianAwalMedisRanapBedah.addActionListener(this::btnPenilaianAwalMedisRanapBedahActionPerformed);
         
         btnSOAPRalanAnggotaTNI = new widget.ButtonBig();
         btnSOAPRalanAnggotaTNI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_patient-health_report-graph-coronavirus_6000116.png")));

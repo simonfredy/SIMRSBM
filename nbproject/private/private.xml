@@ -20,8 +20,15 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/DlgKamarInap.java</file>
-            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMPenilaianAwalMedisRanapKulitDanKelamin.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMRiwayatPerawatan.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/frmUtama.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/setting/DlgUpdateUser.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/bridging/BPJSDataSEP.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/SIMRSKhanza.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/DlgRawatInap.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/setting/DlgUser.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/fungsi/akses.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMPenilaianAwalMedisRanapBedah.java</file>
         </group>
     </open-files>
 </project-private>

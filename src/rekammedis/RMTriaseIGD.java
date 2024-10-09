@@ -4738,7 +4738,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         LCount.setText(""+tabMode.getRowCount());
     }
     
-    private void emptTeks(){
+    public void emptTeks(){
         TNoRw.setText("");
         TPasien.setText("");
         TNoRM.setText("");

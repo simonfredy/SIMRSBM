@@ -22,10 +22,16 @@
         <group>
             <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMGenerateKlaim.java</file>
             <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMRiwayatPerawatan.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/permintaan/DlgBookingOperasi.java</file>
             <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/DlgKamarInap.java</file>
             <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/rekammedis/RMPenilaianLanjutanRisikoJatuhAnak.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/frmUtama.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/DlgTagihanOperasi.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/DlgRawatInap.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/fungsi/akses.java</file>
             <file>file:/home/rsbmit/projectkhanza/SIMRSBM/setting/database.xml</file>
             <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/simrskhanza/DlgKasirRalan.java</file>
+            <file>file:/home/rsbmit/projectkhanza/SIMRSBM/src/keuangan/DlgCariDaftarOperasi.java</file>
         </group>
     </open-files>
 </project-private>

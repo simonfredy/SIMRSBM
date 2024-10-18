@@ -2176,7 +2176,7 @@ public final class akses {
                         akses.sirkulasi_obat6=rs2.getBoolean("sirkulasi_obat6");
                         akses.penilaian_awal_medis_ralan_orthopedi=rs2.getBoolean("penilaian_awal_medis_ralan_orthopedi");
                         akses.penilaian_awal_medis_ralan_bedah=rs2.getBoolean("penilaian_awal_medis_ralan_bedah");
-                        akses.penilaian_awal_medis_ranap_bedah=rs2.getBoolean("penilaian_awal_medis_ranap_bedah");
+                        akses.penilaian_awal_medis_ranap_bedah=rs2.getBoolean("pengkajian_awal_medis_ranap_bedah");
                         akses.integrasi_khanza_health_services=rs2.getBoolean("integrasi_khanza_health_services");
                         akses.soap_ralan_tni=rs2.getBoolean("soap_ralan_tni");
                         akses.soap_ranap_tni=rs2.getBoolean("soap_ranap_tni");

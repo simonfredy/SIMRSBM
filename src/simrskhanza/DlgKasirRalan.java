@@ -14950,7 +14950,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("png_jawab"),rskasir.getString(14),rskasir.getString("no_rawat"),rskasir.getString("tgl_registrasi"),
                         rskasir.getString("jam_reg"),rskasir.getString(1),rskasir.getString("status_bayar"),rskasir.getString("status_poli"),
                         rskasir.getString("kd_pj"),rskasir.getString("kd_poli"),rskasir.getString("no_tlp"),rskasir.getString("no_peserta"),rskasir.getString("no_sep"),
-                        rskasir.getString("nmpolitujuan"),rskasir.getString("peserta"),
+                        rskasir.getString("nmpolitujuan"),rskasir.getString("peserta")
                     });
                 }                
             } catch(Exception e){

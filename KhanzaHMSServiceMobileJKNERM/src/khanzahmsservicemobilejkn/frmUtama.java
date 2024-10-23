@@ -220,7 +220,7 @@ public class frmUtama extends JFrame {
                frmUtama.this.Tanggal2.setText(frmUtama.this.tanggalFormat.format(frmUtama.this.date));
             }
 
-            if (frmUtama.this.detik.equals("01") && this.nilai_menit % 0.5 == 0) {
+            if (frmUtama.this.detik.equals("01") && this.nilai_menit % 0.3 == 0) {
                frmUtama.this.day = frmUtama.this.cal.get(7);
                switch(frmUtama.this.day) {
                case 1:

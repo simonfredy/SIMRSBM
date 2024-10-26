@@ -166,9 +166,9 @@ public final class SatuSehatMapingLaborat extends javax.swing.JDialog {
             @Override
             public void windowClosed(WindowEvent e) {
                 if(snomed.getTable().getSelectedRow()!= -1){                    
-                    SampelRadiologiSystem.setText(snomed.getTable().getValueAt(snomed.getTable().getSelectedRow(),0).toString());
-                    SampelCode.setText(snomed.getTable().getValueAt(snomed.getTable().getSelectedRow(),1).toString());
-                    SampelDisplay.setText(snomed.getTable().getValueAt(snomed.getTable().getSelectedRow(),2).toString());
+                    SampelRadiologiSystem.setText(snomed.getTable().getValueAt(snomed.getTable().getSelectedRow(),2).toString());
+                    SampelCode.setText(snomed.getTable().getValueAt(snomed.getTable().getSelectedRow(),0).toString());
+                    SampelDisplay.setText(snomed.getTable().getValueAt(snomed.getTable().getSelectedRow(),1).toString());
                 }
                 btnSnomed.requestFocus();
             }
@@ -204,8 +204,8 @@ public final class SatuSehatMapingLaborat extends javax.swing.JDialog {
             public void windowClosed(WindowEvent e) {
                 if(loinc.getTable().getSelectedRow()!= -1){                    
                     Code.setText(loinc.getTable().getValueAt(loinc.getTable().getSelectedRow(),0).toString());
-                    Display.setText(loinc.getTable().getValueAt(loinc.getTable().getSelectedRow(),2).toString());
-                    RadiologiSystem.setText(loinc.getTable().getValueAt(loinc.getTable().getSelectedRow(),10).toString());
+                    Display.setText(loinc.getTable().getValueAt(loinc.getTable().getSelectedRow(),1).toString());
+                    RadiologiSystem.setText(loinc.getTable().getValueAt(loinc.getTable().getSelectedRow(),2).toString());
                 }
                 btnLoinc.requestFocus();
             }

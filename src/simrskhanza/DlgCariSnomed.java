@@ -45,31 +45,26 @@ public class DlgCariSnomed extends javax.swing.JDialog {
         initComponents();
         
         tabMode = new DefaultTableModel(null,new Object[]{
-            "System","Code","Display"
-        }) {
-            Class[] types = new Class[]{
-                java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,
-            };
-
-            @Override
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-        };
+            "Code SNOMED","Display Name","Loinc System","Display Indonesia"
+        }){
+            @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+          };
         tbObat.setModel(tabMode);
 
         tbObat.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 3; i++) {
+        for (i = 0; i < 4; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(70);
             } else if (i == 1) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(800);
             } else if (i == 2) {
-                column.setPreferredWidth(400);
-            } 
+                column.setPreferredWidth(120);
+            } else if (i == 3) {
+                column.setPreferredWidth(800);
+            }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());           
 
@@ -377,7 +372,7 @@ public class DlgCariSnomed extends javax.swing.JDialog {
                     if(TCari.getText().trim().equals("")){
                         ps = koneksi.prepareStatement(
                             //"select * from master_snomed_ct order by master_snomed_ct.display asc limit " +cmbHlm.getSelectedItem().toString() + " ");
-                            "select * from master_snomed_ct order by master_snomed_ct.display asc");
+                            "select * from master_snomed_ct order by master_snomed_ct.display,master_snomed_ct.code_number,master_snomed_ct.display_indonesia asc");
 
                     }
                     else{
@@ -403,7 +398,7 @@ public class DlgCariSnomed extends javax.swing.JDialog {
                     rs = ps.executeQuery();
                     while (rs.next()) {
                         tabMode.addRow(new Object[]{
-                            rs.getString("system"),rs.getString("code"),rs.getString("display")
+                            rs.getString("code_number"),rs.getString("display"),rs.getString("code_system"),rs.getString("display_indonesia")
                        });
                     }
                     LCount.setText("" + tabMode.getRowCount());

@@ -45,7 +45,7 @@ public class DlgCariLoinc extends javax.swing.JDialog {
         initComponents();
         
         tabMode = new DefaultTableModel(null,new Object[]{
-            "Code Loinc","Category","Display Name","Components","Property","Timing","System","Scale","Method","Unit Of Measure","Loinc System"
+            "Code LOINC","Display Name","Loinc System","Display Indonesia"
         }){
             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
           };
@@ -54,31 +54,17 @@ public class DlgCariLoinc extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 11; i++) {
+        for (i = 0; i < 4; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(70);
             } else if (i == 1) {
-                column.setPreferredWidth(80);
-            } else if (i == 2) {
                 column.setPreferredWidth(800);
-            } else if (i == 3) {
-                column.setPreferredWidth(400);
-            } else if (i == 4) {
-                column.setPreferredWidth(130);
-            } else if (i == 5) {
-                column.setPreferredWidth(50);
-            } else if (i == 6) {
-                column.setPreferredWidth(180);
-            } else if (i == 7) {
-                column.setPreferredWidth(40);
-            } else if (i == 8) {
+            } else if (i == 2) {
                 column.setPreferredWidth(120);
-            } else if (i == 9) {
-                column.setPreferredWidth(100);
-            }  else if (i == 10) {
-                column.setPreferredWidth(300);
-            } 
+            } else if (i == 3) {
+                column.setPreferredWidth(800);
+            }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());           
 
@@ -413,9 +399,7 @@ public class DlgCariLoinc extends javax.swing.JDialog {
                     while (rs.next()) {
                         tabMode.addRow(new Object[]{
 //                            rs.getString("code_system"),rs.getString("code_number"),rs.getString("display")
-                            rs.getString("code_number"),rs.getString("kategori"),rs.getString("display"),rs.getString("component"),
-                            rs.getString("property"),rs.getString("timing"),rs.getString("system"),rs.getString("scale"),
-                            rs.getString("method"),rs.getString("unit_of_measure"),rs.getString("code_system")
+                            rs.getString("code_number"),rs.getString("display"),rs.getString("code_system"),rs.getString("display_indonesia")
                        });
                     }
                     LCount.setText("" + tabMode.getRowCount());

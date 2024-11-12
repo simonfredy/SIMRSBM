@@ -47,7 +47,7 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
     private PreparedStatement ps;
     private ResultSet rs;   
     private int i=0;
-    private String link="",json="",idpasien="",iddokter="",signa1="1",signa2="1";
+    private String link="",json="",idpasien="",signa1="1",signa2="1";
     private ApiSatuSehat api=new ApiSatuSehat();
     private HttpHeaders headers ;
     private HttpEntity requestEntity;
@@ -69,9 +69,10 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
         setSize(628,674);
 
         tabMode=new DefaultTableModel(null,new String[]{
-                "P","Tanggal Registrasi","No.Rawat","No.RM","Nama Pasien","No.KTP Pasien",
-                "ID Encounter","Kode Barang","KFA Display","ID Medication","Aturan Pakai",
-                "No.Resep","Tanggal&Jam Validasi","Tanggal&Jam Penyerahan","ID Medication Statement","No.Racik","Status"
+                "P","Tanggal Registrasi","No.Rawat","No.RM","Nama Pasien","No.KTP Pasien","Dokter Penanggung Jawab","No.KTP Praktisi",
+                "ID Encounter","KFA Code","KFA System","Kode Barang","KFA Display","Form Code","Form System","Form Display",
+                "Route Code","Route System","Route Display","Denominator Code","Denominator System","Waktu Penyerahan","Jumlah",
+                "ID Medication","Aturan Pakai","No.Resep","ID Medication Statement","No.Racik","Status"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
@@ -81,9 +82,12 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                 return a;
              }
              Class[] types = new Class[] {
-                 java.lang.Boolean.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,
-                 java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,
-                 java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class
+                 java.lang.Boolean.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,
+                 java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,
+                 java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,
+                 java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,
+                 java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class,
+                 java.lang.String.class,java.lang.String.class,java.lang.String.class,java.lang.String.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -96,7 +100,7 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 16; i++) {
+        for (i = 0; i < 29; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(20);
@@ -111,29 +115,52 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
             }else if(i==5){
                 column.setPreferredWidth(110);
             }else if(i==6){
-                column.setPreferredWidth(210);
+                column.setPreferredWidth(150);
             }else if(i==7){
                 column.setPreferredWidth(110);
             }else if(i==8){
                 column.setPreferredWidth(210);
             }else if(i==9){
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(80);
             }else if(i==10){
                 column.setPreferredWidth(200);
             }else if(i==11){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(85);
             }else if(i==12){
                 column.setPreferredWidth(150);
             }else if(i==13){
-//                column.setMinWidth(0);
-//                column.setMaxWidth(0);
-                column.setPreferredWidth(210);
+                column.setPreferredWidth(80);
             }else if(i==14){
-                column.setPreferredWidth(210);
+                column.setPreferredWidth(200);
             }else if(i==15){
+                column.setPreferredWidth(150);
+            }else if(i==16){
+                column.setPreferredWidth(80);
+            }else if(i==17){
+                column.setPreferredWidth(200);
+            }else if(i==18){
+                column.setPreferredWidth(150);
+            }else if(i==19){
+                column.setPreferredWidth(100);
+            }else if(i==20){
+                column.setPreferredWidth(150);
+            }else if(i==21){
+                column.setPreferredWidth(115);
+            }else if(i==22){
+                column.setPreferredWidth(45);
+            }else if(i==23){
+                column.setPreferredWidth(210);
+            }else if(i==24){
+                column.setPreferredWidth(160);
+            }else if(i==25){
+                column.setPreferredWidth(110);
+            }else if(i==26){
+                column.setPreferredWidth(210);
+            }else if(i==27){
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-//                column.setPreferredWidth(200);
+            }else if(i==28){
+                column.setPreferredWidth(50);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -388,7 +415,7 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-11-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -401,7 +428,7 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-11-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -473,16 +500,28 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>No.RM</b></td>"+
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Nama Pasien</b></td>"+
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>No.KTP Pasien</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Dokter Penanggung Jawab</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>No.KTP Praktisi</b></td>"+
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>ID Encounter</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>KFA Code</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>KFA System</b></td>"+
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kode Barang</b></td>"+
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>KFA Display</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Form Code</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Form System</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Form Display</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Route Code</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Route System</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Route Display</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Denominator Code</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Denominator System</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Waktu Penyerahan</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Jumlah</b></td>"+
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>ID Medication</b></td>"+
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Aturan Pakai</b></td>"+
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>No.Resep</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Tanggal & Jam Validasi</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Tanggal & Jam Penyerahan</b></td>"+
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>ID Medication Statement</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Status</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>No.Racik</b></td>"+
                     "</tr>"
                 );
                 for (i = 0; i < tabMode.getRowCount(); i++) {
@@ -503,6 +542,18 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                             "<td valign='top'>"+tbObat.getValueAt(i,13).toString()+"</td>"+
                             "<td valign='top'>"+tbObat.getValueAt(i,14).toString()+"</td>"+
                             "<td valign='top'>"+tbObat.getValueAt(i,15).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,16).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,17).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,18).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,19).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,20).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,21).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,22).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,23).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,24).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,25).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,26).toString()+"</td>"+
+                            "<td valign='top'>"+tbObat.getValueAt(i,27).toString()+"</td>"+
                         "</tr>");
                 }
                 LoadHTML.setText(
@@ -580,10 +631,10 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
 
     private void BtnKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimActionPerformed
         for(i=0;i<tbObat.getRowCount();i++){
-            if(tbObat.getValueAt(i,0).toString().equals("true")&&(!tbObat.getValueAt(i,5).toString().equals(""))&&tbObat.getValueAt(i,14).toString().equals("")){
+            if(tbObat.getValueAt(i,0).toString().equals("true")&&(!tbObat.getValueAt(i,5).toString().equals(""))&&(!tbObat.getValueAt(i,7).toString().equals(""))&&tbObat.getValueAt(i,26).toString().equals("")){
                 try {
                     idpasien=cekViaSatuSehat.tampilIDPasien(tbObat.getValueAt(i,5).toString());
-                    arrSplit = tbObat.getValueAt(i,10).toString().toLowerCase().split("x");
+                    arrSplit = tbObat.getValueAt(i,24).toString().toLowerCase().split("x");
                     signa1="1";
                     try {
                         if(!arrSplit[0].replaceAll("[^0-9.]+", "").equals("")){
@@ -599,27 +650,39 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                         }
                     } catch (Exception e) {
                         signa2="1";
-                    }  
-                    if(tbObat.getValueAt(i,14).toString().equals("")){
+                    } 
+                    if(tbObat.getValueAt(i,27).toString().equals("")){
                         try{
                             headers = new HttpHeaders();
                             headers.setContentType(MediaType.APPLICATION_JSON);
                             headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
                             json = "{" +
                                         "\"resourceType\": \"MedicationStatement\"," +
+                                        "\"identifier\": [" +
+                                            "{" +
+                                                "\"system\": \"http://sys-ids.kemkes.go.id/medicationstatement/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                "\"use\": \"official\"," +
+                                                "\"value\": \""+tbObat.getValueAt(i,25).toString()+"\"" +
+                                            "}," +
+                                            "{" +
+                                                "\"system\": \"http://sys-ids.kemkes.go.id/medicationstatement-item/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                "\"use\": \"official\"," +
+                                                "\"value\": \""+tbObat.getValueAt(i,11).toString()+"\"" +
+                                            "}" +
+                                        "]," +
                                         "\"status\": \"completed\"," +
                                         "\"category\": {" +
-                                                "\"coding\": [" +
-                                                    "{" +
-                                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/medication-statement-category\"," +
-                                                        "\"code\": \""+tbObat.getValueAt(i,16).toString().replaceAll("Ralan","outpatient")+"\"," +
-                                                        "\"display\": \""+tbObat.getValueAt(i,16).toString().replaceAll("Ralan","Outpatient")+"\"" +
-                                                    "}" +
-                                                "]" +
-                                            "}," +
+                                            "\"coding\": [" +
+                                                "{" +
+                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/medication-statement-category\"," +
+                                                    "\"code\": \""+tbObat.getValueAt(i,28).toString().replaceAll("Ralan","outpatient").replaceAll("Ranap","inpatient")+"\"," +
+                                                    "\"display\": \""+tbObat.getValueAt(i,28).toString().replaceAll("Ralan","Outpatient").replaceAll("Ranap","Inpatient")+"\"" +
+                                                "}" +
+                                            "]" +
+                                        "}," +
                                         "\"medicationReference\": {" +
-                                            "\"reference\": \"Medication/"+tbObat.getValueAt(i,9).toString()+"\"," +
-                                            "\"display\": \""+tbObat.getValueAt(i,8).toString()+"\"" +
+                                            "\"reference\": \"Medication/"+tbObat.getValueAt(i,23).toString()+"\"," +
+                                            "\"display\": \""+tbObat.getValueAt(i,12).toString()+"\"" +
                                         "}," +
                                         "\"subject\": {" +
                                             "\"reference\": \"Patient/"+idpasien+"\"," +
@@ -627,26 +690,40 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                                         "}," +
                                         "\"dosage\": [" +
                                             "{" +
-                                                "\"text\": \""+tbObat.getValueAt(i,10).toString()+"\"," +
+                                                "\"text\": \""+tbObat.getValueAt(i,24).toString()+"\"," +
                                                 "\"timing\": {" +
                                                     "\"repeat\": {" +
                                                         "\"frequency\": "+signa2+"," +
-                                                        "\"period\":  1," +
-                                                        "\"periodMax\":  1," +
-                                                        "\"periodUnit\": \"h\"" +
+                                                        "\"period\": 1," +
+                                                        "\"periodUnit\": \"d\"" +
                                                     "}" +
-                                                "}" +
-                                            "}"+
+                                                "}," +
+                                                "\"route\": {" +
+                                                    "\"coding\": [" +
+                                                        "{" +
+                                                            "\"system\": \""+tbObat.getValueAt(i,17).toString()+"\"," +
+                                                            "\"code\": \""+tbObat.getValueAt(i,16).toString()+"\"," +
+                                                            "\"display\": \""+tbObat.getValueAt(i,18).toString()+"\"" +
+                                                        "}" +
+                                                    "]" +
+                                                "}," +
+                                                "\"doseAndRate\": [" +
+                                                    "{" +
+                                                        "\"doseQuantity\": {" +
+                                                            "\"value\": "+signa1+"," +
+                                                            "\"unit\": \""+tbObat.getValueAt(i,19).toString()+"\"," +
+                                                            "\"system\": \""+tbObat.getValueAt(i,20).toString()+"\"," +
+                                                            "\"code\": \""+tbObat.getValueAt(i,19).toString()+"\"" +
+                                                        "}" +
+                                                    "}" +
+                                                "]" +
+                                            "}" +
                                         "]," +
-                                        "\"effectiveDateTime\": \""+tbObat.getValueAt(i,12).toString().replaceAll(" ","T")+"+07:00\"," +
-                                        "\"dateAsserted\": \""+tbObat.getValueAt(i,13).toString().replaceAll(" ","T")+"+07:00\"," +
-                                        "\"informationSource\": {" +
-                                            "\"reference\": \"Patient/"+idpasien+"\"," +
-                                            "\"display\": \""+tbObat.getValueAt(i,4).toString()+"\"" +
-                                        "}," +
+                                        "\"dateAsserted\": \""+tbObat.getValueAt(i,21).toString().replaceAll(" ","T")+"+07:00\"," +
                                         "\"context\": {" +
-                                            "\"reference\": \"Encounter/"+tbObat.getValueAt(i,6).toString()+"\"" +
-                                        "}" +
+                                            "\"reference\": \"Encounter/"+tbObat.getValueAt(i,8).toString()+"\"" +
+                                        "}," +
+                                        "\"note\": [{\"text\": \"Obat sudah diserahkan ke pasien\"}]" +
                                     "}";
                             System.out.println("URL : "+link+"/MedicationStatement");
                             System.out.println("Request JSON : "+json);
@@ -656,12 +733,102 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                             root = mapper.readTree(json);
                             response = root.path("id");
                             if(!response.asText().equals("")){
-                                if(Sequel.menyimpantf2("satu_sehat_medicationstatement","?,?,?,?,?,?,?,?","Obat/Alkes",8,new String[]{
-                                    tbObat.getValueAt(i,2).toString(),tbObat.getValueAt(i,11).toString(),tbObat.getValueAt(i,7).toString(),
-                                    tbObat.getValueAt(i,12).toString().substring(0,10),tbObat.getValueAt(i,12).toString().substring(11),
-                                    tbObat.getValueAt(i,13).toString().substring(0,10),tbObat.getValueAt(i,13).toString().substring(11),response.asText()
+                                if(Sequel.menyimpantf2("satu_sehat_medicationstatement","?,?,?","Obat/Alkes",3,new String[]{
+                                    tbObat.getValueAt(i,25).toString(),tbObat.getValueAt(i,11).toString(),response.asText()
                                 })==true){
-                                    tbObat.setValueAt(response.asText(),i,14);
+                                    tbObat.setValueAt(response.asText(),i,26);
+                                    tbObat.setValueAt(false,i,0);
+                                }
+                            }
+                        }catch(Exception e){
+                            System.out.println("Notifikasi Bridging : "+e);
+                        }
+                    }else if(!tbObat.getValueAt(i,27).toString().equals("")){
+                        try{
+                            headers = new HttpHeaders();
+                            headers.setContentType(MediaType.APPLICATION_JSON);
+                            headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                            json = "{" +
+                                        "\"resourceType\": \"MedicationStatement\"," +
+                                        "\"identifier\": [" +
+                                            "{" +
+                                                "\"system\": \"http://sys-ids.kemkes.go.id/medicationstatement/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                "\"use\": \"official\"," +
+                                                "\"value\": \""+tbObat.getValueAt(i,25).toString()+"\"" +
+                                            "}," +
+                                            "{" +
+                                                "\"system\": \"http://sys-ids.kemkes.go.id/medicationstatement-item/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                "\"use\": \"official\"," +
+                                                "\"value\": \""+tbObat.getValueAt(i,11).toString()+"\"" +
+                                            "}" +
+                                        "]," +
+                                        "\"status\": \"completed\"," +
+                                        "\"category\": {" +
+                                            "\"coding\": [" +
+                                                "{" +
+                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/medication-statement-category\"," +
+                                                    "\"code\": \""+tbObat.getValueAt(i,28).toString().replaceAll("Ralan","outpatient").replaceAll("Ranap","inpatient")+"\"," +
+                                                    "\"display\": \""+tbObat.getValueAt(i,28).toString().replaceAll("Ralan","Outpatient").replaceAll("Ranap","Inpatient")+"\"" +
+                                                "}" +
+                                            "]" +
+                                        "}," +
+                                        "\"medicationReference\": {" +
+                                            "\"reference\": \"Medication/"+tbObat.getValueAt(i,23).toString()+"\"," +
+                                            "\"display\": \""+tbObat.getValueAt(i,12).toString()+"\"" +
+                                        "}," +
+                                        "\"subject\": {" +
+                                            "\"reference\": \"Patient/"+idpasien+"\"," +
+                                            "\"display\": \""+tbObat.getValueAt(i,4).toString()+"\"" +
+                                        "}," +
+                                        "\"dosage\": [" +
+                                            "{" +
+                                                "\"text\": \""+tbObat.getValueAt(i,24).toString()+"\"," +
+                                                "\"timing\": {" +
+                                                    "\"repeat\": {" +
+                                                        "\"frequency\": "+signa2+"," +
+                                                        "\"period\": 1," +
+                                                        "\"periodUnit\": \"d\"" +
+                                                    "}" +
+                                                "}," +
+                                                "\"route\": {" +
+                                                    "\"coding\": [" +
+                                                        "{" +
+                                                            "\"system\": \""+tbObat.getValueAt(i,17).toString()+"\"," +
+                                                            "\"code\": \""+tbObat.getValueAt(i,16).toString()+"\"," +
+                                                            "\"display\": \""+tbObat.getValueAt(i,18).toString()+"\"" +
+                                                        "}" +
+                                                    "]" +
+                                                "}," +
+                                                "\"doseAndRate\": [" +
+                                                    "{" +
+                                                        "\"doseQuantity\": {" +
+                                                            "\"value\": "+signa1+"," +
+                                                            "\"unit\": \""+tbObat.getValueAt(i,19).toString()+"\"," +
+                                                            "\"system\": \""+tbObat.getValueAt(i,20).toString()+"\"," +
+                                                            "\"code\": \""+tbObat.getValueAt(i,19).toString()+"\"" +
+                                                        "}" +
+                                                    "}" +
+                                                "]" +
+                                            "}" +
+                                        "]," +
+                                        "\"dateAsserted\": \""+tbObat.getValueAt(i,21).toString().replaceAll(" ","T")+"+07:00\"," +
+                                        "\"context\": {" +
+                                            "\"reference\": \"Encounter/"+tbObat.getValueAt(i,8).toString()+"\"" +
+                                        "}," +
+                                        "\"note\": [{\"text\": \"Obat sudah diserahkan ke pasien\"}]" +
+                                    "}";
+                            System.out.println("URL : "+link+"/MedicationStatement");
+                            System.out.println("Request JSON : "+json);
+                            requestEntity = new HttpEntity(json,headers);
+                            json=api.getRest().exchange(link+"/MedicationStatement", HttpMethod.POST, requestEntity, String.class).getBody();
+                            System.out.println("Result JSON : "+json);
+                            root = mapper.readTree(json);
+                            response = root.path("id");
+                            if(!response.asText().equals("")){
+                                if(Sequel.menyimpantf2("satu_sehat_medicationstatement_racikan","?,?,?,?","Obat/Alkes",4,new String[]{
+                                    tbObat.getValueAt(i,25).toString(),tbObat.getValueAt(i,11).toString(),tbObat.getValueAt(i,11).toString(),response.asText()
+                                })==true){
+                                    tbObat.setValueAt(response.asText(),i,26);
                                     tbObat.setValueAt(false,i,0);
                                 }
                             }
@@ -690,10 +857,10 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
         for(i=0;i<tbObat.getRowCount();i++){
-            if(tbObat.getValueAt(i,0).toString().equals("true")&&(!tbObat.getValueAt(i,5).toString().equals(""))&&tbObat.getValueAt(i,14).toString().equals("")){
+            if(tbObat.getValueAt(i,0).toString().equals("true")&&(!tbObat.getValueAt(i,5).toString().equals(""))&&(!tbObat.getValueAt(i,7).toString().equals(""))&&(!tbObat.getValueAt(i,26).toString().equals(""))){
                 try {
                     idpasien=cekViaSatuSehat.tampilIDPasien(tbObat.getValueAt(i,5).toString());
-                    arrSplit = tbObat.getValueAt(i,10).toString().toLowerCase().split("x");
+                    arrSplit = tbObat.getValueAt(i,24).toString().toLowerCase().split("x");
                     signa1="1";
                     try {
                         if(!arrSplit[0].replaceAll("[^0-9.]+", "").equals("")){
@@ -710,26 +877,39 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                     } catch (Exception e) {
                         signa2="1";
                     } 
-                    if(tbObat.getValueAt(i,14).toString().equals("")){
+                    if(tbObat.getValueAt(i,27).toString().equals("")){
                         try{
                             headers = new HttpHeaders();
                             headers.setContentType(MediaType.APPLICATION_JSON);
                             headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
                             json = "{" +
                                         "\"resourceType\": \"MedicationStatement\"," +
+                                        "\"id\": \""+tbObat.getValueAt(i,26).toString()+"\"," +
+                                        "\"identifier\": [" +
+                                            "{" +
+                                                "\"system\": \"http://sys-ids.kemkes.go.id/medicationstatement/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                "\"use\": \"official\"," +
+                                                "\"value\": \""+tbObat.getValueAt(i,25).toString()+"\"" +
+                                            "}," +
+                                            "{" +
+                                                "\"system\": \"http://sys-ids.kemkes.go.id/medicationstatement-item/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                "\"use\": \"official\"," +
+                                                "\"value\": \""+tbObat.getValueAt(i,11).toString()+"\"" +
+                                            "}" +
+                                        "]," +
                                         "\"status\": \"completed\"," +
                                         "\"category\": {" +
-                                                "\"coding\": [" +
-                                                    "{" +
-                                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/medication-statement-category\"," +
-                                                        "\"code\": \""+tbObat.getValueAt(i,16).toString().replaceAll("Ralan","outpatient")+"\"," +
-                                                        "\"display\": \""+tbObat.getValueAt(i,16).toString().replaceAll("Ralan","Outpatient")+"\"" +
-                                                    "}" +
-                                                "]" +
-                                            "}," +
+                                            "\"coding\": [" +
+                                                "{" +
+                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/medication-statement-category\"," +
+                                                    "\"code\": \""+tbObat.getValueAt(i,28).toString().replaceAll("Ralan","outpatient").replaceAll("Ranap","inpatient")+"\"," +
+                                                    "\"display\": \""+tbObat.getValueAt(i,28).toString().replaceAll("Ralan","Outpatient").replaceAll("Ranap","Inpatient")+"\"" +
+                                                "}" +
+                                            "]" +
+                                        "}," +
                                         "\"medicationReference\": {" +
-                                            "\"reference\": \"Medication/"+tbObat.getValueAt(i,9).toString()+"\"," +
-                                            "\"display\": \""+tbObat.getValueAt(i,8).toString()+"\"" +
+                                            "\"reference\": \"Medication/"+tbObat.getValueAt(i,23).toString()+"\"," +
+                                            "\"display\": \""+tbObat.getValueAt(i,12).toString()+"\"" +
                                         "}," +
                                         "\"subject\": {" +
                                             "\"reference\": \"Patient/"+idpasien+"\"," +
@@ -737,31 +917,129 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                                         "}," +
                                         "\"dosage\": [" +
                                             "{" +
-                                                "\"text\": \""+tbObat.getValueAt(i,10).toString()+"\"," +
+                                                "\"text\": \""+tbObat.getValueAt(i,24).toString()+"\"," +
                                                 "\"timing\": {" +
                                                     "\"repeat\": {" +
                                                         "\"frequency\": "+signa2+"," +
-                                                        "\"period\":  1," +
-                                                        "\"periodMax\":  1," +
-                                                        "\"periodUnit\": \"h\"" +
+                                                        "\"period\": 1," +
+                                                        "\"periodUnit\": \"d\"" +
                                                     "}" +
-                                                "}" +
-                                            "}"+
+                                                "}," +
+                                                "\"route\": {" +
+                                                    "\"coding\": [" +
+                                                        "{" +
+                                                            "\"system\": \""+tbObat.getValueAt(i,17).toString()+"\"," +
+                                                            "\"code\": \""+tbObat.getValueAt(i,16).toString()+"\"," +
+                                                            "\"display\": \""+tbObat.getValueAt(i,18).toString()+"\"" +
+                                                        "}" +
+                                                    "]" +
+                                                "}," +
+                                                "\"doseAndRate\": [" +
+                                                    "{" +
+                                                        "\"doseQuantity\": {" +
+                                                            "\"value\": "+signa1+"," +
+                                                            "\"unit\": \""+tbObat.getValueAt(i,19).toString()+"\"," +
+                                                            "\"system\": \""+tbObat.getValueAt(i,20).toString()+"\"," +
+                                                            "\"code\": \""+tbObat.getValueAt(i,19).toString()+"\"" +
+                                                        "}" +
+                                                    "}" +
+                                                "]" +
+                                            "}" +
                                         "]," +
-                                        "\"effectiveDateTime\": \""+tbObat.getValueAt(i,12).toString().replaceAll(" ","T")+"+07:00\"," +
-                                        "\"dateAsserted\": \""+tbObat.getValueAt(i,13).toString().replaceAll(" ","T")+"+07:00\"," +
-                                        "\"informationSource\": {" +
+                                        "\"dateAsserted\": \""+tbObat.getValueAt(i,21).toString().replaceAll(" ","T")+"+07:00\"," +
+                                        "\"context\": {" +
+                                            "\"reference\": \"Encounter/"+tbObat.getValueAt(i,8).toString()+"\"" +
+                                        "}," +
+                                        "\"note\": [{\"text\": \"Sudah dilakukan proses telaah obat oleh petugas dan obat sudah diserahkan ke pasien\"}]" +
+                                    "}";
+                            System.out.println("URL : "+link+"/MedicationStatement/"+tbObat.getValueAt(i,26).toString());
+                            System.out.println("Request JSON : "+json);
+                            requestEntity = new HttpEntity(json,headers);
+                            json=api.getRest().exchange(link+"/MedicationStatement/"+tbObat.getValueAt(i,26).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
+                            System.out.println("Result JSON : "+json);
+                            tbObat.setValueAt(false,i,0);
+                        }catch(Exception e){
+                            System.out.println("Notifikasi Bridging : "+e);
+                        }
+                    }else if(!tbObat.getValueAt(i,27).toString().equals("")){
+                        try{
+                            headers = new HttpHeaders();
+                            headers.setContentType(MediaType.APPLICATION_JSON);
+                            headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                            json = "{" +
+                                        "\"resourceType\": \"MedicationStatement\"," +
+                                        "\"id\": \""+tbObat.getValueAt(i,26).toString()+"\"," +
+                                        "\"identifier\": [" +
+                                            "{" +
+                                                "\"system\": \"http://sys-ids.kemkes.go.id/medicationstatement/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                "\"use\": \"official\"," +
+                                                "\"value\": \""+tbObat.getValueAt(i,25).toString()+"\"" +
+                                            "}," +
+                                            "{" +
+                                                "\"system\": \"http://sys-ids.kemkes.go.id/medicationstatement-item/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                "\"use\": \"official\"," +
+                                                "\"value\": \""+tbObat.getValueAt(i,11).toString()+"\"" +
+                                            "}" +
+                                        "]," +
+                                        "\"status\": \"completed\"," +
+                                        "\"category\": {" +
+                                            "\"coding\": [" +
+                                                "{" +
+                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/medication-statement-category\"," +
+                                                    "\"code\": \""+tbObat.getValueAt(i,28).toString().replaceAll("Ralan","outpatient").replaceAll("Ranap","inpatient")+"\"," +
+                                                    "\"display\": \""+tbObat.getValueAt(i,28).toString().replaceAll("Ralan","Outpatient").replaceAll("Ranap","Inpatient")+"\"" +
+                                                "}" +
+                                            "]" +
+                                        "}," +
+                                        "\"medicationReference\": {" +
+                                            "\"reference\": \"Medication/"+tbObat.getValueAt(i,23).toString()+"\"," +
+                                            "\"display\": \""+tbObat.getValueAt(i,12).toString()+"\"" +
+                                        "}," +
+                                        "\"subject\": {" +
                                             "\"reference\": \"Patient/"+idpasien+"\"," +
                                             "\"display\": \""+tbObat.getValueAt(i,4).toString()+"\"" +
                                         "}," +
+                                        "\"dosage\": [" +
+                                            "{" +
+                                                "\"text\": \""+tbObat.getValueAt(i,24).toString()+"\"," +
+                                                "\"timing\": {" +
+                                                    "\"repeat\": {" +
+                                                        "\"frequency\": "+signa2+"," +
+                                                        "\"period\": 1," +
+                                                        "\"periodUnit\": \"d\"" +
+                                                    "}" +
+                                                "}," +
+                                                "\"route\": {" +
+                                                    "\"coding\": [" +
+                                                        "{" +
+                                                            "\"system\": \""+tbObat.getValueAt(i,17).toString()+"\"," +
+                                                            "\"code\": \""+tbObat.getValueAt(i,16).toString()+"\"," +
+                                                            "\"display\": \""+tbObat.getValueAt(i,18).toString()+"\"" +
+                                                        "}" +
+                                                    "]" +
+                                                "}," +
+                                                "\"doseAndRate\": [" +
+                                                    "{" +
+                                                        "\"doseQuantity\": {" +
+                                                            "\"value\": "+signa1+"," +
+                                                            "\"unit\": \""+tbObat.getValueAt(i,19).toString()+"\"," +
+                                                            "\"system\": \""+tbObat.getValueAt(i,20).toString()+"\"," +
+                                                            "\"code\": \""+tbObat.getValueAt(i,19).toString()+"\"" +
+                                                        "}" +
+                                                    "}" +
+                                                "]" +
+                                            "}" +
+                                        "]," +
+                                        "\"dateAsserted\": \""+tbObat.getValueAt(i,21).toString().replaceAll(" ","T")+"+07:00\"," +
                                         "\"context\": {" +
-                                            "\"reference\": \"Encounter/"+tbObat.getValueAt(i,6).toString()+"\"" +
-                                        "}" +
+                                            "\"reference\": \"Encounter/"+tbObat.getValueAt(i,8).toString()+"\"" +
+                                        "}," +
+                                        "\"note\": [{\"text\": \"Sudah dilakukan proses telaah obat oleh petugas dan obat sudah diserahkan ke pasien\"}]" +
                                     "}";
-                            System.out.println("URL : "+link+"/MedicationStatement/"+tbObat.getValueAt(i,9).toString());
+                            System.out.println("URL : "+link+"/MedicationStatement/"+tbObat.getValueAt(i,26).toString());
                             System.out.println("Request JSON : "+json);
                             requestEntity = new HttpEntity(json,headers);
-                            json=api.getRest().exchange(link+"/MedicationStatement/"+tbObat.getValueAt(i,9).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
+                            json=api.getRest().exchange(link+"/MedicationStatement/"+tbObat.getValueAt(i,26).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
                             System.out.println("Result JSON : "+json);
                             tbObat.setValueAt(false,i,0);
                         }catch(Exception e){
@@ -837,70 +1115,21 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
         try{
             ps=koneksi.prepareStatement(
                    "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,"+
-                   "satu_sehat_encounter.id_encounter,resep_dokter.kode_brng,satu_sehat_mapping_obat.obat_display,satu_sehat_medication.id_medication,"+
-                   "resep_obat.tgl_peresepan,resep_obat.jam_peresepan,resep_obat.tgl_penyerahan,resep_obat.jam_penyerahan,"+
+                   "pegawai.nama,pegawai.no_ktp as ktppraktisi,satu_sehat_encounter.id_encounter,satu_sehat_mapping_obat.obat_code,satu_sehat_mapping_obat.obat_system,"+
+                   "resep_dokter.kode_brng,satu_sehat_mapping_obat.obat_display,satu_sehat_mapping_obat.form_code,satu_sehat_mapping_obat.form_system,satu_sehat_mapping_obat.form_display,"+
+                   "satu_sehat_mapping_obat.route_code,satu_sehat_mapping_obat.route_system,satu_sehat_mapping_obat.route_display,satu_sehat_mapping_obat.denominator_code,"+
+                   "satu_sehat_mapping_obat.denominator_system,resep_obat.tgl_penyerahan,resep_obat.jam_penyerahan,resep_dokter.jml,satu_sehat_medication.id_medication,"+
                    "resep_dokter.aturan_pakai,resep_dokter.no_resep,ifnull(satu_sehat_medicationstatement.id_medicationstatement,'') as id_medicationstatement "+
                    "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                    "inner join resep_obat on reg_periksa.no_rawat=resep_obat.no_rawat "+
+                   "inner join pegawai on resep_obat.kd_dokter=pegawai.nik "+
                    "inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat "+
                    "inner join resep_dokter on resep_dokter.no_resep=resep_obat.no_resep "+
                    "inner join satu_sehat_mapping_obat on satu_sehat_mapping_obat.kode_brng=resep_dokter.kode_brng "+
                    "inner join satu_sehat_medication on satu_sehat_medication.kode_brng=satu_sehat_mapping_obat.kode_brng "+
                    "inner join nota_jalan on nota_jalan.no_rawat=reg_periksa.no_rawat "+
                    "left join satu_sehat_medicationstatement on satu_sehat_medicationstatement.no_resep=resep_dokter.no_resep and satu_sehat_medicationstatement.kode_brng=resep_dokter.kode_brng "+
-                   "where nota_jalan.tanggal between ? and ? "+
-                   (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
-                   "pasien.nm_pasien like ? or pasien.no_ktp like ? or satu_sehat_mapping_obat.kode_brng like ? or satu_sehat_mapping_obat.obat_display like ?) "));
-            try {
-                ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
-                ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
-                if(!TCari.getText().equals("")){
-                    ps.setString(3,"%"+TCari.getText()+"%");
-                    ps.setString(4,"%"+TCari.getText()+"%");
-                    ps.setString(5,"%"+TCari.getText()+"%");
-                    ps.setString(6,"%"+TCari.getText()+"%");
-                    ps.setString(7,"%"+TCari.getText()+"%");
-                    ps.setString(8,"%"+TCari.getText()+"%");
-                }
-                rs=ps.executeQuery();
-                while(rs.next()){
-                    tabMode.addRow(new Object[]{
-                        false,rs.getString("tgl_registrasi")+" "+rs.getString("jam_reg"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("no_ktp"),
-                        rs.getString("id_encounter"),rs.getString("kode_brng"),rs.getString("obat_display"),rs.getString("id_medication"),
-                        rs.getString("aturan_pakai"),rs.getString("no_resep"),rs.getString("tgl_peresepan")+" "+rs.getString("jam_peresepan"),rs.getString("tgl_penyerahan")+" "+rs.getString("jam_penyerahan"),
-                        rs.getString("id_medicationstatement"),"","Ralan"
-                    });
-                }
-            } catch (Exception e) {
-                System.out.println("Notif : "+e);
-            } finally{
-                if(rs!=null){
-                    rs.close();
-                }
-                if(ps!=null){
-                    ps.close();
-                }
-            }
-            
-            ps=koneksi.prepareStatement(
-                   "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,"+
-                   "pegawai.nama,pegawai.no_ktp as ktppraktisi,satu_sehat_encounter.id_encounter,satu_sehat_mapping_obat.obat_code,satu_sehat_mapping_obat.obat_system,"+
-                   "resep_dokter_racikan_detail.kode_brng,satu_sehat_mapping_obat.obat_display,satu_sehat_mapping_obat.form_code,satu_sehat_mapping_obat.form_system,satu_sehat_mapping_obat.form_display,"+
-                   "satu_sehat_mapping_obat.route_code,satu_sehat_mapping_obat.route_system,satu_sehat_mapping_obat.route_display,satu_sehat_mapping_obat.denominator_code,"+
-                   "satu_sehat_mapping_obat.denominator_system,resep_obat.tgl_peresepan,resep_obat.jam_peresepan,resep_dokter_racikan_detail.jml,satu_sehat_medication.id_medication,"+
-                   "resep_dokter_racikan.aturan_pakai,resep_dokter_racikan.no_resep,ifnull(satu_sehat_medicationrequest_racikan.id_medicationrequest,'') as id_medicationrequest, "+
-                   "resep_dokter_racikan_detail.no_racik from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                   "inner join resep_obat on reg_periksa.no_rawat=resep_obat.no_rawat "+
-                   "inner join pegawai on resep_obat.kd_dokter=pegawai.nik "+
-                   "inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat "+
-                   "inner join resep_dokter_racikan on resep_dokter_racikan.no_resep=resep_obat.no_resep "+
-                   "inner join resep_dokter_racikan_detail on resep_dokter_racikan_detail.no_resep=resep_dokter_racikan.no_resep and resep_dokter_racikan_detail.no_racik=resep_dokter_racikan.no_racik "+
-                   "inner join satu_sehat_mapping_obat on satu_sehat_mapping_obat.kode_brng=resep_dokter_racikan_detail.kode_brng "+
-                   "inner join satu_sehat_medication on satu_sehat_medication.kode_brng=satu_sehat_mapping_obat.kode_brng "+
-                   "inner join nota_jalan on nota_jalan.no_rawat=reg_periksa.no_rawat "+
-                   "left join satu_sehat_medicationrequest_racikan on satu_sehat_medicationrequest_racikan.no_resep=resep_dokter_racikan_detail.no_resep and "+
-                   "satu_sehat_medicationrequest_racikan.kode_brng=resep_dokter_racikan_detail.kode_brng and satu_sehat_medicationrequest_racikan.no_racik=resep_dokter_racikan_detail.no_racik "+
-                   "where nota_jalan.tanggal between ? and ? "+
+                   "where resep_obat.tgl_penyerahan<>'0000-00-00' and nota_jalan.tanggal between ? and ? "+
                    (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                    "pasien.nm_pasien like ? or pasien.no_ktp like ? or satu_sehat_mapping_obat.kode_brng like ? or satu_sehat_mapping_obat.obat_display like ?) "));
             try {
@@ -920,8 +1149,59 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                         false,rs.getString("tgl_registrasi")+" "+rs.getString("jam_reg"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("no_ktp"),
                         rs.getString("nama"),rs.getString("ktppraktisi"),rs.getString("id_encounter"),rs.getString("obat_code"),rs.getString("obat_system"),rs.getString("kode_brng"),
                         rs.getString("obat_display"),rs.getString("form_code"),rs.getString("form_system"),rs.getString("form_display"),rs.getString("route_code"),rs.getString("route_system"),
-                        rs.getString("route_display"),rs.getString("denominator_code"),rs.getString("denominator_system"),rs.getString("tgl_peresepan")+" "+rs.getString("jam_peresepan"),
-                        rs.getString("jml"),rs.getString("id_medication"),rs.getString("aturan_pakai"),rs.getString("no_resep"),rs.getString("id_medicationrequest"),rs.getString("no_racik"),"Ralan"
+                        rs.getString("route_display"),rs.getString("denominator_code"),rs.getString("denominator_system"),rs.getString("tgl_penyerahan")+" "+rs.getString("jam_penyerahan"),
+                        rs.getString("jml"),rs.getString("id_medication"),rs.getString("aturan_pakai"),rs.getString("no_resep"),rs.getString("id_medicationstatement"),"","Ralan"
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps!=null){
+                    ps.close();
+                }
+            }
+            
+            ps=koneksi.prepareStatement(
+                   "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,"+
+                   "pegawai.nama,pegawai.no_ktp as ktppraktisi,satu_sehat_encounter.id_encounter,satu_sehat_mapping_obat.obat_code,satu_sehat_mapping_obat.obat_system,"+
+                   "resep_dokter.kode_brng,satu_sehat_mapping_obat.obat_display,satu_sehat_mapping_obat.form_code,satu_sehat_mapping_obat.form_system,satu_sehat_mapping_obat.form_display,"+
+                   "satu_sehat_mapping_obat.route_code,satu_sehat_mapping_obat.route_system,satu_sehat_mapping_obat.route_display,satu_sehat_mapping_obat.denominator_code,"+
+                   "satu_sehat_mapping_obat.denominator_system,resep_obat.tgl_penyerahan,resep_obat.jam_penyerahan,resep_dokter.jml,satu_sehat_medication.id_medication,"+
+                   "resep_dokter.aturan_pakai,resep_dokter.no_resep,ifnull(satu_sehat_medicationstatement.id_medicationstatement,'') as id_medicationstatement "+
+                   "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                   "inner join resep_obat on reg_periksa.no_rawat=resep_obat.no_rawat "+
+                   "inner join pegawai on resep_obat.kd_dokter=pegawai.nik "+
+                   "inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat "+
+                   "inner join resep_dokter on resep_dokter.no_resep=resep_obat.no_resep "+
+                   "inner join satu_sehat_mapping_obat on satu_sehat_mapping_obat.kode_brng=resep_dokter.kode_brng "+
+                   "inner join satu_sehat_medication on satu_sehat_medication.kode_brng=satu_sehat_mapping_obat.kode_brng "+
+                   "inner join nota_inap on nota_inap.no_rawat=reg_periksa.no_rawat "+
+                   "left join satu_sehat_medicationstatement on satu_sehat_medicationstatement.no_resep=resep_dokter.no_resep and satu_sehat_medicationstatement.kode_brng=resep_dokter.kode_brng "+
+                   "where resep_obat.tgl_penyerahan<>'0000-00-00' and nota_inap.tanggal between ? and ? "+
+                   (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
+                   "pasien.nm_pasien like ? or pasien.no_ktp like ? or satu_sehat_mapping_obat.kode_brng like ? or satu_sehat_mapping_obat.obat_display like ?) "));
+            try {
+                ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
+                ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
+                if(!TCari.getText().equals("")){
+                    ps.setString(3,"%"+TCari.getText()+"%");
+                    ps.setString(4,"%"+TCari.getText()+"%");
+                    ps.setString(5,"%"+TCari.getText()+"%");
+                    ps.setString(6,"%"+TCari.getText()+"%");
+                    ps.setString(7,"%"+TCari.getText()+"%");
+                    ps.setString(8,"%"+TCari.getText()+"%");
+                }
+                rs=ps.executeQuery();
+                while(rs.next()){
+                    tabMode.addRow(new Object[]{
+                        false,rs.getString("tgl_registrasi")+" "+rs.getString("jam_reg"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("no_ktp"),
+                        rs.getString("nama"),rs.getString("ktppraktisi"),rs.getString("id_encounter"),rs.getString("obat_code"),rs.getString("obat_system"),rs.getString("kode_brng"),
+                        rs.getString("obat_display"),rs.getString("form_code"),rs.getString("form_system"),rs.getString("form_display"),rs.getString("route_code"),rs.getString("route_system"),
+                        rs.getString("route_display"),rs.getString("denominator_code"),rs.getString("denominator_system"),rs.getString("tgl_penyerahan")+" "+rs.getString("jam_penyerahan"),
+                        rs.getString("jml"),rs.getString("id_medication"),rs.getString("aturan_pakai"),rs.getString("no_resep"),rs.getString("id_medicationstatement"),"","Ranap"
                     });
                 }
             } catch (Exception e) {
@@ -940,8 +1220,61 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                    "pegawai.nama,pegawai.no_ktp as ktppraktisi,satu_sehat_encounter.id_encounter,satu_sehat_mapping_obat.obat_code,satu_sehat_mapping_obat.obat_system,"+
                    "resep_dokter_racikan_detail.kode_brng,satu_sehat_mapping_obat.obat_display,satu_sehat_mapping_obat.form_code,satu_sehat_mapping_obat.form_system,satu_sehat_mapping_obat.form_display,"+
                    "satu_sehat_mapping_obat.route_code,satu_sehat_mapping_obat.route_system,satu_sehat_mapping_obat.route_display,satu_sehat_mapping_obat.denominator_code,"+
-                   "satu_sehat_mapping_obat.denominator_system,resep_obat.tgl_peresepan,resep_obat.jam_peresepan,resep_dokter_racikan_detail.jml,satu_sehat_medication.id_medication,"+
-                   "resep_dokter_racikan.aturan_pakai,resep_dokter_racikan.no_resep,ifnull(satu_sehat_medicationrequest_racikan.id_medicationrequest,'') as id_medicationrequest, "+
+                   "satu_sehat_mapping_obat.denominator_system,resep_obat.tgl_penyerahan,resep_obat.jam_penyerahan,resep_dokter_racikan_detail.jml,satu_sehat_medication.id_medication,"+
+                   "resep_dokter_racikan.aturan_pakai,resep_dokter_racikan.no_resep,ifnull(satu_sehat_medicationstatement_racikan.id_medicationstatement,'') as id_medicationstatement, "+
+                   "resep_dokter_racikan_detail.no_racik from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                   "inner join resep_obat on reg_periksa.no_rawat=resep_obat.no_rawat "+
+                   "inner join pegawai on resep_obat.kd_dokter=pegawai.nik "+
+                   "inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat "+
+                   "inner join resep_dokter_racikan on resep_dokter_racikan.no_resep=resep_obat.no_resep "+
+                   "inner join resep_dokter_racikan_detail on resep_dokter_racikan_detail.no_resep=resep_dokter_racikan.no_resep and resep_dokter_racikan_detail.no_racik=resep_dokter_racikan.no_racik "+
+                   "inner join satu_sehat_mapping_obat on satu_sehat_mapping_obat.kode_brng=resep_dokter_racikan_detail.kode_brng "+
+                   "inner join satu_sehat_medication on satu_sehat_medication.kode_brng=satu_sehat_mapping_obat.kode_brng "+
+                   "inner join nota_jalan on nota_jalan.no_rawat=reg_periksa.no_rawat "+
+                   "left join satu_sehat_medicationstatement_racikan on satu_sehat_medicationstatement_racikan.no_resep=resep_dokter_racikan_detail.no_resep and "+
+                   "satu_sehat_medicationstatement_racikan.kode_brng=resep_dokter_racikan_detail.kode_brng and satu_sehat_medicationstatement_racikan.no_racik=resep_dokter_racikan_detail.no_racik "+
+                   "where resep_obat.tgl_penyerahan<>'0000-00-00' and nota_jalan.tanggal between ? and ? "+
+                   (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
+                   "pasien.nm_pasien like ? or pasien.no_ktp like ? or satu_sehat_mapping_obat.kode_brng like ? or satu_sehat_mapping_obat.obat_display like ?) "));
+            try {
+                ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
+                ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
+                if(!TCari.getText().equals("")){
+                    ps.setString(3,"%"+TCari.getText()+"%");
+                    ps.setString(4,"%"+TCari.getText()+"%");
+                    ps.setString(5,"%"+TCari.getText()+"%");
+                    ps.setString(6,"%"+TCari.getText()+"%");
+                    ps.setString(7,"%"+TCari.getText()+"%");
+                    ps.setString(8,"%"+TCari.getText()+"%");
+                }
+                rs=ps.executeQuery();
+                while(rs.next()){
+                    tabMode.addRow(new Object[]{
+                        false,rs.getString("tgl_registrasi")+" "+rs.getString("jam_reg"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("no_ktp"),
+                        rs.getString("nama"),rs.getString("ktppraktisi"),rs.getString("id_encounter"),rs.getString("obat_code"),rs.getString("obat_system"),rs.getString("kode_brng"),
+                        rs.getString("obat_display"),rs.getString("form_code"),rs.getString("form_system"),rs.getString("form_display"),rs.getString("route_code"),rs.getString("route_system"),
+                        rs.getString("route_display"),rs.getString("denominator_code"),rs.getString("denominator_system"),rs.getString("tgl_penyerahan")+" "+rs.getString("jam_penyerahan"),
+                        rs.getString("jml"),rs.getString("id_medication"),rs.getString("aturan_pakai"),rs.getString("no_resep"),rs.getString("id_medicationstatement"),rs.getString("no_racik"),"Ralan"
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps!=null){
+                    ps.close();
+                }
+            }
+            
+            ps=koneksi.prepareStatement(
+                   "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,"+
+                   "pegawai.nama,pegawai.no_ktp as ktppraktisi,satu_sehat_encounter.id_encounter,satu_sehat_mapping_obat.obat_code,satu_sehat_mapping_obat.obat_system,"+
+                   "resep_dokter_racikan_detail.kode_brng,satu_sehat_mapping_obat.obat_display,satu_sehat_mapping_obat.form_code,satu_sehat_mapping_obat.form_system,satu_sehat_mapping_obat.form_display,"+
+                   "satu_sehat_mapping_obat.route_code,satu_sehat_mapping_obat.route_system,satu_sehat_mapping_obat.route_display,satu_sehat_mapping_obat.denominator_code,"+
+                   "satu_sehat_mapping_obat.denominator_system,resep_obat.tgl_penyerahan,resep_obat.jam_penyerahan,resep_dokter_racikan_detail.jml,satu_sehat_medication.id_medication,"+
+                   "resep_dokter_racikan.aturan_pakai,resep_dokter_racikan.no_resep,ifnull(satu_sehat_medicationstatement_racikan.id_medicationstatement,'') as id_medicationstatement, "+
                    "resep_dokter_racikan_detail.no_racik from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                    "inner join resep_obat on reg_periksa.no_rawat=resep_obat.no_rawat "+
                    "inner join pegawai on resep_obat.kd_dokter=pegawai.nik "+
@@ -951,9 +1284,9 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                    "inner join satu_sehat_mapping_obat on satu_sehat_mapping_obat.kode_brng=resep_dokter_racikan_detail.kode_brng "+
                    "inner join satu_sehat_medication on satu_sehat_medication.kode_brng=satu_sehat_mapping_obat.kode_brng "+
                    "inner join nota_inap on nota_inap.no_rawat=reg_periksa.no_rawat "+
-                   "left join satu_sehat_medicationrequest_racikan on satu_sehat_medicationrequest_racikan.no_resep=resep_dokter_racikan_detail.no_resep and "+
-                   "satu_sehat_medicationrequest_racikan.kode_brng=resep_dokter_racikan_detail.kode_brng and satu_sehat_medicationrequest_racikan.no_racik=resep_dokter_racikan_detail.no_racik "+
-                   "where nota_inap.tanggal between ? and ? "+
+                   "left join satu_sehat_medicationstatement_racikan on satu_sehat_medicationstatement_racikan.no_resep=resep_dokter_racikan_detail.no_resep and "+
+                   "satu_sehat_medicationstatement_racikan.kode_brng=resep_dokter_racikan_detail.kode_brng and satu_sehat_medicationstatement_racikan.no_racik=resep_dokter_racikan_detail.no_racik "+
+                   "where resep_obat.tgl_penyerahan<>'0000-00-00' and nota_inap.tanggal between ? and ? "+
                    (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                    "pasien.nm_pasien like ? or pasien.no_ktp like ? or satu_sehat_mapping_obat.kode_brng like ? or satu_sehat_mapping_obat.obat_display like ?) "));
             try {
@@ -973,8 +1306,8 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                         false,rs.getString("tgl_registrasi")+" "+rs.getString("jam_reg"),rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("no_ktp"),
                         rs.getString("nama"),rs.getString("ktppraktisi"),rs.getString("id_encounter"),rs.getString("obat_code"),rs.getString("obat_system"),rs.getString("kode_brng"),
                         rs.getString("obat_display"),rs.getString("form_code"),rs.getString("form_system"),rs.getString("form_display"),rs.getString("route_code"),rs.getString("route_system"),
-                        rs.getString("route_display"),rs.getString("denominator_code"),rs.getString("denominator_system"),rs.getString("tgl_peresepan")+" "+rs.getString("jam_peresepan"),
-                        rs.getString("jml"),rs.getString("id_medication"),rs.getString("aturan_pakai"),rs.getString("no_resep"),rs.getString("id_medicationrequest"),rs.getString("no_racik"),"Ranap"
+                        rs.getString("route_display"),rs.getString("denominator_code"),rs.getString("denominator_system"),rs.getString("tgl_penyerahan")+" "+rs.getString("jam_penyerahan"),
+                        rs.getString("jml"),rs.getString("id_medication"),rs.getString("aturan_pakai"),rs.getString("no_resep"),rs.getString("id_medicationstatement"),rs.getString("no_racik"),"Ranap"
                     });
                 }
             } catch (Exception e) {
@@ -994,8 +1327,9 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
     }
 
     public void isCek(){
-        BtnKirim.setEnabled(akses.getsatu_sehat_kirim_medicationrequest());
-        BtnPrint.setEnabled(akses.getsatu_sehat_kirim_medicationrequest());
+        BtnKirim.setEnabled(akses.getsatu_sehat_kirim_medicationstatement());
+        BtnUpdate.setEnabled(akses.getsatu_sehat_kirim_medicationstatement());
+        BtnPrint.setEnabled(akses.getsatu_sehat_kirim_medicationstatement());
     }
     
     public JTable getTable(){

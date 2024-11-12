@@ -41,9 +41,7 @@ public class koneksiDB {
                         " #   |____/|___||_|  |_||_| \\_\\|____/  |_|\\_\\|_| |_| \\__,_||_| |_|/___|\\__,_|\n" +
                         " #                                                                           \n"+
                         "                                                                           \n"+
-                        "  Licensi yang dianut di software ini https://en.wikipedia.org/wiki/Aladdin_Free_Public_License \n"+
-                        "  Informasi dan panduan bisa dicek di halaman https://github.com/mas-elkhanza/SIMRS-Khanza/wiki \n"+
-                        "  Bagi yang ingin berdonasi untuk pengembangan aplikasi ini bisa ke BSI 1015369872 atas nama Windiarto\n"+
+                        " .:| RUMAH SAKIT BHAYANGKARA TK.II MAS KADIRAN MEDAN |:. \n"+
                         "                                                                           ");
             }catch(Exception e){
                 System.out.println("Notif : "+e);

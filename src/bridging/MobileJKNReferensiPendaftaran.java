@@ -525,7 +525,7 @@ public final class MobileJKNReferensiPendaftaran extends javax.swing.JDialog {
                     "INNER JOIN pasien ON reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                     "INNER JOIN poliklinik ON reg_periksa.kd_poli=poliklinik.kd_poli "+
                     "INNER JOIN dokter ON reg_periksa.kd_dokter=dokter.kd_dokter "+
-                    "WHERE referensi_mobilejkn_bpjs.statuskirim='Belum' where referensi_mobilejkn_bpjs.nobooking='"+tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),14).toString()+"'"+
+                    "WHERE referensi_mobilejkn_bpjs.statuskirim='Belum' where referensi_mobilejkn_bpjs.nobooking='"+tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),14).toString()+"' "+
                     "order by referensi_mobilejkn_bpjs.tanggalperiksa desc");
                 try {
                     rs=ps.executeQuery();

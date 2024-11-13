@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Kontribusi Agus Budiyono Puskesmas Kerjo
  */
 
 
@@ -71,9 +70,8 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
 
         tabMode=new DefaultTableModel(null,new Object[]{
             "No.Rawat","No.RM","Nama Pasien","Tgl.Lahir","Umur","Kode Petugas","Nama Petugas","Tanggal",
-            "Banyak Rokok dalam 1 hari","Skor","Rokok Pertama Setelah Terjaga","Skor","Rokok Tidak direlakan di hentikan","Skor",
-            "Kebiasan Merokok","Skor","Kesulitan Menahan Rokok","Skor","Merokok Saat Sakit","Skor",
-            "Total Skor","Kesimpulan","Skala Motivasi"
+            "Rokok Dihisab","N.R.D","Menyalakan Rokok","N.M.R","Rokok Tidak Direlakan","N.R.T","Jam Pertama",
+            "N.J.P","Kesulitan Menahan","N.K.M","Saat Sakit Berat","N.S.B","N.Total","Kesimpulan","Skala Motivasi"
         }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -102,35 +100,35 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
             }else if(i==7){
                 column.setPreferredWidth(115);
             }else if(i==8){
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(80);
             }else if(i==9){
-                column.setPreferredWidth(45);
+                column.setPreferredWidth(40);
             }else if(i==10){
-                column.setPreferredWidth(109);
+                column.setPreferredWidth(100);
             }else if(i==11){
-                column.setPreferredWidth(45);
+                column.setPreferredWidth(40);
             }else if(i==12){
-                column.setPreferredWidth(125);
+                column.setPreferredWidth(150);
             }else if(i==13){
-                column.setPreferredWidth(45);
+                column.setPreferredWidth(40);
             }else if(i==14){
-                column.setPreferredWidth(140);
+                column.setPreferredWidth(75);
             }else if(i==15){
-                column.setPreferredWidth(130);
+                column.setPreferredWidth(40);
             }else if(i==16){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(100);
             }else if(i==17){
-                column.setPreferredWidth(45);
+                column.setPreferredWidth(40);
             }else if(i==18){
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(90);
             }else if(i==19){
-                column.setPreferredWidth(45);
+                column.setPreferredWidth(40);
             }else if(i==20){
-                column.setPreferredWidth(190);
-            }else if(i==21){
                 column.setPreferredWidth(45);
+            }else if(i==21){
+                column.setPreferredWidth(150);
             }else if(i==22){
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(300);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -277,47 +275,47 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         jLabel99 = new widget.Label();
         jLabel75 = new widget.Label();
         jLabel76 = new widget.Label();
-        HisapRokok = new widget.ComboBox();
+        RokokDihisab = new widget.ComboBox();
         jLabel92 = new widget.Label();
-        skorHisap = new widget.TextBox();
+        NilaiRokokDihisab = new widget.TextBox();
         jLabel77 = new widget.Label();
         jLabel78 = new widget.Label();
-        CepatMerokok = new widget.ComboBox();
+        MenyalakanRokok = new widget.ComboBox();
         jLabel69 = new widget.Label();
-        skorCepatRokok = new widget.TextBox();
+        NilaiMenyalakanRokok = new widget.TextBox();
         jLabel96 = new widget.Label();
         jLabel95 = new widget.Label();
-        RelakanRokok = new widget.ComboBox();
+        TidakRela = new widget.ComboBox();
         jLabel97 = new widget.Label();
-        skorRelakanRokok = new widget.TextBox();
+        NilaiTidakRela = new widget.TextBox();
         jLabel107 = new widget.Label();
         jLabel108 = new widget.Label();
-        BanyakRokok = new widget.ComboBox();
+        JamPertama = new widget.ComboBox();
         jLabel109 = new widget.Label();
-        skorBanyakRokok = new widget.TextBox();
+        NilaiJamPertama = new widget.TextBox();
         jLabel111 = new widget.Label();
         jLabel110 = new widget.Label();
         jLabel113 = new widget.Label();
-        Kesulitan = new widget.ComboBox();
+        RasaIngin = new widget.ComboBox();
         jLabel112 = new widget.Label();
-        skorKesulitan = new widget.TextBox();
+        NilaiRasaIngin = new widget.TextBox();
         jLabel114 = new widget.Label();
         jLabel115 = new widget.Label();
         jLabel118 = new widget.Label();
-        Sakit = new widget.ComboBox();
+        SakitBerat = new widget.ComboBox();
         jLabel116 = new widget.Label();
-        skorSakit = new widget.TextBox();
+        NilaiSakitBerat = new widget.TextBox();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel148 = new widget.Label();
         jLabel149 = new widget.Label();
         Kesimpulan = new widget.TextBox();
         jLabel73 = new widget.Label();
-        TotalSkor = new widget.TextBox();
-        jSeparator5 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
+        TotalNilai = new widget.TextBox();
         jLabel150 = new widget.Label();
         jLabel152 = new widget.Label();
         SkalaMotivasi = new widget.ComboBox();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel101 = new widget.Label();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -325,7 +323,7 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         MnSkriningAdiksiNikotin.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSkriningAdiksiNikotin.setForeground(new java.awt.Color(50, 50, 50));
         MnSkriningAdiksiNikotin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnSkriningAdiksiNikotin.setText("Formulir Skrining Risiko Kanker Payudara");
+        MnSkriningAdiksiNikotin.setText("Formulir Skrining Adiksi Nikotin");
         MnSkriningAdiksiNikotin.setName("MnSkriningAdiksiNikotin"); // NOI18N
         MnSkriningAdiksiNikotin.setPreferredSize(new java.awt.Dimension(280, 26));
         MnSkriningAdiksiNikotin.addActionListener(new java.awt.event.ActionListener() {
@@ -349,7 +347,7 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Kuisioner Adiksi Nikotin Fagerstroom ( Skala Fagerstroom ) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Skrining Adiksi Nikotin Fagerstroom (Skala Fagerstroom) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setPreferredSize(new java.awt.Dimension(462, 849));
@@ -516,7 +514,7 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -530,7 +528,7 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -591,7 +589,7 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(192, 450));
+        PanelInput.setPreferredSize(new java.awt.Dimension(192, 375));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
 
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
@@ -621,7 +619,7 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         FormInput.setBackground(new java.awt.Color(250, 255, 245));
         FormInput.setBorder(null);
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(100, 380));
+        FormInput.setPreferredSize(new java.awt.Dimension(100, 350));
         FormInput.setLayout(null);
 
         jLabel4.setText("No.Rawat :");
@@ -673,7 +671,7 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         jLabel16.setBounds(0, 40, 75, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2024" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2024" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -758,7 +756,7 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         btnPetugas.setBounds(761, 40, 28, 23);
 
         jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel99.setText("Kuisioner Adiksi Nikotin Fagerstroom ( Skala Fagerstroom )");
+        jLabel99.setText("I. ANAMNESIS");
         jLabel99.setName("jLabel99"); // NOI18N
         FormInput.add(jLabel99);
         jLabel99.setBounds(11, 70, 290, 23);
@@ -767,248 +765,248 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         jLabel75.setText("1.");
         jLabel75.setName("jLabel75"); // NOI18N
         FormInput.add(jLabel75);
-        jLabel75.setBounds(44, 100, 20, 23);
+        jLabel75.setBounds(44, 90, 20, 23);
 
         jLabel76.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel76.setText("Berapa banyak rokok yang anda hisap dalam satu hari");
+        jLabel76.setText("Berapa banyak rokok yang Anda hisap dalam satu hari ?");
         jLabel76.setName("jLabel76"); // NOI18N
         FormInput.add(jLabel76);
-        jLabel76.setBounds(62, 100, 300, 23);
+        jLabel76.setBounds(62, 90, 300, 23);
 
-        HisapRokok.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1-10", "11-20", "21-30", "31 atau Lebih" }));
-        HisapRokok.setName("HisapRokok"); // NOI18N
-        HisapRokok.addItemListener(new java.awt.event.ItemListener() {
+        RokokDihisab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1-10", "11-20", "21-30", ">=31" }));
+        RokokDihisab.setName("RokokDihisab"); // NOI18N
+        RokokDihisab.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                HisapRokokItemStateChanged(evt);
+                RokokDihisabItemStateChanged(evt);
             }
         });
-        HisapRokok.addKeyListener(new java.awt.event.KeyAdapter() {
+        RokokDihisab.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                HisapRokokKeyPressed(evt);
+                RokokDihisabKeyPressed(evt);
             }
         });
-        FormInput.add(HisapRokok);
-        HisapRokok.setBounds(520, 100, 180, 23);
+        FormInput.add(RokokDihisab);
+        RokokDihisab.setBounds(610, 90, 90, 23);
 
         jLabel92.setText("Skor :");
         jLabel92.setName("jLabel92"); // NOI18N
         FormInput.add(jLabel92);
-        jLabel92.setBounds(700, 100, 40, 23);
+        jLabel92.setBounds(700, 90, 40, 23);
 
-        skorHisap.setEditable(false);
-        skorHisap.setText("0");
-        skorHisap.setFocusTraversalPolicyProvider(true);
-        skorHisap.setName("skorHisap"); // NOI18N
-        FormInput.add(skorHisap);
-        skorHisap.setBounds(744, 100, 45, 23);
+        NilaiRokokDihisab.setEditable(false);
+        NilaiRokokDihisab.setText("0");
+        NilaiRokokDihisab.setFocusTraversalPolicyProvider(true);
+        NilaiRokokDihisab.setName("NilaiRokokDihisab"); // NOI18N
+        FormInput.add(NilaiRokokDihisab);
+        NilaiRokokDihisab.setBounds(744, 90, 45, 23);
 
         jLabel77.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel77.setText("2.");
         jLabel77.setName("jLabel77"); // NOI18N
         FormInput.add(jLabel77);
-        jLabel77.setBounds(44, 130, 20, 23);
+        jLabel77.setBounds(44, 120, 20, 23);
 
         jLabel78.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel78.setText("Seberapa cepat anda menyalakan rokok pertama anda setelah terjaga");
+        jLabel78.setText("Seberapa cepat Anda menyalakan rokok pertama anda setelah terjaga ?");
         jLabel78.setName("jLabel78"); // NOI18N
         FormInput.add(jLabel78);
-        jLabel78.setBounds(62, 130, 370, 23);
+        jLabel78.setBounds(62, 120, 370, 23);
 
-        CepatMerokok.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dalam 5 menit", "6 hingga 30 menit ", "31 hingga 60 menit", "Setelah 60 menit" }));
-        CepatMerokok.setSelectedIndex(3);
-        CepatMerokok.setName("CepatMerokok"); // NOI18N
-        CepatMerokok.addItemListener(new java.awt.event.ItemListener() {
+        MenyalakanRokok.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dalam 5 Menit", "6 Hingga 30 Menit", "31 Hingga 60 Menit", "Setelah 60 Menit" }));
+        MenyalakanRokok.setSelectedIndex(3);
+        MenyalakanRokok.setName("MenyalakanRokok"); // NOI18N
+        MenyalakanRokok.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                CepatMerokokItemStateChanged(evt);
+                MenyalakanRokokItemStateChanged(evt);
             }
         });
-        CepatMerokok.addKeyListener(new java.awt.event.KeyAdapter() {
+        MenyalakanRokok.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                CepatMerokokKeyPressed(evt);
+                MenyalakanRokokKeyPressed(evt);
             }
         });
-        FormInput.add(CepatMerokok);
-        CepatMerokok.setBounds(520, 130, 180, 23);
+        FormInput.add(MenyalakanRokok);
+        MenyalakanRokok.setBounds(555, 120, 145, 23);
 
         jLabel69.setText("Skor :");
         jLabel69.setName("jLabel69"); // NOI18N
         FormInput.add(jLabel69);
-        jLabel69.setBounds(700, 130, 40, 23);
+        jLabel69.setBounds(700, 120, 40, 23);
 
-        skorCepatRokok.setEditable(false);
-        skorCepatRokok.setText("0");
-        skorCepatRokok.setFocusTraversalPolicyProvider(true);
-        skorCepatRokok.setName("skorCepatRokok"); // NOI18N
-        FormInput.add(skorCepatRokok);
-        skorCepatRokok.setBounds(744, 130, 45, 23);
+        NilaiMenyalakanRokok.setEditable(false);
+        NilaiMenyalakanRokok.setText("0");
+        NilaiMenyalakanRokok.setFocusTraversalPolicyProvider(true);
+        NilaiMenyalakanRokok.setName("NilaiMenyalakanRokok"); // NOI18N
+        FormInput.add(NilaiMenyalakanRokok);
+        NilaiMenyalakanRokok.setBounds(744, 120, 45, 23);
 
         jLabel96.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel96.setText("3.");
         jLabel96.setName("jLabel96"); // NOI18N
         FormInput.add(jLabel96);
-        jLabel96.setBounds(44, 160, 20, 23);
+        jLabel96.setBounds(44, 150, 20, 23);
 
         jLabel95.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel95.setText("Rokok mana yang paling anda tidak relakan untuk di hentikan");
+        jLabel95.setText("Rokok mana yang paling Anda tidak relakan untuk di hentikan ?");
         jLabel95.setName("jLabel95"); // NOI18N
         FormInput.add(jLabel95);
-        jLabel95.setBounds(62, 160, 370, 23);
+        jLabel95.setBounds(62, 150, 370, 23);
 
-        RelakanRokok.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lainnya", "Rokok pertama pada pagi hari" }));
-        RelakanRokok.setName("RelakanRokok"); // NOI18N
-        RelakanRokok.addItemListener(new java.awt.event.ItemListener() {
+        TidakRela.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lainnya", "Rokok Pertama Pada Pagi Hari" }));
+        TidakRela.setName("TidakRela"); // NOI18N
+        TidakRela.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                RelakanRokokItemStateChanged(evt);
+                TidakRelaItemStateChanged(evt);
             }
         });
-        RelakanRokok.addKeyListener(new java.awt.event.KeyAdapter() {
+        TidakRela.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                RelakanRokokKeyPressed(evt);
+                TidakRelaKeyPressed(evt);
             }
         });
-        FormInput.add(RelakanRokok);
-        RelakanRokok.setBounds(520, 160, 180, 23);
+        FormInput.add(TidakRela);
+        TidakRela.setBounds(500, 150, 200, 23);
 
         jLabel97.setText("Skor :");
         jLabel97.setName("jLabel97"); // NOI18N
         FormInput.add(jLabel97);
-        jLabel97.setBounds(700, 160, 40, 23);
+        jLabel97.setBounds(700, 150, 40, 23);
 
-        skorRelakanRokok.setEditable(false);
-        skorRelakanRokok.setText("0");
-        skorRelakanRokok.setFocusTraversalPolicyProvider(true);
-        skorRelakanRokok.setName("skorRelakanRokok"); // NOI18N
-        FormInput.add(skorRelakanRokok);
-        skorRelakanRokok.setBounds(744, 160, 45, 23);
+        NilaiTidakRela.setEditable(false);
+        NilaiTidakRela.setText("0");
+        NilaiTidakRela.setFocusTraversalPolicyProvider(true);
+        NilaiTidakRela.setName("NilaiTidakRela"); // NOI18N
+        FormInput.add(NilaiTidakRela);
+        NilaiTidakRela.setBounds(744, 150, 45, 23);
 
         jLabel107.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel107.setText("4.");
         jLabel107.setName("jLabel107"); // NOI18N
         FormInput.add(jLabel107);
-        jLabel107.setBounds(44, 190, 20, 23);
+        jLabel107.setBounds(44, 180, 20, 23);
 
         jLabel108.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel108.setText("Apakah anda merokok lebih banyak dalam jam pertama hari anda dari pada sisa hari anda");
+        jLabel108.setText("Apakah Anda merokok lebih banyak dalam jam pertama hari anda dari pada sisa hari Anda ?");
         jLabel108.setName("jLabel108"); // NOI18N
         FormInput.add(jLabel108);
-        jLabel108.setBounds(62, 190, 440, 23);
+        jLabel108.setBounds(62, 180, 470, 23);
 
-        BanyakRokok.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
-        BanyakRokok.setName("BanyakRokok"); // NOI18N
-        BanyakRokok.addItemListener(new java.awt.event.ItemListener() {
+        JamPertama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
+        JamPertama.setName("JamPertama"); // NOI18N
+        JamPertama.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                BanyakRokokItemStateChanged(evt);
+                JamPertamaItemStateChanged(evt);
             }
         });
-        BanyakRokok.addKeyListener(new java.awt.event.KeyAdapter() {
+        JamPertama.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                BanyakRokokKeyPressed(evt);
+                JamPertamaKeyPressed(evt);
             }
         });
-        FormInput.add(BanyakRokok);
-        BanyakRokok.setBounds(520, 190, 180, 23);
+        FormInput.add(JamPertama);
+        JamPertama.setBounds(610, 180, 90, 23);
 
         jLabel109.setText("Skor :");
         jLabel109.setName("jLabel109"); // NOI18N
         FormInput.add(jLabel109);
-        jLabel109.setBounds(700, 190, 40, 23);
+        jLabel109.setBounds(700, 180, 40, 23);
 
-        skorBanyakRokok.setEditable(false);
-        skorBanyakRokok.setText("0");
-        skorBanyakRokok.setFocusTraversalPolicyProvider(true);
-        skorBanyakRokok.setName("skorBanyakRokok"); // NOI18N
-        FormInput.add(skorBanyakRokok);
-        skorBanyakRokok.setBounds(744, 190, 45, 23);
+        NilaiJamPertama.setEditable(false);
+        NilaiJamPertama.setText("0");
+        NilaiJamPertama.setFocusTraversalPolicyProvider(true);
+        NilaiJamPertama.setName("NilaiJamPertama"); // NOI18N
+        FormInput.add(NilaiJamPertama);
+        NilaiJamPertama.setBounds(744, 180, 45, 23);
 
         jLabel111.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel111.setText("5.");
         jLabel111.setName("jLabel111"); // NOI18N
         FormInput.add(jLabel111);
-        jLabel111.setBounds(44, 220, 20, 23);
+        jLabel111.setBounds(44, 210, 20, 23);
 
         jLabel110.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel110.setText("Apakah anda kesulitan menahan rasa ingin merokok di tempat yang dilarang seperti :");
+        jLabel110.setText("Apakah Anda kesulitan menahan rasa ingin merokok di tempat yang dilarang seperti bangunan umum,");
         jLabel110.setName("jLabel110"); // NOI18N
         FormInput.add(jLabel110);
-        jLabel110.setBounds(62, 220, 440, 23);
+        jLabel110.setBounds(62, 205, 550, 23);
 
         jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel113.setText("Bangunan Umum, Pesawat terbang, atau ditempat kerja");
+        jLabel113.setText("pesawat terbang, atau di tempat kerja ?");
         jLabel113.setName("jLabel113"); // NOI18N
         FormInput.add(jLabel113);
-        jLabel113.setBounds(62, 233, 530, 23);
+        jLabel113.setBounds(62, 217, 530, 23);
 
-        Kesulitan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
-        Kesulitan.setName("Kesulitan"); // NOI18N
-        Kesulitan.addItemListener(new java.awt.event.ItemListener() {
+        RasaIngin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
+        RasaIngin.setName("RasaIngin"); // NOI18N
+        RasaIngin.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                KesulitanItemStateChanged(evt);
+                RasaInginItemStateChanged(evt);
             }
         });
-        Kesulitan.addKeyListener(new java.awt.event.KeyAdapter() {
+        RasaIngin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                KesulitanKeyPressed(evt);
+                RasaInginKeyPressed(evt);
             }
         });
-        FormInput.add(Kesulitan);
-        Kesulitan.setBounds(520, 220, 180, 23);
+        FormInput.add(RasaIngin);
+        RasaIngin.setBounds(610, 210, 90, 23);
 
         jLabel112.setText("Skor :");
         jLabel112.setName("jLabel112"); // NOI18N
         FormInput.add(jLabel112);
-        jLabel112.setBounds(700, 220, 40, 23);
+        jLabel112.setBounds(700, 210, 40, 23);
 
-        skorKesulitan.setEditable(false);
-        skorKesulitan.setText("0");
-        skorKesulitan.setFocusTraversalPolicyProvider(true);
-        skorKesulitan.setName("skorKesulitan"); // NOI18N
-        FormInput.add(skorKesulitan);
-        skorKesulitan.setBounds(744, 220, 45, 23);
+        NilaiRasaIngin.setEditable(false);
+        NilaiRasaIngin.setText("0");
+        NilaiRasaIngin.setFocusTraversalPolicyProvider(true);
+        NilaiRasaIngin.setName("NilaiRasaIngin"); // NOI18N
+        FormInput.add(NilaiRasaIngin);
+        NilaiRasaIngin.setBounds(744, 210, 45, 23);
 
         jLabel114.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel114.setText("6.");
         jLabel114.setName("jLabel114"); // NOI18N
         FormInput.add(jLabel114);
-        jLabel114.setBounds(44, 250, 20, 23);
+        jLabel114.setBounds(44, 240, 20, 23);
 
         jLabel115.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel115.setText("Apakah Anda masih merokok ketika anda sakit berat, sehingga anda harus berbaring");
+        jLabel115.setText("Apakah Anda masih merokok ketika Anda sakit berat, sehingga Anda harus berbaring");
         jLabel115.setName("jLabel115"); // NOI18N
         FormInput.add(jLabel115);
-        jLabel115.setBounds(62, 250, 440, 23);
+        jLabel115.setBounds(62, 235, 440, 23);
 
         jLabel118.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel118.setText("dalam sebagian besar waktu anda");
+        jLabel118.setText("dalam sebagian besar waktu Anda ?");
         jLabel118.setName("jLabel118"); // NOI18N
         FormInput.add(jLabel118);
-        jLabel118.setBounds(62, 263, 530, 23);
+        jLabel118.setBounds(62, 247, 530, 23);
 
-        Sakit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
-        Sakit.setName("Sakit"); // NOI18N
-        Sakit.addItemListener(new java.awt.event.ItemListener() {
+        SakitBerat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
+        SakitBerat.setName("SakitBerat"); // NOI18N
+        SakitBerat.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                SakitItemStateChanged(evt);
+                SakitBeratItemStateChanged(evt);
             }
         });
-        Sakit.addKeyListener(new java.awt.event.KeyAdapter() {
+        SakitBerat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                SakitKeyPressed(evt);
+                SakitBeratKeyPressed(evt);
             }
         });
-        FormInput.add(Sakit);
-        Sakit.setBounds(520, 250, 180, 23);
+        FormInput.add(SakitBerat);
+        SakitBerat.setBounds(610, 240, 90, 23);
 
         jLabel116.setText("Skor :");
         jLabel116.setName("jLabel116"); // NOI18N
         FormInput.add(jLabel116);
-        jLabel116.setBounds(700, 250, 40, 23);
+        jLabel116.setBounds(700, 240, 40, 23);
 
-        skorSakit.setEditable(false);
-        skorSakit.setText("0");
-        skorSakit.setFocusTraversalPolicyProvider(true);
-        skorSakit.setName("skorSakit"); // NOI18N
-        FormInput.add(skorSakit);
-        skorSakit.setBounds(744, 250, 45, 23);
+        NilaiSakitBerat.setEditable(false);
+        NilaiSakitBerat.setText("0");
+        NilaiSakitBerat.setFocusTraversalPolicyProvider(true);
+        NilaiSakitBerat.setName("NilaiSakitBerat"); // NOI18N
+        FormInput.add(NilaiSakitBerat);
+        NilaiSakitBerat.setBounds(744, 240, 45, 23);
 
         jSeparator1.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator1.setForeground(new java.awt.Color(239, 244, 234));
@@ -1021,12 +1019,12 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         jLabel148.setText("Kesimpulan");
         jLabel148.setName("jLabel148"); // NOI18N
         FormInput.add(jLabel148);
-        jLabel148.setBounds(44, 300, 60, 23);
+        jLabel148.setBounds(44, 290, 80, 23);
 
         jLabel149.setText(":");
         jLabel149.setName("jLabel149"); // NOI18N
         FormInput.add(jLabel149);
-        jLabel149.setBounds(85, 300, 40, 23);
+        jLabel149.setBounds(0, 290, 108, 23);
 
         Kesimpulan.setEditable(false);
         Kesimpulan.setFocusTraversalPolicyProvider(true);
@@ -1037,60 +1035,53 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
             }
         });
         FormInput.add(Kesimpulan);
-        Kesimpulan.setBounds(130, 300, 540, 23);
+        Kesimpulan.setBounds(112, 290, 500, 23);
 
         jLabel73.setText("Total Skor :");
         jLabel73.setName("jLabel73"); // NOI18N
         FormInput.add(jLabel73);
-        jLabel73.setBounds(670, 300, 70, 23);
+        jLabel73.setBounds(670, 290, 70, 23);
 
-        TotalSkor.setEditable(false);
-        TotalSkor.setText("0");
-        TotalSkor.setFocusTraversalPolicyProvider(true);
-        TotalSkor.setName("TotalSkor"); // NOI18N
-        FormInput.add(TotalSkor);
-        TotalSkor.setBounds(744, 300, 45, 23);
-
-        jSeparator5.setBackground(new java.awt.Color(239, 244, 234));
-        jSeparator5.setForeground(new java.awt.Color(239, 244, 234));
-        jSeparator5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
-        jSeparator5.setName("jSeparator5"); // NOI18N
-        FormInput.add(jSeparator5);
-        jSeparator5.setBounds(44, 290, 763, 1);
-
-        jSeparator2.setBackground(new java.awt.Color(239, 244, 234));
-        jSeparator2.setForeground(new java.awt.Color(239, 244, 234));
-        jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
-        jSeparator2.setName("jSeparator2"); // NOI18N
-        FormInput.add(jSeparator2);
-        jSeparator2.setBounds(44, 330, 763, 1);
+        TotalNilai.setEditable(false);
+        TotalNilai.setText("0");
+        TotalNilai.setFocusTraversalPolicyProvider(true);
+        TotalNilai.setName("TotalNilai"); // NOI18N
+        FormInput.add(TotalNilai);
+        TotalNilai.setBounds(744, 290, 45, 23);
 
         jLabel150.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel150.setText("Skala Motivasi");
         jLabel150.setName("jLabel150"); // NOI18N
         FormInput.add(jLabel150);
-        jLabel150.setBounds(44, 340, 67, 23);
+        jLabel150.setBounds(44, 320, 90, 23);
 
         jLabel152.setText(":");
         jLabel152.setName("jLabel152"); // NOI18N
         FormInput.add(jLabel152);
-        jLabel152.setBounds(85, 340, 40, 23);
+        jLabel152.setBounds(0, 320, 120, 23);
 
-        SkalaMotivasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1. Saya SUDAH memutuskan TIDAK akan berhenti merokok seumur hidup saya", "2. Saya TIDAK PERNAH berpikir untuk berhenti merokok. Saya TIDAK PUNYA rencana untuk berhenti", "3. Saya PERNAH berpikir untuk berhentl merokok, tetapi Saya TIDAK PUNYA rencana", "4. TERKADANG saya berpikir untuk berhenti merokok, tetapi saya tidak punya rencana", "5. Saya SERING berpikir untuk berhentl merokok, tetapi saya tidak punya rencana", "6. Saya BERENCANA untuk berhenti merokok dalam 6 bulan ke depan", "7. Saya berencana untuk berhenti merokok dalam 30 hari ke depan", "8. Saya masih merokok, tetapi saya mau berubah. Saya siap untuk berhenti merokok", "9. Saya sudah berhenti merokok, tetapisaya khawatir akan merokok kembali, saya butuh lingkungan tanpa asap rokok", "10. Saya sudah berhenti merokok", " " }));
-        SkalaMotivasi.setSelectedIndex(7);
+        SkalaMotivasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1. Saya SUDAH memutuskan TIDAK akan berhenti merokok seumur hidup Saya", "2. Saya TIDAK PERNAH berpikir untuk berhenti merokok. Saya TIDAK PUNYA rencana untuk berhenti", "3. Saya PERNAH berpikir untuk berhentl merokok, tetapi Saya TIDAK PUNYA rencana", "4. TERKADANG Saya berpikir untuk berhenti merokok, tetapi Saya tidak punya rencana", "5. Saya SERING berpikir untuk berhentl merokok, tetapi Saya tidak punya rencana", "6. Saya BERENCANA untuk berhenti merokok dalam 6 bulan ke depan", "7. Saya berencana untuk berhenti merokok dalam 30 hari ke depan", "8. Saya masih merokok, tetapi Saya mau berubah. Saya siap untuk berhenti merokok", "9. Saya sudah berhenti merokok, tetapi Saya khawatir akan merokok kembali, Saya butuh lingkungan tanpa asap rokok", "10. Saya sudah berhenti merokok" }));
         SkalaMotivasi.setName("SkalaMotivasi"); // NOI18N
-        SkalaMotivasi.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                SkalaMotivasiItemStateChanged(evt);
-            }
-        });
         SkalaMotivasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 SkalaMotivasiKeyPressed(evt);
             }
         });
         FormInput.add(SkalaMotivasi);
-        SkalaMotivasi.setBounds(130, 340, 660, 23);
+        SkalaMotivasi.setBounds(124, 320, 665, 23);
+
+        jSeparator3.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator3.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
+        jSeparator3.setName("jSeparator3"); // NOI18N
+        FormInput.add(jSeparator3);
+        jSeparator3.setBounds(0, 270, 807, 1);
+
+        jLabel101.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel101.setText("II. INTERPRETASI");
+        jLabel101.setName("jLabel101"); // NOI18N
+        FormInput.add(jLabel101);
+        jLabel101.setBounds(10, 270, 200, 23);
 
         scrollInput.setViewportView(FormInput);
 
@@ -1246,81 +1237,21 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kode Petugas</b></td>"+
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Nama Petugas</b></td>"+
                         "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Tanggal</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 1</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.1</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 2</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.2</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 3</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.3</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 4</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.4</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 5</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.5</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 6</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.6</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 7</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.7</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 8</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.8</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 9</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.9</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 10</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.10</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 11</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.11</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 12</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.12</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 13</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.13</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Awal 14</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.A.14</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 1</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T.1</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 2</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T.2</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 3</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T.3</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 4</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T.4</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 5</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T.5</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 6</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T.6</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 7</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T.7</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 8</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T.8</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 9</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T.9</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 10</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T.10</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 11</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T 11</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 12</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T 12</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Faktor Risiko Tinggi 13</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T 13</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kecurigaan Keganasan 1</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.K.G.1</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kecurigaan Keganasan 2</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.K.G.2</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kecurigaan Keganasan 3</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.K.G.3</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kecurigaan Keganasan 4</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.K.G.4</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kecurigaan Keganasan 5</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.K.G.5</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kecurigaan Keganasan 6</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.K.G.6</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kecurigaan Keganasan 7</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.K.G.7</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kecurigaan Keganasan 8</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.K.G.8</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Total Skor</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Hasil Pemeriksaan SADANIS</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Tindak Lanjut Sadanis</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Hasil Skrining</b></td>"+
-                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Keterangan</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Rokok Dihisab</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.D</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Menyalakan Rokok</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.M.R</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Rokok Tidak Direlakan</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.R.T</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Jam Pertama</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.J.P</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kesulitan Menahan</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.K.M</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Saat Sakit Berat</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.S.B</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>N.Total</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Kesimpulan</b></td>"+
+                        "<td valign='middle' bgcolor='#FFFAFA' align='center'><b>Skala Motivasi</b></td>"+
                     "</tr>"
                 );
                 for (i = 0; i < tabMode.getRowCount(); i++) {
@@ -1354,7 +1285,7 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
                 }
                 LoadHTML.setText(
                     "<html>"+
-                      "<table width='6000px' border='0' align='center' cellpadding='1px' cellspacing='0' class='tbl_form'>"+
+                      "<table width='1900px' border='0' align='center' cellpadding='1px' cellspacing='0' class='tbl_form'>"+
                        htmlContent.toString()+
                       "</table>"+
                     "</html>"
@@ -1379,13 +1310,13 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(f));            
                 bw.write(LoadHTML.getText().replaceAll("<head>","<head>"+
                             "<link href=\"file2.css\" rel=\"stylesheet\" type=\"text/css\" />"+
-                            "<table width='6000px' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
+                            "<table width='1900px' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                 "<tr class='isi2'>"+
                                     "<td valign='top' align='center'>"+
                                         "<font size='4' face='Tahoma'>"+akses.getnamars()+"</font><br>"+
                                         akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br>"+
                                         akses.getkontakrs()+", E-mail : "+akses.getemailrs()+"<br><br>"+
-                                        "<font size='2' face='Tahoma'>DATA SEKRINING RISIKO KANKER PAYUDARA<br><br></font>"+        
+                                        "<font size='2' face='Tahoma'>DATA SEKRINING RISIKO ADIKSI NIKOTIN<br><br></font>"+        
                                     "</td>"+
                                "</tr>"+
                             "</table>")
@@ -1495,7 +1426,7 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPetugasActionPerformed
 
     private void btnPetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPetugasKeyPressed
-        Valid.pindah(evt,TCari,HisapRokok);
+        Valid.pindah(evt,TCari,RokokDihisab);
     }//GEN-LAST:event_btnPetugasKeyPressed
 
     private void MnSkriningAdiksiNikotinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSkriningAdiksiNikotinActionPerformed
@@ -1510,90 +1441,64 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
             param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
             param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),5).toString():finger)+"\n"+Tanggal.getSelectedItem()); 
-            Valid.MyReportqry("rptFormulirSkriningRisikoKankerPayudara.jasper","report","::[ Formulir Skrining Risiko Kanker Payudara ]::",
-                    "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,reg_periksa.umurdaftar,reg_periksa.sttsumur,skrining_risiko_kanker_payudara.nip,"+
-                    "petugas.nama,skrining_risiko_kanker_payudara.tanggal,skrining_risiko_kanker_payudara.faktor_risiko_awal1,skrining_risiko_kanker_payudara.nilai_risiko_awal1,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal2,skrining_risiko_kanker_payudara.nilai_risiko_awal2,skrining_risiko_kanker_payudara.faktor_risiko_awal3,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal3,skrining_risiko_kanker_payudara.faktor_risiko_awal4,skrining_risiko_kanker_payudara.nilai_risiko_awal4,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal5,skrining_risiko_kanker_payudara.nilai_risiko_awal5,skrining_risiko_kanker_payudara.faktor_risiko_awal6,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal6,skrining_risiko_kanker_payudara.faktor_risiko_awal7,skrining_risiko_kanker_payudara.nilai_risiko_awal7,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal8,skrining_risiko_kanker_payudara.nilai_risiko_awal8,skrining_risiko_kanker_payudara.faktor_risiko_awal9,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal9,skrining_risiko_kanker_payudara.faktor_risiko_awal10,skrining_risiko_kanker_payudara.nilai_risiko_awal10,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal11,skrining_risiko_kanker_payudara.nilai_risiko_awal11,skrining_risiko_kanker_payudara.faktor_risiko_awal12,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal12,skrining_risiko_kanker_payudara.faktor_risiko_awal13,skrining_risiko_kanker_payudara.nilai_risiko_awal13,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal14,skrining_risiko_kanker_payudara.nilai_risiko_awal14,skrining_risiko_kanker_payudara.faktor_risiko_tinggi1,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi1,skrining_risiko_kanker_payudara.faktor_risiko_tinggi2,skrining_risiko_kanker_payudara.nilai_risiko_tinggi2,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi3,skrining_risiko_kanker_payudara.nilai_risiko_tinggi3,skrining_risiko_kanker_payudara.faktor_risiko_tinggi4,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi4,skrining_risiko_kanker_payudara.faktor_risiko_tinggi5,skrining_risiko_kanker_payudara.nilai_risiko_tinggi5,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi6,skrining_risiko_kanker_payudara.nilai_risiko_tinggi6,skrining_risiko_kanker_payudara.faktor_risiko_tinggi7,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi7,skrining_risiko_kanker_payudara.faktor_risiko_tinggi8,skrining_risiko_kanker_payudara.nilai_risiko_tinggi8,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi9,skrining_risiko_kanker_payudara.nilai_risiko_tinggi9,skrining_risiko_kanker_payudara.faktor_risiko_tinggi10,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi10,skrining_risiko_kanker_payudara.faktor_risiko_tinggi11,skrining_risiko_kanker_payudara.nilai_risiko_tinggi11,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi12,skrining_risiko_kanker_payudara.nilai_risiko_tinggi12,skrining_risiko_kanker_payudara.faktor_risiko_tinggi13,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi13,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas1,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas1,"+
-                    "skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas2,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas2,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas3,"+
-                    "skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas3,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas4,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas4,"+
-                    "skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas5,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas5,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas6,"+
-                    "skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas6,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas7,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas7,"+
-                    "skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas8,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas8,skrining_risiko_kanker_payudara.total_skor,"+
-                    "skrining_risiko_kanker_payudara.hasil_sadanis,skrining_risiko_kanker_payudara.tindak_lanjut_sadanis,skrining_risiko_kanker_payudara.hasil_skrining,"+
-                    "skrining_risiko_kanker_payudara.keterangan from skrining_risiko_kanker_payudara inner join reg_periksa on skrining_risiko_kanker_payudara.no_rawat=reg_periksa.no_rawat "+
-                    "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join petugas on skrining_risiko_kanker_payudara.nip=petugas.nip "+
-                    "where reg_periksa.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+            Valid.MyReportqry("rptFormulirSkriningAdiksiNikotin.jasper","report","::[ Formulir Skrining Adiksi Nikotin ]::",
+                    "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,reg_periksa.umurdaftar,reg_periksa.sttsumur,skrining_adiksi_nikotin.nip,"+
+                    "petugas.nama,skrining_adiksi_nikotin.tanggal,skrining_adiksi_nikotin.rokok_dihisap,skrining_adiksi_nikotin.nilai_rokok_dihisap,skrining_adiksi_nikotin.menyalakan_rokok,"+
+                    "skrining_adiksi_nikotin.nilai_menyalakan_rokok,skrining_adiksi_nikotin.tidak_rela,skrining_adiksi_nikotin.nilai_tidak_rela,skrining_adiksi_nikotin.jam_pertama,"+
+                    "skrining_adiksi_nikotin.nilai_jam_pertama,skrining_adiksi_nikotin.rasa_ingin,skrining_adiksi_nikotin.nilai_rasa_ingin,skrining_adiksi_nikotin.sakit_berat,"+
+                    "skrining_adiksi_nikotin.nilai_sakit_berat,skrining_adiksi_nikotin.nilai_total,skrining_adiksi_nikotin.keterangan_hasil_skrining,skrining_adiksi_nikotin.skala_motivasi "+
+                    "from skrining_adiksi_nikotin inner join reg_periksa on skrining_adiksi_nikotin.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                    "inner join petugas on skrining_adiksi_nikotin.nip=petugas.nip where reg_periksa.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
         }
     }//GEN-LAST:event_MnSkriningAdiksiNikotinActionPerformed
 
-    private void HisapRokokItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_HisapRokokItemStateChanged
-        if ((!HisapRokok.getSelectedItem().toString().equals(""))) {
-            switch (HisapRokok.getSelectedItem().toString()) {
-                case "1-10":
-                    skorHisap.setText("0");
-                    break;
-                case "11-20":
-                    skorHisap.setText("1");
-                    break;
-                case "21-30":
-                    skorHisap.setText("2");
-                    break;
-                case "31 atau Lebih":
-                    skorHisap.setText("3");
-                    break;
-                default:
-                    break;
-            }
+    private void RokokDihisabItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_RokokDihisabItemStateChanged
+        switch (RokokDihisab.getSelectedItem().toString()) {
+            case "1-10":
+                NilaiRokokDihisab.setText("0");
+                break;
+            case "11-20":
+                NilaiRokokDihisab.setText("1");
+                break;
+            case "21-30":
+                NilaiRokokDihisab.setText("2");
+                break;
+            case ">=31":
+                NilaiRokokDihisab.setText("3");
+                break;
+            default:
+                break;
         }
         isTotal();
-    }//GEN-LAST:event_HisapRokokItemStateChanged
+    }//GEN-LAST:event_RokokDihisabItemStateChanged
 
-    private void HisapRokokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HisapRokokKeyPressed
-        Valid.pindah(evt,TCari,CepatMerokok);
-    }//GEN-LAST:event_HisapRokokKeyPressed
+    private void RokokDihisabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RokokDihisabKeyPressed
+        Valid.pindah(evt,TCari,MenyalakanRokok);
+    }//GEN-LAST:event_RokokDihisabKeyPressed
 
-    private void CepatMerokokItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CepatMerokokItemStateChanged
-        if ((!CepatMerokok.getSelectedItem().toString().equals(""))) {
-            switch (CepatMerokok.getSelectedItem().toString()) {
-                case "Dalam 5 menit":
-                    skorCepatRokok.setText("3");
-                    break;
-                case "6 hingga 30 menit ":
-                    skorCepatRokok.setText("2");
-                    break;
-                case "31 hingga 60 menit":
-                    skorCepatRokok.setText("1");
-                    break;
-                case "Setelah 60 menit":
-                    skorCepatRokok.setText("0");
-                    break;
-                default:
-                    break;
-            }
+    private void MenyalakanRokokItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_MenyalakanRokokItemStateChanged
+        switch (MenyalakanRokok.getSelectedItem().toString()) {
+            case "Dalam 5 Menit":
+                NilaiMenyalakanRokok.setText("3");
+                break;
+            case "6 Hingga 30 Menit":
+                NilaiMenyalakanRokok.setText("2");
+                break;
+            case "31 Hingga 60 Menit":
+                NilaiMenyalakanRokok.setText("1");
+                break;
+            case "Setelah 60 Menit":
+                NilaiMenyalakanRokok.setText("0");
+                break;
+            default:
+                break;
         }
         isTotal();
-    }//GEN-LAST:event_CepatMerokokItemStateChanged
+    }//GEN-LAST:event_MenyalakanRokokItemStateChanged
 
-    private void CepatMerokokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CepatMerokokKeyPressed
-        Valid.pindah(evt,HisapRokok,RelakanRokok);
-    }//GEN-LAST:event_CepatMerokokKeyPressed
+    private void MenyalakanRokokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MenyalakanRokokKeyPressed
+        Valid.pindah(evt,RokokDihisab,TidakRela);
+    }//GEN-LAST:event_MenyalakanRokokKeyPressed
 
     private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkInputActionPerformed
         isForm();
@@ -1603,65 +1508,61 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         //Valid.pindah(evt,Lapor,SG1);
     }//GEN-LAST:event_KesimpulanKeyPressed
 
-    private void RelakanRokokItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_RelakanRokokItemStateChanged
-        if(RelakanRokok.getSelectedIndex()==1){
-            skorRelakanRokok.setText("1");
+    private void TidakRelaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TidakRelaItemStateChanged
+        if(TidakRela.getSelectedIndex()==1){
+            NilaiTidakRela.setText("1");
         }else{
-            skorRelakanRokok.setText("0");
+            NilaiTidakRela.setText("0");
         }
         isTotal();
-    }//GEN-LAST:event_RelakanRokokItemStateChanged
+    }//GEN-LAST:event_TidakRelaItemStateChanged
 
-    private void RelakanRokokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RelakanRokokKeyPressed
-        Valid.pindah(evt,CepatMerokok,BanyakRokok);
-    }//GEN-LAST:event_RelakanRokokKeyPressed
+    private void TidakRelaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TidakRelaKeyPressed
+        Valid.pindah(evt,MenyalakanRokok,JamPertama);
+    }//GEN-LAST:event_TidakRelaKeyPressed
 
-    private void BanyakRokokItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_BanyakRokokItemStateChanged
-        if(BanyakRokok.getSelectedIndex()==1){
-            skorBanyakRokok.setText("1");
+    private void JamPertamaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JamPertamaItemStateChanged
+        if(JamPertama.getSelectedIndex()==1){
+            NilaiJamPertama.setText("1");
         }else{
-            skorBanyakRokok.setText("0");
+            NilaiJamPertama.setText("0");
         }
         isTotal();
-    }//GEN-LAST:event_BanyakRokokItemStateChanged
+    }//GEN-LAST:event_JamPertamaItemStateChanged
 
-    private void BanyakRokokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BanyakRokokKeyPressed
-        Valid.pindah(evt,RelakanRokok,Kesulitan);
-    }//GEN-LAST:event_BanyakRokokKeyPressed
+    private void JamPertamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JamPertamaKeyPressed
+        Valid.pindah(evt,TidakRela,RasaIngin);
+    }//GEN-LAST:event_JamPertamaKeyPressed
 
-    private void KesulitanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_KesulitanItemStateChanged
-        if(Kesulitan.getSelectedIndex()==1){
-            skorKesulitan.setText("1");
+    private void RasaInginItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_RasaInginItemStateChanged
+        if(RasaIngin.getSelectedIndex()==1){
+            NilaiRasaIngin.setText("1");
         }else{
-            skorKesulitan.setText("0");
+            NilaiRasaIngin.setText("0");
         }
         isTotal();
-    }//GEN-LAST:event_KesulitanItemStateChanged
+    }//GEN-LAST:event_RasaInginItemStateChanged
 
-    private void KesulitanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KesulitanKeyPressed
-        Valid.pindah(evt,BanyakRokok,Sakit);
-    }//GEN-LAST:event_KesulitanKeyPressed
+    private void RasaInginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RasaInginKeyPressed
+        Valid.pindah(evt,JamPertama,SakitBerat);
+    }//GEN-LAST:event_RasaInginKeyPressed
 
-    private void SakitItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_SakitItemStateChanged
-        if(Sakit.getSelectedIndex()==1){
-            skorSakit.setText("1");
+    private void SakitBeratItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_SakitBeratItemStateChanged
+        if(SakitBerat.getSelectedIndex()==1){
+            NilaiSakitBerat.setText("1");
         }else{
-            skorSakit.setText("0");
+            NilaiSakitBerat.setText("0");
         }
         isTotal();
-    }//GEN-LAST:event_SakitItemStateChanged
+    }//GEN-LAST:event_SakitBeratItemStateChanged
 
-    private void SakitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SakitKeyPressed
-        Valid.pindah(evt,Kesulitan,SkalaMotivasi);
-    }//GEN-LAST:event_SakitKeyPressed
+    private void SakitBeratKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SakitBeratKeyPressed
+        Valid.pindah(evt,RasaIngin,SkalaMotivasi);
+    }//GEN-LAST:event_SakitBeratKeyPressed
 
     private void SkalaMotivasiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SkalaMotivasiKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt,SakitBerat,BtnSimpan);
     }//GEN-LAST:event_SkalaMotivasiKeyPressed
-
-    private void SkalaMotivasiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_SkalaMotivasiItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SkalaMotivasiItemStateChanged
 
     /**
     * @param args the command line arguments
@@ -1680,7 +1581,6 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private widget.ComboBox BanyakRokok;
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
@@ -1689,26 +1589,32 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
-    private widget.ComboBox CepatMerokok;
     private widget.CekBox ChkInput;
     private widget.CekBox ChkKejadian;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.ComboBox Detik;
     private widget.PanelBiasa FormInput;
-    private widget.ComboBox HisapRokok;
     private widget.ComboBox Jam;
+    private widget.ComboBox JamPertama;
     private widget.TextBox KdPetugas;
     private widget.TextBox Kesimpulan;
-    private widget.ComboBox Kesulitan;
     private widget.Label LCount;
     private widget.editorpane LoadHTML;
     private widget.ComboBox Menit;
+    private widget.ComboBox MenyalakanRokok;
     private javax.swing.JMenuItem MnSkriningAdiksiNikotin;
+    private widget.TextBox NilaiJamPertama;
+    private widget.TextBox NilaiMenyalakanRokok;
+    private widget.TextBox NilaiRasaIngin;
+    private widget.TextBox NilaiRokokDihisab;
+    private widget.TextBox NilaiSakitBerat;
+    private widget.TextBox NilaiTidakRela;
     private widget.TextBox NmPetugas;
     private javax.swing.JPanel PanelInput;
-    private widget.ComboBox RelakanRokok;
-    private widget.ComboBox Sakit;
+    private widget.ComboBox RasaIngin;
+    private widget.ComboBox RokokDihisab;
+    private widget.ComboBox SakitBerat;
     private widget.ScrollPane Scroll;
     private widget.ComboBox SkalaMotivasi;
     private widget.TextBox TCari;
@@ -1718,11 +1624,13 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
     private widget.Tanggal Tanggal;
     private widget.TextBox TanggalRegistrasi;
     private widget.TextBox TglLahir;
-    private widget.TextBox TotalSkor;
+    private widget.ComboBox TidakRela;
+    private widget.TextBox TotalNilai;
     private widget.TextBox Umur;
     private widget.Button btnPetugas;
     private javax.swing.ButtonGroup buttonGroup1;
     private widget.InternalFrame internalFrame1;
+    private widget.Label jLabel101;
     private widget.Label jLabel107;
     private widget.Label jLabel108;
     private widget.Label jLabel109;
@@ -1760,17 +1668,10 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator3;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.ScrollPane scrollInput;
-    private widget.TextBox skorBanyakRokok;
-    private widget.TextBox skorCepatRokok;
-    private widget.TextBox skorHisap;
-    private widget.TextBox skorKesulitan;
-    private widget.TextBox skorRelakanRokok;
-    private widget.TextBox skorSakit;
     private widget.Table tbObat;
     // End of variables declaration//GEN-END:variables
     
@@ -1779,68 +1680,24 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
         try{
             if(TCari.getText().trim().equals("")){
                 ps=koneksi.prepareStatement(
-                    "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,reg_periksa.umurdaftar,reg_periksa.sttsumur,skrining_risiko_kanker_payudara.nip,"+
-                    "petugas.nama,skrining_risiko_kanker_payudara.tanggal,skrining_risiko_kanker_payudara.faktor_risiko_awal1,skrining_risiko_kanker_payudara.nilai_risiko_awal1,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal2,skrining_risiko_kanker_payudara.nilai_risiko_awal2,skrining_risiko_kanker_payudara.faktor_risiko_awal3,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal3,skrining_risiko_kanker_payudara.faktor_risiko_awal4,skrining_risiko_kanker_payudara.nilai_risiko_awal4,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal5,skrining_risiko_kanker_payudara.nilai_risiko_awal5,skrining_risiko_kanker_payudara.faktor_risiko_awal6,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal6,skrining_risiko_kanker_payudara.faktor_risiko_awal7,skrining_risiko_kanker_payudara.nilai_risiko_awal7,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal8,skrining_risiko_kanker_payudara.nilai_risiko_awal8,skrining_risiko_kanker_payudara.faktor_risiko_awal9,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal9,skrining_risiko_kanker_payudara.faktor_risiko_awal10,skrining_risiko_kanker_payudara.nilai_risiko_awal10,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal11,skrining_risiko_kanker_payudara.nilai_risiko_awal11,skrining_risiko_kanker_payudara.faktor_risiko_awal12,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal12,skrining_risiko_kanker_payudara.faktor_risiko_awal13,skrining_risiko_kanker_payudara.nilai_risiko_awal13,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal14,skrining_risiko_kanker_payudara.nilai_risiko_awal14,skrining_risiko_kanker_payudara.faktor_risiko_tinggi1,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi1,skrining_risiko_kanker_payudara.faktor_risiko_tinggi2,skrining_risiko_kanker_payudara.nilai_risiko_tinggi2,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi3,skrining_risiko_kanker_payudara.nilai_risiko_tinggi3,skrining_risiko_kanker_payudara.faktor_risiko_tinggi4,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi4,skrining_risiko_kanker_payudara.faktor_risiko_tinggi5,skrining_risiko_kanker_payudara.nilai_risiko_tinggi5,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi6,skrining_risiko_kanker_payudara.nilai_risiko_tinggi6,skrining_risiko_kanker_payudara.faktor_risiko_tinggi7,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi7,skrining_risiko_kanker_payudara.faktor_risiko_tinggi8,skrining_risiko_kanker_payudara.nilai_risiko_tinggi8,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi9,skrining_risiko_kanker_payudara.nilai_risiko_tinggi9,skrining_risiko_kanker_payudara.faktor_risiko_tinggi10,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi10,skrining_risiko_kanker_payudara.faktor_risiko_tinggi11,skrining_risiko_kanker_payudara.nilai_risiko_tinggi11,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi12,skrining_risiko_kanker_payudara.nilai_risiko_tinggi12,skrining_risiko_kanker_payudara.faktor_risiko_tinggi13,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi13,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas1,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas1,"+
-                    "skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas2,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas2,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas3,"+
-                    "skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas3,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas4,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas4,"+
-                    "skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas5,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas5,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas6,"+
-                    "skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas6,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas7,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas7,"+
-                    "skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas8,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas8,skrining_risiko_kanker_payudara.total_skor,"+
-                    "skrining_risiko_kanker_payudara.hasil_sadanis,skrining_risiko_kanker_payudara.tindak_lanjut_sadanis,skrining_risiko_kanker_payudara.hasil_skrining,"+
-                    "skrining_risiko_kanker_payudara.keterangan from skrining_risiko_kanker_payudara inner join reg_periksa on skrining_risiko_kanker_payudara.no_rawat=reg_periksa.no_rawat "+
-                    "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join petugas on skrining_risiko_kanker_payudara.nip=petugas.nip "+
-                    "where skrining_risiko_kanker_payudara.tanggal between ? and ? order by skrining_risiko_kanker_payudara.tanggal ");
+                    "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,reg_periksa.umurdaftar,reg_periksa.sttsumur,skrining_adiksi_nikotin.nip,"+
+                    "petugas.nama,skrining_adiksi_nikotin.tanggal,skrining_adiksi_nikotin.rokok_dihisap,skrining_adiksi_nikotin.nilai_rokok_dihisap,skrining_adiksi_nikotin.menyalakan_rokok,"+
+                    "skrining_adiksi_nikotin.nilai_menyalakan_rokok,skrining_adiksi_nikotin.tidak_rela,skrining_adiksi_nikotin.nilai_tidak_rela,skrining_adiksi_nikotin.jam_pertama,"+
+                    "skrining_adiksi_nikotin.nilai_jam_pertama,skrining_adiksi_nikotin.rasa_ingin,skrining_adiksi_nikotin.nilai_rasa_ingin,skrining_adiksi_nikotin.sakit_berat,"+
+                    "skrining_adiksi_nikotin.nilai_sakit_berat,skrining_adiksi_nikotin.nilai_total,skrining_adiksi_nikotin.keterangan_hasil_skrining,skrining_adiksi_nikotin.skala_motivasi "+
+                    "from skrining_adiksi_nikotin inner join reg_periksa on skrining_adiksi_nikotin.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                    "inner join petugas on skrining_adiksi_nikotin.nip=petugas.nip where skrining_adiksi_nikotin.tanggal between ? and ? order by skrining_adiksi_nikotin.tanggal ");
             }else{
                 ps=koneksi.prepareStatement(
-                    "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,reg_periksa.umurdaftar,reg_periksa.sttsumur,skrining_risiko_kanker_payudara.nip,"+
-                    "petugas.nama,skrining_risiko_kanker_payudara.tanggal,skrining_risiko_kanker_payudara.faktor_risiko_awal1,skrining_risiko_kanker_payudara.nilai_risiko_awal1,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal2,skrining_risiko_kanker_payudara.nilai_risiko_awal2,skrining_risiko_kanker_payudara.faktor_risiko_awal3,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal3,skrining_risiko_kanker_payudara.faktor_risiko_awal4,skrining_risiko_kanker_payudara.nilai_risiko_awal4,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal5,skrining_risiko_kanker_payudara.nilai_risiko_awal5,skrining_risiko_kanker_payudara.faktor_risiko_awal6,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal6,skrining_risiko_kanker_payudara.faktor_risiko_awal7,skrining_risiko_kanker_payudara.nilai_risiko_awal7,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal8,skrining_risiko_kanker_payudara.nilai_risiko_awal8,skrining_risiko_kanker_payudara.faktor_risiko_awal9,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal9,skrining_risiko_kanker_payudara.faktor_risiko_awal10,skrining_risiko_kanker_payudara.nilai_risiko_awal10,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal11,skrining_risiko_kanker_payudara.nilai_risiko_awal11,skrining_risiko_kanker_payudara.faktor_risiko_awal12,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_awal12,skrining_risiko_kanker_payudara.faktor_risiko_awal13,skrining_risiko_kanker_payudara.nilai_risiko_awal13,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_awal14,skrining_risiko_kanker_payudara.nilai_risiko_awal14,skrining_risiko_kanker_payudara.faktor_risiko_tinggi1,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi1,skrining_risiko_kanker_payudara.faktor_risiko_tinggi2,skrining_risiko_kanker_payudara.nilai_risiko_tinggi2,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi3,skrining_risiko_kanker_payudara.nilai_risiko_tinggi3,skrining_risiko_kanker_payudara.faktor_risiko_tinggi4,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi4,skrining_risiko_kanker_payudara.faktor_risiko_tinggi5,skrining_risiko_kanker_payudara.nilai_risiko_tinggi5,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi6,skrining_risiko_kanker_payudara.nilai_risiko_tinggi6,skrining_risiko_kanker_payudara.faktor_risiko_tinggi7,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi7,skrining_risiko_kanker_payudara.faktor_risiko_tinggi8,skrining_risiko_kanker_payudara.nilai_risiko_tinggi8,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi9,skrining_risiko_kanker_payudara.nilai_risiko_tinggi9,skrining_risiko_kanker_payudara.faktor_risiko_tinggi10,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi10,skrining_risiko_kanker_payudara.faktor_risiko_tinggi11,skrining_risiko_kanker_payudara.nilai_risiko_tinggi11,"+
-                    "skrining_risiko_kanker_payudara.faktor_risiko_tinggi12,skrining_risiko_kanker_payudara.nilai_risiko_tinggi12,skrining_risiko_kanker_payudara.faktor_risiko_tinggi13,"+
-                    "skrining_risiko_kanker_payudara.nilai_risiko_tinggi13,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas1,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas1,"+
-                    "skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas2,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas2,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas3,"+
-                    "skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas3,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas4,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas4,"+
-                    "skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas5,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas5,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas6,"+
-                    "skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas6,skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas7,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas7,"+
-                    "skrining_risiko_kanker_payudara.faktor_kecurigaan_ganas8,skrining_risiko_kanker_payudara.nilai_kecurigaan_ganas8,skrining_risiko_kanker_payudara.total_skor,"+
-                    "skrining_risiko_kanker_payudara.hasil_sadanis,skrining_risiko_kanker_payudara.tindak_lanjut_sadanis,skrining_risiko_kanker_payudara.hasil_skrining,"+
-                    "skrining_risiko_kanker_payudara.keterangan from skrining_risiko_kanker_payudara inner join reg_periksa on skrining_risiko_kanker_payudara.no_rawat=reg_periksa.no_rawat "+
-                    "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join petugas on skrining_risiko_kanker_payudara.nip=petugas.nip "+
-                    "where skrining_risiko_kanker_payudara.tanggal between ? and ? and (reg_periksa.no_rawat like ? or pasien.no_rkm_medis like ? or "+
-                    "pasien.nm_pasien like ? or skrining_risiko_kanker_payudara.nip like ? or petugas.nama like ?) "+
-                    "order by skrining_risiko_kanker_payudara.tanggal ");
+                    "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,reg_periksa.umurdaftar,reg_periksa.sttsumur,skrining_adiksi_nikotin.nip,"+
+                    "petugas.nama,skrining_adiksi_nikotin.tanggal,skrining_adiksi_nikotin.rokok_dihisap,skrining_adiksi_nikotin.nilai_rokok_dihisap,skrining_adiksi_nikotin.menyalakan_rokok,"+
+                    "skrining_adiksi_nikotin.nilai_menyalakan_rokok,skrining_adiksi_nikotin.tidak_rela,skrining_adiksi_nikotin.nilai_tidak_rela,skrining_adiksi_nikotin.jam_pertama,"+
+                    "skrining_adiksi_nikotin.nilai_jam_pertama,skrining_adiksi_nikotin.rasa_ingin,skrining_adiksi_nikotin.nilai_rasa_ingin,skrining_adiksi_nikotin.sakit_berat,"+
+                    "skrining_adiksi_nikotin.nilai_sakit_berat,skrining_adiksi_nikotin.nilai_total,skrining_adiksi_nikotin.keterangan_hasil_skrining,skrining_adiksi_nikotin.skala_motivasi "+
+                    "from skrining_adiksi_nikotin inner join reg_periksa on skrining_adiksi_nikotin.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                    "inner join petugas on skrining_adiksi_nikotin.nip=petugas.nip where skrining_adiksi_nikotin.tanggal between ? and ? and (reg_periksa.no_rawat like ? or pasien.no_rkm_medis like ? or "+
+                    "pasien.nm_pasien like ? or skrining_adiksi_nikotin.nip like ? or petugas.nama like ?) "+
+                    "order by skrining_adiksi_nikotin.tanggal ");
             }
                 
             try {
@@ -1861,22 +1718,10 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
                 while(rs.next()){
                     tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("tgl_lahir"),rs.getString("umurdaftar")+" "+rs.getString("sttsumur"),
-                        rs.getString("nip"),rs.getString("nama"),rs.getString("tanggal"),rs.getString("faktor_risiko_awal1"),rs.getString("nilai_risiko_awal1"),rs.getString("faktor_risiko_awal2"),
-                        rs.getString("nilai_risiko_awal2"),rs.getString("faktor_risiko_awal3"),rs.getString("nilai_risiko_awal3"),rs.getString("faktor_risiko_awal4"),rs.getString("nilai_risiko_awal4"),
-                        rs.getString("faktor_risiko_awal5"),rs.getString("nilai_risiko_awal5"),rs.getString("faktor_risiko_awal6"),rs.getString("nilai_risiko_awal6"),rs.getString("faktor_risiko_awal7"),
-                        rs.getString("nilai_risiko_awal7"),rs.getString("faktor_risiko_awal8"),rs.getString("nilai_risiko_awal8"),rs.getString("faktor_risiko_awal9"),rs.getString("nilai_risiko_awal9"),
-                        rs.getString("faktor_risiko_awal10"),rs.getString("nilai_risiko_awal10"),rs.getString("faktor_risiko_awal11"),rs.getString("nilai_risiko_awal11"),rs.getString("faktor_risiko_awal12"),
-                        rs.getString("nilai_risiko_awal12"),rs.getString("faktor_risiko_awal13"),rs.getString("nilai_risiko_awal13"),rs.getString("faktor_risiko_awal14"),rs.getString("nilai_risiko_awal14"),
-                        rs.getString("faktor_risiko_tinggi1"),rs.getString("nilai_risiko_tinggi1"),rs.getString("faktor_risiko_tinggi2"),rs.getString("nilai_risiko_tinggi2"),rs.getString("faktor_risiko_tinggi3"),
-                        rs.getString("nilai_risiko_tinggi3"),rs.getString("faktor_risiko_tinggi4"),rs.getString("nilai_risiko_tinggi4"),rs.getString("faktor_risiko_tinggi5"),rs.getString("nilai_risiko_tinggi5"),
-                        rs.getString("faktor_risiko_tinggi6"),rs.getString("nilai_risiko_tinggi6"),rs.getString("faktor_risiko_tinggi7"),rs.getString("nilai_risiko_tinggi7"),rs.getString("faktor_risiko_tinggi8"),
-                        rs.getString("nilai_risiko_tinggi8"),rs.getString("faktor_risiko_tinggi9"),rs.getString("nilai_risiko_tinggi9"),rs.getString("faktor_risiko_tinggi10"),rs.getString("nilai_risiko_tinggi10"),
-                        rs.getString("faktor_risiko_tinggi11"),rs.getString("nilai_risiko_tinggi11"),rs.getString("faktor_risiko_tinggi12"),rs.getString("nilai_risiko_tinggi12"),rs.getString("faktor_risiko_tinggi13"),
-                        rs.getString("nilai_risiko_tinggi13"),rs.getString("faktor_kecurigaan_ganas1"),rs.getString("nilai_kecurigaan_ganas1"),rs.getString("faktor_kecurigaan_ganas2"),rs.getString("nilai_kecurigaan_ganas2"),
-                        rs.getString("faktor_kecurigaan_ganas3"),rs.getString("nilai_kecurigaan_ganas3"),rs.getString("faktor_kecurigaan_ganas4"),rs.getString("nilai_kecurigaan_ganas4"),rs.getString("faktor_kecurigaan_ganas5"),
-                        rs.getString("nilai_kecurigaan_ganas5"),rs.getString("faktor_kecurigaan_ganas6"),rs.getString("nilai_kecurigaan_ganas6"),rs.getString("faktor_kecurigaan_ganas7"),rs.getString("nilai_kecurigaan_ganas7"),
-                        rs.getString("faktor_kecurigaan_ganas8"),rs.getString("nilai_kecurigaan_ganas8"),rs.getString("total_skor"),rs.getString("hasil_sadanis"),rs.getString("tindak_lanjut_sadanis"),
-                        rs.getString("hasil_skrining"),rs.getString("keterangan")
+                        rs.getString("nip"),rs.getString("nama"),rs.getString("tanggal"),rs.getString("rokok_dihisap"),rs.getString("nilai_rokok_dihisap"),rs.getString("menyalakan_rokok"),
+                        rs.getString("nilai_menyalakan_rokok"),rs.getString("tidak_rela"),rs.getString("nilai_tidak_rela"),rs.getString("jam_pertama"),rs.getString("nilai_jam_pertama"),
+                        rs.getString("rasa_ingin"),rs.getString("nilai_rasa_ingin"),rs.getString("sakit_berat"),rs.getString("nilai_sakit_berat"),rs.getString("nilai_total"),
+                        rs.getString("keterangan_hasil_skrining"),rs.getString("skala_motivasi")
                     });
                 }
             } catch (Exception e) {
@@ -1897,22 +1742,14 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
     
     public void emptTeks() {
         Tanggal.setDate(new Date());
-        HisapRokok.setSelectedIndex(0);
-        skorHisap.setText("0");
-        CepatMerokok.setSelectedIndex(0);
-        skorCepatRokok.setText("0");
-        RelakanRokok.setSelectedIndex(0);
-        skorRelakanRokok.setText("0");
-        BanyakRokok.setSelectedIndex(0);
-        skorBanyakRokok.setText("0");
-        Kesulitan.setSelectedIndex(0);
-        skorKesulitan.setText("0");
-        Sakit.setSelectedIndex(0);
-        skorSakit.setText("0");
-        TotalSkor.setText("0");
-        Kesimpulan.setText("Edukasi Bahaya Rokok");
+        RokokDihisab.setSelectedIndex(0);
+        MenyalakanRokok.setSelectedIndex(0);
+        TidakRela.setSelectedIndex(0);
+        JamPertama.setSelectedIndex(0);
+        RasaIngin.setSelectedIndex(0);
+        SakitBerat.setSelectedIndex(0);
         SkalaMotivasi.setSelectedIndex(0);
-        HisapRokok.requestFocus();
+        RokokDihisab.requestFocus();
     } 
 
     private void getData() {
@@ -1925,19 +1762,19 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
             Jam.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString().substring(11,13));
             Menit.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString().substring(14,15));
             Detik.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString().substring(17,19));
-            HisapRokok.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
-            skorHisap.setText(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
-            CepatMerokok.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
-            skorCepatRokok.setText(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString());
-            RelakanRokok.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),12).toString());
-            skorRelakanRokok.setText(tbObat.getValueAt(tbObat.getSelectedRow(),13).toString());
-            BanyakRokok.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),14).toString());
-            skorBanyakRokok.setText(tbObat.getValueAt(tbObat.getSelectedRow(),15).toString());
-            Kesulitan.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),16).toString());
-            skorKesulitan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),17).toString());
-            Sakit.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),18).toString());
-            skorSakit.setText(tbObat.getValueAt(tbObat.getSelectedRow(),19).toString());
-            TotalSkor.setText(tbObat.getValueAt(tbObat.getSelectedRow(),20).toString());
+            RokokDihisab.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
+            NilaiRokokDihisab.setText(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
+            MenyalakanRokok.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
+            NilaiMenyalakanRokok.setText(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString());
+            TidakRela.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),12).toString());
+            NilaiTidakRela.setText(tbObat.getValueAt(tbObat.getSelectedRow(),13).toString());
+            JamPertama.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),14).toString());
+            NilaiJamPertama.setText(tbObat.getValueAt(tbObat.getSelectedRow(),15).toString());
+            RasaIngin.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),16).toString());
+            NilaiRasaIngin.setText(tbObat.getValueAt(tbObat.getSelectedRow(),17).toString());
+            SakitBerat.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),18).toString());
+            NilaiSakitBerat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),19).toString());
+            TotalNilai.setText(tbObat.getValueAt(tbObat.getSelectedRow(),20).toString());
             Kesimpulan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),21).toString());
             SkalaMotivasi.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),22).toString());
             Valid.SetTgl(Tanggal,tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());  
@@ -1988,9 +1825,9 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
     
     private void isForm(){
         if(ChkInput.isSelected()==true){
-            if(internalFrame1.getHeight()>608){
+            if(internalFrame1.getHeight()>573){
                 ChkInput.setVisible(false);
-                PanelInput.setPreferredSize(new Dimension(WIDTH,410));
+                PanelInput.setPreferredSize(new Dimension(WIDTH,375));
                 FormInput.setVisible(true);      
                 ChkInput.setVisible(true);
             }else{
@@ -2089,22 +1926,11 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
     }
 
     private void ganti() {
-        if(Sequel.mengedittf("skrining_risiko_kanker_payudara","no_rawat=?","no_rawat=?,tanggal=?,faktor_risiko_awal1=?,nilai_risiko_awal1=?,faktor_risiko_awal2=?,nilai_risiko_awal2=?,faktor_risiko_awal3=?,"+
-                "nilai_risiko_awal3=?,faktor_risiko_awal4=?,nilai_risiko_awal4=?,faktor_risiko_awal5=?,nilai_risiko_awal5=?,faktor_risiko_awal6=?,nilai_risiko_awal6=?,faktor_risiko_awal7=?,nilai_risiko_awal7=?,"+
-                "faktor_risiko_awal8=?,nilai_risiko_awal8=?,faktor_risiko_awal9=?,nilai_risiko_awal9=?,faktor_risiko_awal10=?,nilai_risiko_awal10=?,faktor_risiko_awal11=?,nilai_risiko_awal11=?,faktor_risiko_awal12=?,"+
-                "nilai_risiko_awal12=?,faktor_risiko_awal13=?,nilai_risiko_awal13=?,faktor_risiko_awal14=?,nilai_risiko_awal14=?,faktor_risiko_tinggi1=?,nilai_risiko_tinggi1=?,faktor_risiko_tinggi2=?,nilai_risiko_tinggi2=?,"+
-                "faktor_risiko_tinggi3=?,nilai_risiko_tinggi3=?,faktor_risiko_tinggi4=?,nilai_risiko_tinggi4=?,faktor_risiko_tinggi5=?,nilai_risiko_tinggi5=?,faktor_risiko_tinggi6=?,nilai_risiko_tinggi6=?,"+
-                "faktor_risiko_tinggi7=?,nilai_risiko_tinggi7=?,faktor_risiko_tinggi8=?,nilai_risiko_tinggi8=?,faktor_risiko_tinggi9=?,nilai_risiko_tinggi9=?,faktor_risiko_tinggi10=?,nilai_risiko_tinggi10=?,"+
-                "faktor_risiko_tinggi11=?,nilai_risiko_tinggi11=?,faktor_risiko_tinggi12=?,nilai_risiko_tinggi12=?,faktor_risiko_tinggi13=?,nilai_risiko_tinggi13=?,faktor_kecurigaan_ganas1=?,nilai_kecurigaan_ganas1=?,"+
-                "faktor_kecurigaan_ganas2=?,nilai_kecurigaan_ganas2=?,faktor_kecurigaan_ganas3=?,nilai_kecurigaan_ganas3=?,faktor_kecurigaan_ganas4=?,nilai_kecurigaan_ganas4=?,faktor_kecurigaan_ganas5=?,nilai_kecurigaan_ganas5=?,"+
-                "faktor_kecurigaan_ganas6=?,nilai_kecurigaan_ganas6=?,faktor_kecurigaan_ganas7=?,nilai_kecurigaan_ganas7=?,faktor_kecurigaan_ganas8=?,nilai_kecurigaan_ganas8=?,total_skor=?,hasil_sadanis=?,tindak_lanjut_sadanis=?,"+
-                "hasil_skrining=?,keterangan=?,nip=?",79,new String[]{
-                TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),
-                HisapRokok.getSelectedItem().toString(),skorHisap.getText(),CepatMerokok.getSelectedItem().toString(),skorCepatRokok.getText(),RelakanRokok.getSelectedItem().toString(),skorRelakanRokok.getText(),
-                BanyakRokok.getSelectedItem().toString(),skorBanyakRokok.getText(),
-                Kesulitan.getSelectedItem().toString(),skorKesulitan.getText(),Sakit.getSelectedItem().toString(),skorSakit.getText(), 
-                TotalSkor.getText(),Kesimpulan.getText(),SkalaMotivasi.getSelectedItem().toString(),
-                KdPetugas.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
+        if(Sequel.mengedittf("skrining_adiksi_nikotin","no_rawat=?","no_rawat=?,tanggal=?,rokok_dihisap=?,nilai_rokok_dihisap=?,menyalakan_rokok=?,nilai_menyalakan_rokok=?,tidak_rela=?,nilai_tidak_rela=?,jam_pertama=?,nilai_jam_pertama=?,rasa_ingin=?,nilai_rasa_ingin=?,sakit_berat=?,nilai_sakit_berat=?,"+
+                "nilai_total=?,keterangan_hasil_skrining=?,skala_motivasi=?,nip=?",19,new String[]{
+                TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),RokokDihisab.getSelectedItem().toString(),NilaiRokokDihisab.getText(),MenyalakanRokok.getSelectedItem().toString(),NilaiMenyalakanRokok.getText(),
+                TidakRela.getSelectedItem().toString(),NilaiTidakRela.getText(),JamPertama.getSelectedItem().toString(),NilaiJamPertama.getText(),RasaIngin.getSelectedItem().toString(),NilaiRasaIngin.getText(),SakitBerat.getSelectedItem().toString(),NilaiSakitBerat.getText(),TotalNilai.getText(),Kesimpulan.getText(),
+                SkalaMotivasi.getSelectedItem().toString(),KdPetugas.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
             })==true){
                tbObat.setValueAt(TNoRw.getText(),tbObat.getSelectedRow(),0);
                tbObat.setValueAt(TNoRM.getText(),tbObat.getSelectedRow(),1);
@@ -2114,19 +1940,19 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
                tbObat.setValueAt(KdPetugas.getText(),tbObat.getSelectedRow(),5);
                tbObat.setValueAt(NmPetugas.getText(),tbObat.getSelectedRow(),6);
                tbObat.setValueAt(Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),tbObat.getSelectedRow(),7);
-               tbObat.setValueAt(HisapRokok.getSelectedItem().toString(),tbObat.getSelectedRow(),8);
-               tbObat.setValueAt(skorHisap.getText(),tbObat.getSelectedRow(),9);
-               tbObat.setValueAt(CepatMerokok.getSelectedItem().toString(),tbObat.getSelectedRow(),10);
-               tbObat.setValueAt(skorCepatRokok.getText(),tbObat.getSelectedRow(),11);
-               tbObat.setValueAt(RelakanRokok.getSelectedItem().toString(),tbObat.getSelectedRow(),12);
-               tbObat.setValueAt(skorRelakanRokok.getText(),tbObat.getSelectedRow(),13);
-               tbObat.setValueAt(BanyakRokok.getSelectedItem().toString(),tbObat.getSelectedRow(),14);
-               tbObat.setValueAt(skorBanyakRokok.getText(),tbObat.getSelectedRow(),15);
-               tbObat.setValueAt(Kesulitan.getSelectedItem().toString(),tbObat.getSelectedRow(),16);
-               tbObat.setValueAt(skorKesulitan.getText(),tbObat.getSelectedRow(),17);
-               tbObat.setValueAt(Sakit.getSelectedItem().toString(),tbObat.getSelectedRow(),18);
-               tbObat.setValueAt(skorSakit.getText(),tbObat.getSelectedRow(),19);
-               tbObat.setValueAt(TotalSkor.getText(),tbObat.getSelectedRow(),20);
+               tbObat.setValueAt(RokokDihisab.getSelectedItem().toString(),tbObat.getSelectedRow(),8);
+               tbObat.setValueAt(NilaiRokokDihisab.getText(),tbObat.getSelectedRow(),9);
+               tbObat.setValueAt(MenyalakanRokok.getSelectedItem().toString(),tbObat.getSelectedRow(),10);
+               tbObat.setValueAt(NilaiMenyalakanRokok.getText(),tbObat.getSelectedRow(),11);
+               tbObat.setValueAt(TidakRela.getSelectedItem().toString(),tbObat.getSelectedRow(),12);
+               tbObat.setValueAt(NilaiTidakRela.getText(),tbObat.getSelectedRow(),13);
+               tbObat.setValueAt(JamPertama.getSelectedItem().toString(),tbObat.getSelectedRow(),14);
+               tbObat.setValueAt(NilaiJamPertama.getText(),tbObat.getSelectedRow(),15);
+               tbObat.setValueAt(RasaIngin.getSelectedItem().toString(),tbObat.getSelectedRow(),16);
+               tbObat.setValueAt(NilaiRasaIngin.getText(),tbObat.getSelectedRow(),17);
+               tbObat.setValueAt(SakitBerat.getSelectedItem().toString(),tbObat.getSelectedRow(),18);
+               tbObat.setValueAt(NilaiSakitBerat.getText(),tbObat.getSelectedRow(),19);
+               tbObat.setValueAt(TotalNilai.getText(),tbObat.getSelectedRow(),20);
                tbObat.setValueAt(Kesimpulan.getText(),tbObat.getSelectedRow(),21);
                tbObat.setValueAt(SkalaMotivasi.getSelectedItem().toString(),tbObat.getSelectedRow(),22);
                emptTeks();
@@ -2134,7 +1960,7 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
     }
 
     private void hapus() {
-        if(Sequel.queryu2tf("delete from skrining_risiko_kanker_payudara where no_rawat=?",1,new String[]{
+        if(Sequel.queryu2tf("delete from skrining_adiksi_nikotin where no_rawat=?",1,new String[]{
             tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
         })==true){
             tabMode.removeRow(tbObat.getSelectedRow());
@@ -2147,21 +1973,19 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
 
     private void isTotal() {
         try {
-            TotalSkor.setText(""+(
-                    Integer.parseInt(skorHisap.getText())+Integer.parseInt(skorCepatRokok.getText())+
-                    Integer.parseInt(skorRelakanRokok.getText())+
-                    Integer.parseInt(skorBanyakRokok.getText())+
-                    Integer.parseInt(skorKesulitan.getText())+Integer.parseInt(skorSakit.getText())
+            TotalNilai.setText(""+(
+                    Integer.parseInt(NilaiRokokDihisab.getText())+Integer.parseInt(NilaiMenyalakanRokok.getText())+
+                    Integer.parseInt(NilaiTidakRela.getText())+
+                    Integer.parseInt(NilaiJamPertama.getText())+
+                    Integer.parseInt(NilaiRasaIngin.getText())+Integer.parseInt(NilaiSakitBerat.getText())
             ));
-            if(Integer.parseInt(TotalSkor.getText())>7){
+            if(Integer.parseInt(TotalNilai.getText())>7){
                 Kesimpulan.setText("Ketergantungan Berat");
-            }else if(Integer.parseInt(TotalSkor.getText())>4){
+            }else if(Integer.parseInt(TotalNilai.getText())>4){
                 Kesimpulan.setText("Ketergantungan Sedang");
             }else{
                 Kesimpulan.setText("Ketergantungan Rendah");
             }
-            
-
         } catch (Exception e) {
             Kesimpulan.setText("Ketergantungan Rendah");
         }
@@ -2169,19 +1993,16 @@ public final class RMSkriningAdiksiNikotin extends javax.swing.JDialog {
       
 
     private void simpan() {
-        if(Sequel.menyimpantf("skrining_risiko_kanker_payudara","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",78,new String[]{
-            TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),
-            HisapRokok.getSelectedItem().toString(),skorHisap.getText(),CepatMerokok.getSelectedItem().toString(),skorCepatRokok.getText(),RelakanRokok.getSelectedItem().toString(),skorRelakanRokok.getText(),
-            BanyakRokok.getSelectedItem().toString(),skorBanyakRokok.getText(),
-            Kesulitan.getSelectedItem().toString(),skorKesulitan.getText(),Sakit.getSelectedItem().toString(),skorSakit.getText(),
-            TotalSkor.getText(),Kesimpulan.getText(),SkalaMotivasi.getSelectedItem().toString(),KdPetugas.getText()
+        if(Sequel.menyimpantf("skrining_adiksi_nikotin","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",18,new String[]{
+            TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),RokokDihisab.getSelectedItem().toString(),NilaiRokokDihisab.getText(),
+            MenyalakanRokok.getSelectedItem().toString(),NilaiMenyalakanRokok.getText(),TidakRela.getSelectedItem().toString(),NilaiTidakRela.getText(),JamPertama.getSelectedItem().toString(),NilaiJamPertama.getText(),
+            RasaIngin.getSelectedItem().toString(),NilaiRasaIngin.getText(),SakitBerat.getSelectedItem().toString(),NilaiSakitBerat.getText(),TotalNilai.getText(),Kesimpulan.getText(),SkalaMotivasi.getSelectedItem().toString(),
+            KdPetugas.getText()
         })==true){
             tabMode.addRow(new String[]{
                 TNoRw.getText(),TNoRM.getText(),TPasien.getText(),TglLahir.getText(),Umur.getText(),KdPetugas.getText(),NmPetugas.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Jam.getSelectedItem()+":"+Menit.getSelectedItem()+":"+Detik.getSelectedItem(),
-                HisapRokok.getSelectedItem().toString(),skorHisap.getText(),CepatMerokok.getSelectedItem().toString(),skorCepatRokok.getText(),RelakanRokok.getSelectedItem().toString(),skorRelakanRokok.getText(),
-                BanyakRokok.getSelectedItem().toString(),skorBanyakRokok.getText(),
-                Kesulitan.getSelectedItem().toString(),skorKesulitan.getText(),Sakit.getSelectedItem().toString(),skorSakit.getText(), 
-                TotalSkor.getText(),Kesimpulan.getText(),SkalaMotivasi.getSelectedItem().toString()
+                RokokDihisab.getSelectedItem().toString(),NilaiRokokDihisab.getText(),MenyalakanRokok.getSelectedItem().toString(),NilaiMenyalakanRokok.getText(),TidakRela.getSelectedItem().toString(),NilaiTidakRela.getText(),JamPertama.getSelectedItem().toString(),
+                NilaiJamPertama.getText(),RasaIngin.getSelectedItem().toString(),NilaiRasaIngin.getText(),SakitBerat.getSelectedItem().toString(),NilaiSakitBerat.getText(),TotalNilai.getText(),Kesimpulan.getText(),SkalaMotivasi.getSelectedItem().toString()
             });
             LCount.setText(""+tabMode.getRowCount());
             emptTeks();

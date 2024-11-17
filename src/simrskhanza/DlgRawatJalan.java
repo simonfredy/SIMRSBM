@@ -2321,7 +2321,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.setPreferredSize(new java.awt.Dimension(44, 134));
         panelGlass12.setLayout(null);
 
-        jLabel8.setText("Subjek :");
+        jLabel8.setText("(S)ubjek :");
         jLabel8.setName("jLabel8"); 
         panelGlass12.add(jLabel8);
         jLabel8.setBounds(0, 70, 70, 23);
@@ -2356,7 +2356,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.add(jLabel17);
         jLabel17.setBounds(0, 190, 70, 23);
 
-        jLabel9.setText("Objek :");
+        jLabel9.setText("(O)bjek :");
         jLabel9.setName("jLabel9"); 
         panelGlass12.add(jLabel9);
         jLabel9.setBounds(0, 115, 70, 23);
@@ -2393,12 +2393,12 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.add(scrollPane1);
         scrollPane1.setBounds(73, 70, 360, 38);
 
-        jLabel28.setText("Asesmen :");
+        jLabel28.setText("(A)sesmen :");
         jLabel28.setName("jLabel28"); 
         panelGlass12.add(jLabel28);
         jLabel28.setBounds(450, 40, 90, 23);
 
-        jLabel26.setText("Plan :");
+        jLabel26.setText("(P)lan :");
         jLabel26.setName("jLabel26"); 
         panelGlass12.add(jLabel26);
         jLabel26.setBounds(450, 85, 90, 23);
@@ -2594,7 +2594,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.add(jLabel41);
         jLabel41.setBounds(0, 40, 190, 23);
 
-        jLabel53.setText("Instruksi :");
+        jLabel53.setText("(I)nstruksi :");
         jLabel53.setName("jLabel53"); 
         panelGlass12.add(jLabel53);
         jLabel53.setBounds(450, 139, 90, 23);
@@ -2631,7 +2631,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass12.add(SpO2);
         SpO2.setBounds(73, 220, 42, 23);
 
-        jLabel56.setText("Evaluasi :");
+        jLabel56.setText("(E)valuasi :");
         jLabel56.setName("jLabel56"); 
         panelGlass12.add(jLabel56);
         jLabel56.setBounds(450, 196, 90, 23);
@@ -2691,7 +2691,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         internalFrame5.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
-        TabRawat.addTab("Pemeriksaan", internalFrame5);
+        TabRawat.addTab("SOAPIE/CPPT", internalFrame5);
 
         internalFrame6.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));

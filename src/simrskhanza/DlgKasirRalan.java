@@ -21,6 +21,7 @@ import bridging.BPJSSuratKontrol;
 import bridging.CoronaPasien;
 import bridging.DlgDataTB;
 import bridging.ICareRiwayatPerawatan;
+import bridging.ICareRiwayatPerawatan2OK;
 import bridging.ICareRiwayatPerawatanFKTP;
 import permintaan.DlgBookingOperasi;
 import surat.SuratKontrol;
@@ -62,6 +63,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -7679,6 +7681,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
                 if(i==0){
                     if(akses.gettindakan_ralan()==true){
                         MnDataRalanActionPerformed(null);
+                        MnRiwayatPerawatanICareNoKartu2OKActionPerformed(null);
                     }
                 }else if(i==1){
                     if(akses.getberi_obat()==true){
@@ -16581,5 +16584,36 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnDataRM.add(ppResume);
         MnDataRM.add(ppRiwayat);
         MnDataRM.add(ppDeteksiDIniCorona);
+    }
+    
+    private void MnRiwayatPerawatanICareNoKartu2OKActionPerformed(java.awt.event.ActionEvent evt) {                                                               
+        if(tabModekasir.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
+            TCari.requestFocus();
+        }else if(TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            tbKasirRalan.requestFocus();
+        }else{
+            if(tbKasirRalan.getSelectedRow()!= -1){
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                variabel=Sequel.cariIsi("select maping_dokter_dpjpvclaim.kd_dokter_bpjs from maping_dokter_dpjpvclaim where maping_dokter_dpjpvclaim.kd_dokter=?",tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(),0).toString());
+                if(!variabel.equals("")){
+                    akses.setform("DlgReg");
+                    ICareRiwayatPerawatan2OK dlgki=new ICareRiwayatPerawatan2OK(null,false);
+                    dlgki.setSize(1350, 670);
+                    dlgki.setLocationRelativeTo(internalFrame1);
+                    dlgki.setPasien(Sequel.cariIsi("select pasien.no_peserta from pasien where pasien.no_rkm_medis=?",TNoRMCari.getText()),variabel);   
+                    dlgki.setVisible(true);
+                    SwingUtilities.invokeLater(() -> {
+                    dlgki.performBtnCariAction();
+                });
+
+                }else{
+                    JOptionPane.showMessageDialog(null,"Maaf, Dokter tidak terdaftar di mapping dokter BPJS...!!!"); 
+                }
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+
     }
 }

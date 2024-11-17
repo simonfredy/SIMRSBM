@@ -861,6 +861,7 @@ import rekammedis.RMChecklistKriteriaKeluarHCU;
 import rekammedis.RMChecklistKriteriaKeluarICU;
 import rekammedis.RMChecklistKriteriaMasukHCU;
 import rekammedis.RMChecklistKriteriaMasukICU;
+import rekammedis.RMChecklistPemberianFibrinolitik;
 import rekammedis.RMChecklistPostOperasi;
 import rekammedis.RMChecklistPreOperasi;
 import rekammedis.RMDataAsuhanGizi;
@@ -966,6 +967,7 @@ import rekammedis.RMSignInSebelumAnastesi;
 import rekammedis.RMSignOutSebelumMenutupLuka;
 import rekammedis.RMSkriningAdiksiNikotin;
 import rekammedis.RMSkriningInstrumenSDQ;
+import rekammedis.RMSkriningKankerKolorektal;
 import rekammedis.RMSkriningKekerasanPadaPerempuan;
 import rekammedis.RMSkriningMPP;
 import rekammedis.RMSkriningMPPFormA;
@@ -979,6 +981,7 @@ import rekammedis.RMSkriningRisikoKankerParu;
 import rekammedis.RMSkriningKesehatanGigiMulutRemaja;
 import rekammedis.RMSkriningPUMA;
 import rekammedis.RMSkriningRisikoKankerPayudara;
+import rekammedis.RMSkriningSRQ;
 import rekammedis.RMSkriningTBC;
 import rekammedis.RMSkriningTalasemia;
 import rekammedis.RMTimeOutSebelumInsisi;
@@ -21879,6 +21882,45 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnSkriningInstrumenSRQActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMSkriningSRQ form=new RMSkriningSRQ(this,false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void btnChecklistPemberianFibrinolitikActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMChecklistPemberianFibrinolitik form=new RMChecklistPemberianFibrinolitik(this,false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void btnSkriningKankerKolorektalActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMSkriningKankerKolorektal form=new RMSkriningKankerKolorektal(this,false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
             
     /**
     * @param args the command line arguments
@@ -22577,7 +22619,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnDataSasaranUsiaLansia,btnSkriningMerokokUsiaSekolah,btnSkriningKekerasanPadaPerempuan,btnSkriningObesitas,btnSkriningRisikoKankerPayudara,btnSkriningRisikoKankerParu,
             btnSkriningKesehatanGigiMulutRemaja,btnSkriningTBC,btnPenilaianAwalKeperawatanRanapBayiAnak,btnBookingMCUPerusahaan,btnKirimQuestionnaireResponseSatuSehat,btnKirimAllergyIntolleranceSatuSehat,
             btnCatatanObservasiRestrainNonFramakologi,btnCatatanObservasiVentilator,btnCatatanAnastesiSedasi,btnSkriningPUMA,btnKirimCarePlanSatuSehat,btnKirimMedicationStatementSatuSehat,btnSkriningAdiksiNikotin,
-            btnSkriningThalassemia,btnSkriningInstrumenSDQ;
+            btnSkriningThalassemia,btnSkriningInstrumenSDQ,btnSkriningInstrumenSRQ,btnChecklistPemberianFibrinolitik,btnSkriningKankerKolorektal;
     
     public void isWall(){
         try{            
@@ -26712,6 +26754,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
                 jmlmenu++;
             }
             
+            if(akses.getchecklist_pemberian_fibrinolitik()==true){
+                Panelmenu.add(btnChecklistPemberianFibrinolitik);
+                jmlmenu++;
+            }
+            
             if(akses.getmpp_skrining()==true){
                 Panelmenu.add(btnSkriningManagerPelayananPasien);
                 jmlmenu++;
@@ -26778,6 +26825,16 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getskrining_instrumen_sdq()==true){
                 Panelmenu.add(btnSkriningInstrumenSDQ);
+                jmlmenu++;
+            }
+            
+            if(akses.getskrining_instrumen_srq()==true){
+                Panelmenu.add(btnSkriningInstrumenSRQ);
+                jmlmenu++;
+            }
+            
+            if(akses.getskrining_kanker_kolorektal()==true){
+                Panelmenu.add(btnSkriningKankerKolorektal);
                 jmlmenu++;
             }
         }else if(cmbMenu.getSelectedIndex()==13){  
@@ -32006,6 +32063,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             jmlmenu++;
         }
         
+        if(akses.getchecklist_pemberian_fibrinolitik()==true){
+            Panelmenu.add(btnChecklistPemberianFibrinolitik);
+            jmlmenu++;
+        }
+        
         if(akses.getmpp_skrining()==true){
             Panelmenu.add(btnSkriningManagerPelayananPasien);
             jmlmenu++;
@@ -32072,6 +32134,16 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         
         if(akses.getskrining_instrumen_sdq()==true){
             Panelmenu.add(btnSkriningInstrumenSDQ);
+            jmlmenu++;
+        }
+        
+        if(akses.getskrining_instrumen_srq()==true){
+            Panelmenu.add(btnSkriningInstrumenSRQ);
+            jmlmenu++;
+        }
+        
+        if(akses.getskrining_kanker_kolorektal()==true){
+            Panelmenu.add(btnSkriningKankerKolorektal);
             jmlmenu++;
         }
 
@@ -38902,6 +38974,20 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }                
         }
         
+        if(akses.getskrining_instrumen_srq()==true){
+            if(btnSkriningInstrumenSRQ.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnSkriningInstrumenSRQ);
+                jmlmenu++;
+            }                
+        }
+        
+        if(akses.getskrining_kanker_kolorektal()==true){
+            if(btnSkriningKankerKolorektal.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnSkriningKankerKolorektal);
+                jmlmenu++;
+            }                
+        }
+        
         if(akses.getmpp_skrining()==true){
             if(btnSkriningManagerPelayananPasien.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnSkriningManagerPelayananPasien);
@@ -38997,6 +39083,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         if(akses.getskrining_instrumen_sdq()==true){
             if(btnSkriningInstrumenSDQ.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnSkriningInstrumenSDQ);
+                jmlmenu++;
+            }                
+        }
+        
+        if(akses.getchecklist_pemberian_fibrinolitik()==true){
+            if(btnChecklistPemberianFibrinolitik.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnChecklistPemberianFibrinolitik);
                 jmlmenu++;
             }                
         }
@@ -45499,6 +45592,30 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnSkriningInstrumenSDQ.setName("btnSkriningInstrumenSDQ"); 
         btnSkriningInstrumenSDQ.setPreferredSize(new java.awt.Dimension(200, 90));
         btnSkriningInstrumenSDQ.addActionListener(this::btnSkriningInstrumenSDQActionPerformed);
+        
+        btnSkriningInstrumenSRQ = new widget.ButtonBig();
+        btnSkriningInstrumenSRQ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/8322725_emoji_emoticon_heart_kiss_icon.png"))); 
+        btnSkriningInstrumenSRQ.setText("Skrining Instrumen SRQ");
+        btnSkriningInstrumenSRQ.setIconTextGap(0);
+        btnSkriningInstrumenSRQ.setName("btnSkriningInstrumenSRQ"); 
+        btnSkriningInstrumenSRQ.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSkriningInstrumenSRQ.addActionListener(this::btnSkriningInstrumenSRQActionPerformed);
+        
+        btnSkriningKankerKolorektal = new widget.ButtonBig();
+        btnSkriningKankerKolorektal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/5728186_bowel_constipation_diarrhea_irritable_sick_icon.png"))); 
+        btnSkriningKankerKolorektal.setText("Skrining Kanker Kolorektal");
+        btnSkriningKankerKolorektal.setIconTextGap(0);
+        btnSkriningKankerKolorektal.setName("btnSkriningKankerKolorektal"); 
+        btnSkriningKankerKolorektal.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSkriningKankerKolorektal.addActionListener(this::btnSkriningKankerKolorektalActionPerformed);
+        
+        btnChecklistPemberianFibrinolitik = new widget.ButtonBig();
+        btnChecklistPemberianFibrinolitik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/2620524_cv_employee_job_seeker_unemployee_icon.png"))); 
+        btnChecklistPemberianFibrinolitik.setText("Checklist Pemberian Fibrinolitik");
+        btnChecklistPemberianFibrinolitik.setIconTextGap(0);
+        btnChecklistPemberianFibrinolitik.setName("btnChecklistPemberianFibrinolitik"); 
+        btnChecklistPemberianFibrinolitik.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnChecklistPemberianFibrinolitik.addActionListener(this::btnChecklistPemberianFibrinolitikActionPerformed);
         
         btnBookingMCUPerusahaan = new widget.ButtonBig();
         btnBookingMCUPerusahaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/6002396_building_coronavirus_covid19_health_hospital_icon.png"))); 

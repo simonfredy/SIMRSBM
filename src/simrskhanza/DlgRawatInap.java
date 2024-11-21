@@ -148,7 +148,6 @@ import rekammedis.RMTransferPasienAntarRuang;
 import rekammedis.ValidasiSBAR;
 import rekammedis.DlgSOAPOld;
 import rekammedis.ValidasiSOAP;
-import rekammedis.RMPenilaianAwalMedisRanapBedah;
 import grafikanalisa.grafiksqlttv;
 import java.awt.Toolkit;
 
@@ -1537,7 +1536,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         PanelInput4 = new javax.swing.JPanel();
         internalFrame8 = new widget.InternalFrame();
         tbPemeriksaanSbar = new widget.Table();
-        BtnAwalMedisRanapBedah = new widget.Button();
         
         BagianRS.setEditable(false);
         BagianRS.setText("0");
@@ -4122,22 +4120,6 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnAwalMedisHemodialisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAwalMedisHemodialisaActionPerformed(evt);
-            }
-        });
-        
-        BtnAwalMedisRanapBedah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
-        BtnAwalMedisRanapBedah.setText("Pengkajian Awal Medis Ranap Bedah");
-        BtnAwalMedisRanapBedah.setFocusPainted(false);
-        BtnAwalMedisRanapBedah.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        BtnAwalMedisRanapBedah.setGlassColor(new java.awt.Color(255, 255, 255));
-        BtnAwalMedisRanapBedah.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        BtnAwalMedisRanapBedah.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        BtnAwalMedisRanapBedah.setName("BtnAwalMedisRanapBedah"); // NOI18N
-        BtnAwalMedisRanapBedah.setPreferredSize(new java.awt.Dimension(190, 23));
-        BtnAwalMedisRanapBedah.setRoundRect(false);
-        BtnAwalMedisRanapBedah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAwalMedisRanapBedahActionPerformed(evt);
             }
         });
 
@@ -7432,23 +7414,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnAwalFisioterapiActionPerformed
-    
-    private void BtnAwalMedisRanapBedahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAwalMedisKandunganActionPerformed
-        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            TCari.requestFocus();
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            RMPenilaianAwalMedisRanapBedah form=new RMPenilaianAwalMedisRanapBedah(null,false);
-            form.isCek();
-            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
-            form.emptTeks();
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }//GEN-LAST:event_BtnAwalMedisKandunganActionPerformed
 
     private void SpO2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SpO2KeyPressed
         Valid.pindah(evt,TNadi,TGCS);
@@ -9247,7 +9212,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnSkorBromagePascaAnestesi,BtnPenilaianPreInduksi,BtnHasilPemeriksaanUSGUrologi,BtnHasilPemeriksaanUSGGynecologi,BtnHasilPemeriksaanEKG,BtnHasilPemeriksaanUSGNeonatus,BtnHasilEndoskopiFaringLaring,BtnHasilEndoskopiHidung,BtnHasilEndoskopiTelinga,
                           BtnAwalKeperawatanNeonatus,BtnPenilaianPasienImunitasRendah,BtnCatatanKeseimbanganCairan,BtnCatatanObservasiCHBP,BtnCatatanObservasiInduksiPersalinan,BtnPermintaanKonsultasiMedik,BtnAwalKeperawatanBayiAnak;
     private widget.Button BtnVerifSbar,BtnVerifSbar3,BtnVerifikasiSOAP,BtnStatusVerifikasiSOAP,BtnGrafikTTV,BtnSeekPegawai1,BtnCatatanObservasiRestrainNonfarmakologi,BtnCatatanObservasiVentilator,BtnCatatanAnastesiSedasi,BtnChecklistPemberianFibrinolitik;
-    private widget.Button BtnAwalMedisRanapBedah;
     private widget.PanelBiasa panelBiasa3;
     private widget.panelisi panelGlass16;
     private widget.ScrollPane scrollPane5,scrollPane6,Scroll6,scrollPane9,scrollPane10;
@@ -10026,10 +9990,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         if(akses.getcatatan_anestesi_sedasi()==true){
             tinggi=tinggi+24;
         }
-        BtnAwalMedisRanapBedah.setVisible(akses.getpenilaian_awal_medis_ranap_bedah());   
-        if(akses.getpenilaian_awal_medis_ranap_bedah()==true){
-            tinggi=tinggi+24;
-        }
+        
         FormMenu.setPreferredSize(new Dimension(195,(tinggi+10)));
         
         if(akses.getjml2()>=1){
@@ -10789,7 +10750,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         FormMenu.add(BtnPenilaianTambahanBunuhDiri);
         FormMenu.add(BtnPenilaianTambahanPerilakuKekerasan);
         FormMenu.add(BtnPenilaianTambahanMelarikanDiri);
-        FormMenu.add(BtnAwalMedisRanapBedah);
     }
 
     private void simpan() {

@@ -252,7 +252,9 @@ public class DlgUser extends javax.swing.JDialog {
                 "[L]Bank Tujuan Transfer Bank Mandiri","[L]Kode Transaksi Tujuan Transfer Bank Mandiri","[M]Konsultasi Medik","[M]Jawaban Konsultasi Medik","[L]Referensi Alergi PCare",
                 "[L]Referensi Prognosa PCare","[J]Data Sasaran Usia Produktif","[J]Data Sasaran Usia Lansia","[M]Skrining Merokok Usia Sekolah & Remaja","[M]Skrining Kekerasan Pada Perempuan",
                 "[M]Skrining Obesitas","[M]Skrining Risiko Kanker Payudara","[M]Skrining Risiko Kanker Paru","[M]Skrining TBC","[M]Skrining Kesehatan Gigi & Mulut Remaja",
-                "[M]Penilaian Awal Keperawatan Ranap Bayi/Anak","[A]Booking MCU Perusahaan","[M]Pengkajian Awal Medis Ranap Bedah"
+                "[M]Penilaian Awal Keperawatan Ranap Bayi/Anak","[A]Booking MCU Perusahaan","[M]Catatan Observasi Restrain Nonfarmakologi","[M]Catatan Observasi Ventilator",
+                "[M]Catatan Anestesi-Sedasi","[M]Skrining PUMA","[L]Kirim Care Plan Satu Sehat","[L]Kirim Medication Statement Satu Sehat","[M]Skrining Adiksi Nikotin","[M]Skrining Thalassemia",
+                "[M]Skrining Instrumen SDQ","[M]Skrining Instrumen SRQ","[M]Checklist Pemberian Fibrinolitik","[M]Skrining Kanker Kolorektal"
         };
         
         tabMode=new DefaultTableModel(null,row){
@@ -545,7 +547,9 @@ public class DlgUser extends javax.swing.JDialog {
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
-                java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -558,7 +562,7 @@ public class DlgUser extends javax.swing.JDialog {
         tbUser.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbUser.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 1064;i++) {
+        for (i = 0; i < 1075;i++) {
             TableColumn column = tbUser.getColumnModel().getColumn(i);
             switch (i) {
                 case 0:
@@ -3202,11 +3206,44 @@ public class DlgUser extends javax.swing.JDialog {
                     column.setPreferredWidth(145);
                     break;
                 case 1063:
-                    column.setPreferredWidth(134);
+                    column.setPreferredWidth(237);
+                    break;
+                case 1064:
+                    column.setPreferredWidth(166);
+                    break;
+                case 1065:
+                    column.setPreferredWidth(144);
+                    break;
+                case 1066:
+                    column.setPreferredWidth(94);
+                    break;
+                case 1067:
+                    column.setPreferredWidth(152);
+                    break;
+                case 1068:
+                    column.setPreferredWidth(211);
+                    break;
+                case 1069:
+                    column.setPreferredWidth(132);
+                    break;
+                case 1070:
+                    column.setPreferredWidth(127);
+                    break;
+                case 1071:
+                    column.setPreferredWidth(140);
+                    break;
+                case 1072:
+                    column.setPreferredWidth(140);
+                    break;
+                case 1073:
+                    column.setPreferredWidth(179);
+                    break;
+                case 1074:
+                    column.setPreferredWidth(150);
                     break;
                 default:
-                    column.setPreferredWidth(248);
-                    break;                    
+                    column.setPreferredWidth(134);
+                    break;
             }
         }
         tbUser.setDefaultRenderer(Object.class, new WarnaTable());
@@ -3704,7 +3741,7 @@ public class DlgUser extends javax.swing.JDialog {
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
-                    "'false','false'","User")==true){
+                    "'false','false','false','false','false','false','false','false','false','false','false','false','false'","User")==true){
                 tabMode.addRow(new Object[]{
                     TKd.getText(),TNmUser.getText(),Jabatan.getText(),TPass.getText(),false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
@@ -3731,7 +3768,7 @@ public class DlgUser extends javax.swing.JDialog {
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
-                    false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+                    false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
                 });
                 emptTeks();
                 LCount.setText(""+tabMode.getRowCount());
@@ -4842,7 +4879,18 @@ public class DlgUser extends javax.swing.JDialog {
                     "skrining_kesehatan_gigi_mulut_remaja='"+tbUser.getValueAt(i,1060).toString()+"',"+
                     "penilaian_awal_keperawatan_ranap_bayi='"+tbUser.getValueAt(i,1061).toString()+"',"+
                     "booking_mcu_perusahaan='"+tbUser.getValueAt(i,1062).toString()+"',"+
-                    "pengkajian_awal_medis_ranap_bedah='"+tbUser.getValueAt(i,1063).toString()+"'")==true){
+                    "catatan_observasi_restrain_nonfarma='"+tbUser.getValueAt(i,1063).toString()+"',"+
+                    "catatan_observasi_ventilator='"+tbUser.getValueAt(i,1064).toString()+"',"+
+                    "catatan_anestesi_sedasi='"+tbUser.getValueAt(i,1065).toString()+"',"+
+                    "skrining_puma='"+tbUser.getValueAt(i,1066).toString()+"',"+
+                    "satu_sehat_kirim_careplan='"+tbUser.getValueAt(i,1067).toString()+"',"+
+                    "satu_sehat_kirim_medicationstatement='"+tbUser.getValueAt(i,1068).toString()+"',"+
+                    "skrining_adiksi_nikotin='"+tbUser.getValueAt(i,1069).toString()+"',"+
+                    "skrining_thalassemia='"+tbUser.getValueAt(i,1070).toString()+"',"+
+                    "skrining_instrumen_sdq='"+tbUser.getValueAt(i,1071).toString()+"',"+
+                    "skrining_instrumen_srq='"+tbUser.getValueAt(i,1072).toString()+"',"+
+                    "checklist_pemberian_fibrinolitik='"+tbUser.getValueAt(i,1073).toString()+"',"+
+                    "skrining_kanker_kolorektal='"+tbUser.getValueAt(i,1074).toString()+"'")==true){
                     emptTeks();
                 }
             }         
@@ -6104,7 +6152,18 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                         "skrining_kesehatan_gigi_mulut_remaja='"+tbUser.getValueAt(barisdicopy,1060).toString()+"',"+
                                         "penilaian_awal_keperawatan_ranap_bayi='"+tbUser.getValueAt(barisdicopy,1061).toString()+"',"+
                                         "booking_mcu_perusahaan='"+tbUser.getValueAt(barisdicopy,1062).toString()+"',"+
-                                        "pengkajian_awal_medis_ranap_bedah='"+tbUser.getValueAt(barisdicopy,1062).toString()+"'");
+                                        "catatan_observasi_restrain_nonfarma='"+tbUser.getValueAt(barisdicopy,1063).toString()+"',"+
+                                        "catatan_observasi_ventilator='"+tbUser.getValueAt(barisdicopy,1064).toString()+"',"+
+                                        "catatan_anestesi_sedasi='"+tbUser.getValueAt(barisdicopy,1065).toString()+"',"+
+                                        "skrining_puma='"+tbUser.getValueAt(barisdicopy,1066).toString()+"',"+
+                                        "satu_sehat_kirim_careplan='"+tbUser.getValueAt(barisdicopy,1067).toString()+"',"+
+                                        "satu_sehat_kirim_medicationstatement='"+tbUser.getValueAt(barisdicopy,1068).toString()+"',"+
+                                        "skrining_adiksi_nikotin='"+tbUser.getValueAt(barisdicopy,1069).toString()+"',"+
+                                        "skrining_thalassemia='"+tbUser.getValueAt(barisdicopy,1070).toString()+"',"+
+                                        "skrining_instrumen_sdq='"+tbUser.getValueAt(barisdicopy,1071).toString()+"',"+
+                                        "skrining_instrumen_srq='"+tbUser.getValueAt(barisdicopy,1072).toString()+"',"+
+                                        "checklist_pemberian_fibrinolitik='"+tbUser.getValueAt(barisdicopy,1073).toString()+"',"+
+                                        "skrining_kanker_kolorektal='"+tbUser.getValueAt(barisdicopy,1074).toString()+"'");
                                 }
                                 userdicopy="";
                                 copyhakakses="";
@@ -6407,7 +6466,10 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 "user.metode_pembayaran_bankmandiri,user.bank_tujuan_transfer_bankmandiri,user.kodetransaksi_tujuan_transfer_bankmandiri,user.konsultasi_medik,user.jawaban_konsultasi_medik,"+
                 "user.pcare_cek_alergi,user.pcare_cek_prognosa,user.data_sasaran_usiaproduktif,user.data_sasaran_usialansia,user.skrining_perilaku_merokok_sekolah_remaja,"+
                 "user.skrining_kekerasan_pada_perempuan,user.skrining_obesitas,user.skrining_risiko_kanker_payudara,user.skrining_risiko_kanker_paru,user.skrining_tbc,"+
-                "user.skrining_kesehatan_gigi_mulut_remaja,user.penilaian_awal_keperawatan_ranap_bayi,user.booking_mcu_perusahaan,user.pengkajian_awal_medis_ranap_bedah from user order by AES_DECRYPT(user.id_user,'nur')");
+                "user.skrining_kesehatan_gigi_mulut_remaja,user.penilaian_awal_keperawatan_ranap_bayi,user.booking_mcu_perusahaan,user.catatan_observasi_restrain_nonfarma,"+
+                "user.catatan_observasi_ventilator,user.catatan_anestesi_sedasi,user.skrining_puma,user.satu_sehat_kirim_careplan,user.satu_sehat_kirim_medicationstatement,"+
+                "user.skrining_adiksi_nikotin,user.skrining_thalassemia,user.skrining_instrumen_sdq,user.skrining_instrumen_srq,user.checklist_pemberian_fibrinolitik,"+
+                "user.skrining_kanker_kolorektal from user order by AES_DECRYPT(user.id_user,'nur')");
             try {
                 rs=ps.executeQuery();
                 while(rs.next()){
@@ -7483,7 +7545,18 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                rs.getBoolean("skrining_kesehatan_gigi_mulut_remaja"),
                                rs.getBoolean("penilaian_awal_keperawatan_ranap_bayi"),
                                rs.getBoolean("booking_mcu_perusahaan"),
-                               rs.getBoolean("pengkajian_awal_medis_ranap_bedah")
+                               rs.getBoolean("catatan_observasi_restrain_nonfarma"),
+                               rs.getBoolean("catatan_observasi_ventilator"),
+                               rs.getBoolean("catatan_anestesi_sedasi"),
+                               rs.getBoolean("skrining_puma"),
+                               rs.getBoolean("satu_sehat_kirim_careplan"),
+                               rs.getBoolean("satu_sehat_kirim_medicationstatement"),
+                               rs.getBoolean("skrining_adiksi_nikotin"),
+                               rs.getBoolean("skrining_thalassemia"),
+                               rs.getBoolean("skrining_instrumen_sdq"),
+                               rs.getBoolean("skrining_instrumen_srq"),
+                               rs.getBoolean("checklist_pemberian_fibrinolitik"),
+                               rs.getBoolean("skrining_kanker_kolorektal")
                             });
                         }   
                     } catch (Exception e) {
@@ -8548,7 +8621,18 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                            rs.getBoolean("skrining_kesehatan_gigi_mulut_remaja"),
                            rs.getBoolean("penilaian_awal_keperawatan_ranap_bayi"),
                            rs.getBoolean("booking_mcu_perusahaan"),
-                           rs.getBoolean("pengkajian_awal_medis_ranap_bedah")
+                           rs.getBoolean("catatan_observasi_restrain_nonfarma"),
+                           rs.getBoolean("catatan_observasi_ventilator"),
+                           rs.getBoolean("catatan_anestesi_sedasi"),
+                           rs.getBoolean("skrining_puma"),
+                           rs.getBoolean("satu_sehat_kirim_careplan"),
+                           rs.getBoolean("satu_sehat_kirim_medicationstatement"),
+                           rs.getBoolean("skrining_adiksi_nikotin"),
+                           rs.getBoolean("skrining_thalassemia"),
+                           rs.getBoolean("skrining_instrumen_sdq"),
+                           rs.getBoolean("skrining_instrumen_srq"),
+                           rs.getBoolean("checklist_pemberian_fibrinolitik"),
+                           rs.getBoolean("skrining_kanker_kolorektal")
                         });
                     }                                             
                  }

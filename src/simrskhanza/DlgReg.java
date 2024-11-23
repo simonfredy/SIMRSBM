@@ -420,15 +420,15 @@ public final class DlgReg extends javax.swing.JDialog {
                 column.setPreferredWidth(150);
             }
         }
-        try {
-            if(koneksiDB.AKTIFKANWARNAREG().equals("yes")){
-                tbPetugas.setDefaultRenderer(Object.class, new WarnaTableRegPoli());
-            }else{
-                tbPetugas.setDefaultRenderer(Object.class, new WarnaTable());
-            }
-        } catch (Exception e) {
-            tbPetugas.setDefaultRenderer(Object.class, new WarnaTable());
-        }
+//        try {
+//            if(koneksiDB.AKTIFKANWARNAREG().equals("yes")){
+//                tbPetugas.setDefaultRenderer(Object.class, new WarnaTableRegPoli());
+//            }else{
+//                tbPetugas.setDefaultRenderer(Object.class, new WarnaTable());
+//            }
+//        } catch (Exception e) {
+//            tbPetugas.setDefaultRenderer(Object.class, new WarnaTable());
+//        }
 
         tabMode2=new DefaultTableModel(null,new Object[]{
             "P","No.Rawat","Tanggal","Jam","Kd.Dokter","Dokter Rujukan","Nomer RM",

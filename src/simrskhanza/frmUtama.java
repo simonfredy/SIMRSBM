@@ -2085,7 +2085,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28/09/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15/11/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7392,7 +7392,7 @@ public class frmUtama extends javax.swing.JFrame {
         lblStts.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         lblStts.setForeground(new java.awt.Color(50, 50, 50));
         lblStts.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblStts.setText("Status Admin :");
+        lblStts.setText("Nama User :");
         lblStts.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblStts.setName("lblStts"); // NOI18N
         lblStts.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -7413,7 +7413,7 @@ public class frmUtama extends javax.swing.JFrame {
         lblUser.setText("Log Out");
         lblUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblUser.setName("lblUser"); // NOI18N
-        lblUser.setPreferredSize(new java.awt.Dimension(170, 23));
+        lblUser.setPreferredSize(new java.awt.Dimension(400, 23));
         internalFrame4.add(lblUser);
 
         jSeparator2.setBackground(new java.awt.Color(225, 61, 142));
@@ -8435,8 +8435,9 @@ public class frmUtama extends javax.swing.JFrame {
                     DlgLogin.dispose();
                     BtnLog.setText("Log Out");
                     MnLogin.setText("Log Out");
-                    lblStts.setText("Admin : ");
-                    lblUser.setText(akses.getkode());
+                    lblStts.setText("Nama User : ");
+                    //lblUser.setText(akses.getkode());
+                    lblUser.setText(Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?",akses.getkode()));
                     MnGantiPassword.setEnabled(true);
                     MnPengajuanCutiPegawai.setEnabled(true);
                     BtnToolReg.setEnabled(akses.getregistrasi());

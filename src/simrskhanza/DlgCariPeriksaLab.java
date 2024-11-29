@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -6671,6 +6672,12 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     
     public void setPasien(String pasien){
         NoRawat.setText(pasien);
+    }
+    
+    public void setRMPasien(String pasien,Date tgl1, Date tgl2){
+        NoRawat.setText(pasien);
+        Tgl1.setDate(tgl1);
+        Tgl2.setDate(tgl2);
     }
  
 

@@ -3181,9 +3181,9 @@ public final class RMPenilaianAwalMedisRanapMata extends javax.swing.JDialog {
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getpenilaian_awal_medis_ralan_mata());
-        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ralan_mata());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ralan_mata());
+//        BtnSimpan.setEnabled(akses.getpenilaian_awal_medis_ralan_mata());
+//        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ralan_mata());
+//        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ralan_mata());
         if(akses.getjml2()>=1){
             KdDokter.setEditable(false);
             BtnDokter.setEnabled(false);

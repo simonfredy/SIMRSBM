@@ -2576,9 +2576,9 @@ public final class RMPenilaianAwalMedisRanapDewasa extends javax.swing.JDialog {
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getpenilaian_awal_medis_ranap());
-        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ranap());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ranap());
+//        BtnSimpan.setEnabled(akses.getpenilaian_awal_medis_ranap());
+//        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ranap());
+//        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ranap());
         if(akses.getjml2()>=1){
             KdDokter.setEditable(false);
             BtnDokter.setEnabled(false);

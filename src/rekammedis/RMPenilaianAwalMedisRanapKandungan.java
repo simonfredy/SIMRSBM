@@ -2858,9 +2858,9 @@ public final class RMPenilaianAwalMedisRanapKandungan extends javax.swing.JDialo
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getpenilaian_awal_medis_ranap_kebidanan());
-        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ranap_kebidanan());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ranap_kebidanan());
+//        BtnSimpan.setEnabled(akses.getpenilaian_awal_medis_ranap_kebidanan());
+//        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ranap_kebidanan());
+//        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ranap_kebidanan());
         if(akses.getjml2()>=1){
             KdDokter.setEditable(false);
             BtnDokter.setEnabled(false);

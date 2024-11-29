@@ -2912,9 +2912,9 @@ public final class RMPenilaianAwalMedisRanapPsikiatrik extends javax.swing.JDial
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getpenilaian_awal_medis_ralan_psikiatri());
-        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ralan_psikiatri());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ralan_psikiatri());
+//        BtnSimpan.setEnabled(akses.getpenilaian_awal_medis_ralan_psikiatri());
+//        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ralan_psikiatri());
+//        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ralan_psikiatri());
         if(akses.getjml2()>=1){
             KdDokter.setEditable(false);
             BtnDokter.setEnabled(false);

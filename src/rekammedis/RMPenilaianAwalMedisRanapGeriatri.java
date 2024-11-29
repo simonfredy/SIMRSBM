@@ -2653,9 +2653,9 @@ public final class RMPenilaianAwalMedisRanapGeriatri extends javax.swing.JDialog
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getpenilaian_awal_medis_ralan_geriatri());
-        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ralan_geriatri());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ralan_geriatri());
+//        BtnSimpan.setEnabled(akses.getpenilaian_awal_medis_ralan_geriatri());
+//        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ralan_geriatri());
+//        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ralan_geriatri());
         if(akses.getjml2()>=1){
             KdDokter.setEditable(false);
             BtnDokter.setEnabled(false);

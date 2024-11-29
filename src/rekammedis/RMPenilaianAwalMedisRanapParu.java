@@ -2408,7 +2408,7 @@ public final class RMPenilaianAwalMedisRanapParu extends javax.swing.JDialog {
     
     public void isCek(){
 //        BtnSimpan.setEnabled(akses.getpenilaian_awal_medis_ralan_paru());
-//        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ralan_paru());
+//        BtnHapus.setEnabled(akses.getpenilaian_awal_medis_ralan_paru())
 //        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ralan_paru());
 //        BtnEdit.setEnabled(akses.getpenilaian_awal_medis_ralan_paru());
         if(akses.getjml2()>=1){

@@ -4161,12 +4161,6 @@ public final class RMPenilaianAwalKeperawatanIGD extends javax.swing.JDialog {
         }
         TabRawat.setSelectedIndex(0);
         Informasi.requestFocus();
-        if (Sequel.cariInteger("select count(no_rawat) from penilaian_medis_igd where no_rawat='"+TNoRw.getText()+"'")>0){
-            KeluhanUtama.setText(Sequel.cariIsi("select rps from penilaian_medis_igd where no_rawat=?",TNoRw.getText()));
-            RPD.setText(Sequel.cariIsi("select rpd from penilaian_medis_igd where no_rawat=?",TNoRw.getText()));
-        } else {
-        
-        }
     } 
 
     private void getData() {
@@ -4314,6 +4308,13 @@ public final class RMPenilaianAwalKeperawatanIGD extends javax.swing.JDialog {
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);    
         isRawat();
+        if(Sequel.cariInteger("select count(no_rawat) from penilaian_medis_igd where no_rawat='"+TNoRw.getText()+"' ")>0) {
+            KeluhanUtama.setText(Sequel.cariIsi("select keluhan_utama from penilaian_medis_igd where no_rawat=?", TNoRw.getText()));
+            RPO.setText(Sequel.cariIsi("select rpo from penilaian_medis_igd where no_rawat=?", TNoRw.getText()));
+            RPD.setText(Sequel.cariIsi("select rpd from penilaian_medis_igd where no_rawat=?", TNoRw.getText()));
+        } else {
+            
+        }
     }
     
     

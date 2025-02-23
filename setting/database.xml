@@ -2,12 +2,17 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment>KhanzaHMS</comment> 
-    <entry key="HOST">5k7+C7EnUw9nUv2Nix+DBA==</entry>
-    <entry key="DATABASE">5aFwvQQBJxccDtxegN3WLA==</entry>
+<!--    <entry key="HOST">5k7+C7EnUw9nUv2Nix+DBA==</entry>
+    <entry key="DATABASE">AZHNccBwSmSho84f+X8GyQ==</entry>
     <entry key="PORT">nioxtijcpDaKSUiUiP5FAg==</entry>
     <entry key="USER">kMR3WfAwUK6MbhCyydxa0g==</entry>
-    <entry key="PAS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
-    <entry key="CARICEPAT">aktif</entry>
+    <entry key="PAS">l4nh5eVYrLAER/I2A4b3Tw==</entry>-->
+    <entry key="HOST">iiYr3ajNbOO2mEFDgxdiHQ==</entry>
+    <entry key="DATABASE">AZHNccBwSmSho84f+X8GyQ==</entry>
+    <entry key="PORT">nioxtijcpDaKSUiUiP5FAg==</entry>
+    <entry key="USER">AZHNccBwSmSho84f+X8GyQ==</entry>
+    <entry key="PAS">AZHNccBwSmSho84f+X8GyQ==</entry>
+    <entry key="CARICEPAT">nonaktif</entry>
     
     <entry key="HOSTHYBRIDWEB">5k7+C7EnUw9nUv2Nix+DBA==</entry>
     <entry key="USERHYBRIDWEB">nmXqCKzrz9i8GTZlq7JruQ==</entry>
@@ -16,24 +21,29 @@
     <entry key="PORTWEB">80</entry>
     
     <entry key="AKTIFKANWARNARALAN">no</entry>
-    <entry key="AKTIFKANWARNAREG">no</entry>
     
     <entry key="ANTRIAN">player</entry>
     <entry key="LOKETANTRIAN">1</entry>
+    
     <entry key="ALARMAPOTEK">yes</entry>
     <entry key="RESEPRAJALKEPLAN">yes</entry>
     <entry key="FORMALARMAPOTEK">ralan + ranap</entry>
     <entry key="STOKKOSONGRESEP">no</entry>
     <entry key="HPPFARMASI">dasar</entry>
     <entry key="HPPTOKO">dasar</entry>
+    
     <entry key="ALARMLAB">yes</entry>
     <entry key="FORMALARMLAB">ralan + ranap</entry>
+    
     <entry key="ALARMRADIOLOGI">yes</entry>
     <entry key="FORMALARMRADIOLOGI">ralan + ranap</entry>
+    
     <entry key="ALARMRSISRUTE">yes</entry>
+    
     <entry key="ALARMBOOKINGPERIKSA">yes</entry>
     <entry key="ALARMPENGADUANPASIEN">yes</entry>
     <entry key="ALARMPERMINTAANRANAP">yes</entry>
+    
     <entry key="MENUTRANSPARAN">yes</entry>
     <entry key="TANGGALMUNDUR">yes</entry>
     
@@ -94,8 +104,8 @@
     <entry key="PASSSISRUTE">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     
     <entry key="URLAPISIRS">https://sirs.kemkes.go.id/fo/index.php/Fasyankes</entry>
-    <entry key="IDSIRS">jhPSu1xlQkh+stLFrcin5w==</entry>
-    <entry key="PASSSIRS">BYptJvsq544HinWKjX8VTA==</entry>
+    <entry key="IDSIRS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="PASSSIRS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     
     <entry key="URLAPISITT">http://sirs.yankes.kemkes.go.id/sirsservice/sitbtraining/sitb/senddata</entry>
     <entry key="IDSITT">Fm2U09DVwzqY2V8sl5jUCA==</entry>
@@ -213,4 +223,14 @@
     <entry key="SFTPMANDIRIPORT">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="SFTPMANDIRIUSER">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="SFTPMANDIRIPAS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    
+    <entry key="URLAPIESIGN">https://esign.jemberkab.go.id/api/sign/pdf</entry>
+    <entry key="USERNAMEAPIESIGN">6yTePH8GEKfAhUM7NDvztQ==</entry>
+    <entry key="PASSAPIESIGN">44oB160TXymkmgkKCmrabg==</entry>
+    <entry key="URLAKSESFILEESIGN">https://rsdbalung.simkeskhanza.com/suratsurat</entry>
+    <entry key="SFTPFILEESIGNHOST">CQ5Kfm5ILnLOu+e6AFp0cF/pXKrdgCX8xaM0HTMb1Fk=</entry>
+    <entry key="SFTPFILEESIGNPORT">fvvu/wqeVHAys9jWVltWsA==</entry>
+    <entry key="SFTPFILEESIGNUSER">bAXbb94guPz+B30Ics1QDw==</entry>
+    <entry key="SFTPFILEESIGNPAS">5/E2gzGZ+SOG9tal860JJ3/7uyy7V7L3Q8zIw6oL25w=</entry>
+    <entry key="SFTPFILEESIGNFOLDER">bsX283RtohX0NO9hyh+GAIKiafyYwSe7hhw/HWdydQQ=</entry>
 </properties>

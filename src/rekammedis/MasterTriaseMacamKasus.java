@@ -140,7 +140,7 @@ public class MasterTriaseMacamKasus extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Master Triase Macam Kasus ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Master Triase Macam Kasus ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -354,6 +354,7 @@ public class MasterTriaseMacamKasus extends javax.swing.JDialog {
         panelGlass7.add(jLabel4);
         jLabel4.setBounds(122, 10, 100, 23);
 
+        TKd.setEditable(false);
         TKd.setHighlighter(null);
         TKd.setName("TKd"); // NOI18N
         TKd.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -364,6 +365,7 @@ public class MasterTriaseMacamKasus extends javax.swing.JDialog {
         panelGlass7.add(TKd);
         TKd.setBounds(48, 10, 70, 23);
 
+        TNm.setEditable(false);
         TNm.setName("TNm"); // NOI18N
         TNm.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -593,7 +595,7 @@ public class MasterTriaseMacamKasus extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try{
-            ps=koneksi.prepareStatement("select * from master_triase_macam_kasus where master_triase_macam_kasus.kode_kasus like ? or master_triase_macam_kasus.macam_kasus like ? order by master_triase_macam_kasus.kode_kasus");
+            ps=koneksi.prepareStatement("select * from master_triase_macam_kasus where statusdata='1' and master_triase_macam_kasus.kode_kasus like ? or statusdata='1' and master_triase_macam_kasus.macam_kasus like ? order by master_triase_macam_kasus.kode_kasus");
             try {
                 ps.setString(1,"%"+TCari.getText().trim()+"%");
                 ps.setString(2,"%"+TCari.getText().trim()+"%");
@@ -638,8 +640,13 @@ public class MasterTriaseMacamKasus extends javax.swing.JDialog {
     }
     
     public void isCek(){
-       BtnSimpan.setEnabled(akses.getmaster_triase_macamkasus());
-       BtnHapus.setEnabled(akses.getmaster_triase_macamkasus());
-       BtnEdit.setEnabled(akses.getmaster_triase_macamkasus());
+//       BtnSimpan.setEnabled(akses.getmaster_triase_macamkasus());
+//       BtnHapus.setEnabled(akses.getmaster_triase_macamkasus());
+//       BtnEdit.setEnabled(akses.getmaster_triase_macamkasus());
+       BtnSimpan.setEnabled(false);
+       BtnHapus.setEnabled(false);
+       BtnEdit.setEnabled(false);
+       BtnBatal.setEnabled(false);
+       
     }
 }

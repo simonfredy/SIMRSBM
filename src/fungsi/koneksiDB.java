@@ -31,7 +31,12 @@ public class koneksiDB {
                 dataSource.setUser(EnkripsiAES.decrypt(prop.getProperty("USER")));
                 dataSource.setPassword(EnkripsiAES.decrypt(prop.getProperty("PAS")));
                 connection=dataSource.getConnection();       
-                System.out.println("  | NIL VOLENTIBUS ARDUUM | OMNE INITIUM DIFFICILE EST | PALMA NON SINE PULVERE | \n"+
+                System.out.println("  Koneksi Berhasil. Sorry bro loading, silahkan baca dulu.... \n\n"+
+                        "	Software ini adalah Software Menejemen Rumah Sakit/Klinik/\n" +
+                        "  Puskesmas yang  gratis dan boleh digunakan siapa saja tanpa dikenai \n" +
+                        "  biaya apapun. Dilarang keras memperjualbelikan/mengambil \n" +
+                        "  keuntungan dari Software ini dalam bentuk apapun tanpa seijin pembuat \n" +
+                        "  software (Khanza.Soft Media).\n"+
                         "                                                                           \n"+
                         "  #    ____  ___  __  __  ____   ____    _  __ _                              \n" +
                         "  #   / ___||_ _||  \\/  ||  _ \\ / ___|  | |/ /| |__    __ _  _ __   ____ __ _ \n" +
@@ -40,7 +45,9 @@ public class koneksiDB {
                         "  #   |____/|___||_|  |_||_| \\_\\|____/  |_|\\_\\|_| |_| \\__,_||_| |_|/___|\\__,_|\n" +
                         "  #                                                                           \n"+
                         "                                                                           \n"+
-                        "  .:| RUMAH SAKIT BHAYANGKARA TK.II MAS KADIRAN MEDAN |:. \n"+
+                        "  Licensi yang dianut di software ini https://en.wikipedia.org/wiki/Aladdin_Free_Public_License \n"+
+                        "  Informasi dan panduan bisa dicek di halaman https://github.com/mas-elkhanza/SIMRS-Khanza/wiki \n"+
+                        "  Bagi yang ingin berdonasi untuk pengembangan aplikasi ini bisa ke BSI 1015369872 atas nama Windiarto\n"+
                         "                                                                           ");
             }catch(Exception e){
                 System.out.println("Notif : "+e);

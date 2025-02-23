@@ -107,7 +107,6 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
             if(i==0){
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-                //column.setPreferredWidth(20);
             }else if(i==1){
                 column.setPreferredWidth(45);
             }else if(i==2){
@@ -589,7 +588,6 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         BtnTambah1.setMnemonic('3');
         BtnTambah1.setText("Buat Nama Racikan");
         BtnTambah1.setToolTipText("Alt+3");
-        BtnTambah1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnTambah1.setName("BtnTambah1"); // NOI18N
         BtnTambah1.setPreferredSize(new java.awt.Dimension(150, 23));
         BtnTambah1.addActionListener(new java.awt.event.ActionListener() {
@@ -603,7 +601,6 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Kirim Resep");
         BtnSimpan.setToolTipText("Alt+S");
-        BtnSimpan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSimpan.setName("BtnSimpan"); // NOI18N
         BtnSimpan.setPreferredSize(new java.awt.Dimension(120, 23));
         BtnSimpan.addActionListener(new java.awt.event.ActionListener() {
@@ -617,7 +614,6 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
-        BtnHapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHapus.setName("BtnHapus"); // NOI18N
         BtnHapus.setPreferredSize(new java.awt.Dimension(80, 23));
         BtnHapus.addActionListener(new java.awt.event.ActionListener() {
@@ -631,7 +627,6 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         BtnKeluar.setMnemonic('5');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+5");
-        BtnKeluar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnKeluar.setName("BtnKeluar"); // NOI18N
         BtnKeluar.setPreferredSize(new java.awt.Dimension(80, 23));
         BtnKeluar.addActionListener(new java.awt.event.ActionListener() {
@@ -756,7 +751,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
         jLabel8.setBounds(0, 42, 72, 23);
 
         DTPBeri.setForeground(new java.awt.Color(50, 70, 50));
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2024" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2025" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);

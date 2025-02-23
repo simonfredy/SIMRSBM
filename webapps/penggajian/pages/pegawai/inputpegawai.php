@@ -543,6 +543,8 @@
                             <option id='TxtIsi24' value='AKTIF'>AKTIF</option>
                             <option id='TxtIsi24' value='CUTI'>CUTI</option>
                             <option id='TxtIsi24' value='KELUAR'>KELUAR</option>
+                            <option id='TxtIsi24' value='NON AKTIF'>NON AKTIF</option>
+                            <option id='TxtIsi24' value='TENAGA LUAR'>TENAGA LUAR</option>
                         </select>
                         <span id="MsgIsi24" style="color:#CC0000; font-size:10px;"></span>
                     </td>
@@ -640,7 +642,7 @@
                     $no_ktp         = validTeks(trim($_POST['no_ktp']));
                     if((strtolower(substr($photo,-4))==".jpg")||(strtolower(substr($photo,-5))==".jpeg")){
                         if(($_FILES['photo']['type'] == 'image/jpeg')||($_FILES['photo']['type'] == 'image/jpg')){
-                            if((mime_content_type($_FILES['photo']['tmp_name'])== 'image/jpeg')||(mime_content_type($_FILES['photo']['tmp_name'])== 'image/jpg')){
+                            if((@mime_content_type($_FILES['photo']['tmp_name'])== 'image/jpeg')||(@mime_content_type($_FILES['photo']['tmp_name'])== 'image/jpg')){
                                 if ((!empty($nik))&&(!empty($jnj_jabatan))&&(!empty($departemen))&&(!empty($bidang))&&(!empty($stts_wp))&&(!empty($stts_kerja))&&
                                     (!empty($pendidikan))&&(!empty($tgl_lahir))&&(!empty($mulai_kerja))&&(!empty($indexins))&&(!empty($bpd))&&(!empty($kode_kelompok))&&
                                      (!empty($kode_resiko))&&(!empty($kode_emergency))) {

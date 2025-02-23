@@ -174,7 +174,7 @@ public class DlgPermintaanKonsultasiMedik extends javax.swing.JDialog {
         
         ChkInput.setSelected(false);
         isForm();        
-        ChkAccor.setSelected(false);
+        ChkAccor.setSelected(true);
         isMenu();
         
         HTMLEditorKit kit = new HTMLEditorKit();

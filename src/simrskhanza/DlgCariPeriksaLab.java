@@ -21,7 +21,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -426,7 +425,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         MnCetakHasilLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakHasilLab.setForeground(new java.awt.Color(50, 50, 50));
         MnCetakHasilLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCetakHasilLab.setText("Cetak Hasil Lab Tanpa Kop");
+        MnCetakHasilLab.setText("Cetak Hasil Tanpa Kop");
         MnCetakHasilLab.setName("MnCetakHasilLab"); // NOI18N
         MnCetakHasilLab.setPreferredSize(new java.awt.Dimension(200, 26));
         MnCetakHasilLab.addActionListener(new java.awt.event.ActionListener() {
@@ -1780,7 +1779,6 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         param.put("pengirim",Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?",rs.getString("dokter_perujuk")));
                         param.put("tanggal",rs.getString("tgl_periksa"));
                         param.put("penjab",rs.getString("nm_dokter"));
-                        param.put("carabayar",Sequel.cariIsi("select penjab.png_jawab from penjab where kd_pj=?",Sequel.cariIsi("select reg_periksa.kd_pj from reg_periksa where reg_periksa.no_rawat=?",rs.getString("no_rawat"))));
                         param.put("petugas",rs.getString("nama"));
                         param.put("jam",rs.getString("jam"));
                         param.put("alamat",rs.getString("alamat"));
@@ -2068,6 +2066,7 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         param.put("pengirim",Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?",rs.getString("dokter_perujuk")));
                         param.put("tanggal",rs.getString("tgl_periksa"));
                         param.put("penjab",rs.getString("nm_dokter"));
+                        param.put("carabayar",Sequel.cariIsi("select penjab.png_jawab from penjab where kd_pj=?",Sequel.cariIsi("select reg_periksa.kd_pj from reg_periksa where reg_periksa.no_rawat=?",rs.getString("no_rawat"))));
                         param.put("petugas",rs.getString("nama"));
                         param.put("jam",rs.getString("jam"));
                         param.put("alamat",rs.getString("alamat"));
@@ -6672,12 +6671,6 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     
     public void setPasien(String pasien){
         NoRawat.setText(pasien);
-    }
-    
-    public void setRMPasien(String pasien,Date tgl1, Date tgl2){
-        NoRawat.setText(pasien);
-        Tgl1.setDate(tgl1);
-        Tgl2.setDate(tgl2);
     }
  
 

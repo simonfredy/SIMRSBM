@@ -10,14 +10,12 @@
  */
 package laporan;
 
-import bridging.BPJSDataSEP;
 import fungsi.WarnaTable;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
 import fungsi.batasInput;
-import inventory.DlgResepObat1;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -25,8 +23,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.HashMap;
-import java.util.Map;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -38,19 +34,9 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import rekammedis.RMDataResumePasien;
-import rekammedis.RMGenerateKlaim;
-import rekammedis.RMHasilPemeriksaanUSG;
-import rekammedis.RMHasilPemeriksaanUSGGynecologi;
 import rekammedis.RMRiwayatPerawatan;
-import simrskhanza.DlgCariBangsal;
 import simrskhanza.DlgCariCaraBayar;
-import simrskhanza.DlgCariPeriksaLab;
-import simrskhanza.DlgCariPeriksaRadiologi;
 import simrskhanza.DlgCariPoli;
-import simrskhanza.DlgKeteranganPenunjangRalan;
-import simrskhanza.DlgRawatJalan;
-import laporan.DlgBerkasRawat;
 
 /**
  *
@@ -58,29 +44,28 @@ import laporan.DlgBerkasRawat;
  */
 public final class DlgStatusDataRM extends javax.swing.JDialog {
 
-    private final DefaultTableModel tabMode, tabMode2, tabMode3, tabMode4, tabMode5;
+    private final DefaultTableModel tabMode, tabMode2, tabMode3, tabMode4, tabMode5, tabMode6;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps2, ps3, ps4, ps5, ps6, pspermintaan;
-    private ResultSet rs, rs2, rs3, rs4, rs5, rs6, rspermintaan;
+    private PreparedStatement ps, ps2, ps3, ps4, ps5, ps6;
+    private ResultSet rs, rs2, rs3, rs4, rs5, rs6;
     private DlgCariPoli poli = new DlgCariPoli(null, false);
-    private DlgCariBangsal kamar1 = new DlgCariBangsal(null, false);
     private DlgCariCaraBayar penjab = new DlgCariCaraBayar(null, false);
-    private DlgRawatJalan dlgrwjl2=new DlgRawatJalan(null,false);
-    private int i = 0, adasoapiralan = 0, tidakadasoapiralan = 0, adaresumeralan = 0, tidakadaresumeralan = 0, adatriaseigd = 0, tidakadatriaseigd = 0, adaaskepigd = 0, tidakadaaskepigd = 0,
-            ada_penilaian_medis_igd = 0, tidak_ada_penilaian_medis_igd = 0, adaicd10 = 0, tidakadaicd10 = 0, adaicd9 = 0, tidakadaicd9 = 0, ada_penilaian_awal_keperawatan_ralan = 0,
-            tidak_ada_penilaian_awal_keperawatan_ralan = 0, ada_penilaian_medis_ralan = 0, tidak_ada_penilaian_medis_ralan = 0, ada_bridging_sep = 0, tidak_ada_bridging_sep = 0, ada_rekonsiliasi = 0,
-            tidak_ada_rekonsiliasi = 0, ada_konseling = 0, tidak_ada_konseling = 0, ada_hasillab = 0, tidak_ada_hasillab = 0, ada_gambarradiologi = 0, tidak_ada_gambarradiologi = 0,
-            ada_hasilradiologi = 0, tidak_ada_hasilradiologi = 0, ada_transferantarruang = 0, tidak_ada_transferantarruang = 0, ada_observasiigd = 0, tidak_ada_observasiigd = 0,
-            ada_periksa_lab = 0, tidakada_periksa_lab = 0, ada_billing = 0, tidakada_billing = 0,
-            ada_usg = 0, tidakada_usg = 0, ada_resep = 0, tidakada_resep = 0, ada_persetujuan_umum = 0, tidakada_persetujuan_umum = 0, ada_persetujuan_ranap = 0, tidakada_persetujuan_ranap = 0,
-            ada_icd10ranap = 0, tidakada_icd10ranap = 0, ada_icd9ranap = 0, tidakada_icd9ranap = 0, ada_resumeranap = 0, tidakada_resumeranap = 0, ada_gbrusg = 0, tidakada_gbrusg = 0 ;
-    private String soapiralan = "", resumeralan = "", pilihan = "", triaseigd = "", askepigd = "", penilaian_medis_igd = "", icd10 = "", icd9 = "",
-            penilaian_awal_keperawatan_ralan = "", penilaian_medis_ralan = "", bridging_sep = "", hasillab = "", gbrusg,rekonsiliasi,konseling,kamar,namakamar,
-            gambarradiologi = "", hasilradiologi = "", transferantarruang = "", observasiigd = "", billing = "",
-            periksa_lab = "", usg = "", resep = "", persetujuan_umum = "", persetujuan_ranap = "", icd10ranap = "", icd9ranap = "", resumeranap = "",
-            tanggal = "", finger="", lokasifile = "" ;
+    private int i = 0, adasoapiralan = 0, tidakadasoapiralan = 0, adasoapiranap = 0, tidakadasoapiranap = 0, adaresumeralan = 0, tidakadaresumeralan = 0,
+            adaresumeranap = 0, tidakadaresumeranap = 0, adatriaseigd = 0, tidakadatriaseigd = 0, adaaskepigd = 0, tidakadaaskepigd = 0, ada_penilaian_medis_igd = 0, tidak_ada_penilaian_medis_igd = 0, adaicd10 = 0, tidakadaicd10 = 0,
+            adaicd9 = 0, tidakadaicd9 = 0, ada_penilaian_awal_keperawatan_ralan = 0, tidak_ada_penilaian_awal_keperawatan_ralan = 0, ada_penilaian_medis_ralan_penyakit_dalam = 0, tidak_ada_penilaian_medis_ralan_penyakit_dalam = 0, ada_penilaian_medis_ralan_mata = 0, tidak_ada_penilaian_medis_ralan_mata = 0, ada_penilaian_awal_keperawatan_gigi = 0, tidak_ada_penilaian_awal_keperawatan_gigi = 0, ada_penilaian_awal_keperawatan_kebidanan = 0, tidak_ada_penilaian_awal_keperawatan_kebidanan = 0, ada_penilaian_medis_ralan_kandungan = 0, tidak_ada_penilaian_medis_ralan_kandungan = 0,
+            ada_penilaian_awal_keperawatan_ralan_bayi = 0, tidak_ada_penilaian_awal_keperawatan_ralan_bayi = 0, ada_penilaian_medis_ralan_anak = 0, tidak_ada_penilaian_medis_ralan_anak = 0, ada_penilaian_awal_keperawatan_ralan_psikiatri = 0, tidak_ada_penilaian_awal_keperawatan_ralan_psikiatri = 0,
+            ada_penilaian_fisioterapi = 0, tidak_ada_penilaian_fisioterapi = 0, ada_penilaian_medis_ralan_rehab_medik = 0, tidak_ada_penilaian_medis_ralan_rehab_medik = 0,
+            ada_penilaian_medis_ralan_psikiatrik = 0, tidak_ada_penilaian_medis_ralan_psikiatrik = 0, ada_penilaian_medis_ralan_bedah = 0, tidak_ada_penilaian_medis_ralan_bedah = 0, ada_penilaian_medis_ralan_neurologi = 0, tidak_ada_penilaian_medis_ralan_neurologi = 0,
+            ada_penilaian_medis_ralan_paru = 0, tidak_ada_penilaian_medis_ralan_paru = 0, ada_penilaian_mcu = 0, tidak_ada_penilaian_mcu = 0,
+            ada_penilaian_medis_ralan_kulitdankelamin = 0, tidak_ada_penilaian_medis_ralan_kulitdankelamin = 0, ada_penilaian_medis_ralan_orthopedi = 0, tidak_ada_penilaian_medis_ralan_orthopedi = 0, ada_penilaian_medis_hemodialisa = 0, tidak_ada_penilaian_medis_hemodialisa = 0,
+            ada_penilaian_medis_ralan_bedah_mulut = 0, tidak_ada_penilaian_medis_ralan_bedah_mulut = 0, ada_penilaian_awal_keperawatan_ralan_geriatri = 0, tidak_ada_penilaian_awal_keperawatan_ralan_geriatri = 0, ada_penilaian_medis_ralan_geriatri = 0, tidak_ada_penilaian_medis_ralan_geriatri = 0,
+            ada_penilaian_medis_ralan_tht = 0, tidak_ada_penilaian_medis_ralan_tht = 0, ada_bridging_sep = 0, tidak_ada_bridging_sep = 0, ada_rekonsiliasi = 0, tidak_ada_rekonsiliasi = 0, ada_konseling = 0, tidak_ada_konseling = 0, ada_hasillab = 0, tidak_ada_hasillab = 0,
+            ada_gambarradiologi = 0, tidak_ada_gambarradiologi, ada_hasilradiologi, tidak_ada_hasilradiologi, ada_transferantarruang, tidak_ada_transferantarruang, ada_observasiigd, tidak_ada_observasiigd;
+    private String soapiralan = "", soapiranap = "", resumeralan = "", resumeranap = "", pilihan = "", triaseigd = "", askepigd = "", penilaian_medis_igd = "", icd10 = "", icd9 = "", penilaian_awal_keperawatan_ralan = "", penilaian_medis_ralan_penyakit_dalam = "", penilaian_medis_ralan_mata = "", penilaian_awal_keperawatan_gigi = "", penilaian_awal_keperawatan_kebidanan = "", penilaian_medis_ralan_kandungan = "",
+            penilaian_awal_keperawatan_ralan_bayi = "", penilaian_medis_ralan_anak = "", penilaian_awal_keperawatan_ralan_psikiatri = "", penilaian_fisioterapi = "", penilaian_medis_ralan_rehab_medik = "", penilaian_medis_ralan_psikiatrik = "", penilaian_medis_ralan_bedah = "", penilaian_medis_ralan_neurologi = "", penilaian_medis_ralan_paru = "", penilaian_mcu = "", penilaian_medis_ralan_kulitdankelamin = "", penilaian_medis_ralan_orthopedi = "", penilaian_medis_hemodialisa = "", penilaian_medis_ralan_bedah_mulut = "", penilaian_awal_keperawatan_ralan_geriatri = "", penilaian_medis_ralan_geriatri = "",
+            penilaian_medis_ralan_tht = "", bridging_sep = "", rekonsiliasi = "", konseling = "", hasillab = "", gambarradiologi = "", hasilradiologi = "", transferantarruang, observasiigd;
     private StringBuilder htmlContent;
 
     /**
@@ -96,8 +81,9 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         setSize(885, 674);
 
         tabMode = new DefaultTableModel(null, new Object[]{
-            "No.Rawat", "Tanggal", "Dokter Dituju", "Nomer RM", "Pasien", "Cara Bayar","Poliklinik", "Status","Stts Poli","Status Periksa","SOAPIE","Resume",
-            "ICD10", "ICD9", "AwalKeprwtn", "AwalMedis","SEP","Cek LAB","HasilLab","USG","Gbr.USG","Radiology","HasilRad","Resep","Billing"
+            "No.Rawat", "Tanggal", "Dokter Dituju", "Nomer RM", "Pasien", "Poliklinik", "Status", "SOAPI Ralan", "SOAPI Ranap", "Resume Ralan", "Resume Ranap", "Triase IGD", "Askep IGD", "Asmed IGD", "ICD 10", "ICD 9", "Askep Ralan", "Asmed Ralan IPD", "Asmed Mata", "Askep Gigi", "Askep Obgyn", "Asmed Obgyn",
+            "Askep Bayi/Anak", "Asmed Bayi/Anak", "Askep Psikiatri", "Fisioterapi", "Asmed Rehab", "Asmed Psikiatri", "Asmed Bedah", "Asmed Neurologi", "Asmed Paru", "MCU",
+            "Asmed Kulit Kelamin", "Asmed Orthopedi", "Asmed Hemodialisa", "Asmed Bedah Mulut", "Askep Geriatri", "Asmed Geratri", "Asmed THT", "SEP"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -109,7 +95,7 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 25; i++) {
+        for (i = 0; i < 40; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -122,45 +108,73 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
             } else if (i == 4) {
                 column.setPreferredWidth(150);
             } else if (i == 5) {
-                column.setPreferredWidth(60);
-            } else if (i == 6) {
                 column.setPreferredWidth(130);
+            } else if (i == 6) {
+                column.setPreferredWidth(43);
             } else if (i == 7) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(70);
             } else if (i == 8) {
                 column.setPreferredWidth(75);
             } else if (i == 9) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(78);
             } else if (i == 10) {
-                column.setPreferredWidth(60);
-            } else if (i == 11) {
-                column.setPreferredWidth(60);
-            } else if (i == 12) {
-                column.setPreferredWidth(60);
-            } else if (i == 13) {
-                column.setPreferredWidth(60);
-            } else if (i == 14) {
                 column.setPreferredWidth(80);
+            } else if (i == 11) {
+                column.setPreferredWidth(64);
+            } else if (i == 12) {
+                column.setPreferredWidth(64);
+            } else if (i == 13) {
+                column.setPreferredWidth(54);
+            } else if (i == 14) {
+                column.setPreferredWidth(54);
             } else if (i == 15) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(84);
             } else if (i == 16) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(84);
             } else if (i == 17) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(84);
             } else if (i == 18) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(84);
             } else if (i == 19) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(84);
             } else if (i == 20) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(84);
             } else if (i == 21) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(84);
             } else if (i == 22) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(84);
             } else if (i == 23) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(84);
             } else if (i == 24) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(84);
+            } else if (i == 25) {
+                column.setPreferredWidth(84);
+            } else if (i == 26) {
+                column.setPreferredWidth(84);
+            } else if (i == 27) {
+                column.setPreferredWidth(84);
+            } else if (i == 28) {
+                column.setPreferredWidth(84);
+            } else if (i == 29) {
+                column.setPreferredWidth(84);
+            } else if (i == 30) {
+                column.setPreferredWidth(84);
+            } else if (i == 31) {
+                column.setPreferredWidth(84);
+            } else if (i == 32) {
+                column.setPreferredWidth(84);
+            } else if (i == 33) {
+                column.setPreferredWidth(84);
+            } else if (i == 34) {
+                column.setPreferredWidth(84);
+            } else if (i == 35) {
+                column.setPreferredWidth(84);
+            } else if (i == 36) {
+                column.setPreferredWidth(84);
+            } else if (i == 37) {
+                column.setPreferredWidth(84);
+            } else if (i == 38) {
+                column.setPreferredWidth(84);
             }
         }
         tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
@@ -203,7 +217,7 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         tbBangsal2.setDefaultRenderer(Object.class, new WarnaTable());
 
         tabMode3 = new DefaultTableModel(null, new Object[]{
-            "No.Rawat", "Tanggal", "Dokter Dituju", "Nomer RM", "Pasien", "Poliklinik", "Status", "Gambar Radiologi", "Expertise Radiologi"
+            "No.Rawat", "Tanggal", "Dokter Dituju", "Nomer RM", "Pasien", "Poliklinik", "Status", "Hasil Lab"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -215,8 +229,43 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         tbBangsal3.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbBangsal3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 9; i++) {
+        for (i = 0; i < 8; i++) {
             TableColumn column = tbBangsal3.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(105);
+            } else if (i == 1) {
+                column.setPreferredWidth(65);
+            } else if (i == 2) {
+                column.setPreferredWidth(150);
+            } else if (i == 3) {
+                column.setPreferredWidth(65);
+            } else if (i == 4) {
+                column.setPreferredWidth(150);
+            } else if (i == 5) {
+                column.setPreferredWidth(130);
+            } else if (i == 6) {
+                column.setPreferredWidth(43);
+            } else if (i == 7) {
+                column.setPreferredWidth(70);
+            }
+        }
+        tbBangsal3.setDefaultRenderer(Object.class, new WarnaTable());
+
+        tabMode4 = new DefaultTableModel(null, new Object[]{
+            "No.Rawat", "Tanggal", "Dokter Dituju", "Nomer RM", "Pasien", "Poliklinik", "Status", "Gambar Radiologi", "Expertise Radiologi"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        tbBangsal4.setModel(tabMode4);
+
+        tbBangsal4.setPreferredScrollableViewportSize(new Dimension(800, 800));
+        tbBangsal4.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 9; i++) {
+            TableColumn column = tbBangsal4.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
             } else if (i == 1) {
@@ -237,24 +286,23 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
                 column.setPreferredWidth(75);
             }
         }
-        tbBangsal3.setDefaultRenderer(Object.class, new WarnaTable());
+        tbBangsal4.setDefaultRenderer(Object.class, new WarnaTable());
 
-        tabMode4 = new DefaultTableModel(null, new Object[]{
-            "No.Rawat", "Tanggal", "Dokter Dituju", "Nomer RM", "Pasien", "Poliklinik", "Status","Status Periksa","SOAP","ICD 10", "ICD 9","Resume" ,"Transfer Pasien", "Observasi", "Triase",
-            "AsKep", "AsMed", "Cek LAB","USG","Resep"
+        tabMode5 = new DefaultTableModel(null, new Object[]{
+            "No.Rawat", "Tanggal", "Dokter Dituju", "Nomer RM", "Pasien", "Poliklinik", "Status", "Transfer Antar Ruang", "Observasi IGD"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
             }
         };
-        tbBangsal4.setModel(tabMode4);
+        tbBangsal5.setModel(tabMode5);
 
-        tbBangsal4.setPreferredScrollableViewportSize(new Dimension(800, 800));
-        tbBangsal4.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbBangsal5.setPreferredScrollableViewportSize(new Dimension(800, 800));
+        tbBangsal5.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 20; i++) {
-            TableColumn column = tbBangsal4.getColumnModel().getColumn(i);
+        for (i = 0; i < 9; i++) {
+            TableColumn column = tbBangsal5.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
             } else if (i == 1) {
@@ -270,93 +318,62 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(43);
             } else if (i == 7) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(70);
             } else if (i == 8) {
-                column.setPreferredWidth(60);
-            } else if (i == 9) {
-                column.setPreferredWidth(60);
-            } else if (i == 10) {
-                column.setPreferredWidth(60);
-            } else if (i == 11) {
-                column.setPreferredWidth(60);
-            } else if (i == 12) {
-                column.setPreferredWidth(65);
-            } else if (i == 13) {
-                column.setPreferredWidth(65);
-            } else if (i == 14) {
-                column.setPreferredWidth(65);
-            } else if (i == 15) {
-                column.setPreferredWidth(65);
-            } else if (i == 16) {
-                column.setPreferredWidth(65);
-            } else if (i == 17) {
-                column.setPreferredWidth(65);
-            } else if (i == 18) {
-                column.setPreferredWidth(65);
-            } else if (i == 19) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(75);
             }
         }
-        tbBangsal4.setDefaultRenderer(Object.class, new WarnaTable());
-
-        tabMode5 = new DefaultTableModel(null, new Object[]{
-            "No.Rawat", "Tanggal", "Dokter Dituju", "Nomer RM", "Pasien", "Cara Bayar","Ruang Asal","Status","Ruang Rawat","Status Pulang","Perstj Umum","Perstj Ranap","ICD 10","ICD 9",
-            "Resume","USG","Radiologi","Cek Lab","SEP"
+        tbBangsal5.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode6 = new DefaultTableModel(null, new Object[]{
+            "No.Rawat", "Tanggal", "Dokter Dituju", "Nomer RM", "Pasien", "Poliklinik", "Status",
+            "SEP Rawat Inap", "SOAPIE IGD", "Pengkajian Awal Keperawatan IGD", "Pengkajian Awal Medis IGD",
+            "Triase IGD", "Transfer Antar Ruang", "SPRI"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
             }
         };
-        tbBangsal5.setModel(tabMode5);
+        tbBangsal6.setModel(tabMode6);
 
-        tbBangsal5.setPreferredScrollableViewportSize(new Dimension(800, 800));
-        tbBangsal5.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbBangsal6.setPreferredScrollableViewportSize(new Dimension(800, 800));
+        tbBangsal6.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 19; i++) {
-            TableColumn column = tbBangsal5.getColumnModel().getColumn(i);
+        for (i = 0; i < 14; i++) {
+            TableColumn column = tbBangsal6.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
             } else if (i == 1) {
                 column.setPreferredWidth(65);
             } else if (i == 2) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(200);
             } else if (i == 3) {
                 column.setPreferredWidth(65);
             } else if (i == 4) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(200);
             } else if (i == 5) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(150);
             } else if (i == 6) {
-                column.setPreferredWidth(130);
+                column.setPreferredWidth(65);
             } else if (i == 7) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(100);
             } else if (i == 8) {
-                column.setPreferredWidth(130);
+                column.setPreferredWidth(75);
             } else if (i == 9) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(180);
             } else if (i == 10) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(150);
             } else if (i == 11) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(75);
             } else if (i == 12) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(120);
             } else if (i == 13) {
-                column.setPreferredWidth(60);
-            } else if (i == 14) {
-                column.setPreferredWidth(60);
-            } else if (i == 15) {
-                column.setPreferredWidth(60);
-            } else if (i == 16) {
-                column.setPreferredWidth(60);
-            } else if (i == 17) {
-                column.setPreferredWidth(60);
-            } else if (i == 18) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(75);
             }
         }
-        tbBangsal5.setDefaultRenderer(Object.class, new WarnaTable());
-        
+        tbBangsal6.setDefaultRenderer(Object.class, new WarnaTable());
+
         TCari.setDocument(new batasInput((int) 90).getKata(TCari));
         if (koneksiDB.CARICEPAT().equals("aktif")) {
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
@@ -383,29 +400,6 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
             });
         }
 
-        kamar1.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                    if(kamar1.getTable().getSelectedRow()!= -1){   
-                        kdbangsal.setText(kamar1.getTable().getValueAt(kamar1.getTable().getSelectedRow(),0).toString());  
-                        nmbangsal.setText(kamar1.getTable().getValueAt(kamar1.getTable().getSelectedRow(),1).toString());  
-                        kdbangsal.requestFocus();
-                    }                  
-            }
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        }); 
-        
         poli.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {
@@ -494,8 +488,8 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
             public void keyReleased(KeyEvent e) {
             }
         });
-        
-        ChkInput.setSelected(true);
+
+        ChkInput.setSelected(false);
         isForm();
     }
 
@@ -508,29 +502,9 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        ppResume = new javax.swing.JMenuItem();
-        MnDataSEP = new javax.swing.JMenuItem();
-        ppBerkasDigital = new javax.swing.JMenuItem();
-        MnBerkasKlaim = new javax.swing.JMenuItem();
-        MnCariHasilUSGKandungan = new javax.swing.JMenuItem();
-        MnCariHasilUSGGynecologi = new javax.swing.JMenuItem();
-        MnCariHasilLab = new javax.swing.JMenuItem();
-        MnCariHasilRad = new javax.swing.JMenuItem();
-        MnCariHasilResep = new javax.swing.JMenuItem();
-        MnPemeriksaan = new javax.swing.JMenuItem();
-        MnReviewTindakan = new javax.swing.JMenuItem();
-        MnRiwayat = new javax.swing.JMenuItem();
         TKd = new widget.TextBox();
         kdpoli = new widget.TextBox();
         kdpenjab = new widget.TextBox();
-        label17 = new widget.Label();
-        kdbangsal = new widget.TextBox();
-        nmbangsal = new widget.TextBox();
-        TNoRw = new widget.TextBox();
-        TPasien = new widget.TextBox();
-        TNoRM = new widget.TextBox();
-        Kd2 = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         panelGlass5 = new widget.panelisi();
         label11 = new widget.Label();
@@ -544,7 +518,6 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         jLabel7 = new widget.Label();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
-        btnTiketAntrian = new widget.Button();
         TabRawat = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -552,19 +525,22 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         internalFrame3 = new widget.InternalFrame();
         Scroll1 = new widget.ScrollPane();
         tbBangsal2 = new widget.Table();
+        internalFrame4 = new widget.InternalFrame();
+        Scroll2 = new widget.ScrollPane();
+        tbBangsal3 = new widget.Table();
         internalFrame5 = new widget.InternalFrame();
         Scroll3 = new widget.ScrollPane();
-        tbBangsal3 = new widget.Table();
+        tbBangsal4 = new widget.Table();
         internalFrame6 = new widget.InternalFrame();
         Scroll4 = new widget.ScrollPane();
-        tbBangsal4 = new widget.Table();
-        internalFrame8 = new widget.InternalFrame();
-        Scroll6 = new widget.ScrollPane();
         tbBangsal5 = new widget.Table();
+        internalFrame7 = new widget.InternalFrame();
+        Scroll5 = new widget.ScrollPane();
+        tbBangsal6 = new widget.Table();
         PanelInput = new javax.swing.JPanel();
         ChkInput = new widget.CekBox();
         FormInput = new widget.panelisi();
-        jLabel20 = new widget.Label();
+        label17 = new widget.Label();
         nmpoli = new widget.TextBox();
         BtnSeek2 = new widget.Button();
         label19 = new widget.Label();
@@ -572,192 +548,7 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         BtnSeek3 = new widget.Button();
         jLabel18 = new widget.Label();
         Status = new widget.ComboBox();
-        jLabel19 = new widget.Label();
-        SttsPeriksa = new widget.ComboBox();
-
-        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
-
-        ppResume.setBackground(new java.awt.Color(255, 255, 254));
-        ppResume.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppResume.setForeground(new java.awt.Color(50, 50, 50));
-        ppResume.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        ppResume.setText("Resume Pasien");
-        ppResume.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ppResume.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ppResume.setName("ppResume"); // NOI18N
-        ppResume.setPreferredSize(new java.awt.Dimension(210, 26));
-        ppResume.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ppResumeBtnPrintActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(ppResume);
-
-        MnDataSEP.setBackground(new java.awt.Color(255, 255, 254));
-        MnDataSEP.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnDataSEP.setForeground(new java.awt.Color(50, 50, 50));
-        MnDataSEP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnDataSEP.setText("Cari Data SEP BPJS");
-        MnDataSEP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnDataSEP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnDataSEP.setName("MnDataSEP"); // NOI18N
-        MnDataSEP.setPreferredSize(new java.awt.Dimension(320, 26));
-        MnDataSEP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnDataSEPActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnDataSEP);
-
-        ppBerkasDigital.setBackground(new java.awt.Color(255, 255, 254));
-        ppBerkasDigital.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppBerkasDigital.setForeground(new java.awt.Color(50, 50, 50));
-        ppBerkasDigital.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        ppBerkasDigital.setText("Berkas Digital Perawatan");
-        ppBerkasDigital.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ppBerkasDigital.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ppBerkasDigital.setName("ppBerkasDigital"); // NOI18N
-        ppBerkasDigital.setPreferredSize(new java.awt.Dimension(250, 26));
-        ppBerkasDigital.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ppBerkasDigitalBtnPrintActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(ppBerkasDigital);
-
-        MnBerkasKlaim.setBackground(new java.awt.Color(255, 255, 254));
-        MnBerkasKlaim.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnBerkasKlaim.setForeground(new java.awt.Color(50, 50, 50));
-        MnBerkasKlaim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnBerkasKlaim.setText("Berkas Klaim Rawat Jalan");
-        MnBerkasKlaim.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnBerkasKlaim.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnBerkasKlaim.setName("MnBerkasKlaim"); // NOI18N
-        MnBerkasKlaim.setPreferredSize(new java.awt.Dimension(210, 26));
-        MnBerkasKlaim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnBerkasKlaimBtnPrintActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnBerkasKlaim);
-
-        MnCariHasilUSGKandungan.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariHasilUSGKandungan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCariHasilUSGKandungan.setForeground(new java.awt.Color(50, 50, 50));
-        MnCariHasilUSGKandungan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCariHasilUSGKandungan.setText("Cari Hasil USG Kandungan");
-        MnCariHasilUSGKandungan.setName("MnCariHasilUSGKandungan"); // NOI18N
-        MnCariHasilUSGKandungan.setPreferredSize(new java.awt.Dimension(220, 26));
-        MnCariHasilUSGKandungan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCariHasilUSGKandunganActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnCariHasilUSGKandungan);
-
-        MnCariHasilUSGGynecologi.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariHasilUSGGynecologi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCariHasilUSGGynecologi.setForeground(new java.awt.Color(50, 50, 50));
-        MnCariHasilUSGGynecologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCariHasilUSGGynecologi.setText("Cari Hasil USG Gynecologi");
-        MnCariHasilUSGGynecologi.setName("MnCariHasilUSGGynecologi"); // NOI18N
-        MnCariHasilUSGGynecologi.setPreferredSize(new java.awt.Dimension(220, 26));
-        MnCariHasilUSGGynecologi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCariHasilUSGGynecologiActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnCariHasilUSGGynecologi);
-
-        MnCariHasilLab.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariHasilLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCariHasilLab.setForeground(new java.awt.Color(50, 50, 50));
-        MnCariHasilLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCariHasilLab.setText("Cari Hasil Periksa Lab");
-        MnCariHasilLab.setName("MnCariHasilLab"); // NOI18N
-        MnCariHasilLab.setPreferredSize(new java.awt.Dimension(100, 26));
-        MnCariHasilLab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCariHasilLabActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnCariHasilLab);
-
-        MnCariHasilRad.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariHasilRad.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCariHasilRad.setForeground(new java.awt.Color(50, 50, 50));
-        MnCariHasilRad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCariHasilRad.setText("Cari Hasil Periksa Radiologi");
-        MnCariHasilRad.setName("MnCariHasilRad"); // NOI18N
-        MnCariHasilRad.setPreferredSize(new java.awt.Dimension(100, 26));
-        MnCariHasilRad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCariHasilRadActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnCariHasilRad);
-
-        MnCariHasilResep.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariHasilResep.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCariHasilResep.setForeground(new java.awt.Color(50, 50, 50));
-        MnCariHasilResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCariHasilResep.setText("Cari Resep Obat");
-        MnCariHasilResep.setName("MnCariHasilResep"); // NOI18N
-        MnCariHasilResep.setPreferredSize(new java.awt.Dimension(100, 26));
-        MnCariHasilResep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCariHasilResepActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnCariHasilResep);
-
-        MnPemeriksaan.setBackground(new java.awt.Color(255, 255, 254));
-        MnPemeriksaan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnPemeriksaan.setForeground(new java.awt.Color(50, 50, 50));
-        MnPemeriksaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnPemeriksaan.setText("Data Pemeriksaan SOAPIE");
-        MnPemeriksaan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnPemeriksaan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnPemeriksaan.setName("MnPemeriksaan"); // NOI18N
-        MnPemeriksaan.setPreferredSize(new java.awt.Dimension(250, 26));
-        MnPemeriksaan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnPemeriksaanBtnPrintActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnPemeriksaan);
-
-        MnReviewTindakan.setBackground(new java.awt.Color(255, 255, 254));
-        MnReviewTindakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnReviewTindakan.setForeground(new java.awt.Color(50, 50, 50));
-        MnReviewTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnReviewTindakan.setText("Data Tindakan");
-        MnReviewTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnReviewTindakan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnReviewTindakan.setName("MnReviewTindakan"); // NOI18N
-        MnReviewTindakan.setPreferredSize(new java.awt.Dimension(250, 26));
-        MnReviewTindakan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnReviewTindakanBtnPrintActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnReviewTindakan);
-
-        MnRiwayat.setBackground(new java.awt.Color(255, 255, 254));
-        MnRiwayat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRiwayat.setForeground(new java.awt.Color(50, 50, 50));
-        MnRiwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnRiwayat.setText("Riwayat Perawatan");
-        MnRiwayat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnRiwayat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnRiwayat.setName("MnRiwayat"); // NOI18N
-        MnRiwayat.setPreferredSize(new java.awt.Dimension(250, 26));
-        MnRiwayat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnRiwayatBtnPrintActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnRiwayat);
+        btn_riwayat = new widget.Button();
 
         TKd.setForeground(new java.awt.Color(255, 255, 255));
         TKd.setName("TKd"); // NOI18N
@@ -780,50 +571,11 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
             }
         });
 
-        label17.setText("Asal Poli :");
-        label17.setName("label17"); // NOI18N
-        label17.setPreferredSize(new java.awt.Dimension(60, 23));
-
-        kdbangsal.setEditable(false);
-        kdbangsal.setName("kdbangsal"); // NOI18N
-        kdbangsal.setPreferredSize(new java.awt.Dimension(75, 23));
-        kdbangsal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                kdbangsalKeyPressed(evt);
-            }
-        });
-
-        nmbangsal.setEditable(false);
-        nmbangsal.setName("nmbangsal"); // NOI18N
-        nmbangsal.setPreferredSize(new java.awt.Dimension(190, 23));
-
-        TNoRw.setHighlighter(null);
-        TNoRw.setName("TNoRw"); // NOI18N
-        TNoRw.setPreferredSize(new java.awt.Dimension(120, 24));
-        TNoRw.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TNoRwKeyPressed(evt);
-            }
-        });
-
-        TPasien.setEditable(false);
-        TPasien.setHighlighter(null);
-        TPasien.setName("TPasien"); // NOI18N
-        TPasien.setPreferredSize(new java.awt.Dimension(200, 24));
-
-        TNoRM.setEditable(false);
-        TNoRM.setHighlighter(null);
-        TNoRM.setName("TNoRM"); // NOI18N
-        TNoRM.setPreferredSize(new java.awt.Dimension(90, 23));
-
-        Kd2.setName("Kd2"); // NOI18N
-        Kd2.setPreferredSize(new java.awt.Dimension(207, 23));
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Status Data Rekam Medis Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Status Data Rekam Medis Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -940,24 +692,6 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         });
         panelGlass5.add(BtnKeluar);
 
-        btnTiketAntrian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        btnTiketAntrian.setMnemonic('S');
-        btnTiketAntrian.setText("Tiket Antrian");
-        btnTiketAntrian.setToolTipText("Alt+S");
-        btnTiketAntrian.setName("btnTiketAntrian"); // NOI18N
-        btnTiketAntrian.setPreferredSize(new java.awt.Dimension(120, 30));
-        btnTiketAntrian.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTiketAntrianActionPerformed(evt);
-            }
-        });
-        btnTiketAntrian.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnTiketAntrianKeyPressed(evt);
-            }
-        });
-        panelGlass5.add(btnTiketAntrian);
-
         internalFrame1.add(panelGlass5, java.awt.BorderLayout.PAGE_END);
 
         TabRawat.setBackground(new java.awt.Color(255, 255, 254));
@@ -965,6 +699,11 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
         TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
+        TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabRawatMouseClicked(evt);
+            }
+        });
 
         internalFrame2.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame2.setBorder(null);
@@ -974,9 +713,6 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbBangsal.setAutoCreateRowSorter(true);
-        tbBangsal.setToolTipText("Silakan pilih baris");
-        tbBangsal.setComponentPopupMenu(jPopupMenu1);
         tbBangsal.setName("tbBangsal"); // NOI18N
         tbBangsal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -984,15 +720,15 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
             }
         });
         tbBangsal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tbBangsalKeyReleased(evt);
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbBangsalKeyPressed(evt);
             }
         });
         Scroll.setViewportView(tbBangsal);
 
         internalFrame2.add(Scroll, java.awt.BorderLayout.CENTER);
 
-        TabRawat.addTab("Status Data RM POLI", internalFrame2);
+        TabRawat.addTab("Seluruh Status Data RM", internalFrame2);
 
         internalFrame3.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame3.setBorder(null);
@@ -1019,13 +755,13 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
 
         TabRawat.addTab("Status Data RM Farmasi", internalFrame3);
 
-        internalFrame5.setBackground(new java.awt.Color(235, 255, 235));
-        internalFrame5.setBorder(null);
-        internalFrame5.setName("internalFrame5"); // NOI18N
-        internalFrame5.setLayout(new java.awt.BorderLayout(1, 1));
+        internalFrame4.setBackground(new java.awt.Color(235, 255, 235));
+        internalFrame4.setBorder(null);
+        internalFrame4.setName("internalFrame4"); // NOI18N
+        internalFrame4.setLayout(new java.awt.BorderLayout(1, 1));
 
-        Scroll3.setName("Scroll3"); // NOI18N
-        Scroll3.setOpaque(true);
+        Scroll2.setName("Scroll2"); // NOI18N
+        Scroll2.setOpaque(true);
 
         tbBangsal3.setName("tbBangsal3"); // NOI18N
         tbBangsal3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1038,7 +774,32 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
                 tbBangsal3KeyPressed(evt);
             }
         });
-        Scroll3.setViewportView(tbBangsal3);
+        Scroll2.setViewportView(tbBangsal3);
+
+        internalFrame4.add(Scroll2, java.awt.BorderLayout.CENTER);
+
+        TabRawat.addTab("Status Data RM Lab", internalFrame4);
+
+        internalFrame5.setBackground(new java.awt.Color(235, 255, 235));
+        internalFrame5.setBorder(null);
+        internalFrame5.setName("internalFrame5"); // NOI18N
+        internalFrame5.setLayout(new java.awt.BorderLayout(1, 1));
+
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+
+        tbBangsal4.setName("tbBangsal4"); // NOI18N
+        tbBangsal4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbBangsal4MouseClicked(evt);
+            }
+        });
+        tbBangsal4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbBangsal4KeyPressed(evt);
+            }
+        });
+        Scroll3.setViewportView(tbBangsal4);
 
         internalFrame5.add(Scroll3, java.awt.BorderLayout.CENTER);
 
@@ -1052,31 +813,6 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         Scroll4.setName("Scroll4"); // NOI18N
         Scroll4.setOpaque(true);
 
-        tbBangsal4.setName("tbBangsal4"); // NOI18N
-        tbBangsal4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbBangsal4MouseClicked(evt);
-            }
-        });
-        tbBangsal4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbBangsal4KeyPressed(evt);
-            }
-        });
-        Scroll4.setViewportView(tbBangsal4);
-
-        internalFrame6.add(Scroll4, java.awt.BorderLayout.CENTER);
-
-        TabRawat.addTab("Status Data RM IGD", internalFrame6);
-
-        internalFrame8.setBackground(new java.awt.Color(235, 255, 235));
-        internalFrame8.setBorder(null);
-        internalFrame8.setName("internalFrame8"); // NOI18N
-        internalFrame8.setLayout(new java.awt.BorderLayout(1, 1));
-
-        Scroll6.setName("Scroll6"); // NOI18N
-        Scroll6.setOpaque(true);
-
         tbBangsal5.setName("tbBangsal5"); // NOI18N
         tbBangsal5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1088,11 +824,36 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
                 tbBangsal5KeyPressed(evt);
             }
         });
-        Scroll6.setViewportView(tbBangsal5);
+        Scroll4.setViewportView(tbBangsal5);
 
-        internalFrame8.add(Scroll6, java.awt.BorderLayout.CENTER);
+        internalFrame6.add(Scroll4, java.awt.BorderLayout.CENTER);
 
-        TabRawat.addTab("Status Data RM RANAP", internalFrame8);
+        TabRawat.addTab("Status Data RM IGD Rawat Jalan", internalFrame6);
+
+        internalFrame7.setBackground(new java.awt.Color(235, 255, 235));
+        internalFrame7.setBorder(null);
+        internalFrame7.setName("internalFrame7"); // NOI18N
+        internalFrame7.setLayout(new java.awt.BorderLayout(1, 1));
+
+        Scroll5.setName("Scroll5"); // NOI18N
+        Scroll5.setOpaque(true);
+
+        tbBangsal6.setName("tbBangsal6"); // NOI18N
+        tbBangsal6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbBangsal6MouseClicked(evt);
+            }
+        });
+        tbBangsal6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbBangsal6KeyPressed(evt);
+            }
+        });
+        Scroll5.setViewportView(tbBangsal6);
+
+        internalFrame7.add(Scroll5, java.awt.BorderLayout.CENTER);
+
+        TabRawat.addTab("Status Data RM IGD Rawat Inap", internalFrame7);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 
@@ -1126,10 +887,10 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         FormInput.setPreferredSize(new java.awt.Dimension(100, 104));
         FormInput.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        jLabel20.setText("Pilih Poliklinik :");
-        jLabel20.setName("jLabel20"); // NOI18N
-        jLabel20.setPreferredSize(new java.awt.Dimension(75, 23));
-        FormInput.add(jLabel20);
+        label17.setText("Asal Poli :");
+        label17.setName("label17"); // NOI18N
+        label17.setPreferredSize(new java.awt.Dimension(60, 23));
+        FormInput.add(label17);
 
         nmpoli.setEditable(false);
         nmpoli.setName("nmpoli"); // NOI18N
@@ -1155,12 +916,12 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
 
         label19.setText("Cara Bayar :");
         label19.setName("label19"); // NOI18N
-        label19.setPreferredSize(new java.awt.Dimension(80, 23));
+        label19.setPreferredSize(new java.awt.Dimension(100, 23));
         FormInput.add(label19);
 
         nmpenjab.setEditable(false);
         nmpenjab.setName("nmpenjab"); // NOI18N
-        nmpenjab.setPreferredSize(new java.awt.Dimension(150, 23));
+        nmpenjab.setPreferredSize(new java.awt.Dimension(190, 23));
         FormInput.add(nmpenjab);
 
         BtnSeek3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1180,7 +941,7 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         });
         FormInput.add(BtnSeek3);
 
-        jLabel18.setText("Status Lanjut :");
+        jLabel18.setText("Status :");
         jLabel18.setName("jLabel18"); // NOI18N
         jLabel18.setPreferredSize(new java.awt.Dimension(75, 23));
         FormInput.add(jLabel18);
@@ -1191,16 +952,23 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         Status.setPreferredSize(new java.awt.Dimension(92, 23));
         FormInput.add(Status);
 
-        jLabel19.setText("Status Periksa Ralan:");
-        jLabel19.setName("jLabel19"); // NOI18N
-        jLabel19.setPreferredSize(new java.awt.Dimension(110, 23));
-        FormInput.add(jLabel19);
-
-        SttsPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Belum", "Sudah", "Batal", "Berkas Diterima", "Dirujuk", "Meninggal", "Dirawat", "Pulang Paksa" }));
-        SttsPeriksa.setLightWeightPopupEnabled(false);
-        SttsPeriksa.setName("SttsPeriksa"); // NOI18N
-        SttsPeriksa.setPreferredSize(new java.awt.Dimension(100, 23));
-        FormInput.add(SttsPeriksa);
+        btn_riwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/barralan.png"))); // NOI18N
+        btn_riwayat.setMnemonic('S');
+        btn_riwayat.setText("Lihat Kunjungan");
+        btn_riwayat.setToolTipText("Alt+S");
+        btn_riwayat.setName("btn_riwayat"); // NOI18N
+        btn_riwayat.setPreferredSize(new java.awt.Dimension(150, 30));
+        btn_riwayat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_riwayatActionPerformed(evt);
+            }
+        });
+        btn_riwayat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btn_riwayatKeyPressed(evt);
+            }
+        });
+        FormInput.add(btn_riwayat);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -1519,19 +1287,38 @@ public final class DlgStatusDataRM extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
+    private void tbBangsalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBangsalMouseClicked
+        if (tabMode.getRowCount() != 0) {
+            try {
+                getData();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
+}//GEN-LAST:event_tbBangsalMouseClicked
+
+    private void tbBangsalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbBangsalKeyPressed
+        if (tabMode.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {
+                    getData();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
+}//GEN-LAST:event_tbBangsalKeyPressed
+
 private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
     if (TabRawat.getSelectedIndex() == 0) {
         tampil();
     } else if (TabRawat.getSelectedIndex() == 1) {
         tampil2();
-    } else if (TabRawat.getSelectedIndex() == 3) {
+    } else if (TabRawat.getSelectedIndex() == 2) {
         tampil3();
-    } else if (TabRawat.getSelectedIndex() == 4) {
+    } else if (TabRawat.getSelectedIndex() == 3) {
         tampil4();
-    } else if (TabRawat.getSelectedIndex() == 5) {
+    } else if (TabRawat.getSelectedIndex() == 4) {
         tampil5();
     }
-//    isRawat();
 }//GEN-LAST:event_BtnCariActionPerformed
 
 private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
@@ -1560,15 +1347,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         nmpoli.setText("");
         kdpenjab.setText("");
         nmpenjab.setText("");
-        kdbangsal.setText("");
-        nmbangsal.setText("");
         Status.setSelectedIndex(0);
-        SttsPeriksa.setSelectedIndex(0);       
         tampil();
-        tampil2();
-        tampil3();
-        tampil4();
-        tampil5();
     }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
@@ -1635,6 +1415,22 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         //Valid.pindah(evt,DTPCari2,TCari);
     }//GEN-LAST:event_BtnSeek3KeyPressed
 
+    private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
+        if(TabRawat.getSelectedIndex()==0){
+            tampil();
+        }else if(TabRawat.getSelectedIndex()==1){
+            tampil2();
+        }else if(TabRawat.getSelectedIndex()==2){
+            tampil3();
+        }else if(TabRawat.getSelectedIndex()==3){
+            tampil4();
+        }else if(TabRawat.getSelectedIndex()==4){
+            tampil5();
+        }else if(TabRawat.getSelectedIndex()==5){
+            tampil6();
+        }
+    }//GEN-LAST:event_TabRawatMouseClicked
+
     private void tbBangsal2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBangsal2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tbBangsal2MouseClicked
@@ -1667,299 +1463,84 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         // TODO add your handling code here:
     }//GEN-LAST:event_tbBangsal5KeyPressed
 
-    private void kdbangsalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdbangsalKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kdbangsalKeyPressed
-
-    private void btnTiketAntrianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiketAntrianActionPerformed
-        int selectedIndex = TabRawat.getSelectedIndex();
-        JTable[] tables = {tbBangsal, tbBangsal2, tbBangsal3, tbBangsal4, tbBangsal5};
-        DefaultTableModel[] models = {tabMode, tabMode2, tabMode3, tabMode4, tabMode5};
-
-        // Memastikan indeks yang dipilih valid dan ada baris yang dipilih pada tabel
-        if (selectedIndex >= 0 && selectedIndex < tables.length) {
-            int row = tables[selectedIndex].getSelectedRow();
-            if (row != -1) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                try {
-                    // Inisialisasi parameter untuk laporan
-                    Map<String, Object> param = new HashMap<>();
-                    param.put("namars", akses.getnamars());
-                    param.put("alamatrs", akses.getalamatrs());
-                    param.put("kotars", akses.getkabupatenrs());
-                    param.put("propinsirs", akses.getpropinsirs());
-                    param.put("kontakrs", akses.getkontakrs());
-                    param.put("emailrs", akses.getemailrs());
-                    param.put("logo", Sequel.cariGambar("select setting.logo from setting"));
-                    param.put("sep", Sequel.cariIsi("select no_sep from bridging_sep where bridging_sep.no_rawat=?", TNoRw.getText()));
-
-                    // Menghasilkan laporan dengan parameter yang telah disiapkan
-                    Valid.MyReportqry("rptBuktiRegister8.jasper", "report", "::[ Bukti Register ]::",
-                            "select reg_periksa.no_reg, reg_periksa.no_rawat, reg_periksa.tgl_registrasi, reg_periksa.jam_reg, pasien.no_tlp, "
-                            + "reg_periksa.kd_dokter, dokter.nm_dokter, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.jk, pasien.umur as umur, "
-                            + "poliklinik.nm_poli, reg_periksa.p_jawab, reg_periksa.almt_pj, reg_periksa.hubunganpj, reg_periksa.biaya_reg, "
-                            + "reg_periksa.stts_daftar, penjab.png_jawab, pasien.no_peserta, pasien.no_ktp, pasien.tgl_lahir "
-                            + "from reg_periksa "
-                            + "inner join dokter on reg_periksa.kd_dokter = dokter.kd_dokter "
-                            + "inner join pasien on reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                            + "inner join poliklinik on reg_periksa.kd_poli = poliklinik.kd_poli "
-                            + "inner join penjab on reg_periksa.kd_pj = penjab.kd_pj "
-                            + "where reg_periksa.no_rawat = '" + TNoRw.getText() + "' ", param);
-                } finally {
-                    // Mengembalikan kursor ke default setelah proses selesai
-                    this.setCursor(Cursor.getDefaultCursor());
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Maaf, silakan pilih baris data pada tabel terlebih dahulu.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Maaf, silakan pilih tab yang valid.");
-        }
-    }//GEN-LAST:event_btnTiketAntrianActionPerformed
-
-    private void btnTiketAntrianKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnTiketAntrianKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTiketAntrianKeyPressed
-
-    private void TNoRwKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRwKeyPressed
-        //Valid.pindah(evt,TNoReg,DTPReg);
-    }//GEN-LAST:event_TNoRwKeyPressed
-
-    private void ppBerkasDigitalBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBerkasDigitalBtnPrintActionPerformed
-       if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
-            //TNoReg.requestFocus();
-        }else if(TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            tbBangsal.requestFocus();
-        }else{
+    private void btn_riwayatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_riwayatActionPerformed
+        /*    if (TabRawat.getSelectedIndex() == 0) {
+            int row = tbBangsal.getSelectedRow();
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            DlgBerkasRawat berkas=new DlgBerkasRawat(null,true);
-            berkas.setJudul("::[ Berkas Digital Perawatan ]::","berkasrawat/pages");
-            try {
-                if(akses.gethapus_berkas_digital_perawatan()==true){
-                    berkas.loadURL("http://"+koneksiDB.HOSTHYBRIDWEB()+":"+koneksiDB.PORTWEB()+"/"+koneksiDB.HYBRIDWEB()+"/"+"berkasrawat/login.php?act=login&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB()+"&no_rawat="+TNoRw.getText());
-                }else{
-                    berkas.loadURL("http://"+koneksiDB.HOSTHYBRIDWEB()+":"+koneksiDB.PORTWEB()+"/"+koneksiDB.HYBRIDWEB()+"/"+"berkasrawat/loginnonhapus.php?act=login&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB()+"&no_rawat="+TNoRw.getText());
-                }   
-            } catch (Exception ex) {
-                System.out.println("Notifikasi : "+ex);
-            }
-
-            berkas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            berkas.setLocationRelativeTo(internalFrame1);
-            berkas.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }//GEN-LAST:event_ppBerkasDigitalBtnPrintActionPerformed
-
-    private void MnBerkasKlaimBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBerkasKlaimBtnPrintActionPerformed
-        if(TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
-            TCari.requestFocus();
-        }else{
-            if(tbBangsal.getSelectedRow()!= -1){
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                RMGenerateKlaim resume=new RMGenerateKlaim(null,true);
-                resume.setNoRm(TNoRM.getText(),TPasien.getText());
-                resume.setNoRawat(TNoRw.getText());
-                resume.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
-                resume.setLocationRelativeTo(internalFrame1);
-                resume.setVisible(true);
-                this.setCursor(Cursor.getDefaultCursor());
-            }
-        }
-    }//GEN-LAST:event_MnBerkasKlaimBtnPrintActionPerformed
-
-    private void tbBangsalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbBangsalKeyReleased
-        if(tabMode.getRowCount()!=0){
-            if((evt.getKeyCode()==KeyEvent.VK_ENTER)||(evt.getKeyCode()==KeyEvent.VK_UP)||(evt.getKeyCode()==KeyEvent.VK_DOWN)){
-                try {
-                    getData();
-                } catch (java.lang.NullPointerException e) {
-                }
-            }
-        }
-    }//GEN-LAST:event_tbBangsalKeyReleased
-
-    private void tbBangsalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBangsalMouseClicked
-        if(tabMode.getRowCount()!=0){
-            try {
-                getData();
-            } catch (java.lang.NullPointerException e) {
-            }
-        }
-    }//GEN-LAST:event_tbBangsalMouseClicked
-
-    private void ppResumeBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppResumeBtnPrintActionPerformed
-        if(TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            tbBangsal.requestFocus();
-        }else{
-            if(tbBangsal.getSelectedRow()!= -1){
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                RMDataResumePasien resume=new RMDataResumePasien(null,false);
-                resume.isCek();
-                resume.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-                resume.setLocationRelativeTo(internalFrame1);
-                resume.setNoRm(TNoRw.getText(),Tgl2.getDate());
-                resume.tampil();
-                resume.setVisible(true);
-                this.setCursor(Cursor.getDefaultCursor());
-            }
-        }
-    }//GEN-LAST:event_ppResumeBtnPrintActionPerformed
-
-    private void MnCariHasilUSGKandunganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCariHasilUSGKandunganActionPerformed
-        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            TCari.requestFocus();
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            RMHasilPemeriksaanUSG form=new RMHasilPemeriksaanUSG(null,false);
-            form.isCek();
-            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            form.emptTeks();
-            form.setNoRm(TNoRw.getText(),Tgl2.getDate());
-            form.tampil();
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }//GEN-LAST:event_MnCariHasilUSGKandunganActionPerformed
-
-    private void MnCariHasilLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCariHasilLabActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgCariPeriksaLab form = new DlgCariPeriksaLab(null, false);
-        form.isCek();
-        form.setRMPasien(TNoRw.getText(),Tgl1.getDate(),Tgl2.getDate());
-        form.setSize(this.getWidth(), this.getHeight());
-        form.setLocationRelativeTo(this);
-        form.setVisible(true);
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_MnCariHasilLabActionPerformed
-
-    private void MnCariHasilRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCariHasilRadActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgCariPeriksaRadiologi form = new DlgCariPeriksaRadiologi(null, false);
-        form.setPasien(TNoRw.getText());
-        form.setSize(this.getWidth(), this.getHeight());
-        form.setLocationRelativeTo(this);
-        form.setVisible(true);
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_MnCariHasilRadActionPerformed
-
-    private void MnCariHasilResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCariHasilResepActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgResepObat1 resep=new DlgResepObat1(null,false);
-        resep.emptTeks();
-        resep.isCek();
-        resep.setNoRawat(TNoRw.getText(),Tgl1.getDate(),Tgl2.getDate());
-        resep.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-        resep.setLocationRelativeTo(internalFrame1);
-        resep.tampil();
-        resep.setVisible(true);
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_MnCariHasilResepActionPerformed
-
-    private void MnCariHasilUSGGynecologiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCariHasilUSGGynecologiActionPerformed
-        if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
-            //TNoReg.requestFocus();
-        }else if(TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            tbBangsal.requestFocus();
-        }else{
-            if(tbBangsal.getSelectedRow()!= -1){
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                RMHasilPemeriksaanUSGGynecologi form=new RMHasilPemeriksaanUSGGynecologi(null,false);
-                form.isCek();
-                form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-                form.emptTeks();
-                form.setNoRm(TNoRw.getText(),Tgl2.getDate());
-                form.tampil();
-                this.setCursor(Cursor.getDefaultCursor());
-            }
-        }
-    }//GEN-LAST:event_MnCariHasilUSGGynecologiActionPerformed
-
-    private void MnDataSEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDataSEPActionPerformed
-        if(TPasien.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            tbBangsal.requestFocus();
-        }else{
-            if(tbBangsal.getSelectedRow()!= -1){
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                BPJSDataSEP dlgki=new BPJSDataSEP(null,false);
-                dlgki.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-                dlgki.setLocationRelativeTo(internalFrame1);
-                dlgki.isCek();
-                dlgki.setNoRm3(TNoRw.getText(),Valid.SetTgl2(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),1).toString()));
-                dlgki.setVisible(true);
-                dlgki.tampil();
-                this.setCursor(Cursor.getDefaultCursor());
-            }
-        }
-    }//GEN-LAST:event_MnDataSEPActionPerformed
-
-    private void MnRiwayatBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRiwayatBtnPrintActionPerformed
-        if(TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            tbBangsal.requestFocus();
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            RMRiwayatPerawatan resume=new RMRiwayatPerawatan(null,true);
-            resume.setNoRm(TNoRM.getText(),TPasien.getText());
-            resume.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
+            RMRiwayatPerawatan resume = new RMRiwayatPerawatan(null, true);
+            resume.setNoRm(tabMode.getValueAt(row, 3).toString(), tabMode.getValueAt(row, 4).toString());
+            resume.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
             resume.setLocationRelativeTo(internalFrame1);
             resume.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
-        }
-    }//GEN-LAST:event_MnRiwayatBtnPrintActionPerformed
+        } else if (TabRawat.getSelectedIndex() == 1) {
+            int row = tbBangsal2.getSelectedRow();
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMRiwayatPerawatan resume = new RMRiwayatPerawatan(null, true);
+            resume.setNoRm(tabMode2.getValueAt(row, 3).toString(), tabMode2.getValueAt(row, 4).toString());
+            resume.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+            resume.setLocationRelativeTo(internalFrame1);
+            resume.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        } else if (TabRawat.getSelectedIndex() == 2) {
+            int row = tbBangsal3.getSelectedRow();
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMRiwayatPerawatan resume = new RMRiwayatPerawatan(null, true);
+            resume.setNoRm(tabMode3.getValueAt(row, 3).toString(), tabMode3.getValueAt(row, 4).toString());
+            resume.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+            resume.setLocationRelativeTo(internalFrame1);
+            resume.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        } else if (TabRawat.getSelectedIndex() == 3) {
+            int row = tbBangsal4.getSelectedRow();
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMRiwayatPerawatan resume = new RMRiwayatPerawatan(null, true);
+            resume.setNoRm(tabMode4.getValueAt(row, 3).toString(), tabMode4.getValueAt(row, 4).toString());
+            resume.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+            resume.setLocationRelativeTo(internalFrame1);
+            resume.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        } else if (TabRawat.getSelectedIndex() == 4) {
+            int row = tbBangsal5.getSelectedRow();
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMRiwayatPerawatan resume = new RMRiwayatPerawatan(null, true);
+            resume.setNoRm(tabMode5.getValueAt(row, 3).toString(), tabMode5.getValueAt(row, 4).toString());
+            resume.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+            resume.setLocationRelativeTo(internalFrame1);
+            resume.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }     */
+        int selectedIndex = TabRawat.getSelectedIndex();
+        JTable[] tables = {tbBangsal, tbBangsal2, tbBangsal3, tbBangsal4, tbBangsal5, tbBangsal6};
+        DefaultTableModel[] models = {tabMode, tabMode2, tabMode3, tabMode4, tabMode5, tabMode6};
 
-    private void MnReviewTindakanBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnReviewTindakanBtnPrintActionPerformed
-        if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
-            TCari.requestFocus();
-        }else if(TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            tbBangsal.requestFocus();
-        }else{
-            if(tbBangsal.getSelectedRow()!= -1){
+        if (selectedIndex >= 0 && selectedIndex < tables.length) {
+            int row = tables[selectedIndex].getSelectedRow();
+
+            if (row != -1) {  // pastikan ada baris yang dipilih
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                DlgKeteranganPenunjangRalan form=new DlgKeteranganPenunjangRalan(null,false);
-                form.setNoRm(TNoRw.getText());
-                form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
+                RMRiwayatPerawatan resume = new RMRiwayatPerawatan(null, true);
+                resume.setNoRm(models[selectedIndex].getValueAt(row, 3).toString(),
+                        models[selectedIndex].getValueAt(row, 4).toString());
+                resume.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+                resume.setLocationRelativeTo(internalFrame1);
+                resume.setVisible(true);
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }
-    }//GEN-LAST:event_MnReviewTindakanBtnPrintActionPerformed
+    }//GEN-LAST:event_btn_riwayatActionPerformed
 
-    private void MnPemeriksaanBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPemeriksaanBtnPrintActionPerformed
-        if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
-            TCari.requestFocus();
-        }else{
-            if(tbBangsal.getSelectedRow()!= -1){
-                if(Sequel.cariInteger("select count(kamar_inap.no_rawat) from kamar_inap where kamar_inap.no_rawat=?",TNoRw.getText())>0){
-                    JOptionPane.showMessageDialog(null,"Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
-                }else {
-                    dlgrwjl2.isCek();
-                    dlgrwjl2.emptTeks();
-                    dlgrwjl2.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-                    dlgrwjl2.setLocationRelativeTo(internalFrame1);
-                    dlgrwjl2.SetPoli(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),18).toString());
-                    dlgrwjl2.SetPj(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),17).toString());
-                    dlgrwjl2.setNoRm(TNoRw.getText(),Tgl1.getDate(),Tgl2.getDate());
-                    dlgrwjl2.setVisible(true);
-                }
-            }
-        }
-    }//GEN-LAST:event_MnPemeriksaanBtnPrintActionPerformed
+    private void btn_riwayatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_riwayatKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_riwayatKeyPressed
+
+    private void tbBangsal6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBangsal6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbBangsal6MouseClicked
+
+    private void tbBangsal6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbBangsal6KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbBangsal6KeyPressed
 
     /**
      * @param args the command line arguments
@@ -1986,64 +1567,45 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnSeek3;
     private widget.CekBox ChkInput;
     private widget.panelisi FormInput;
-    private widget.TextBox Kd2;
-    private javax.swing.JMenuItem MnBerkasKlaim;
-    private javax.swing.JMenuItem MnCariHasilLab;
-    private javax.swing.JMenuItem MnCariHasilRad;
-    private javax.swing.JMenuItem MnCariHasilResep;
-    private javax.swing.JMenuItem MnCariHasilUSGGynecologi;
-    private javax.swing.JMenuItem MnCariHasilUSGKandungan;
-    private javax.swing.JMenuItem MnDataSEP;
-    private javax.swing.JMenuItem MnPemeriksaan;
-    private javax.swing.JMenuItem MnReviewTindakan;
-    private javax.swing.JMenuItem MnRiwayat;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
+    private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
-    private widget.ScrollPane Scroll6;
+    private widget.ScrollPane Scroll5;
     private widget.ComboBox Status;
-    private widget.ComboBox SttsPeriksa;
     private widget.TextBox TCari;
     private widget.TextBox TKd;
-    private widget.TextBox TNoRM;
-    private widget.TextBox TNoRw;
-    private widget.TextBox TPasien;
     private javax.swing.JTabbedPane TabRawat;
     private widget.Tanggal Tgl1;
     private widget.Tanggal Tgl2;
-    private widget.Button btnTiketAntrian;
+    private widget.Button btn_riwayat;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
+    private widget.InternalFrame internalFrame4;
     private widget.InternalFrame internalFrame5;
     private widget.InternalFrame internalFrame6;
-    private widget.InternalFrame internalFrame8;
+    private widget.InternalFrame internalFrame7;
     private widget.Label jLabel18;
-    private widget.Label jLabel19;
-    private widget.Label jLabel20;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
-    private javax.swing.JPopupMenu jPopupMenu1;
-    private widget.TextBox kdbangsal;
     private widget.TextBox kdpenjab;
     private widget.TextBox kdpoli;
     private widget.Label label11;
     private widget.Label label17;
     private widget.Label label18;
     private widget.Label label19;
-    private widget.TextBox nmbangsal;
     private widget.TextBox nmpenjab;
     private widget.TextBox nmpoli;
     private widget.panelisi panelGlass5;
-    private javax.swing.JMenuItem ppBerkasDigital;
-    private javax.swing.JMenuItem ppResume;
     private widget.Table tbBangsal;
     private widget.Table tbBangsal2;
     private widget.Table tbBangsal3;
     private widget.Table tbBangsal4;
     private widget.Table tbBangsal5;
+    private widget.Table tbBangsal6;
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
@@ -2051,64 +1613,93 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Valid.tabelKosong(tabMode);
             ps = koneksi.prepareStatement(
-                    "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,penjab.png_jawab,poliklinik.nm_poli,reg_periksa.status_lanjut,reg_periksa.status_poli, "
-                    + "reg_periksa.stts from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
+                    "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,reg_periksa.status_lanjut "
+                    + "from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
                     + "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where  "
                     + "concat(reg_periksa.kd_poli,poliklinik.nm_poli) like ? and concat(reg_periksa.kd_pj,penjab.png_jawab) like ? "
-                    + "and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.status_lanjut like ? and reg_periksa.stts like ? "
+                    + "and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.status_lanjut like ? "
                     + (TCari.getText().equals("") ? "" : "and (reg_periksa.no_rawat like ? or dokter.nm_dokter like ? or reg_periksa.no_rkm_medis like ? or "
-                    + "pasien.nm_pasien like ? or poliklinik.nm_poli like ? or reg_periksa.status_poli like ? or penjab.png_jawab like ?) ") + "order by reg_periksa.tgl_registrasi");
+                    + "pasien.nm_pasien like ? or poliklinik.nm_poli like ? or penjab.png_jawab like ?) ") + "order by reg_periksa.tgl_registrasi");
             try {
                 ps.setString(1, "%" + kdpoli.getText() + nmpoli.getText() + "%");
                 ps.setString(2, "%" + kdpenjab.getText() + nmpenjab.getText() + "%");
                 ps.setString(3, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
                 ps.setString(4, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(5, "%" + Status.getSelectedItem().toString().replaceAll("Semua", "") + "%"); 
-                ps.setString(6, "%" + SttsPeriksa.getSelectedItem().toString().replaceAll("Semua", "") + "%");
+                ps.setString(5, "%" + Status.getSelectedItem().toString().replaceAll("Semua", "") + "%");
                 if (!TCari.getText().trim().equals("")) {
+                    ps.setString(6, "%" + TCari.getText().trim() + "%");
                     ps.setString(7, "%" + TCari.getText().trim() + "%");
                     ps.setString(8, "%" + TCari.getText().trim() + "%");
                     ps.setString(9, "%" + TCari.getText().trim() + "%");
                     ps.setString(10, "%" + TCari.getText().trim() + "%");
                     ps.setString(11, "%" + TCari.getText().trim() + "%");
-                    ps.setString(12, "%" + TCari.getText().trim() + "%");
-                    ps.setString(13, "%" + TCari.getText().trim() + "%");
                 }
-                
-                /*"No.Rawat", "Tanggal", "Dokter Dituju", "Nomer RM", "Pasien", "Cara Bayar","Poliklinik", "Status","Stts Poli","Status Periksa","SOAPIE","Resume",
-                "ICD10", "ICD9", "AwalKeprwtn", "AwalMedis","SEP","CekLAB","HasilLab","USG","Gbr.USG","Radiology","HasilRadiolg","Resep"*/
-                
+
                 rs = ps.executeQuery();
                 adasoapiralan = 0;
                 tidakadasoapiralan = 0;
+                adasoapiranap = 0;
+                tidakadasoapiranap = 0;
                 adaresumeralan = 0;
                 tidakadaresumeralan = 0;
+                adaresumeranap = 0;
+                tidakadaresumeranap = 0;
+                adatriaseigd = 0;
+                tidakadatriaseigd = 0;
+                adaaskepigd = 0;
+                tidakadaaskepigd = 0;
+                ada_penilaian_medis_igd = 0;
+                tidak_ada_penilaian_medis_igd = 0;
                 adaicd10 = 0;
                 tidakadaicd10 = 0;
                 adaicd9 = 0;
                 tidakadaicd9 = 0;
                 ada_penilaian_awal_keperawatan_ralan = 0;
                 tidak_ada_penilaian_awal_keperawatan_ralan = 0;
-                ada_penilaian_medis_ralan = 0;
-                tidak_ada_penilaian_medis_ralan = 0;
+                ada_penilaian_medis_ralan_penyakit_dalam = 0;
+                tidak_ada_penilaian_medis_ralan_penyakit_dalam = 0;
+                ada_penilaian_medis_ralan_mata = 0;
+                tidak_ada_penilaian_medis_ralan_mata = 0;
+                ada_penilaian_awal_keperawatan_gigi = 0;
+                tidak_ada_penilaian_awal_keperawatan_gigi = 0;
+                ada_penilaian_awal_keperawatan_kebidanan = 0;
+                tidak_ada_penilaian_awal_keperawatan_kebidanan = 0;
+                ada_penilaian_medis_ralan_kandungan = 0;
+                tidak_ada_penilaian_medis_ralan_kandungan = 0;
+                ada_penilaian_awal_keperawatan_ralan_bayi = 0;
+                tidak_ada_penilaian_awal_keperawatan_ralan_bayi = 0;
+                ada_penilaian_medis_ralan_anak = 0;
+                tidak_ada_penilaian_medis_ralan_anak = 0;
+                ada_penilaian_awal_keperawatan_ralan_psikiatri = 0;
+                tidak_ada_penilaian_awal_keperawatan_ralan_psikiatri = 0;
+                ada_penilaian_fisioterapi = 0;
+                tidak_ada_penilaian_fisioterapi = 0;
+                ada_penilaian_medis_ralan_rehab_medik = 0;
+                tidak_ada_penilaian_medis_ralan_rehab_medik = 0;
+                ada_penilaian_medis_ralan_psikiatrik = 0;
+                tidak_ada_penilaian_medis_ralan_psikiatrik = 0;
+                ada_penilaian_medis_ralan_bedah = 0;
+                tidak_ada_penilaian_medis_ralan_bedah = 0;
+                ada_penilaian_medis_ralan_neurologi = 0;
+                tidak_ada_penilaian_medis_ralan_neurologi = 0;
+                ada_penilaian_medis_ralan_paru = 0;
+                tidak_ada_penilaian_medis_ralan_paru = 0;
+                ada_penilaian_mcu = 0;
+                tidak_ada_penilaian_mcu = 0;
+                ada_penilaian_medis_ralan_kulitdankelamin = 0;
+                tidak_ada_penilaian_medis_ralan_kulitdankelamin = 0;
+                ada_penilaian_medis_ralan_orthopedi = 0;
+                tidak_ada_penilaian_medis_ralan_orthopedi = 0;
+                ada_penilaian_medis_hemodialisa = 0;
+                tidak_ada_penilaian_medis_hemodialisa = 0;
+                ada_penilaian_medis_ralan_bedah_mulut = 0;
+                tidak_ada_penilaian_medis_ralan_bedah_mulut = 0;
+                ada_penilaian_awal_keperawatan_ralan_geriatri = 0;
+                tidak_ada_penilaian_medis_ralan_geriatri = 0;
+                ada_penilaian_medis_ralan_tht = 0;
+                tidak_ada_penilaian_medis_ralan_tht = 0;
                 ada_bridging_sep = 0;
                 tidak_ada_bridging_sep = 0;
-                ada_periksa_lab = 0;
-                tidakada_periksa_lab = 0;
-                ada_hasillab = 0;
-                tidak_ada_hasillab = 0;
-                ada_usg = 0;
-                tidakada_usg = 0;
-                ada_gbrusg = 0;
-                tidakada_gbrusg = 0;
-                ada_hasilradiologi = 0;
-                tidak_ada_hasilradiologi = 0;
-                ada_gambarradiologi = 0;
-                tidak_ada_gambarradiologi = 0;
-                ada_resep = 0;
-                tidakada_resep = 0;
-                ada_billing = 0;
-                tidakada_billing = 0;
                 while (rs.next()) {
                     soapiralan = Sequel.cariIsi("select if(count(pemeriksaan_ralan.no_rawat)>0,'Ada','Tidak Ada') from pemeriksaan_ralan where pemeriksaan_ralan.no_rawat=?", rs.getString("no_rawat"));
                     if (soapiralan.equals("Ada")) {
@@ -2116,21 +1707,48 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     } else {
                         tidakadasoapiralan++;
                     }
-
+                    soapiranap = Sequel.cariIsi("select if(count(pemeriksaan_ranap.no_rawat)>0,'Ada','Tidak Ada') from pemeriksaan_ranap where pemeriksaan_ranap.no_rawat=?", rs.getString("no_rawat"));
+                    if (soapiranap.equals("Ada")) {
+                        adasoapiranap++;
+                    } else {
+                        tidakadasoapiranap++;
+                    }
                     resumeralan = Sequel.cariIsi("select if(count(resume_pasien.no_rawat)>0,'Ada','Tidak Ada') from resume_pasien where resume_pasien.no_rawat=?", rs.getString("no_rawat"));
                     if (resumeralan.equals("Ada")) {
                         adaresumeralan++;
                     } else {
                         tidakadaresumeralan++;
                     }
-                                        
+                    resumeranap = Sequel.cariIsi("select if(count(resume_pasien_ranap.no_rawat)>0,'Ada','Tidak Ada') from resume_pasien_ranap where resume_pasien_ranap.no_rawat=?", rs.getString("no_rawat"));
+                    if (resumeranap.equals("Ada")) {
+                        adaresumeranap++;
+                    } else {
+                        tidakadaresumeranap++;
+                    }
+                    triaseigd = Sequel.cariIsi("select if(count(data_triase_igd.no_rawat)>0,'Ada','Tidak Ada') from data_triase_igd where data_triase_igd.no_rawat=?", rs.getString("no_rawat"));
+                    if (triaseigd.equals("Ada")) {
+                        adatriaseigd++;
+                    } else {
+                        tidakadatriaseigd++;
+                    }
+                    askepigd = Sequel.cariIsi("select if(count(penilaian_awal_keperawatan_igd.no_rawat)>0,'Ada','Tidak Ada') from penilaian_awal_keperawatan_igd where penilaian_awal_keperawatan_igd.no_rawat=?", rs.getString("no_rawat"));
+                    if (askepigd.equals("Ada")) {
+                        adaaskepigd++;
+                    } else {
+                        tidakadaaskepigd++;
+                    }
+                    penilaian_medis_igd = Sequel.cariIsi("select if(count(penilaian_medis_igd.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_igd where penilaian_medis_igd.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_igd.equals("Ada")) {
+                        ada_penilaian_medis_igd++;
+                    } else {
+                        tidak_ada_penilaian_medis_igd++;
+                    }
                     icd10 = Sequel.cariIsi("select if(count(diagnosa_pasien.no_rawat)>0,'Ada','Tidak Ada') from diagnosa_pasien where diagnosa_pasien.no_rawat=?", rs.getString("no_rawat"));
                     if (icd10.equals("Ada")) {
                         adaicd10++;
                     } else {
                         tidakadaicd10++;
                     }
-                    
                     icd9 = Sequel.cariIsi("select if(count(prosedur_pasien.no_rawat)>0,'Ada','Tidak Ada') from prosedur_pasien where prosedur_pasien.no_rawat=?", rs.getString("no_rawat"));
                     if (icd9.equals("Ada")) {
                         adaicd9++;
@@ -2138,52 +1756,165 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         tidakadaicd9++;
                     }
 
-                    penilaian_awal_keperawatan_ralan = Sequel.cariIsi(
-                            "SELECT IF(COUNT(penilaian_awal_keperawatan_ralan.no_rawat) > 0, 'Ada', 'Tidak Ada') "
-                            + "FROM penilaian_awal_keperawatan_ralan WHERE penilaian_awal_keperawatan_ralan.no_rawat = ?",
-                            rs.getString("no_rawat"));
-                    if (penilaian_awal_keperawatan_ralan.equals("Tidak Ada")) {
-                        penilaian_awal_keperawatan_ralan = Sequel.cariIsi(
-                                "SELECT IF(COUNT(penilaian_awal_keperawatan_kebidanan.no_rawat) > 0, 'Ada', 'Tidak Ada') "
-                                + "FROM penilaian_awal_keperawatan_kebidanan WHERE penilaian_awal_keperawatan_kebidanan.no_rawat = ?",
-                                rs.getString("no_rawat"));
-                        if (penilaian_awal_keperawatan_ralan.equals("Tidak Ada")) {
-                            penilaian_awal_keperawatan_ralan = Sequel.cariIsi(
-                                    "SELECT IF(COUNT(penilaian_awal_keperawatan_ralan_bayi.no_rawat) > 0, 'Ada', 'Tidak Ada') "
-                                    + "FROM penilaian_awal_keperawatan_ralan_bayi WHERE penilaian_awal_keperawatan_ralan_bayi.no_rawat = ?",
-                                    rs.getString("no_rawat"));
-                        }
-                    }
-
+                    penilaian_awal_keperawatan_ralan = Sequel.cariIsi("select if(count(penilaian_awal_keperawatan_ralan.no_rawat)>0,'Ada','Tidak Ada') from penilaian_awal_keperawatan_ralan where penilaian_awal_keperawatan_ralan.no_rawat=?", rs.getString("no_rawat"));
                     if (penilaian_awal_keperawatan_ralan.equals("Ada")) {
                         ada_penilaian_awal_keperawatan_ralan++;
                     } else {
                         tidak_ada_penilaian_awal_keperawatan_ralan++;
                     }
 
-                    penilaian_medis_ralan = Sequel.cariIsi(
-                            "SELECT IF(COUNT(penilaian_medis_ralan.no_rawat) > 0, 'Ada', 'Tidak Ada') "
-                            + "FROM penilaian_medis_ralan WHERE penilaian_medis_ralan.no_rawat = ?",
-                            rs.getString("no_rawat"));
-
-                    if (penilaian_medis_ralan.equals("Tidak Ada")) {
-                        penilaian_medis_ralan = Sequel.cariIsi(
-                                "SELECT IF(COUNT(penilaian_medis_ralan_anak.no_rawat) > 0, 'Ada', 'Tidak Ada') "
-                                + "FROM penilaian_medis_ralan_anak WHERE penilaian_medis_ralan_anak.no_rawat = ?",
-                                rs.getString("no_rawat"));
-
-                        if (penilaian_medis_ralan.equals("Tidak Ada")) {
-                            penilaian_medis_ralan = Sequel.cariIsi(
-                                    "SELECT IF(COUNT(penilaian_medis_ralan_kandungan.no_rawat) > 0, 'Ada', 'Tidak Ada') "
-                                    + "FROM penilaian_medis_ralan_kandungan WHERE penilaian_medis_ralan_kandungan.no_rawat = ?",
-                                    rs.getString("no_rawat"));
-                        }
+                    penilaian_medis_ralan_penyakit_dalam = Sequel.cariIsi("select if(count(penilaian_medis_ralan_penyakit_dalam.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_penyakit_dalam where penilaian_medis_ralan_penyakit_dalam.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_penyakit_dalam.equals("Ada")) {
+                        ada_penilaian_medis_ralan_penyakit_dalam++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_penyakit_dalam++;
+                    }
+                    // tambah askep mata
+                    penilaian_medis_ralan_mata = Sequel.cariIsi("select if(count(penilaian_medis_ralan_mata.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_mata where penilaian_medis_ralan_mata.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_mata.equals("Ada")) {
+                        ada_penilaian_medis_ralan_mata++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_mata++;
                     }
 
-                    if (penilaian_medis_ralan.equals("Ada")) {
-                        ada_penilaian_medis_ralan++;
+                    penilaian_awal_keperawatan_gigi = Sequel.cariIsi("select if(count(penilaian_awal_keperawatan_gigi.no_rawat)>0,'Ada','Tidak Ada') from penilaian_awal_keperawatan_gigi where penilaian_awal_keperawatan_gigi.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_awal_keperawatan_gigi.equals("Ada")) {
+                        ada_penilaian_awal_keperawatan_gigi++;
                     } else {
-                        tidak_ada_penilaian_medis_ralan++;
+                        tidak_ada_penilaian_awal_keperawatan_gigi++;
+                    }
+
+                    penilaian_awal_keperawatan_kebidanan = Sequel.cariIsi("select if(count(penilaian_awal_keperawatan_kebidanan.no_rawat)>0,'Ada','Tidak Ada') from penilaian_awal_keperawatan_kebidanan where penilaian_awal_keperawatan_kebidanan.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_awal_keperawatan_kebidanan.equals("Ada")) {
+                        ada_penilaian_awal_keperawatan_kebidanan++;
+                    } else {
+                        tidak_ada_penilaian_awal_keperawatan_kebidanan++;
+                    }
+
+                    penilaian_medis_ralan_kandungan = Sequel.cariIsi("select if(count(penilaian_medis_ralan_kandungan.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_kandungan where penilaian_medis_ralan_kandungan.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_kandungan.equals("Ada")) {
+                        ada_penilaian_medis_ralan_kandungan++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_kandungan++;
+                    }
+                    // Tambahan Pantau Status RM
+                    penilaian_awal_keperawatan_ralan_bayi = Sequel.cariIsi("select if(count(penilaian_awal_keperawatan_ralan_bayi.no_rawat)>0,'Ada','Tidak Ada') from penilaian_awal_keperawatan_ralan_bayi where penilaian_awal_keperawatan_ralan_bayi.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_awal_keperawatan_ralan_bayi.equals("Ada")) {
+                        ada_penilaian_awal_keperawatan_ralan_bayi++;
+                    } else {
+                        tidak_ada_penilaian_awal_keperawatan_ralan_bayi++;
+                    }
+
+                    penilaian_medis_ralan_anak = Sequel.cariIsi("select if(count(penilaian_medis_ralan_anak.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_anak where penilaian_medis_ralan_anak.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_anak.equals("Ada")) {
+                        ada_penilaian_medis_ralan_anak++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_anak++;
+                    }
+
+                    penilaian_awal_keperawatan_ralan_psikiatri = Sequel.cariIsi("select if(count(penilaian_awal_keperawatan_ralan_psikiatri.no_rawat)>0,'Ada','Tidak Ada') from penilaian_awal_keperawatan_ralan_psikiatri where penilaian_awal_keperawatan_ralan_psikiatri.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_awal_keperawatan_ralan_psikiatri.equals("Ada")) {
+                        ada_penilaian_awal_keperawatan_ralan_psikiatri++;
+                    } else {
+                        tidak_ada_penilaian_awal_keperawatan_ralan_psikiatri++;
+                    }
+
+                    penilaian_fisioterapi = Sequel.cariIsi("select if(count(penilaian_fisioterapi.no_rawat)>0,'Ada','Tidak Ada') from penilaian_fisioterapi where penilaian_fisioterapi.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_fisioterapi.equals("Ada")) {
+                        ada_penilaian_fisioterapi++;
+                    } else {
+                        tidak_ada_penilaian_fisioterapi++;
+                    }
+
+                    penilaian_medis_ralan_rehab_medik = Sequel.cariIsi("select if(count(penilaian_medis_ralan_rehab_medik.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_rehab_medik where penilaian_medis_ralan_rehab_medik.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_rehab_medik.equals("Ada")) {
+                        ada_penilaian_medis_ralan_rehab_medik++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_rehab_medik++;
+                    }
+                    // tambahanan asmed psikiatri,bedah,neurologi,paru,mcu
+                    penilaian_medis_ralan_psikiatrik = Sequel.cariIsi("select if(count(penilaian_medis_ralan_psikiatrik.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_psikiatrik where penilaian_medis_ralan_psikiatrik.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_psikiatrik.equals("Ada")) {
+                        ada_penilaian_medis_ralan_psikiatrik++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_psikiatrik++;
+                    }
+
+                    penilaian_medis_ralan_bedah = Sequel.cariIsi("select if(count(penilaian_medis_ralan_bedah.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_bedah where penilaian_medis_ralan_bedah.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_bedah.equals("Ada")) {
+                        ada_penilaian_medis_ralan_bedah++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_bedah++;
+                    }
+
+                    penilaian_medis_ralan_neurologi = Sequel.cariIsi("select if(count(penilaian_medis_ralan_neurologi.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_neurologi where penilaian_medis_ralan_neurologi.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_neurologi.equals("Ada")) {
+                        ada_penilaian_medis_ralan_neurologi++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_neurologi++;
+                    }
+
+                    penilaian_medis_ralan_paru = Sequel.cariIsi("select if(count(penilaian_medis_ralan_paru.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_paru where penilaian_medis_ralan_paru.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_paru.equals("Ada")) {
+                        ada_penilaian_medis_ralan_paru++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_paru++;
+                    }
+
+                    penilaian_mcu = Sequel.cariIsi("select if(count(penilaian_mcu.no_rawat)>0,'Ada','Tidak Ada') from penilaian_mcu where penilaian_mcu.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_mcu.equals("Ada")) {
+                        ada_penilaian_mcu++;
+                    } else {
+                        tidak_ada_penilaian_mcu++;
+                    }
+                    // tambahan kulit,ortopedi,hemo,bedah mulut,askep geriatri,medis geriatri
+                    penilaian_medis_ralan_kulitdankelamin = Sequel.cariIsi("select if(count(penilaian_medis_ralan_kulitdankelamin.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_kulitdankelamin where penilaian_medis_ralan_kulitdankelamin.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_kulitdankelamin.equals("Ada")) {
+                        ada_penilaian_medis_ralan_kulitdankelamin++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_kulitdankelamin++;
+                    }
+
+                    penilaian_medis_ralan_orthopedi = Sequel.cariIsi("select if(count(penilaian_medis_ralan_orthopedi.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_orthopedi where penilaian_medis_ralan_orthopedi.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_orthopedi.equals("Ada")) {
+                        ada_penilaian_medis_ralan_orthopedi++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_orthopedi++;
+                    }
+
+                    penilaian_medis_hemodialisa = Sequel.cariIsi("select if(count(penilaian_medis_hemodialisa.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_hemodialisa where penilaian_medis_hemodialisa.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_hemodialisa.equals("Ada")) {
+                        ada_penilaian_medis_hemodialisa++;
+                    } else {
+                        tidak_ada_penilaian_medis_hemodialisa++;
+                    }
+
+                    penilaian_medis_ralan_bedah_mulut = Sequel.cariIsi("select if(count(penilaian_medis_ralan_bedah_mulut.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_bedah_mulut where penilaian_medis_ralan_bedah_mulut.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_bedah_mulut.equals("Ada")) {
+                        ada_penilaian_medis_ralan_bedah_mulut++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_bedah_mulut++;
+                    }
+
+                    penilaian_awal_keperawatan_ralan_geriatri = Sequel.cariIsi("select if(count(penilaian_awal_keperawatan_ralan_geriatri.no_rawat)>0,'Ada','Tidak Ada') from penilaian_awal_keperawatan_ralan_geriatri where penilaian_awal_keperawatan_ralan_geriatri.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_awal_keperawatan_ralan_geriatri.equals("Ada")) {
+                        ada_penilaian_awal_keperawatan_ralan_geriatri++;
+                    } else {
+                        tidak_ada_penilaian_awal_keperawatan_ralan_geriatri++;
+                    }
+
+                    penilaian_medis_ralan_geriatri = Sequel.cariIsi("select if(count(penilaian_medis_ralan_geriatri.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_geriatri where penilaian_medis_ralan_geriatri.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_geriatri.equals("Ada")) {
+                        ada_penilaian_medis_ralan_geriatri++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_geriatri++;
+                    }
+                    // tambahan THT dan SEP
+                    penilaian_medis_ralan_tht = Sequel.cariIsi("select if(count(penilaian_medis_ralan_tht.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_ralan_tht where penilaian_medis_ralan_tht.no_rawat=?", rs.getString("no_rawat"));
+                    if (penilaian_medis_ralan_tht.equals("Ada")) {
+                        ada_penilaian_medis_ralan_tht++;
+                    } else {
+                        tidak_ada_penilaian_medis_ralan_tht++;
                     }
 
                     bridging_sep = Sequel.cariIsi("select if(count(bridging_sep.no_rawat)>0,'Ada','Tidak Ada') from bridging_sep where bridging_sep.no_rawat=?", rs.getString("no_rawat"));
@@ -2193,85 +1924,28 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         tidak_ada_bridging_sep++;
                     }
 
-                    periksa_lab = Sequel.cariIsi("select if(count(permintaan_lab.no_rawat)>0,'Ada','Tidak Ada') from permintaan_lab where permintaan_lab.no_rawat=?", rs.getString("no_rawat"));
-                    if (periksa_lab.equals("Ada")) {
-                        ada_periksa_lab++;
-                    } else {
-                        tidakada_periksa_lab++;
-                    }
-                    
-                    hasillab = Sequel.cariIsi("select if(count(periksa_lab.no_rawat)>0,'Ada','Tidak Ada') from periksa_lab where periksa_lab.no_rawat=?", rs.getString("no_rawat"));
-                    if (hasillab.equals("Ada")) {
-                        ada_hasillab++;
-                    } else {
-                        tidak_ada_hasillab++;
-                    }
-                    
-                    usg = Sequel.cariIsi("SELECT IF(COUNT(hasil_pemeriksaan_usg.no_rawat) > 0, 'AdaObs', 'Tidak Ada') FROM hasil_pemeriksaan_usg WHERE hasil_pemeriksaan_usg.no_rawat = ?", rs.getString("no_rawat"));
-                    if (usg.equals("Tidak Ada")) {
-                        usg = Sequel.cariIsi("SELECT IF(COUNT(hasil_pemeriksaan_usg_gynecologi.no_rawat) > 0, 'AdaGen', 'Tidak Ada') FROM hasil_pemeriksaan_usg_gynecologi "
-                                + "WHERE hasil_pemeriksaan_usg_gynecologi.no_rawat = ?", rs.getString("no_rawat"));
-                    }
-
-                    if (usg.equals("AdaObs") || usg.equals("AdaGen")) {
-                        ada_usg++;
-                    } else {
-                        tidakada_usg++;
-                    }
-                                    
-                    gbrusg = Sequel.cariIsi("SELECT IF(COUNT(hasil_pemeriksaan_usg_gambar.no_rawat) > 0, 'Ada', 'Tidak Ada') FROM hasil_pemeriksaan_usg_gambar WHERE hasil_pemeriksaan_usg_gambar.no_rawat = ?", rs.getString("no_rawat"));
-                    if (gbrusg.equals("Tidak Ada")) {
-                        gbrusg = Sequel.cariIsi("SELECT IF(COUNT(hasil_pemeriksaan_usg_gynecologi_gambar.no_rawat) > 0, 'Ada', 'Tidak Ada') FROM hasil_pemeriksaan_usg_gynecologi_gambar "
-                                + "WHERE hasil_pemeriksaan_usg_gynecologi_gambar.no_rawat = ?", rs.getString("no_rawat"));
-                    }
-                    if (gbrusg.equals("Ada")) {
-                        ada_gbrusg++;
-                    } else {
-                        tidakada_gbrusg++;
-                    }
-                    
-                    hasilradiologi = Sequel.cariIsi("select if(count(hasil_radiologi.no_rawat)>0,'Ada','Tidak Ada') from hasil_radiologi where hasil_radiologi.no_rawat=?", rs.getString("no_rawat"));
-                    if (hasilradiologi.equals("Ada")) {
-                        ada_hasilradiologi++;
-                    } else {
-                        tidak_ada_hasilradiologi++;
-                    }
-
-                    gambarradiologi = Sequel.cariIsi("select if(count(gambar_radiologi.no_rawat)>0,'Ada','Tidak Ada') from gambar_radiologi where gambar_radiologi.no_rawat=?", rs.getString("no_rawat"));
-                    if (gambarradiologi.equals("Ada")) {
-                        ada_gambarradiologi++;
-                    } else {
-                        tidak_ada_gambarradiologi++;
-                    }
-                    
-                    resep = Sequel.cariIsi("select if(count(resep_obat.no_rawat)>0,'Ada','Tidak Ada') from resep_obat where resep_obat.no_rawat=?", rs.getString("no_rawat"));
-                    if (resep.equals("Ada")) {
-                        ada_resep++;
-                    } else {
-                        tidakada_resep++;
-                    }
-                    
-                    billing = Sequel.cariIsi("select if(count(billing.no_rawat)>0,'Ada','Tidak Ada') from billing where billing.no_rawat=?", rs.getString("no_rawat"));
-                    if (billing.equals("Ada")) {
-                        ada_billing++;
-                    } else {
-                        tidakada_billing++;
-                    }
-                    
                     tabMode.addRow(new Object[]{
-                        rs.getString("no_rawat"), rs.getString("tgl_registrasi"), rs.getString("nm_dokter"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),rs.getString("png_jawab"), rs.getString("nm_poli"), 
-                        rs.getString("status_lanjut"), rs.getString("status_poli"),rs.getString("stts"),
-                        soapiralan, resumeralan, icd10, icd9, penilaian_awal_keperawatan_ralan, penilaian_medis_ralan, bridging_sep,periksa_lab, hasillab, usg, gbrusg, hasilradiologi, gambarradiologi, resep, billing
+                        rs.getString("no_rawat"), rs.getString("tgl_registrasi"), rs.getString("nm_dokter"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"), rs.getString("nm_poli"), rs.getString("status_lanjut"),
+                        soapiralan, soapiranap, resumeralan, resumeranap, triaseigd, askepigd, penilaian_medis_igd, icd10, icd9, penilaian_awal_keperawatan_ralan, penilaian_medis_ralan_penyakit_dalam, penilaian_medis_ralan_mata,
+                        penilaian_awal_keperawatan_gigi, penilaian_awal_keperawatan_kebidanan, penilaian_medis_ralan_kandungan, penilaian_awal_keperawatan_ralan_bayi, penilaian_medis_ralan_anak, penilaian_awal_keperawatan_ralan_psikiatri, penilaian_fisioterapi, penilaian_medis_ralan_rehab_medik,
+                        penilaian_medis_ralan_psikiatrik, penilaian_medis_ralan_bedah, penilaian_medis_ralan_neurologi, penilaian_medis_ralan_paru, penilaian_mcu, penilaian_medis_ralan_kulitdankelamin, penilaian_medis_ralan_orthopedi, penilaian_medis_hemodialisa, penilaian_medis_ralan_bedah_mulut,
+                        penilaian_awal_keperawatan_ralan_geriatri, penilaian_medis_ralan_geriatri, penilaian_medis_ralan_tht, bridging_sep
                     });
                 }
                 if (tabMode.getRowCount() > 0) {
                     tabMode.addRow(new Object[]{
-                        "", "", "", "", "", "","Status Data Ada", ":", "", "",  adasoapiralan, adaresumeralan, adaicd10, adaicd9, ada_penilaian_awal_keperawatan_ralan, ada_penilaian_medis_ralan,
-                        ada_bridging_sep,ada_periksa_lab, ada_hasillab, ada_usg, ada_gbrusg, ada_hasilradiologi, ada_gambarradiologi, ada_resep, ada_billing
+                        "", "", "", "", "", "Status Data Ada", ":", adasoapiralan, adasoapiranap, adaresumeralan, adaresumeranap, adatriaseigd, adaaskepigd, ada_penilaian_medis_igd, adaicd10, adaicd9, ada_penilaian_awal_keperawatan_ralan, ada_penilaian_medis_ralan_penyakit_dalam, ada_penilaian_medis_ralan_mata, ada_penilaian_awal_keperawatan_gigi, ada_penilaian_awal_keperawatan_kebidanan, ada_penilaian_medis_ralan_kandungan,
+                        ada_penilaian_awal_keperawatan_ralan_bayi, ada_penilaian_medis_ralan_anak, ada_penilaian_awal_keperawatan_ralan_psikiatri, ada_penilaian_fisioterapi, ada_penilaian_medis_ralan_rehab_medik,
+                        ada_penilaian_medis_ralan_psikiatrik, ada_penilaian_medis_ralan_bedah, ada_penilaian_medis_ralan_neurologi, ada_penilaian_medis_ralan_paru, ada_penilaian_mcu,
+                        ada_penilaian_medis_ralan_kulitdankelamin, ada_penilaian_medis_ralan_orthopedi, ada_penilaian_medis_hemodialisa, ada_penilaian_medis_ralan_bedah_mulut, ada_penilaian_awal_keperawatan_ralan_geriatri, ada_penilaian_medis_ralan_geriatri,
+                        ada_penilaian_medis_ralan_tht, ada_bridging_sep
                     });
                     tabMode.addRow(new Object[]{
-                        "", "", "", "", "", "","Status Data Tidak Ada", ":", "", "",  tidakadasoapiralan, tidakadaresumeralan, tidakadaicd10, tidakadaicd9, tidak_ada_penilaian_awal_keperawatan_ralan, tidak_ada_penilaian_medis_ralan,
-                        tidak_ada_bridging_sep,tidakada_periksa_lab, tidak_ada_hasillab, tidakada_usg, tidakada_gbrusg, tidak_ada_hasilradiologi, tidak_ada_gambarradiologi, tidakada_resep, tidakada_billing
+                        "", "", "", "", "", "Status Data Tidak Ada", ":", tidakadasoapiralan, tidakadasoapiranap, tidakadaresumeralan, tidakadaresumeranap, tidakadatriaseigd, tidakadaaskepigd, tidak_ada_penilaian_medis_igd, tidakadaicd10, tidakadaicd9, tidak_ada_penilaian_awal_keperawatan_ralan, tidak_ada_penilaian_medis_ralan_penyakit_dalam, tidak_ada_penilaian_medis_ralan_mata, tidak_ada_penilaian_awal_keperawatan_gigi, tidak_ada_penilaian_awal_keperawatan_kebidanan, tidak_ada_penilaian_medis_ralan_kandungan,
+                        tidak_ada_penilaian_awal_keperawatan_ralan_bayi, tidak_ada_penilaian_medis_ralan_anak, tidak_ada_penilaian_awal_keperawatan_ralan_psikiatri, tidak_ada_penilaian_fisioterapi, tidak_ada_penilaian_medis_ralan_rehab_medik,
+                        tidak_ada_penilaian_medis_ralan_psikiatrik, tidak_ada_penilaian_medis_ralan_bedah, tidak_ada_penilaian_medis_ralan_neurologi, tidak_ada_penilaian_medis_ralan_paru, tidak_ada_penilaian_mcu,
+                        tidak_ada_penilaian_medis_ralan_kulitdankelamin, tidak_ada_penilaian_medis_ralan_orthopedi, tidak_ada_penilaian_medis_hemodialisa, tidak_ada_penilaian_medis_ralan_bedah_mulut, tidak_ada_penilaian_awal_keperawatan_ralan_geriatri,
+                        tidak_ada_penilaian_medis_ralan_geriatri, tidak_ada_penilaian_medis_ralan_tht, tidak_ada_bridging_sep
                     });
                 }
             } catch (Exception e) {
@@ -2294,9 +1968,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         int row = tbBangsal.getSelectedRow();
         if (row != -1) {
             TKd.setText(tabMode.getValueAt(row, 0).toString());
-            TNoRw.setText(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),0).toString());
-            TNoRM.setText(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),3).toString());
-            TPasien.setText(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),4).toString());
         }
     }
 
@@ -2393,7 +2064,75 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     public void tampil3() {
         try {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Valid.tabelKosong(tabMode3);
+            Valid.tabelKosong(tabMode);
+            ps3 = koneksi.prepareStatement(
+                    "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,reg_periksa.status_lanjut "
+                    + "from permintaan_lab inner join reg_periksa on permintaan_lab.no_rawat=reg_periksa.no_rawat inner join dokter on permintaan_lab.dokter_perujuk=dokter.kd_dokter inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
+                    + "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where  "
+                    + "concat(reg_periksa.kd_poli,poliklinik.nm_poli) like ? and concat(reg_periksa.kd_pj,penjab.png_jawab) like ? "
+                    + "and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.status_lanjut like ? "
+                    + (TCari.getText().equals("") ? "" : "and (reg_periksa.no_rawat like ? or dokter.nm_dokter like ? or reg_periksa.no_rkm_medis like ? or "
+                    + "pasien.nm_pasien like ? or poliklinik.nm_poli like ? or penjab.png_jawab like ?) ") + "order by reg_periksa.tgl_registrasi");
+            //+ "from permintaan_lab inner join reg_periksa on permintaan_lab.no_rawat=reg_periksa.no_rawat inner join dokter on permintaan_lab.dokter_perujuk=dokter.kd_dokter inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
+            try {
+                ps3.setString(1, "%" + kdpoli.getText() + nmpoli.getText() + "%");
+                ps3.setString(2, "%" + kdpenjab.getText() + nmpenjab.getText() + "%");
+                ps3.setString(3, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps3.setString(4, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps3.setString(5, "%" + Status.getSelectedItem().toString().replaceAll("Semua", "") + "%");
+                if (!TCari.getText().trim().equals("")) {
+                    ps3.setString(6, "%" + TCari.getText().trim() + "%");
+                    ps3.setString(7, "%" + TCari.getText().trim() + "%");
+                    ps3.setString(8, "%" + TCari.getText().trim() + "%");
+                    ps3.setString(9, "%" + TCari.getText().trim() + "%");
+                    ps3.setString(10, "%" + TCari.getText().trim() + "%");
+                    ps3.setString(11, "%" + TCari.getText().trim() + "%");
+                }
+
+                rs3 = ps3.executeQuery();
+                ada_hasillab = 0;
+                tidak_ada_hasillab = 0;
+                while (rs3.next()) {
+                    hasillab = Sequel.cariIsi("select if(count(periksa_lab.no_rawat)>0,'Ada','Tidak Ada') from periksa_lab where periksa_lab.no_rawat=?", rs3.getString("no_rawat"));
+                    if (hasillab.equals("Ada")) {
+                        ada_hasillab++;
+                    } else {
+                        tidak_ada_hasillab++;
+                    }
+
+                    tabMode3.addRow(new Object[]{
+                        rs3.getString("no_rawat"), rs3.getString("tgl_registrasi"), rs3.getString("nm_dokter"), rs3.getString("no_rkm_medis"), rs3.getString("nm_pasien"), rs3.getString("nm_poli"), rs3.getString("status_lanjut"),
+                        hasillab
+                    });
+                }
+                if (tabMode3.getRowCount() > 0) {
+                    tabMode3.addRow(new Object[]{
+                        "", "", "", "", "", "Status Data Ada", ":", ada_hasillab
+                    });
+                    tabMode3.addRow(new Object[]{
+                        "", "", "", "", "", "Status Data Tidak Ada", ":", tidak_ada_hasillab
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (ps3 != null) {
+                    ps3.close();
+                }
+            }
+            this.setCursor(Cursor.getDefaultCursor());
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+
+    public void tampil4() {
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Valid.tabelKosong(tabMode4);
             ps4 = koneksi.prepareStatement(
                     "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,reg_periksa.status_lanjut "
                     + "from permintaan_radiologi inner join reg_periksa on permintaan_radiologi.no_rawat=reg_periksa.no_rawat inner join dokter on permintaan_radiologi.dokter_perujuk=dokter.kd_dokter inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
@@ -2438,16 +2177,16 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         tidak_ada_hasilradiologi++;
                     }
 
-                    tabMode3.addRow(new Object[]{
+                    tabMode4.addRow(new Object[]{
                         rs4.getString("no_rawat"), rs4.getString("tgl_registrasi"), rs4.getString("nm_dokter"), rs4.getString("no_rkm_medis"), rs4.getString("nm_pasien"), rs4.getString("nm_poli"), rs4.getString("status_lanjut"),
                         gambarradiologi, hasilradiologi
                     });
                 }
-                if (tabMode3.getRowCount() > 0) {
-                    tabMode3.addRow(new Object[]{
+                if (tabMode4.getRowCount() > 0) {
+                    tabMode4.addRow(new Object[]{
                         "", "", "", "", "", "Status Data Ada", ":", ada_gambarradiologi, ada_hasilradiologi
                     });
-                    tabMode3.addRow(new Object[]{
+                    tabMode4.addRow(new Object[]{
                         "", "", "", "", "", "Status Data Tidak Ada", ":", tidak_ada_gambarradiologi, tidak_ada_hasilradiologi
                     });
                 }
@@ -2468,88 +2207,39 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     }
 
-    public void tampil4() {
+    public void tampil5() {
         try {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Valid.tabelKosong(tabMode4);
+            Valid.tabelKosong(tabMode5);
             ps5 = koneksi.prepareStatement(
-                    "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,reg_periksa.status_lanjut,reg_periksa.stts "
+                    "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,reg_periksa.status_lanjut "
                     + "from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
-                    + "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where  "
+                    + "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where poliklinik.kd_poli='IGDK' and reg_periksa.status_lanjut='Ralan' and "
                     + "concat(reg_periksa.kd_poli,poliklinik.nm_poli) like ? and concat(reg_periksa.kd_pj,penjab.png_jawab) like ? "
-                    + "and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.status_lanjut like ? and reg_periksa.stts like ? "
+                    + "and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.status_lanjut like ? "
                     + (TCari.getText().equals("") ? "" : "and (reg_periksa.no_rawat like ? or dokter.nm_dokter like ? or reg_periksa.no_rkm_medis like ? or "
-                    + "pasien.nm_pasien like ? or poliklinik.nm_poli like ? or penjab.png_jawab like ?) ") + "order by reg_periksa.tgl_registrasi");
+                    + "pasien.nm_pasien like ? or poliklinik.nm_poli like 'IGD' or penjab.png_jawab like ?) ") + "order by reg_periksa.tgl_registrasi");
             try {
-                ps5.setString(1, "IGDK" + kdpoli.getText() + nmpoli.getText() + "Unit IGD");
+                ps5.setString(1, "%" + kdpoli.getText() + nmpoli.getText() + "%");
                 ps5.setString(2, "%" + kdpenjab.getText() + nmpenjab.getText() + "%");
-                ps5.setString(3, Valid.SetTgl(Tgl1.getSelectedItem().toString()));
-                ps5.setString(4, Valid.SetTgl(Tgl2.getSelectedItem().toString()));
-                ps5.setString(5, "%" + Status.getSelectedItem().toString().replace("Semua", "") + "%");
-                ps5.setString(6, "%" + SttsPeriksa.getSelectedItem().toString().replace("Semua", "") + "%");
-                // Memasukkan TCari hanya jika tidak kosong
-                String tCari = TCari.getText().trim();
-                if (!tCari.isEmpty()) {
-                    for (int i = 7; i <= 12; i++) {
-                        ps5.setString(i, "%" + tCari + "%");
-                    }
+                ps5.setString(3, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps5.setString(4, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps5.setString(5, "%" + Status.getSelectedItem().toString().replaceAll("Semua", "") + "%");
+                if (!TCari.getText().trim().equals("")) {
+                    ps5.setString(6, "%" + TCari.getText().trim() + "%");
+                    ps5.setString(7, "%" + TCari.getText().trim() + "%");
+                    ps5.setString(8, "%" + TCari.getText().trim() + "%");
+                    ps5.setString(9, "%" + TCari.getText().trim() + "%");
+                  //  ps5.setString(10, "%" + TCari.getText().trim() + "%");
+                    ps5.setString(10, "%" + TCari.getText().trim() + "%");
                 }
 
                 rs5 = ps5.executeQuery();
-                adasoapiralan = 0;
-                tidakadasoapiralan = 0;
-		adaicd10 = 0;
-                tidakadaicd10 = 0;
-                adaicd9 = 0;
-                tidakadaicd9 = 0;
-                adaresumeralan = 0;
-                tidakadaresumeralan = 0;
                 ada_transferantarruang = 0;
                 tidak_ada_transferantarruang = 0;
                 ada_observasiigd = 0;
                 tidak_ada_observasiigd = 0;
-                adatriaseigd = 0;
-                tidakadatriaseigd = 0;
-                adaaskepigd = 0;
-                tidakadaaskepigd = 0;
-                ada_penilaian_medis_igd = 0;
-                tidak_ada_penilaian_medis_igd = 0;
-                ada_periksa_lab = 0;
-                tidakada_periksa_lab = 0;
-                ada_usg = 0;
-                tidakada_usg = 0;
-                ada_resep = 0;
-                tidakada_resep = 0;
-                
                 while (rs5.next()) {
-                    soapiralan = Sequel.cariIsi("select if(count(pemeriksaan_ralan.no_rawat)>0,'Ada','Tidak Ada') from pemeriksaan_ralan where pemeriksaan_ralan.no_rawat=?", rs5.getString("no_rawat"));
-                    if (soapiralan.equals("Ada")) {
-                        adasoapiralan++;
-                    } else {
-                        tidakadasoapiralan++;
-                    }
-				
-                    icd10 = Sequel.cariIsi("select if(count(diagnosa_pasien.no_rawat)>0,'Ada','Tidak Ada') from diagnosa_pasien where diagnosa_pasien.no_rawat=?", rs5.getString("no_rawat"));
-                    if (icd10.equals("Ada")) {
-                        adaicd10++;
-                    } else {
-                        tidakadaicd10++;
-                    }
-                    
-                    icd9 = Sequel.cariIsi("select if(count(prosedur_pasien.no_rawat)>0,'Ada','Tidak Ada') from prosedur_pasien where prosedur_pasien.no_rawat=?", rs5.getString("no_rawat"));
-                    if (icd9.equals("Ada")) {
-                        adaicd9++;
-                    } else {
-                        tidakadaicd9++;
-                    }
-                    
-                    resumeralan = Sequel.cariIsi("select if(count(resume_pasien.no_rawat)>0,'Ada','Tidak Ada') from resume_pasien where resume_pasien.no_rawat=?", rs5.getString("no_rawat"));
-                    if (resumeralan.equals("Ada")) {
-                        adaresumeralan++;
-                    } else {
-                        tidakadaresumeralan++;
-                    }
-                    
                     transferantarruang = Sequel.cariIsi("select if(count(transfer_pasien_antar_ruang.no_rawat)>0,'Ada','Tidak Ada') from transfer_pasien_antar_ruang where transfer_pasien_antar_ruang.no_rawat=?", rs5.getString("no_rawat"));
                     if (transferantarruang.equals("Ada")) {
                         ada_transferantarruang++;
@@ -2564,65 +2254,18 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         tidak_ada_observasiigd++;
                     }
 
-                    triaseigd = Sequel.cariIsi("select if(count(data_triase_igd.no_rawat)>0,'Ada','Tidak Ada') from data_triase_igd where data_triase_igd.no_rawat=?", rs5.getString("no_rawat"));
-                    if (triaseigd.equals("Ada")) {
-                        adatriaseigd++;
-                    } else {
-                        tidakadatriaseigd++;
-                    }
-                    
-                    askepigd = Sequel.cariIsi("select if(count(penilaian_awal_keperawatan_igd.no_rawat)>0,'Ada','Tidak Ada') from penilaian_awal_keperawatan_igd where penilaian_awal_keperawatan_igd.no_rawat=?", rs5.getString("no_rawat"));
-                    if (askepigd.equals("Ada")) {
-                        adaaskepigd++;
-                    } else {
-                        tidakadaaskepigd++;
-                    }
-                    
-                    penilaian_medis_igd = Sequel.cariIsi("select if(count(penilaian_medis_igd.no_rawat)>0,'Ada','Tidak Ada') from penilaian_medis_igd where penilaian_medis_igd.no_rawat=?", rs5.getString("no_rawat"));
-                    if (penilaian_medis_igd.equals("Ada")) {
-                        ada_penilaian_medis_igd++;
-                    } else {
-                        tidak_ada_penilaian_medis_igd++;
-                    }
-                                                           
-                    periksa_lab = Sequel.cariIsi("select if(count(periksa_lab.no_rawat)>0,'Ada','Tidak Ada') from periksa_lab where periksa_lab.no_rawat=?", rs5.getString("no_rawat"));
-                    if (periksa_lab.equals("Ada")) {
-                        ada_periksa_lab++;
-                    } else {
-                        tidakada_periksa_lab++;
-                    }
-                    
-                    usg = Sequel.cariIsi("SELECT IF(COUNT(hasil_pemeriksaan_usg.no_rawat) > 0, 'Ada', 'Tidak Ada') FROM hasil_pemeriksaan_usg WHERE hasil_pemeriksaan_usg.no_rawat = ?", rs5.getString("no_rawat"));
-                    if (usg.equals("Tidak Ada")) {
-                        usg = Sequel.cariIsi("SELECT IF(COUNT(hasil_pemeriksaan_usg_gynecologi.no_rawat) > 0, 'Ada', 'Tidak Ada') FROM hasil_pemeriksaan_usg_gynecologi "
-                                + "WHERE hasil_pemeriksaan_usg_gynecologi.no_rawat = ?", rs5.getString("no_rawat"));
-                    }
-                    if (usg.equals("Ada")) {
-                        ada_usg++;
-                    } else {
-                        tidakada_usg++;
-                    }
-
-                    resep = Sequel.cariIsi("select if(count(resep_obat.no_rawat)>0,'Ada','Tidak Ada') from resep_obat where resep_obat.no_rawat=?", rs5.getString("no_rawat"));
-                    if (resep.equals("Ada")) {
-                        ada_resep++;
-                    } else {
-                        tidakada_resep++;
-                    }
-                    
-                    tabMode4.addRow(new Object[]{
-                        rs5.getString("no_rawat"), rs5.getString("tgl_registrasi"), rs5.getString("nm_dokter"), rs5.getString("no_rkm_medis"), rs5.getString("nm_pasien"), rs5.getString("nm_poli"), rs5.getString("status_lanjut"), rs5.getString("stts"),
-                        soapiralan, icd10, icd9,resumeralan, transferantarruang, observasiigd, triaseigd, askepigd, penilaian_medis_igd, periksa_lab, usg, resep });
+                    tabMode5.addRow(new Object[]{
+                        rs5.getString("no_rawat"), rs5.getString("tgl_registrasi"), rs5.getString("nm_dokter"), rs5.getString("no_rkm_medis"), rs5.getString("nm_pasien"), rs5.getString("nm_poli"), rs5.getString("status_lanjut"),
+                        transferantarruang, observasiigd
+                    });
                 }
-                                
-                if (tabMode4.getRowCount() > 0) {
-                    tabMode4.addRow(new Object[]{
-                        "", "", "", "", "", "Status Data Ada", ":", "", adasoapiralan, adaicd10, adaicd9, adaresumeralan, ada_transferantarruang, ada_observasiigd, adatriaseigd, adaaskepigd, ada_penilaian_medis_igd,
-                        ada_periksa_lab, ada_usg, ada_resep});
-
-                    tabMode4.addRow(new Object[]{
-                        "", "", "", "", "", "Status Data Tidak Ada", ":", "", tidakadasoapiralan, tidakadaicd10, tidakadaicd9, tidakadaresumeralan, tidak_ada_transferantarruang, tidak_ada_observasiigd, tidakadatriaseigd, tidakadaaskepigd, tidak_ada_penilaian_medis_igd,
-                        tidakada_periksa_lab, tidakada_usg, tidakada_resep});
+                if (tabMode5.getRowCount() > 0) {
+                    tabMode5.addRow(new Object[]{
+                        "", "", "", "", "", "Status Data Ada", ":", ada_transferantarruang, ada_observasiigd
+                    });
+                    tabMode5.addRow(new Object[]{
+                        "", "", "", "", "", "Status Data Tidak Ada", ":", tidak_ada_transferantarruang, tidak_ada_observasiigd
+                    });
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -2641,170 +2284,72 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     }
     
-    public void tampil5() {
+    public void tampil6() {
         try {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Valid.tabelKosong(tabMode5);
-
+            Valid.tabelKosong(tabMode6);
             ps6 = koneksi.prepareStatement(
-                    "SELECT reg_periksa.no_rawat, reg_periksa.tgl_registrasi, dokter.nm_dokter, reg_periksa.no_rkm_medis, pasien.nm_pasien, "
-                    + "kamar_inap.stts_pulang, penjab.png_jawab, poliklinik.nm_poli, reg_periksa.status_lanjut, bangsal.nm_bangsal, "
-                    + "kabupaten.nm_kab, kecamatan.nm_kec, kelurahan.nm_kel "
-                    + "FROM reg_periksa "
-                    + "INNER JOIN dokter ON reg_periksa.kd_dokter = dokter.kd_dokter "
-                    + "INNER JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + "INNER JOIN poliklinik ON reg_periksa.kd_poli = poliklinik.kd_poli "
-                    + "INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
-                    + "INNER JOIN kamar_inap ON reg_periksa.no_rawat = kamar_inap.no_rawat "
-                    + "INNER JOIN kamar ON kamar_inap.kd_kamar = kamar.kd_kamar "
-                    + "INNER JOIN bangsal ON kamar.kd_bangsal = bangsal.kd_bangsal "
-                    + "INNER JOIN kabupaten ON pasien.kd_kab = kabupaten.kd_kab "
-                    + "INNER JOIN kecamatan ON pasien.kd_kec = kecamatan.kd_kec "
-                    + "INNER JOIN kelurahan ON pasien.kd_kel = kelurahan.kd_kel "
-                    + "WHERE CONCAT(reg_periksa.kd_poli, poliklinik.nm_poli) LIKE ? "
-                    + "AND CONCAT(reg_periksa.kd_pj, penjab.png_jawab) LIKE ? "
-                    + "AND reg_periksa.tgl_registrasi BETWEEN ? AND ? "
-                    + "AND reg_periksa.status_lanjut LIKE ? "
-                    + "AND kamar_inap.stts_pulang NOT LIKE '%Pindah Kamar%' "
-                    + (TCari.getText().equals("") ? ""
-                    : "AND (reg_periksa.no_rawat LIKE ? OR dokter.nm_dokter LIKE ? OR reg_periksa.no_rkm_medis LIKE ? "
-                    + "OR pasien.nm_pasien LIKE ? OR poliklinik.nm_poli LIKE ? OR kamar_inap.stts_pulang LIKE ? "
-                    + "OR penjab.png_jawab LIKE ?) ")
-                    + "ORDER BY reg_periksa.tgl_registrasi"
-            );
-
-            ps6.setString(1, "%" + kdpoli.getText() + nmpoli.getText() + "%");
-            ps6.setString(2, "%" + kdpenjab.getText() + nmpenjab.getText() + "%");
-            ps6.setString(3, Valid.SetTgl(Tgl1.getSelectedItem().toString()));
-            ps6.setString(4, Valid.SetTgl(Tgl2.getSelectedItem().toString()));
-            ps6.setString(5, "%" + Status.getSelectedItem().toString().replaceAll("Semua", "") + "%");
-            //ps6.setString(6, "%" + SttsPulang.getSelectedItem().toString().replaceAll("Semua", "") + "%");
-            if (!TCari.getText().trim().equals("")) {
-                String searchText = "%" + TCari.getText().trim() + "%";
-                for (int i = 6; i <= 12; i++) {
-                    ps6.setString(i, searchText);
-                }
-            }
-
-            rs6 = ps6.executeQuery();
-            ada_persetujuan_umum = 0;
-            tidakada_persetujuan_umum = 0;
-            ada_persetujuan_ranap = 0;
-            tidakada_persetujuan_ranap = 0;
-            ada_icd10ranap = 0;
-            tidakada_icd10ranap = 0;
-            ada_icd9ranap = 0;
-            tidakada_icd9ranap = 0;
-            ada_resumeranap = 0;
-            tidakada_resumeranap = 0;
-            ada_usg = 0;
-            tidakada_usg = 0;
-            ada_hasilradiologi = 0;
-            tidak_ada_hasilradiologi = 0;
-            ada_periksa_lab = 0;
-            tidakada_periksa_lab = 0;
-            ada_bridging_sep = 0;
-            tidak_ada_bridging_sep = 0;
-
-            while (rs6.next()) {
-                persetujuan_umum = Sequel.cariIsi("select if(count(surat_persetujuan_umum.no_rawat)>0,'Ada','Tidak Ada') from surat_persetujuan_umum where surat_persetujuan_umum.no_rawat=?", rs6.getString("no_rawat"));
-                if (persetujuan_umum.equals("Ada")) {
-                    ada_persetujuan_umum++;
-                } else {
-                    tidakada_persetujuan_umum++;
-                }
-
-                persetujuan_ranap = Sequel.cariIsi("select if(count(surat_persetujuan_rawat_inap.no_rawat)>0,'Ada','Tidak Ada') from surat_persetujuan_rawat_inap where surat_persetujuan_rawat_inap.no_rawat=?", rs6.getString("no_rawat"));
-                if (persetujuan_ranap.equals("Ada")) {
-                    ada_persetujuan_ranap++;
-                } else {
-                    tidakada_persetujuan_ranap++;
-                }
-
-                icd10ranap = Sequel.cariIsi("SELECT IF(COUNT(diagnosa_pasien.no_rawat) > 0, 'Ada', 'Tidak Ada') from diagnosa_pasien where diagnosa_pasien.no_rawat = ? "
-                        + "AND diagnosa_pasien.status LIKE 'ranap'", rs6.getString("no_rawat"));
-                if (icd10ranap.equals("Ada")) {
-                    ada_icd10ranap++;
-                } else {
-                    tidakada_icd10ranap++;
-                }
-
-                icd9ranap = Sequel.cariIsi("select if(count(prosedur_pasien.no_rawat)>0,'Ada','Tidak Ada') from prosedur_pasien where prosedur_pasien.no_rawat=? "
-                        + "AND prosedur_pasien.status LIKE 'ranap'", rs6.getString("no_rawat"));
-                if (icd9ranap.equals("Ada")) {
-                    ada_icd9ranap++;
-                } else {
-                    tidakada_icd9ranap++;
-                }
-
-                resumeranap = Sequel.cariIsi("select if(count(resume_pasien_ranap.no_rawat)>0,'Ada','Tidak Ada') from resume_pasien_ranap where resume_pasien_ranap.no_rawat=?", rs6.getString("no_rawat"));
-                if (resumeranap.equals("Ada")) {
-                    ada_resumeranap++;
-                } else {
-                    tidakada_resumeranap++;
-                }
-
-                usg = Sequel.cariIsi("SELECT IF(COUNT(hasil_pemeriksaan_usg.no_rawat) > 0, 'Ada', 'Tidak Ada') FROM hasil_pemeriksaan_usg WHERE hasil_pemeriksaan_usg.no_rawat = ?", rs6.getString("no_rawat"));
-                if (usg.equals("Tidak Ada")) {
-                    usg = Sequel.cariIsi("SELECT IF(COUNT(hasil_pemeriksaan_usg_gynecologi.no_rawat) > 0, 'Ada', 'Tidak Ada') FROM hasil_pemeriksaan_usg_gynecologi "
-                            + "WHERE hasil_pemeriksaan_usg_gynecologi.no_rawat = ?", rs6.getString("no_rawat"));
-                }
-                if (usg.equals("Ada")) {
-                    ada_usg++;
-                } else {
-                    tidakada_usg++;
-                }
-
-                hasilradiologi = Sequel.cariIsi("select if(count(hasil_radiologi.no_rawat)>0,'Ada','Tidak Ada') from hasil_radiologi where hasil_radiologi.no_rawat=?", rs6.getString("no_rawat"));
-                if (hasilradiologi.equals("Ada")) {
-                    ada_hasilradiologi++;
-                } else {
-                    tidak_ada_hasilradiologi++;
-                }
-
-                periksa_lab = Sequel.cariIsi("select if(count(periksa_lab.no_rawat)>0,'Ada','Tidak Ada') from periksa_lab where periksa_lab.no_rawat=?", rs6.getString("no_rawat"));
-                if (periksa_lab.equals("Ada")) {
-                    ada_periksa_lab++;
-                } else {
-                    tidakada_periksa_lab++;
-                }
-
-                bridging_sep = Sequel.cariIsi("select if(count(bridging_sep.no_rawat)>0,'Ada','Tidak Ada') from bridging_sep where bridging_sep.no_rawat=?", rs6.getString("no_rawat"));
-                if (bridging_sep.equals("Ada")) {
-                    ada_bridging_sep++;
-                } else {
-                    tidak_ada_bridging_sep++;
-                }
-              
-                tabMode5.addRow(new Object[]{
-                    rs6.getString("no_rawat"), rs6.getString("tgl_registrasi"), rs6.getString("nm_dokter"), rs6.getString("no_rkm_medis"), rs6.getString("nm_pasien"), 
-                    rs6.getString("png_jawab"), rs6.getString("nm_poli"), rs6.getString("status_lanjut"), rs6.getString("nm_bangsal"), rs6.getString("stts_pulang"), 
-                    persetujuan_umum, persetujuan_ranap, icd10ranap, icd9ranap, resumeranap, usg, hasilradiologi, periksa_lab, bridging_sep });
-            }
-
-            if (tabMode5.getRowCount() > 0) {
-                tabMode5.addRow(new Object[]{"", "", "", "", "", "", "", "", "Status Data Ada", ":", ada_persetujuan_umum, ada_persetujuan_ranap, ada_icd10ranap, ada_icd9ranap, ada_resumeranap,
-                    ada_usg, ada_hasilradiologi, ada_periksa_lab, ada_bridging_sep });
-
-                tabMode5.addRow(new Object[]{"", "", "", "", "", "", "", "", "Status Data Tidak Ada", ":", ada_persetujuan_umum, ada_persetujuan_ranap, tidakada_icd10ranap, tidakada_icd9ranap,
-                    tidakada_resumeranap, tidakada_usg, tidak_ada_hasilradiologi, tidakada_periksa_lab, tidak_ada_bridging_sep });
-            }
-
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        } finally {
+                    "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,reg_periksa.status_lanjut "
+                    + "from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
+                    + "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where poliklinik.kd_poli='IGDK' and reg_periksa.status_lanjut='Ranap' and "
+                    + "concat(reg_periksa.kd_poli,poliklinik.nm_poli) like ? and concat(reg_periksa.kd_pj,penjab.png_jawab) like ? "
+                    + "and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.status_lanjut like ? "
+                    + (TCari.getText().equals("") ? "" : "and (reg_periksa.no_rawat like ? or dokter.nm_dokter like ? or reg_periksa.no_rkm_medis like ? or "
+                    + "pasien.nm_pasien like ? or poliklinik.nm_poli like 'IGD' or penjab.png_jawab like ?) ") + "order by reg_periksa.tgl_registrasi");
             try {
+                ps6.setString(1, "%" + kdpoli.getText() + nmpoli.getText() + "%");
+                ps6.setString(2, "%" + kdpenjab.getText() + nmpenjab.getText() + "%");
+                ps6.setString(3, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps6.setString(4, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps6.setString(5, "%" + Status.getSelectedItem().toString().replaceAll("Semua", "") + "%");
+                if (!TCari.getText().trim().equals("")) {
+                    ps6.setString(6, "%" + TCari.getText().trim() + "%");
+                    ps6.setString(7, "%" + TCari.getText().trim() + "%");
+                    ps6.setString(8, "%" + TCari.getText().trim() + "%");
+                    ps6.setString(9, "%" + TCari.getText().trim() + "%");
+                  //  ps5.setString(10, "%" + TCari.getText().trim() + "%");
+                    ps6.setString(10, "%" + TCari.getText().trim() + "%");
+                }
+
+                rs6 = ps6.executeQuery();
+                ada_bridging_sep = 0;
+                tidak_ada_bridging_sep=0;
+                while (rs6.next()) {
+                    bridging_sep = Sequel.cariIsi("select if(count(bridging_sep.no_rawat)>0,'Ada','Tidak Ada') from bridging_sep where bridging_sep.no_rawat=?", rs6.getString("no_rawat"));
+                    if (bridging_sep.equals("Ada")) {
+                        ada_bridging_sep++;
+                    } else {
+                        tidak_ada_bridging_sep++;
+                    }
+                 
+                    tabMode6.addRow(new Object[]{
+                        rs6.getString("no_rawat"), rs6.getString("tgl_registrasi"), rs6.getString("nm_dokter"), rs6.getString("no_rkm_medis"), rs6.getString("nm_pasien"), rs6.getString("nm_poli"), rs6.getString("status_lanjut"),
+                        bridging_sep
+                    });
+                }
+                if (tabMode6.getRowCount() > 0) {
+                    tabMode6.addRow(new Object[]{
+                        "", "", "", "", "", "Status Data Ada", ":", ada_bridging_sep
+                    });
+                    tabMode6.addRow(new Object[]{
+                        "", "", "", "", "", "Status Data Tidak Ada", ":", tidak_ada_bridging_sep
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
                 if (rs6 != null) {
                     rs6.close();
                 }
                 if (ps6 != null) {
                     ps6.close();
                 }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
             }
             this.setCursor(Cursor.getDefaultCursor());
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
+
     }
 
 }

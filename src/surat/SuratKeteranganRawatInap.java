@@ -14,6 +14,7 @@ import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
+import fungsi.validasi2;
 import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -40,10 +41,11 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
+    private validasi2 Valid1=new validasi2();
     private PreparedStatement ps;
     private ResultSet rs;
     private int i=0;
-    private String tgl;
+    private String tgl, bln_angka="", bln_romawi="";
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
@@ -67,7 +69,7 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         for (i = 0; i < 6; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(105);
+                column.setPreferredWidth(200);
             }else if(i==1){
                 column.setPreferredWidth(105);
             }else if(i==2){
@@ -82,7 +84,7 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
         
-        NoSurat.setDocument(new batasInput((byte)17).getKata(NoSurat));
+        NoSurat.setDocument(new batasInput((byte)35).getKata(NoSurat));
         TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));  
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));           
         if(koneksiDB.CARICEPAT().equals("aktif")){
@@ -182,7 +184,7 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Surat Keterangan Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Surat Rawat Mondok ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -356,7 +358,7 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2021" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -370,7 +372,7 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2021" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -437,6 +439,7 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         FormInput.add(jLabel3);
         jLabel3.setBounds(0, 40, 70, 23);
 
+        NoSurat.setEditable(false);
         NoSurat.setHighlighter(null);
         NoSurat.setName("NoSurat"); // NOI18N
         NoSurat.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -445,7 +448,7 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
             }
         });
         FormInput.add(NoSurat);
-        NoSurat.setBounds(74, 40, 141, 23);
+        NoSurat.setBounds(74, 40, 260, 23);
 
         jLabel4.setText("No.Rawat :");
         jLabel4.setName("jLabel4"); // NOI18N
@@ -469,8 +472,9 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         TPasien.setBounds(330, 10, 390, 23);
 
         TanggalAkhir.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalAkhir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2021" }));
+        TanggalAkhir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2025" }));
         TanggalAkhir.setDisplayFormat("dd-MM-yyyy");
+        TanggalAkhir.setEnabled(false);
         TanggalAkhir.setName("TanggalAkhir"); // NOI18N
         TanggalAkhir.setOpaque(false);
         TanggalAkhir.addActionListener(new java.awt.event.ActionListener() {
@@ -498,8 +502,9 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         jLabel16.setBounds(536, 40, 90, 23);
 
         TanggalAwal.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalAwal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2021" }));
+        TanggalAwal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2025" }));
         TanggalAwal.setDisplayFormat("dd-MM-yyyy");
+        TanggalAwal.setEnabled(false);
         TanggalAwal.setName("TanggalAwal"); // NOI18N
         TanggalAwal.setOpaque(false);
         TanggalAwal.addActionListener(new java.awt.event.ActionListener() {
@@ -808,12 +813,12 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
                     "where diagnosa_pasien.no_rawat=? and diagnosa_pasien.prioritas='1'",TNoRw.getText()));
                 param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
                 Valid.MyReportqry("rptSuratKeteranganRawatInap.jasper","report","::[ Surat Keterangan Rawat Inap ]::",
-                              "select DATE_FORMAT(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,perusahaan_pasien.nama_perusahaan,reg_periksa.no_rawat,dokter.nm_dokter,pasien.keluarga,pasien.namakeluarga,pasien.tgl_lahir,pasien.jk," +
-                              " pasien.nm_pasien,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,pasien.pekerjaan,concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat" +
-                              " from reg_periksa inner join pasien inner join dokter inner join kelurahan inner join perusahaan_pasien inner join kecamatan inner join kabupaten" +
-                              " on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_dokter=dokter.kd_dokter and pasien.kd_kel=kelurahan.kd_kel "+
-                              "and pasien.perusahaan_pasien=perusahaan_pasien.kode_perusahaan and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab "+
-                              "where reg_periksa.no_rawat='"+TNoRw.getText()+"' ",param);
+                              "select DATE_FORMAT(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,reg_periksa.no_rawat," +
+                              " pasien.nm_pasien,pasien.jk,reg_periksa.umurdaftar,pangkat_polri.nama_pangkat,pasien.nip,jabatan_polri.nama_jabatan,satuan_polri.nama_satuan " +
+                              " from reg_periksa inner join pasien inner join pasien_polri inner join pangkat_polri inner join jabatan_polri inner join satuan_polri " +
+                              " on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and pasien_polri.pangkat_polri=pangkat_polri.id "+
+                              " and pasien_polri.jabatan_polri=jabatan_polri.id and pasien_polri.satuan_polri=satuan_polri.id" +
+                              " where reg_periksa.no_rawat='"+TNoRw.getText()+"' ",param);
                 this.setCursor(Cursor.getDefaultCursor());  
        }
     }//GEN-LAST:event_MnCetakSuratRawatActionPerformed
@@ -932,8 +937,9 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         NoSurat.setText("");
         TanggalAwal.setDate(new Date());
         TanggalAkhir.setDate(new Date());
-        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(surat_keterangan_rawat_inap.no_surat,3),signed)),0) from surat_keterangan_rawat_inap where surat_keterangan_rawat_inap.tanggalawal='"+Valid.SetTgl(TanggalAwal.getSelectedItem()+"")+"' ",
-                "SKR"+TanggalAwal.getSelectedItem().toString().substring(6,10)+TanggalAwal.getSelectedItem().toString().substring(3,5)+TanggalAwal.getSelectedItem().toString().substring(0,2),3,NoSurat); 
+        nomorSurat();
+//        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(surat_keterangan_rawat_inap.no_surat,3),signed)),0) from surat_keterangan_rawat_inap where surat_keterangan_rawat_inap.tanggalawal='"+Valid.SetTgl(TanggalAwal.getSelectedItem()+"")+"' ",
+//                "SKR"+TanggalAwal.getSelectedItem().toString().substring(6,10)+TanggalAwal.getSelectedItem().toString().substring(3,5)+TanggalAwal.getSelectedItem().toString().substring(0,2),3,NoSurat); 
         NoSurat.requestFocus();
     }
 
@@ -958,14 +964,17 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         Sequel.cariIsi("select pasien.nm_pasien from pasien where pasien.no_rkm_medis='"+TNoRM.getText()+"' ",TPasien);
     }
     
-    public void setNoRm(String norwt) {
+    public void setNoRm(String norwt, Date tgl1, Date tgl2) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
+        TanggalAwal.setDate(tgl1);
+        TanggalAkhir.setDate(tgl2);
         isRawat();
         isPsien(); 
         ChkInput.setSelected(true);
         isForm();
     }
+    
     private void isForm(){
         if(ChkInput.isSelected()==true){
             ChkInput.setVisible(false);
@@ -985,6 +994,73 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getsurat_keterangan_rawat_inap());
         BtnHapus.setEnabled(akses.getsurat_keterangan_rawat_inap());
         BtnEdit.setEnabled(akses.getsurat_keterangan_rawat_inap());
+    }
+    
+    private void nomorSurat() {
+        bln_angka = "";
+        bln_romawi = "";
+        
+        bln_angka = TanggalAwal.getSelectedItem().toString().substring(3,5);
+        
+        if (bln_angka.equals("01")) {
+            //bln_angka  = "01";
+            bln_romawi = "I";
+        } else if (bln_angka.equals("02")) {
+            //bln_angka  = "02";
+            bln_romawi = "II";
+        } else if (bln_angka.equals("03")) {
+            //bln_angka  = "03";
+            bln_romawi = "III";
+        } else if (bln_angka.equals("04")) {
+            //bln_angka  = "04";
+            bln_romawi = "IV";
+        } else if (bln_angka.equals("05")) {
+            //bln_angka  = "05";
+            bln_romawi = "V";
+        } else if (bln_angka.equals("06")) {
+            //bln_angka  = "06";
+            bln_romawi = "VI";
+        } else if (bln_angka.equals("07")) {
+            //bln_angka  = "07";
+            bln_romawi = "VII";
+        } else if (bln_angka.equals("08")) {
+            //bln_angka  = "08";
+            bln_romawi = "VIII";
+        } else if (bln_angka.equals("09")) {
+            //bln_angka  = "09";
+            bln_romawi = "IX";
+        } else if (bln_angka.equals("10")) {
+            //bln_angka  = "10";
+            bln_romawi = "X";
+        } else if (bln_angka.equals("11")) {
+            //bln_angka  = "11";
+            bln_romawi = "XI";
+        } else if (bln_angka.equals("12")) {
+            //bln_angka  = "12";
+            bln_romawi = "XII";
+        }
+        
+//        Valid1.autoNomerSuratKhusus1("SELECT IFNULL(MAX(CONVERT(SUBSTRING_INDEX(SUBSTRING_INDEX(no_surat, '/', 2), '/', -1), SIGNED)), 0) FROM surat_keterangan_rawat_inap where "
+//                + "tanggalawal like '%" + Valid.SetTgl(TanggalAwal.getSelectedItem() + "").substring(0, 7) + "%' ", "/SRM/RS. Bhayangkara/" + bln_romawi + "/" + TanggalAwal.getSelectedItem().toString().substring(6,10), 3, NoSurat);
+        
+        Valid1.autoNomerSuratKhusus1("SELECT IFNULL(MAX(CONVERT(SUBSTRING_INDEX(SUBSTRING_INDEX(no_surat, '/', 2), '/', -1), SIGNED)), 0) " +
+                                     "FROM surat_keterangan_rawat_inap " +
+                                     "WHERE YEAR(tanggalawal) = YEAR(STR_TO_DATE('" + Valid.SetTgl(TanggalAwal.getSelectedItem() + "") + "', '%Y-%m-%d'))", "/SRM/" + bln_romawi + "/" + TanggalAwal.getSelectedItem().toString().substring(6, 10) + "/RS. Bhayangkara", 3, NoSurat);
+        String hasilSurat = NoSurat.getText();
+        String[] bagian = hasilSurat.split("/");
+
+        if (bagian.length >= 5) { 
+            String nomor = bagian[0]; 
+            String blnRomawi = bagian[2];
+            String tahun = bagian[3];
+            String rumahSakit = bagian[4];
+      
+            String formatBaru = "SRM/" + nomor + "/" + blnRomawi + "/" + tahun + "/" + rumahSakit;
+
+            NoSurat.setText(formatBaru);
+        }
+        
+        bln_angka = Sequel.cariIsi("SELECT MONTH(surat_keterangan_rawat_inap.tanggalawal) FROM surat_keterangan_rawat_inap WHERE tanggalawal like '%" + Valid.SetTgl(TanggalAwal.getSelectedItem() + "").substring(0, 7) + "%'");
     }
 }
 

@@ -34,15 +34,15 @@ import javax.swing.table.TableColumn;
  *
  * @author perpustakaan
  */
-public final class DlgRl32 extends javax.swing.JDialog {
+    public final class DlgRl32 extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private PreparedStatement ps;
     private ResultSet rs;
-    private int i=0,rujukan=0,nonrujukan=0,dirawat=0,dirujuk=0,meninggal=0,pulang=0,
-            ttlrujukan=0,ttlnonrujukan=0,ttldirawat=0,ttldirujuk=0,ttlmeninggal=0,ttlpulang=0;   
+    private int i = 0, rujukan = 0, nonrujukan = 0, dirawat = 0, dirujuk = 0, meninggallaki = 0,meninggalperempuan = 0,doalaki = 0,doaperempuan = 0,lukalaki=0,lukaperempuan=0, pulang = 0,falseemergency=0,
+            ttlrujukan = 0, ttlnonrujukan = 0, ttldirawat = 0, ttldirujuk = 0, ttlmeninggallaki = 0,ttlmeninggalperempuan,ttldoalaki = 0,ttldoaperempuan,ttllukalaki=0,ttllukaperempuan=0, ttlpulang = 0,ttlfalseemergency=0; 
     /** Creates new form DlgLhtBiaya
      * @param parent
      * @param modal */
@@ -52,7 +52,12 @@ public final class DlgRl32 extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(885,674);
 
-        Object[] rowRwJlDr={"No.","Jenis Pelayanan","Rujukan","Non Rujukan","Dirawat","Dirujuk","Pulang","Mati di IGD","Doa"};
+        Object[] rowRwJlDr={
+            "No.","Jenis Pelayanan","Rujukan","Non Rujukan",
+            "Dirawat","Dirujuk","Pulang","Mati di IGD (L)",
+            "Mati di IGD (P)","DOA (L)","DOA (P)",
+            "Luka-Luka (L)","Luka-Luka (P)","False Emergency"
+        };
         tabMode=new DefaultTableModel(null,rowRwJlDr){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -61,14 +66,14 @@ public final class DlgRl32 extends javax.swing.JDialog {
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 9; i++) {
+        for (i = 0; i < rowRwJlDr.length; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(25);
             }else if(i==1){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(300);
             }else{
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(100);
             }
         }
         tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
@@ -77,13 +82,22 @@ public final class DlgRl32 extends javax.swing.JDialog {
                    
 
         
+//        try {
+//            ps=koneksi.prepareStatement(
+//                    "select poliklinik.kd_poli,poliklinik.nm_poli from poliklinik " +
+//                    "where poliklinik.nm_poli like ? order by poliklinik.nm_poli");
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+
         try {
             ps=koneksi.prepareStatement(
-                    "select poliklinik.kd_poli,poliklinik.nm_poli from poliklinik " +
-                    "where poliklinik.nm_poli like ? order by poliklinik.nm_poli");
+                    "SELECT master_triase_macam_kasus.kode_kasus,master_triase_macam_kasus.macam_kasus FROM master_triase_macam_kasus " +
+"                    where master_triase_macam_kasus.statusdata='1' and master_triase_macam_kasus.macam_kasus like ? order by master_triase_macam_kasus.kode_kasus ");
         } catch (Exception e) {
             System.out.println(e);
         }
+
     }    
 
     /** This method is called from within the constructor to
@@ -123,7 +137,7 @@ public final class DlgRl32 extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ RL 3.2 Kunjungan Rawat Darurat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ RL 3.3 Rekapitulasi Kegiatan Pelayanan Rawat Darurat SIRS 6.3 ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -275,16 +289,21 @@ public final class DlgRl32 extends javax.swing.JDialog {
             Sequel.queryu("delete from temporary where temp37='"+akses.getalamatip()+"'");
             for(int r=0;r<tabMode.getRowCount();r++){ 
                 if(!tbBangsal.getValueAt(r,0).toString().contains(">>")){
-                    Sequel.menyimpan("temporary","'"+r+"','"+
-                                    tabMode.getValueAt(r,0).toString()+"','"+
-                                    tabMode.getValueAt(r,1).toString()+"','"+
-                                    tabMode.getValueAt(r,2).toString()+"','"+
-                                    tabMode.getValueAt(r,3).toString()+"','"+
-                                    tabMode.getValueAt(r,4).toString()+"','"+
-                                    tabMode.getValueAt(r,5).toString()+"','"+
-                                    tabMode.getValueAt(r,6).toString()+"','"+
-                                    tabMode.getValueAt(r,7).toString()+"','"+
-                                    tabMode.getValueAt(r,8).toString()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Rekap Nota Pembayaran");
+                    Sequel.menyimpan("temporary","'"+r+"','"
+                            + tabMode.getValueAt(r, 0).toString() + "','"
+                            + tabMode.getValueAt(r, 1).toString() + "','"
+                            + tabMode.getValueAt(r, 2).toString() + "','"
+                            + tabMode.getValueAt(r, 3).toString() + "','"
+                            + tabMode.getValueAt(r, 4).toString() + "','"
+                            + tabMode.getValueAt(r, 5).toString() + "','"
+                            + tabMode.getValueAt(r, 6).toString() + "','"
+                            + tabMode.getValueAt(r, 7).toString() + "','"
+                            + tabMode.getValueAt(r, 8).toString() + "','"
+                            + tabMode.getValueAt(r, 9).toString() + "','"
+                            + tabMode.getValueAt(r, 10).toString() + "','"
+                            + tabMode.getValueAt(r, 11).toString() + "','"
+                            + tabMode.getValueAt(r, 12).toString() + "','"
+                            + tabMode.getValueAt(r, 13).toString() + "','','','','','','','','','','','','','','','','','','','','','','','" + akses.getalamatip() + "'", "Rekap Nota Pembayaran");
                 }                    
             }
                
@@ -398,56 +417,99 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             ps.setString(1,"%"+TCari.getText().trim()+"%");
             rs=ps.executeQuery();
             i=1;
-            rujukan=0;
-            nonrujukan=0;
-            dirawat=0;
-            dirujuk=0;
-            meninggal=0;
-            pulang=0;
-            ttlrujukan=0;
-            ttlnonrujukan=0;
-            ttldirawat=0;
-            ttldirujuk=0;
-            ttlmeninggal=0;
-            ttlpulang=0;
+            rujukan = 0;
+            nonrujukan = 0;
+            dirawat = 0;
+            dirujuk = 0;
+            meninggallaki = 0;
+            meninggalperempuan = 0;
+            doalaki = 0;
+            doaperempuan = 0;
+            lukalaki=0;
+            lukaperempuan=0;
+            pulang = 0;
+            falseemergency = 0;
+            ttlrujukan = 0;
+            ttlnonrujukan = 0;
+            ttldirawat = 0;
+            ttldirujuk = 0;
+            ttlmeninggallaki = 0;
+            ttlmeninggalperempuan = 0;
+            ttldoalaki = 0;
+            ttldoaperempuan = 0;
+            ttllukalaki=0;
+            ttllukaperempuan=0;
+            ttlpulang = 0;
+            ttlfalseemergency = 0;
             while(rs.next()){
-                rujukan=Sequel.cariInteger("select count(rujuk_masuk.no_rawat) from reg_periksa inner join rujuk_masuk "+
-                        "on rujuk_masuk.no_rawat=reg_periksa.no_rawat where reg_periksa.kd_poli='"+rs.getString("kd_poli")+"' and "+
-                        "reg_periksa.tgl_registrasi between '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"'");
-                ttlrujukan=ttlrujukan+rujukan;
+                rujukan = Sequel.cariInteger("SELECT count(rujuk_masuk.no_rawat) FROM data_triase_igd INNER JOIN rujuk_masuk ON data_triase_igd.no_rawat = rujuk_masuk.no_rawat "
+                        + "where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' and data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59'");
+                ttlrujukan = ttlrujukan + rujukan;
+
+                nonrujukan = Sequel.cariInteger("SELECT count(data_triase_igd.no_rawat) FROM data_triase_igd where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' "
+                        + "and data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59' and "
+                        + "data_triase_igd.no_rawat not in(select no_rawat from rujuk_masuk)");
+                ttlnonrujukan = ttlnonrujukan + nonrujukan;
+
+                dirawat = Sequel.cariInteger("select count(data_triase_igd.no_rawat) from data_triase_igd inner join kamar_inap "
+                        + "on data_triase_igd.no_rawat=kamar_inap.no_rawat where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' and "
+                        + "data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59' ");
+                ttldirawat = ttldirawat + dirawat;
+
+                dirujuk = Sequel.cariInteger("select count(data_triase_igd.no_rawat) from data_triase_igd inner join rujuk on rujuk.no_rawat=data_triase_igd.no_rawat "
+                        + "where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' and "
+                        + "data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59' ");
+
+                ttldirujuk = ttldirujuk + dirujuk;
+
+                pulang = Sequel.cariInteger("select count(data_triase_igd.no_rawat) from data_triase_igd inner join reg_periksa "
+                        + "on reg_periksa.no_rawat=data_triase_igd.no_rawat where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' and "
+                        + "data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59' and "
+                        + "reg_periksa.stts = 'Sudah' ");
+                ttlpulang = ttlpulang + pulang;
+
+                meninggallaki = Sequel.cariInteger("select count(data_triase_igd.no_rawat) from data_triase_igd inner join reg_periksa on data_triase_igd.no_rawat = reg_periksa.no_rawat inner join pasien_mati "
+                        + "on reg_periksa.no_rkm_medis=pasien_mati.no_rkm_medis inner join pasien on pasien.no_rkm_medis = pasien_mati.no_rkm_medis where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' and "
+                        + "data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59' and pasien.jk ='L'");
+                ttlmeninggallaki = ttlmeninggallaki + meninggallaki;
                 
-                nonrujukan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa  where reg_periksa.kd_poli='"+rs.getString("kd_poli")+"' and "+
-                        "reg_periksa.tgl_registrasi between '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"' and "+
-                        "reg_periksa.no_rawat not in(select no_rawat from rujuk_masuk)");
-                ttlnonrujukan=ttlnonrujukan+nonrujukan;
+                meninggalperempuan = Sequel.cariInteger("select count(data_triase_igd.no_rawat) from data_triase_igd inner join reg_periksa on data_triase_igd.no_rawat = reg_periksa.no_rawat inner join pasien_mati "
+                        + "on reg_periksa.no_rkm_medis=pasien_mati.no_rkm_medis inner join pasien on pasien.no_rkm_medis = pasien_mati.no_rkm_medis where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' and "
+                        + "data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59' and pasien.jk ='P'");
+                ttlmeninggalperempuan = ttlmeninggalperempuan + meninggalperempuan;
                 
-                dirawat=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa inner join kamar_inap "+
-                        "on reg_periksa.no_rawat=kamar_inap.no_rawat where reg_periksa.kd_poli='"+rs.getString("kd_poli")+"' and "+
-                        "reg_periksa.tgl_registrasi between '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"' group by reg_periksa.no_rawat");
-                ttldirawat=ttldirawat+dirawat;
+                doalaki = Sequel.cariInteger("select count(data_triase_igd.no_rawat) from data_triase_igd inner join reg_periksa on data_triase_igd.no_rawat = reg_periksa.no_rawat inner join pasien_mati "
+                        + "on reg_periksa.no_rkm_medis=pasien_mati.no_rkm_medis inner join pasien on pasien.no_rkm_medis = pasien_mati.no_rkm_medis where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' and "
+                        + "data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59' and pasien.jk ='L' and pasien_mati.temp_meninggal = 'DOA'");
+                ttldoalaki = ttldoalaki + doalaki;
                 
-                dirujuk=Sequel.cariInteger("select count(rujuk.no_rawat) from reg_periksa inner join rujuk on rujuk.no_rawat=reg_periksa.no_rawat "+
-                        "where reg_periksa.kd_poli='"+rs.getString("kd_poli")+"' and reg_periksa.tgl_registrasi between '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"'");
-                ttldirujuk=ttldirujuk+dirujuk;
+                doaperempuan = Sequel.cariInteger("select count(data_triase_igd.no_rawat) from data_triase_igd inner join reg_periksa on data_triase_igd.no_rawat = reg_periksa.no_rawat inner join pasien_mati "
+                        + "on reg_periksa.no_rkm_medis=pasien_mati.no_rkm_medis inner join pasien on pasien.no_rkm_medis = pasien_mati.no_rkm_medis where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' and "
+                        + "data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59' and pasien.jk ='P' and pasien_mati.temp_meninggal = 'DOA'");
+                ttldoaperempuan = ttldoaperempuan + doaperempuan;
                 
-                meninggal=Sequel.cariInteger("select count(reg_periksa.no_rkm_medis) from pasien_mati inner join reg_periksa "+
-                        "on reg_periksa.no_rkm_medis=pasien_mati.no_rkm_medis  where kd_poli='"+rs.getString("kd_poli")+"' and "+
-                        "reg_periksa.tgl_registrasi between '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"'");
-                ttlmeninggal=ttlmeninggal+meninggal;
+                lukalaki = Sequel.cariInteger("select count(data_triase_igd.no_rawat) from data_triase_igd inner join data_triase_igdprimer on data_triase_igdprimer.no_rawat = data_triase_igd.no_rawat inner join reg_periksa on data_triase_igd.no_rawat = reg_periksa.no_rawat "
+                        + "inner join pasien on pasien.no_rkm_medis = reg_periksa.no_rkm_medis where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' and "
+                        + "data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59' and pasien.jk ='L' and data_triase_igdprimer.keluhan_utama like '%luka%'");
+                ttllukalaki = ttllukalaki + lukalaki;
                 
-                pulang=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa inner join kamar_inap "+
-                        "on reg_periksa.no_rawat=kamar_inap.no_rawat where reg_periksa.kd_poli='"+rs.getString("kd_poli")+"' and "+
-                        "reg_periksa.tgl_registrasi between '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' and '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"' and "+
-                        "kamar_inap.stts_pulang<>('Rujuk' or 'Meninggal' or 'Pindah Kamar') group by reg_periksa.no_rawat");
-                ttlpulang=ttlpulang+pulang;
+                lukaperempuan = Sequel.cariInteger("select count(data_triase_igd.no_rawat) from data_triase_igd inner join data_triase_igdprimer on data_triase_igdprimer.no_rawat = data_triase_igd.no_rawat inner join reg_periksa on data_triase_igd.no_rawat = reg_periksa.no_rawat "
+                        + "inner join pasien on pasien.no_rkm_medis = reg_periksa.no_rkm_medis where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' and "
+                        + "data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59' and pasien.jk ='P' and data_triase_igdprimer.keluhan_utama like '%luka%'");
+                ttllukaperempuan = ttllukaperempuan + lukaperempuan;
+                
+                falseemergency = Sequel.cariInteger("SELECT count(data_triase_igd.no_rawat) FROM data_triase_igd INNER JOIN data_triase_igdsekunder ON data_triase_igd.no_rawat = data_triase_igdsekunder.no_rawat "
+                        + "where data_triase_igd.kode_kasus = '" + rs.getString("kode_kasus") + "' and data_triase_igdsekunder.plan = 'Zona Hijau' and data_triase_igd.tgl_kunjungan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' ' 00:00:00' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ' 23:59:59'");
+                ttlfalseemergency = ttlfalseemergency + falseemergency;
+
                 tabMode.addRow(new Object[]{
-                    i,rs.getString("nm_poli"),rujukan,nonrujukan,dirawat,dirujuk,pulang,meninggal,"0"
+                    i, rs.getString("macam_kasus"), rujukan, nonrujukan, dirawat, dirujuk, pulang, meninggallaki, meninggalperempuan, doalaki, doaperempuan, lukalaki, lukaperempuan, falseemergency
                 });
                 i++;
             }
-            if(i>1){
+            if (i > 1) {
                 tabMode.addRow(new Object[]{
-                    "","TOTAL",ttlrujukan,ttlnonrujukan,ttldirawat,ttldirujuk,ttlpulang,ttlmeninggal,"0"
+                    "", "TOTAL", ttlrujukan, ttlnonrujukan, ttldirawat, ttldirujuk, ttlpulang, ttlmeninggallaki, ttlmeninggalperempuan,ttldoalaki, ttldoaperempuan, ttllukalaki, ttllukaperempuan, ttlfalseemergency
                 });
             }
             this.setCursor(Cursor.getDefaultCursor());

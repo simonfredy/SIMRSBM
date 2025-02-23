@@ -357,6 +357,7 @@
             </Component>
             <Component class="widget.TextBox" name="TKd">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
                   <ComponentRef name="null"/>
                 </Property>
@@ -373,6 +374,7 @@
             </Component>
             <Component class="widget.TextBox" name="TNm">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="TNm" noResource="true"/>
               </Properties>
               <Events>
